@@ -1,0 +1,131 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>RoleService - rooms-backend</title>
+    <link href="../../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="../index.html">com.thkoeln.cide.roomsserver.services</a>&nbsp;/&nbsp;<a href="./index.html">RoleService</a><br/>
+<br/>
+<h1>RoleService</h1>
+<code><span class="identifier">@Service</span> <span class="keyword">class </span><span class="identifier">RoleService</span>&nbsp;<span class="symbol">:</span>&nbsp;<a
+        href="../-resource-service/index.html"><span class="identifier">ResourceService</span></a><span class="symbol">&lt;</span><a
+        href="../../com.thkoeln.cide.roomsserver.models/-role-d-a-o/index.html"><span class="identifier">RoleDAO</span></a><span class="symbol">,</span>&nbsp;<a
+        href="../../com.thkoeln.cide.roomsserver.models/-role-d-t-o/index.html"><span class="identifier">RoleDTO</span></a><span class="symbol">,</span>&nbsp;<a
+        href="../../com.thkoeln.cide.roomsserver.models/-role-protocol/index.html"><span class="identifier">RoleProtocol</span></a><span class="symbol">,</span>&nbsp;<a
+        href="../../com.thkoeln.cide.roomsserver.models.projections/-role-projections/index.html"><span class="identifier">RoleProjections</span></a><span class="symbol">,</span>&nbsp;<a
+        href="../../com.thkoeln.cide.roomsserver.models.filters/-role-filters.html"><span class="identifier">RoleFilters</span></a><span class="symbol">&gt;</span></code>
+<h3>Constructors</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="-init-.html">&lt;init&gt;</a></h4>
+        </td>
+        <td>
+            <code><span class="identifier">RoleService</span><span class="symbol">(</span><span class="identifier"
+                                                                                                id="com.thkoeln.cide.roomsserver.services.RoleService$<init>(com.thkoeln.cide.roomsserver.repositories.RoleRepository, com.thkoeln.cide.roomsserver.repositories.RoomRepository, com.thkoeln.cide.roomsserver.repositories.DepartmentRepository, com.thkoeln.cide.roomsserver.models.RoleConverter, com.thkoeln.cide.roomsserver.models.projections.RoleProjector, com.thkoeln.cide.roomsserver.models.filters.RoleFilter)/repo">repo</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.repositories/-role-repository/index.html"><span class="identifier">RoleRepository</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.services.RoleService$<init>(com.thkoeln.cide.roomsserver.repositories.RoleRepository, com.thkoeln.cide.roomsserver.repositories.RoomRepository, com.thkoeln.cide.roomsserver.repositories.DepartmentRepository, com.thkoeln.cide.roomsserver.models.RoleConverter, com.thkoeln.cide.roomsserver.models.projections.RoleProjector, com.thkoeln.cide.roomsserver.models.filters.RoleFilter)/roomRepository">roomRepository</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.repositories/-room-repository/index.html"><span class="identifier">RoomRepository</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.services.RoleService$<init>(com.thkoeln.cide.roomsserver.repositories.RoleRepository, com.thkoeln.cide.roomsserver.repositories.RoomRepository, com.thkoeln.cide.roomsserver.repositories.DepartmentRepository, com.thkoeln.cide.roomsserver.models.RoleConverter, com.thkoeln.cide.roomsserver.models.projections.RoleProjector, com.thkoeln.cide.roomsserver.models.filters.RoleFilter)/departmentRepository">departmentRepository</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.repositories/-department-repository/index.html"><span
+                    class="identifier">DepartmentRepository</span></a><span class="symbol">, </span><span class="identifier"
+                                                                                                          id="com.thkoeln.cide.roomsserver.services.RoleService$<init>(com.thkoeln.cide.roomsserver.repositories.RoleRepository, com.thkoeln.cide.roomsserver.repositories.RoomRepository, com.thkoeln.cide.roomsserver.repositories.DepartmentRepository, com.thkoeln.cide.roomsserver.models.RoleConverter, com.thkoeln.cide.roomsserver.models.projections.RoleProjector, com.thkoeln.cide.roomsserver.models.filters.RoleFilter)/converter">converter</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-role-converter/index.html"><span class="identifier">RoleConverter</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.services.RoleService$<init>(com.thkoeln.cide.roomsserver.repositories.RoleRepository, com.thkoeln.cide.roomsserver.repositories.RoomRepository, com.thkoeln.cide.roomsserver.repositories.DepartmentRepository, com.thkoeln.cide.roomsserver.models.RoleConverter, com.thkoeln.cide.roomsserver.models.projections.RoleProjector, com.thkoeln.cide.roomsserver.models.filters.RoleFilter)/projector">projector</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models.projections/-role-projector/index.html"><span class="identifier">RoleProjector</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.services.RoleService$<init>(com.thkoeln.cide.roomsserver.repositories.RoleRepository, com.thkoeln.cide.roomsserver.repositories.RoomRepository, com.thkoeln.cide.roomsserver.repositories.DepartmentRepository, com.thkoeln.cide.roomsserver.models.RoleConverter, com.thkoeln.cide.roomsserver.models.projections.RoleProjector, com.thkoeln.cide.roomsserver.models.filters.RoleFilter)/filter">filter</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models.filters/-role-filter/index.html"><span class="identifier">RoleFilter</span></a><span class="symbol">)</span></code>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<h3>Properties</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="converter.html">converter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">val </span><span class="identifier">converter</span><span class="symbol">: </span><a
+                    href="../../com.thkoeln.cide.roomsserver.models/-role-converter/index.html"><span class="identifier">RoleConverter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="filter.html">filter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">val </span><span class="identifier">filter</span><span class="symbol">: </span><a
+                    href="../../com.thkoeln.cide.roomsserver.models.filters/-role-filter/index.html"><span class="identifier">RoleFilter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="projector.html">projector</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">val </span><span class="identifier">projector</span><span class="symbol">: </span><a
+                    href="../../com.thkoeln.cide.roomsserver.models.projections/-role-projector/index.html"><span class="identifier">RoleProjector</span></a></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="by-user-id-resolved.html">byUserIdResolved</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">byUserIdResolved</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                      id="com.thkoeln.cide.roomsserver.services.RoleService$byUserIdResolved(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-role-d-t-o/index.html"><span class="identifier">RoleDTO</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="create.html">create</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">create</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                            id="com.thkoeln.cide.roomsserver.services.RoleService$create(com.thkoeln.cide.roomsserver.models.RoleProtocol)/role">role</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-role-protocol/index.html"><span class="identifier">RoleProtocol</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="delete.html">delete</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">delete</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                            id="com.thkoeln.cide.roomsserver.services.RoleService$delete(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="get-raw.html">getRaw</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">getRaw</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a
+                    href="../../com.thkoeln.cide.roomsserver.models/-role-d-a-o/index.html"><span class="identifier">RoleDAO</span></a><span class="symbol">&gt;</span></code><br/>
+            <code><span class="keyword">fun </span><span class="identifier">getRaw</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                            id="com.thkoeln.cide.roomsserver.services.RoleService$getRaw(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="../../com.thkoeln.cide.roomsserver.models/-role-d-a-o/index.html"><span class="identifier">RoleDAO</span></a><span
+                    class="symbol">?</span></code></td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

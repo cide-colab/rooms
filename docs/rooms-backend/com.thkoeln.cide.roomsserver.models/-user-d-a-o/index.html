@@ -1,0 +1,140 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>UserDAO - rooms-backend</title>
+    <link href="../../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="../index.html">com.thkoeln.cide.roomsserver.models</a>&nbsp;/&nbsp;<a href="./index.html">UserDAO</a><br/>
+<br/>
+<h1>UserDAO</h1>
+<code><span class="identifier">@Entity</span> <span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">UserDAO</span>&nbsp;<span class="symbol">:</span>&nbsp;<a
+        href="../-user-b-o/index.html"><span class="identifier">UserBO</span></a><span class="symbol">, </span><a href="../../com.thkoeln.cide.roomsserver.models.abstracts/-d-a-o/index.html"><span
+        class="identifier">DAO</span></a><span class="symbol">&lt;</span><a href="../-user-b-o/index.html"><span class="identifier">UserBO</span></a><span class="symbol">&gt;</span></code>
+<h3>Constructors</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="-init-.html">&lt;init&gt;</a></h4>
+        </td>
+        <td>
+            <code><span class="identifier">UserDAO</span><span class="symbol">(</span><span class="identifier"
+                                                                                            id="com.thkoeln.cide.roomsserver.models.UserDAO$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.RoleDAO)), kotlin.collections.List((com.thkoeln.cide.roomsserver.models.AboDAO)), kotlin.collections.List((com.thkoeln.cide.roomsserver.models.ReservationDAO)))/principal">principal</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.models.UserDAO$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.RoleDAO)), kotlin.collections.List((com.thkoeln.cide.roomsserver.models.AboDAO)), kotlin.collections.List((com.thkoeln.cide.roomsserver.models.ReservationDAO)))/givenName">givenName</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.models.UserDAO$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.RoleDAO)), kotlin.collections.List((com.thkoeln.cide.roomsserver.models.AboDAO)), kotlin.collections.List((com.thkoeln.cide.roomsserver.models.ReservationDAO)))/familyName">familyName</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.models.UserDAO$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.RoleDAO)), kotlin.collections.List((com.thkoeln.cide.roomsserver.models.AboDAO)), kotlin.collections.List((com.thkoeln.cide.roomsserver.models.ReservationDAO)))/email">email</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.models.UserDAO$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.RoleDAO)), kotlin.collections.List((com.thkoeln.cide.roomsserver.models.AboDAO)), kotlin.collections.List((com.thkoeln.cide.roomsserver.models.ReservationDAO)))/imageUrl">imageUrl</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a>&nbsp;<span
+                    class="symbol">=</span>&nbsp;defaultImage<span class="symbol">, </span><span class="identifier"
+                                                                                                 id="com.thkoeln.cide.roomsserver.models.UserDAO$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.RoleDAO)), kotlin.collections.List((com.thkoeln.cide.roomsserver.models.AboDAO)), kotlin.collections.List((com.thkoeln.cide.roomsserver.models.ReservationDAO)))/roles">roles</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><a href="../-role-d-a-o/index.html"><span class="identifier">RoleDAO</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;listOf()<span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.models.UserDAO$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.RoleDAO)), kotlin.collections.List((com.thkoeln.cide.roomsserver.models.AboDAO)), kotlin.collections.List((com.thkoeln.cide.roomsserver.models.ReservationDAO)))/abos">abos</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><a href="../-abo-d-a-o/index.html"><span class="identifier">AboDAO</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;listOf()<span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.models.UserDAO$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.RoleDAO)), kotlin.collections.List((com.thkoeln.cide.roomsserver.models.AboDAO)), kotlin.collections.List((com.thkoeln.cide.roomsserver.models.ReservationDAO)))/reservations">reservations</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><a href="../-reservation-d-a-o/index.html"><span class="identifier">ReservationDAO</span></a><span class="symbol">&gt;</span>&nbsp;<span
+                    class="symbol">=</span>&nbsp;listOf()<span class="symbol">)</span></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Properties</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="abos.html">abos</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">var </span><span class="identifier">abos</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a
+                    href="../-abo-d-a-o/index.html"><span class="identifier">AboDAO</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="email.html">email</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">var </span><span class="identifier">email</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="family-name.html">familyName</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">var </span><span class="identifier">familyName</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="given-name.html">givenName</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">var </span><span class="identifier">givenName</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="image-url.html">imageUrl</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">var </span><span class="identifier">imageUrl</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="principal.html">principal</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">var </span><span class="identifier">principal</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="reservations.html">reservations</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">var </span><span class="identifier">reservations</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a
+                    href="../-reservation-d-a-o/index.html"><span class="identifier">ReservationDAO</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="roles.html">roles</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">var </span><span class="identifier">roles</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a
+                    href="../-role-d-a-o/index.html"><span class="identifier">RoleDAO</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="../../com.thkoeln.cide.roomsserver.extensions/to-ref.html">toRef</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><a href="../../com.thkoeln.cide.roomsserver.models.abstracts/-identity/index.html"><span class="identifier">Identity</span></a><span
+                    class="symbol">.</span><span class="identifier">toRef</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="../../com.thkoeln.cide.roomsserver.models.abstracts/-identity-ref/index.html"><span class="identifier">IdentityRef</span></a></code></td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

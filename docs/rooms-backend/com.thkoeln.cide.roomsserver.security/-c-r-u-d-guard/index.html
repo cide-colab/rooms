@@ -1,0 +1,267 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>CRUDGuard - rooms-backend</title>
+    <link href="../../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="../index.html">com.thkoeln.cide.roomsserver.security</a>&nbsp;/&nbsp;<a href="./index.html">CRUDGuard</a><br/>
+<br/>
+<h1>CRUDGuard</h1>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">CRUDGuard</span><span class="symbol">&lt;</span><span class="identifier">DTO</span>&nbsp;<span
+        class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models.abstracts/-identity/index.html"><span class="identifier">Identity</span></a><span class="symbol">, </span><span
+        class="identifier">P</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-security-guard/index.html"><span
+        class="identifier">SecurityGuard</span></a></code>
+<h3>Constructors</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="-init-.html">&lt;init&gt;</a></h4>
+        </td>
+        <td>
+            <code><span class="identifier">CRUDGuard</span><span class="symbol">(</span><span class="identifier"
+                                                                                              id="com.thkoeln.cide.roomsserver.security.CRUDGuard$<init>(com.thkoeln.cide.roomsserver.security.CRUDFilter((com.thkoeln.cide.roomsserver.security.CRUDGuard.DTO, com.thkoeln.cide.roomsserver.security.CRUDGuard.P)), com.thkoeln.cide.roomsserver.security.Guard)/filters">filters</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-c-r-u-d-filter/index.html"><span class="identifier">CRUDFilter</span></a><span class="symbol">&lt;</span><span
+                    class="identifier">DTO</span><span class="symbol">,</span>&nbsp;<span class="identifier">P</span><span class="symbol">&gt;</span><span class="symbol">, </span><span
+                    class="identifier"
+                    id="com.thkoeln.cide.roomsserver.security.CRUDGuard$<init>(com.thkoeln.cide.roomsserver.security.CRUDFilter((com.thkoeln.cide.roomsserver.security.CRUDGuard.DTO, com.thkoeln.cide.roomsserver.security.CRUDGuard.P)), com.thkoeln.cide.roomsserver.security.Guard)/guard">guard</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-guard/index.html"><span class="identifier">Guard</span></a><span class="symbol">)</span></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="authorize.html">authorize</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">authorize</span><span
+                    class="symbol">(</span><span class="identifier"
+                                                 id="com.thkoeln.cide.roomsserver.security.CRUDGuard$authorize(com.thkoeln.cide.roomsserver.security.SecurityFilter, kotlin.Function1((com.thkoeln.cide.roomsserver.models.Session, com.thkoeln.cide.roomsserver.security.CRUDGuard.authorize.T)))/securityFilter">securityFilter</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-security-filter/index.html"><span class="identifier">SecurityFilter</span></a><span class="symbol">, </span><span class="identifier"
+                                                                                                                                                                                id="com.thkoeln.cide.roomsserver.security.CRUDGuard$authorize(com.thkoeln.cide.roomsserver.security.SecurityFilter, kotlin.Function1((com.thkoeln.cide.roomsserver.models.Session, com.thkoeln.cide.roomsserver.security.CRUDGuard.authorize.T)))/block">block</span><span
+                    class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../com.thkoeln.cide.roomsserver.models/-session/index.html"><span class="identifier">Session</span></a><span
+                    class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><span
+                    class="identifier">T</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="create.html">create</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">create</span><span
+                    class="symbol">(</span><span class="identifier"
+                                                 id="com.thkoeln.cide.roomsserver.security.CRUDGuard$create(kotlin.Function1((com.thkoeln.cide.roomsserver.models.Session, com.thkoeln.cide.roomsserver.security.CRUDGuard.create.T)))/block">block</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-secured-block.html"><span class="identifier">SecuredBlock</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span
+                    class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code><br/>
+            <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">create</span><span
+                    class="symbol">(</span><span class="identifier"
+                                                 id="com.thkoeln.cide.roomsserver.security.CRUDGuard$create(com.thkoeln.cide.roomsserver.security.CRUDGuard.P, kotlin.Function1((com.thkoeln.cide.roomsserver.models.Session, com.thkoeln.cide.roomsserver.security.CRUDGuard.create.T)))/protocol">protocol</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">P</span><span class="symbol">, </span><span class="identifier"
+                                                                                                                      id="com.thkoeln.cide.roomsserver.security.CRUDGuard$create(com.thkoeln.cide.roomsserver.security.CRUDGuard.P, kotlin.Function1((com.thkoeln.cide.roomsserver.models.Session, com.thkoeln.cide.roomsserver.security.CRUDGuard.create.T)))/block">block</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-secured-block.html"><span class="identifier">SecuredBlock</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span
+                    class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="delete.html">delete</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">delete</span><span
+                    class="symbol">(</span><span class="identifier"
+                                                 id="com.thkoeln.cide.roomsserver.security.CRUDGuard$delete(kotlin.String, kotlin.Function1((com.thkoeln.cide.roomsserver.models.Session, com.thkoeln.cide.roomsserver.security.CRUDGuard.delete.T)))/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.security.CRUDGuard$delete(kotlin.String, kotlin.Function1((com.thkoeln.cide.roomsserver.models.Session, com.thkoeln.cide.roomsserver.security.CRUDGuard.delete.T)))/block">block</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-secured-block.html"><span class="identifier">SecuredBlock</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span
+                    class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="get.html">get</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">get</span><span
+                    class="symbol">(</span><span class="identifier"
+                                                 id="com.thkoeln.cide.roomsserver.security.CRUDGuard$get(kotlin.String, kotlin.Function1((com.thkoeln.cide.roomsserver.models.Session, com.thkoeln.cide.roomsserver.security.CRUDGuard.get.T)))/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.security.CRUDGuard$get(kotlin.String, kotlin.Function1((com.thkoeln.cide.roomsserver.models.Session, com.thkoeln.cide.roomsserver.security.CRUDGuard.get.T)))/block">block</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-secured-block.html"><span class="identifier">SecuredBlock</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span
+                    class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code><br/>
+            <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">get</span><span
+                    class="symbol">(</span><span class="identifier"
+                                                 id="com.thkoeln.cide.roomsserver.security.CRUDGuard$get(kotlin.Function1((com.thkoeln.cide.roomsserver.models.Session, com.thkoeln.cide.roomsserver.security.CRUDGuard.get.T)))/block">block</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-secured-block.html"><span class="identifier">SecuredBlock</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span
+                    class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="get-entity-permission.html">getEntityPermission</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">getEntityPermission</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                         id="com.thkoeln.cide.roomsserver.security.CRUDGuard$getEntityPermission(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="../../com.thkoeln.cide.roomsserver.models.projections/-entity-permission/index.html"><span class="identifier">EntityPermission</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="get-list-permission.html">getListPermission</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">getListPermission</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="../../com.thkoeln.cide.roomsserver.models.projections/-list-permission/index.html"><span class="identifier">ListPermission</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="is-create-authorized.html">isCreateAuthorized</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">isCreateAuthorized</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code><br/>
+            <code><span class="keyword">fun </span><span class="identifier">isCreateAuthorized</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                        id="com.thkoeln.cide.roomsserver.security.CRUDGuard$isCreateAuthorized(com.thkoeln.cide.roomsserver.security.CRUDGuard.P)/protocol">protocol</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">P</span><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="is-delete-authorized.html">isDeleteAuthorized</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">isDeleteAuthorized</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                        id="com.thkoeln.cide.roomsserver.security.CRUDGuard$isDeleteAuthorized(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span
+                    class="identifier">Boolean</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="is-get-authorized.html">isGetAuthorized</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">isGetAuthorized</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                     id="com.thkoeln.cide.roomsserver.security.CRUDGuard$isGetAuthorized(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span
+                    class="identifier">Boolean</span></a></code><br/>
+            <code><span class="keyword">fun </span><span class="identifier">isGetAuthorized</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="is-update-authorized.html">isUpdateAuthorized</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">isUpdateAuthorized</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                        id="com.thkoeln.cide.roomsserver.security.CRUDGuard$isUpdateAuthorized(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span
+                    class="identifier">Boolean</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="update.html">update</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">update</span><span
+                    class="symbol">(</span><span class="identifier"
+                                                 id="com.thkoeln.cide.roomsserver.security.CRUDGuard$update(kotlin.String, kotlin.Function1((com.thkoeln.cide.roomsserver.models.Session, com.thkoeln.cide.roomsserver.security.CRUDGuard.update.T)))/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.security.CRUDGuard$update(kotlin.String, kotlin.Function1((com.thkoeln.cide.roomsserver.models.Session, com.thkoeln.cide.roomsserver.security.CRUDGuard.update.T)))/block">block</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-secured-block.html"><span class="identifier">SecuredBlock</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span
+                    class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="wrap-permissions.html">wrapPermissions</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">wrapPermissions</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                     id="com.thkoeln.cide.roomsserver.security.CRUDGuard$wrapPermissions(com.thkoeln.cide.roomsserver.security.CRUDGuard.DTO)/entity">entity</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">DTO</span><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="../../com.thkoeln.cide.roomsserver.models.projections/-permission-entity-projection/index.html"><span class="identifier">PermissionEntityProjection</span></a><span
+                    class="symbol">&lt;</span><span class="identifier">DTO</span><span class="symbol">&gt;</span></code><br/>
+            <code><span class="keyword">fun </span><span class="identifier">wrapPermissions</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                     id="com.thkoeln.cide.roomsserver.security.CRUDGuard$wrapPermissions(kotlin.collections.List((com.thkoeln.cide.roomsserver.security.CRUDGuard.DTO)))/entities">entities</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><span class="identifier">DTO</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="../../com.thkoeln.cide.roomsserver.models.projections/-permission-list-projection/index.html"><span class="identifier">PermissionListProjection</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models.projections/-permission-entity-projection/index.html"><span class="identifier">PermissionEntityProjection</span></a><span
+                    class="symbol">&lt;</span><span class="identifier">DTO</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="../-abo-guard/index.html">AboGuard</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">AboGuard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span
+                    class="identifier">CRUDGuard</span></a><span class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-role-d-t-o/index.html"><span
+                    class="identifier">RoleDTO</span></a><span class="symbol">,</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-role-protocol/index.html"><span class="identifier">RoleProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-department-guard/index.html">DepartmentGuard</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">DepartmentGuard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span
+                    class="identifier">CRUDGuard</span></a><span class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-department-d-t-o/index.html"><span class="identifier">DepartmentDTO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-department-protocol/index.html"><span class="identifier">DepartmentProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-reservation-guard/index.html">ReservationGuard</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">ReservationGuard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span
+                    class="identifier">CRUDGuard</span></a><span class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-reservation-d-t-o/index.html"><span class="identifier">ReservationDTO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-reservation-protocol/index.html"><span class="identifier">ReservationProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-role-guard/index.html">RoleGuard</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">RoleGuard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CRUDGuard</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-role-d-t-o/index.html"><span class="identifier">RoleDTO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-role-protocol/index.html"><span class="identifier">RoleProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-room-guard/index.html">RoomGuard</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">RoomGuard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CRUDGuard</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-room-d-t-o/index.html"><span class="identifier">RoomDTO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-room-protocol/index.html"><span class="identifier">RoomProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-user-guard/index.html">UserGuard</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">UserGuard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CRUDGuard</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-user-d-t-o/index.html"><span class="identifier">UserDTO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-user-protocol/index.html"><span class="identifier">UserProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

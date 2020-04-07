@@ -1,0 +1,205 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>RestResponseEntityExceptionHandler - rooms-backend</title>
+    <link href="../../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="../index.html">com.thkoeln.cide.roomsserver.error</a>&nbsp;/&nbsp;<a href="./index.html">RestResponseEntityExceptionHandler</a><br/>
+<br/>
+<h1>RestResponseEntityExceptionHandler</h1>
+<code><span class="identifier">@ControllerAdvice</span> <span class="keyword">class </span><span class="identifier">RestResponseEntityExceptionHandler</span>&nbsp;<span
+        class="symbol">:</span>&nbsp;<span class="identifier">ResponseEntityExceptionHandler</span></code>
+<h3>Constructors</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="-init-.html">&lt;init&gt;</a></h4>
+        </td>
+        <td>
+            <code><span class="identifier">RestResponseEntityExceptionHandler</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="handle-already-exists-result.html">handleAlreadyExistsResult</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">handleAlreadyExistsResult</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                               id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleAlreadyExistsResult(com.thkoeln.cide.roomsserver.error.AlreadyExistsException, org.springframework.web.context.request.WebRequest)/exception">exception</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-already-exists-exception/index.html"><span class="identifier">AlreadyExistsException</span></a><span class="symbol">, </span><span
+                    class="identifier"
+                    id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleAlreadyExistsResult(com.thkoeln.cide.roomsserver.error.AlreadyExistsException, org.springframework.web.context.request.WebRequest)/request">request</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">WebRequest</span><span class="symbol">)</span><span class="symbol">: </span><span
+                    class="identifier">ResponseEntity</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span
+                    class="identifier">Any</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">!</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="handle-authorization-failed-result.html">handleAuthorizationFailedResult</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">handleAuthorizationFailedResult</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                     id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleAuthorizationFailedResult(com.thkoeln.cide.roomsserver.error.AuthorizationFailedException, org.springframework.web.context.request.WebRequest)/exception">exception</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-authorization-failed-exception/index.html"><span class="identifier">AuthorizationFailedException</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleAuthorizationFailedResult(com.thkoeln.cide.roomsserver.error.AuthorizationFailedException, org.springframework.web.context.request.WebRequest)/request">request</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">WebRequest</span><span class="symbol">)</span><span class="symbol">: </span><span
+                    class="identifier">ResponseEntity</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span
+                    class="identifier">Any</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">!</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="handle-authorization-header-not-found-result.html">handleAuthorizationHeaderNotFoundResult</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">handleAuthorizationHeaderNotFoundResult</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                             id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleAuthorizationHeaderNotFoundResult(com.thkoeln.cide.roomsserver.error.AuthorizationHeaderNotFoundException, org.springframework.web.context.request.WebRequest)/exception">exception</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-authorization-header-not-found-exception/index.html"><span class="identifier">AuthorizationHeaderNotFoundException</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleAuthorizationHeaderNotFoundResult(com.thkoeln.cide.roomsserver.error.AuthorizationHeaderNotFoundException, org.springframework.web.context.request.WebRequest)/request">request</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">WebRequest</span><span class="symbol">)</span><span class="symbol">: </span><span
+                    class="identifier">ResponseEntity</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span
+                    class="identifier">Any</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">!</span></code><br/>
+            <code><span class="keyword">fun </span><span class="identifier">handleAuthorizationHeaderNotFoundResult</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                             id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleAuthorizationHeaderNotFoundResult(com.thkoeln.cide.roomsserver.error.InvalidTokenException, org.springframework.web.context.request.WebRequest)/exception">exception</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-invalid-token-exception/index.html"><span class="identifier">InvalidTokenException</span></a><span class="symbol">, </span><span
+                    class="identifier"
+                    id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleAuthorizationHeaderNotFoundResult(com.thkoeln.cide.roomsserver.error.InvalidTokenException, org.springframework.web.context.request.WebRequest)/request">request</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">WebRequest</span><span class="symbol">)</span><span class="symbol">: </span><span
+                    class="identifier">ResponseEntity</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span
+                    class="identifier">Any</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">!</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="handle-conflict-result.html">handleConflictResult</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">handleConflictResult</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                          id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleConflictResult(com.thkoeln.cide.roomsserver.error.ConflictException, org.springframework.web.context.request.WebRequest)/exception">exception</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-conflict-exception/index.html"><span class="identifier">ConflictException</span></a><span class="symbol">, </span><span class="identifier"
+                                                                                                                                                                                      id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleConflictResult(com.thkoeln.cide.roomsserver.error.ConflictException, org.springframework.web.context.request.WebRequest)/request">request</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">WebRequest</span><span class="symbol">)</span><span class="symbol">: </span><span
+                    class="identifier">ResponseEntity</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span
+                    class="identifier">Any</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">!</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="handle-empty-result.html">handleEmptyResult</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">handleEmptyResult</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                       id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleEmptyResult(org.springframework.dao.EmptyResultDataAccessException, org.springframework.web.context.request.WebRequest)/exception">exception</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">EmptyResultDataAccessException</span><span class="symbol">, </span><span class="identifier"
+                                                                                                                                                   id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleEmptyResult(org.springframework.dao.EmptyResultDataAccessException, org.springframework.web.context.request.WebRequest)/request">request</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">WebRequest</span><span class="symbol">)</span><span class="symbol">: </span><span
+                    class="identifier">ResponseEntity</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span
+                    class="identifier">Any</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">!</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="handle-forbidden-result.html">handleForbiddenResult</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">handleForbiddenResult</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                           id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleForbiddenResult(com.thkoeln.cide.roomsserver.error.ForbiddenException, org.springframework.web.context.request.WebRequest)/exception">exception</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-forbidden-exception/index.html"><span class="identifier">ForbiddenException</span></a><span class="symbol">, </span><span
+                    class="identifier"
+                    id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleForbiddenResult(com.thkoeln.cide.roomsserver.error.ForbiddenException, org.springframework.web.context.request.WebRequest)/request">request</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">WebRequest</span><span class="symbol">)</span><span class="symbol">: </span><span
+                    class="identifier">ResponseEntity</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span
+                    class="identifier">Any</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">!</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="handle-missing-permissions-result.html">handleMissingPermissionsResult</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">handleMissingPermissionsResult</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                    id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleMissingPermissionsResult(com.thkoeln.cide.roomsserver.error.MissingPermissionsException, org.springframework.web.context.request.WebRequest)/exception">exception</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-missing-permissions-exception/index.html"><span class="identifier">MissingPermissionsException</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleMissingPermissionsResult(com.thkoeln.cide.roomsserver.error.MissingPermissionsException, org.springframework.web.context.request.WebRequest)/request">request</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">WebRequest</span><span class="symbol">)</span><span class="symbol">: </span><span
+                    class="identifier">ResponseEntity</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span
+                    class="identifier">Any</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">!</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="handle-no-log-in-result.html">handleNoLogInResult</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">handleNoLogInResult</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                         id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleNoLogInResult(com.thkoeln.cide.roomsserver.error.NoUserLoggedInException, org.springframework.web.context.request.WebRequest)/exception">exception</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-no-user-logged-in-exception/index.html"><span class="identifier">NoUserLoggedInException</span></a><span class="symbol">, </span><span
+                    class="identifier"
+                    id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleNoLogInResult(com.thkoeln.cide.roomsserver.error.NoUserLoggedInException, org.springframework.web.context.request.WebRequest)/request">request</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">WebRequest</span><span class="symbol">)</span><span class="symbol">: </span><span
+                    class="identifier">ResponseEntity</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span
+                    class="identifier">Any</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">!</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="handle-not-enough-contingent-result.html">handleNotEnoughContingentResult</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">handleNotEnoughContingentResult</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                     id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleNotEnoughContingentResult(com.thkoeln.cide.roomsserver.error.NotEnoughContingentException, org.springframework.web.context.request.WebRequest)/exception">exception</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-not-enough-contingent-exception/index.html"><span class="identifier">NotEnoughContingentException</span></a><span class="symbol">, </span><span
+                    class="identifier"
+                    id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleNotEnoughContingentResult(com.thkoeln.cide.roomsserver.error.NotEnoughContingentException, org.springframework.web.context.request.WebRequest)/request">request</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">WebRequest</span><span class="symbol">)</span><span class="symbol">: </span><span
+                    class="identifier">ResponseEntity</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span
+                    class="identifier">Any</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">!</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="handle-resource-not-found-result.html">handleResourceNotFoundResult</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">handleResourceNotFoundResult</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                  id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleResourceNotFoundResult(java.lang.RuntimeException, org.springframework.web.context.request.WebRequest)/exception">exception</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-runtime-exception/index.html"><span class="identifier">RuntimeException</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleResourceNotFoundResult(java.lang.RuntimeException, org.springframework.web.context.request.WebRequest)/request">request</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">WebRequest</span><span class="symbol">)</span><span class="symbol">: </span><span
+                    class="identifier">ResponseEntity</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span
+                    class="identifier">Any</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">!</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="handle-stale-token-result.html">handleStaleTokenResult</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">handleStaleTokenResult</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                            id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleStaleTokenResult(com.thkoeln.cide.roomsserver.error.StaleTokenException, org.springframework.web.context.request.WebRequest)/exception">exception</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-stale-token-exception/index.html"><span class="identifier">StaleTokenException</span></a><span class="symbol">, </span><span
+                    class="identifier"
+                    id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleStaleTokenResult(com.thkoeln.cide.roomsserver.error.StaleTokenException, org.springframework.web.context.request.WebRequest)/request">request</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">WebRequest</span><span class="symbol">)</span><span class="symbol">: </span><span
+                    class="identifier">ResponseEntity</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span
+                    class="identifier">Any</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">!</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="handle-user-not-found-result.html">handleUserNotFoundResult</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">handleUserNotFoundResult</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                              id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleUserNotFoundResult(com.thkoeln.cide.roomsserver.error.UserNotFoundException, org.springframework.web.context.request.WebRequest)/exception">exception</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-user-not-found-exception/index.html"><span class="identifier">UserNotFoundException</span></a><span class="symbol">, </span><span
+                    class="identifier"
+                    id="com.thkoeln.cide.roomsserver.error.RestResponseEntityExceptionHandler$handleUserNotFoundResult(com.thkoeln.cide.roomsserver.error.UserNotFoundException, org.springframework.web.context.request.WebRequest)/request">request</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">WebRequest</span><span class="symbol">)</span><span class="symbol">: </span><span
+                    class="identifier">ResponseEntity</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span
+                    class="identifier">Any</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">!</span></code></td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

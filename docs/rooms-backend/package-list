@@ -1,0 +1,25 @@
+$dokka.format:html
+$dokka.linkExtension:html
+$dokka.location:com.thkoeln.cide.roomsserver.extensions$contains(kotlin.collections.Collection((com.thkoeln.cide.roomsserver.extensions.contains.T)), kotlin.Function1((com.thkoeln.cide.roomsserver.extensions.contains.T, kotlin.Boolean)))com.thkoeln.cide.roomsserver.extensions/kotlin.collections.-collection/contains.html
+$dokka.location:com.thkoeln.cide.roomsserver.extensions$sumBy(kotlin.collections.Iterable((com.thkoeln.cide.roomsserver.extensions.sumBy.T)), kotlin.Function1((com.thkoeln.cide.roomsserver.extensions.sumBy.T, kotlin.Long)))com.thkoeln.cide.roomsserver.extensions/kotlin.collections.-iterable/sum-by.html
+$dokka.location:com.thkoeln.cide.roomsserver.extensions$toOptionalRef(kotlin.String)com.thkoeln.cide.roomsserver.extensions/kotlin.-string/to-optional-ref.html
+$dokka.location:com.thkoeln.cide.roomsserver.extensions$toRef(kotlin.String)com.thkoeln.cide.roomsserver.extensions/kotlin.-string/to-ref.html
+$dokka.location:com.thkoeln.cide.roomsserver.models.abstracts$toDAO(kotlin.Any, com.thkoeln.cide.roomsserver.models.abstracts.Converter((com.thkoeln.cide.roomsserver.models.abstracts.toDAO.I, com.thkoeln.cide.roomsserver.models.abstracts.toDAO.O)))com.thkoeln.cide.roomsserver.models.abstracts/kotlin.-any/to-d-a-o.html
+$dokka.location:com.thkoeln.cide.roomsserver.models.abstracts$toDAO(kotlin.collections.Iterable((kotlin.Any)), com.thkoeln.cide.roomsserver.models.abstracts.Converter((com.thkoeln.cide.roomsserver.models.abstracts.toDAO.I, com.thkoeln.cide.roomsserver.models.abstracts.toDAO.O)))com.thkoeln.cide.roomsserver.models.abstracts/kotlin.collections.-iterable/to-d-a-o.html
+$dokka.location:com.thkoeln.cide.roomsserver.models.abstracts$toDTO(kotlin.Any, com.thkoeln.cide.roomsserver.models.abstracts.Converter((com.thkoeln.cide.roomsserver.models.abstracts.toDTO.I, com.thkoeln.cide.roomsserver.models.abstracts.toDTO.O)))com.thkoeln.cide.roomsserver.models.abstracts/kotlin.-any/to-d-t-o.html
+$dokka.location:com.thkoeln.cide.roomsserver.models.abstracts$toDTO(kotlin.collections.Iterable((kotlin.Any)), com.thkoeln.cide.roomsserver.models.abstracts.Converter((com.thkoeln.cide.roomsserver.models.abstracts.toDTO.I, com.thkoeln.cide.roomsserver.models.abstracts.toDTO.O)))com.thkoeln.cide.roomsserver.models.abstracts/kotlin.collections.-iterable/to-d-t-o.html
+$dokka.location:com.thkoeln.cide.roomsserver.models.projections$project(kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.project.DAO)), kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.project.P)), com.thkoeln.cide.roomsserver.models.projections.Projector((com.thkoeln.cide.roomsserver.models.projections.project.DAO, com.thkoeln.cide.roomsserver.models.projections.project.DTO, com.thkoeln.cide.roomsserver.models.projections.project.P)))com.thkoeln.cide.roomsserver.models.projections/kotlin.collections.-list/project.html
+com.thkoeln.cide.roomsserver
+com.thkoeln.cide.roomsserver.annotations
+com.thkoeln.cide.roomsserver.config
+com.thkoeln.cide.roomsserver.controllers
+com.thkoeln.cide.roomsserver.error
+com.thkoeln.cide.roomsserver.extensions
+com.thkoeln.cide.roomsserver.intercepters
+com.thkoeln.cide.roomsserver.models
+com.thkoeln.cide.roomsserver.models.abstracts
+com.thkoeln.cide.roomsserver.models.filters
+com.thkoeln.cide.roomsserver.models.projections
+com.thkoeln.cide.roomsserver.repositories
+com.thkoeln.cide.roomsserver.security
+com.thkoeln.cide.roomsserver.services

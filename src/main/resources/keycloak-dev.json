@@ -1,0 +1,12 @@
+//{
+//  "realm": "Rooms",
+//  "bearer-only": true,
+//  "auth-server-url": "https://auth.gm.fh-koeln.de/auth",
+//  "ssl-required": "external",
+//  "resource": "rooms_backend_dev",
+//  "credentials": {
+//    "secret": "e8b618d0-7324-420b-9505-265b4555a3bb"
+//  },
+//  "confidential-port": 0,
+//  "policy-enforcer": {}
+//}

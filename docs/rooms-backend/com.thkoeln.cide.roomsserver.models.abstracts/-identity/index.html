@@ -1,0 +1,79 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>Identity - rooms-backend</title>
+    <link href="../../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="../index.html">com.thkoeln.cide.roomsserver.models.abstracts</a>&nbsp;/&nbsp;<a href="./index.html">Identity</a><br/>
+<br/>
+<h1>Identity</h1>
+<code><span class="keyword">interface </span><span class="identifier">Identity</span></code>
+<h3>Properties</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="id.html">id</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">id</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="../../com.thkoeln.cide.roomsserver.extensions/to-ref.html">toRef</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Identity</span></a><span class="symbol">.</span><span class="identifier">toRef</span><span
+                    class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-identity-ref/index.html"><span class="identifier">IdentityRef</span></a></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="../-d-a-o/index.html">DAO</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">DAO</span><span class="symbol">&lt;</span><span
+                    class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-b-o.html"><span class="identifier">BO</span></a><span class="symbol">&gt;</span>&nbsp;<span
+                    class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Identity</span></a><span class="symbol">, </span><a href="../-d-b-entity/index.html"><span
+                    class="identifier">DBEntity</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-d-b-entity/index.html">DBEntity</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">DBEntity</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span
+                    class="identifier">Identity</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-d-t-o.html">DTO</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">interface </span><span class="identifier">DTO</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a
+                    href="../-b-o.html"><span class="identifier">BO</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Identity</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-identity-ref/index.html">IdentityRef</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">IdentityRef</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Identity</span></a></code>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

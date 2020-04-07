@@ -1,0 +1,65 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>AboController.get - rooms-backend</title>
+    <link href="../../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="../index.html">com.thkoeln.cide.roomsserver.controllers</a>&nbsp;/&nbsp;<a href="index.html">AboController</a>&nbsp;/&nbsp;<a
+        href="./get.html">get</a><br/>
+<br/>
+<h1>get</h1>
+<a name="com.thkoeln.cide.roomsserver.controllers.AboController$get(kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.AboProjections)), com.thkoeln.cide.roomsserver.models.filters.AboFilters)"></a>
+<code><span class="identifier">@GetMapping</span> <span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier">@RequestParam</span> <span
+        class="identifier"
+        id="com.thkoeln.cide.roomsserver.controllers.AboController$get(kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.AboProjections)), com.thkoeln.cide.roomsserver.models.filters.AboFilters)/projection">projection</span><span
+        class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a
+        href="../../com.thkoeln.cide.roomsserver.models.projections/-abo-projections/index.html"><span class="identifier">AboProjections</span></a><span class="symbol">&gt;</span><span class="symbol">?</span><span
+        class="symbol">, </span><span class="identifier">@RequestParam</span> <span class="identifier"
+                                                                                    id="com.thkoeln.cide.roomsserver.controllers.AboController$get(kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.AboProjections)), com.thkoeln.cide.roomsserver.models.filters.AboFilters)/filter">filter</span><span
+        class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models.filters/-abo-filters.html"><span class="identifier">AboFilters</span></a><span class="symbol">?</span><span
+        class="symbol">)</span><span class="symbol">: </span><a href="../../com.thkoeln.cide.roomsserver.models.projections/-list-projection/index.html"><span class="identifier">ListProjection</span></a><span
+        class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models.projections/-projection-entity/index.html"><span class="identifier">ProjectionEntity</span></a><span
+        class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-abo-d-t-o/index.html"><span class="identifier">AboDTO</span></a><span class="symbol">&gt;</span><span
+        class="symbol">&gt;</span></code>
+<p>This method is called to request a list of abos.</p>
+<p>Method is called if the application receives a GET request to /abos/</p>
+<h3>Parameters</h3>
+<p><a name="projection"></a>
+    <code>projection</code> - (optional) list of <a href="../../com.thkoeln.cide.roomsserver.models.projections/-abo-projections/index.html">AboProjections</a> to resolve dependencies already in the
+    response. This minimizes the frequency of requests. Parameters are automatically fetched from ?projection parameters of incoming request.</p>
+<p><a name="filter"></a>
+    <code>filter</code> - (optional) <a href="../../com.thkoeln.cide.roomsserver.models.filters/-abo-filters.html">AboFilters</a> to specify some restictions for the data. Parameter is automatically
+    fetched from ?filter parameter of incoming request.</p>
+<p><strong>Return</strong><br/>
+    <a href="../../com.thkoeln.cide.roomsserver.models.projections/-list-projection/index.html">ListProjection</a> of <a
+            href="../../com.thkoeln.cide.roomsserver.models/-abo-d-t-o/index.html">AboDTO</a>s. Response is automatically parsed to JSON.</p>
+<a name="com.thkoeln.cide.roomsserver.controllers.AboController$get(kotlin.String, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.AboProjections)), com.thkoeln.cide.roomsserver.models.filters.AboFilters)"></a>
+<code><span class="identifier">@GetMapping</span><span class="symbol">(</span>["{id}"]<span class="symbol">)</span> <span class="keyword">fun </span><span class="identifier">get</span><span
+        class="symbol">(</span><span class="identifier">@PathVariable</span> <span class="identifier"
+                                                                                   id="com.thkoeln.cide.roomsserver.controllers.AboController$get(kotlin.String, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.AboProjections)), com.thkoeln.cide.roomsserver.models.filters.AboFilters)/id">id</span><span
+        class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span
+        class="identifier">@RequestParam</span> <span class="identifier"
+                                                      id="com.thkoeln.cide.roomsserver.controllers.AboController$get(kotlin.String, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.AboProjections)), com.thkoeln.cide.roomsserver.models.filters.AboFilters)/projection">projection</span><span
+        class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a
+        href="../../com.thkoeln.cide.roomsserver.models.projections/-abo-projections/index.html"><span class="identifier">AboProjections</span></a><span class="symbol">&gt;</span><span class="symbol">?</span><span
+        class="symbol">, </span><span class="identifier">@RequestParam</span> <span class="identifier"
+                                                                                    id="com.thkoeln.cide.roomsserver.controllers.AboController$get(kotlin.String, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.AboProjections)), com.thkoeln.cide.roomsserver.models.filters.AboFilters)/filter">filter</span><span
+        class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models.filters/-abo-filters.html"><span class="identifier">AboFilters</span></a><span class="symbol">?</span><span
+        class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a></code>
+<p>This method is called to request a specific of abo by id.</p>
+<p>Method is called if the application receives a GET request to /abos/{id}</p>
+<h3>Parameters</h3>
+<p><a name="id"></a>
+    <code>id</code> - UUID of requested <a href="../../com.thkoeln.cide.roomsserver.models/-abo-d-t-o/index.html">AboDTO</a>. This parameter is automatically fetched from request url.</p>
+<p><a name="projection"></a>
+    <code>projection</code> - (optional) list of <a href="../../com.thkoeln.cide.roomsserver.models.projections/-abo-projections/index.html">AboProjections</a> to resolve dependencies already in the
+    response. This minimizes the frequency of requests. Parameters are automatically fetched from ?projection parameters of incoming request.</p>
+<p><a name="filter"></a>
+    <code>filter</code> - (optional) <a href="../../com.thkoeln.cide.roomsserver.models.filters/-abo-filters.html">AboFilters</a> to specify some restictions for the data. Parameter is automatically
+    fetched from ?filter parameter of incoming request.</p>
+<p><strong>Return</strong><br/>
+    <a href="../../com.thkoeln.cide.roomsserver.models.projections/-projection-entity/index.html">Projection</a> of <a href="../../com.thkoeln.cide.roomsserver.models/-abo-d-t-o/index.html">AboDTO</a>.
+    Response is automatically parsed to JSON.</p>
+</BODY>
+</HTML>

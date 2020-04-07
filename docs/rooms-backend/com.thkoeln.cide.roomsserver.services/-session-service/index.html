@@ -1,0 +1,96 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>SessionService - rooms-backend</title>
+    <link href="../../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="../index.html">com.thkoeln.cide.roomsserver.services</a>&nbsp;/&nbsp;<a href="./index.html">SessionService</a><br/>
+<br/>
+<h1>SessionService</h1>
+<code><span class="identifier">@Service</span> <span class="keyword">class </span><span class="identifier">SessionService</span></code>
+<h3>Constructors</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="-init-.html">&lt;init&gt;</a></h4>
+        </td>
+        <td>
+            <code><span class="identifier">SessionService</span><span class="symbol">(</span><span class="identifier"
+                                                                                                   id="com.thkoeln.cide.roomsserver.services.SessionService$<init>(org.keycloak.adapters.KeycloakDeployment, com.thkoeln.cide.roomsserver.services.UserService, com.thkoeln.cide.roomsserver.services.RoleService)/keycloakDeployment">keycloakDeployment</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">KeycloakDeployment</span><span class="symbol">, </span><span class="identifier"
+                                                                                                                                       id="com.thkoeln.cide.roomsserver.services.SessionService$<init>(org.keycloak.adapters.KeycloakDeployment, com.thkoeln.cide.roomsserver.services.UserService, com.thkoeln.cide.roomsserver.services.RoleService)/userService">userService</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-user-service/index.html"><span class="identifier">UserService</span></a><span class="symbol">, </span><span class="identifier"
+                                                                                                                                                                          id="com.thkoeln.cide.roomsserver.services.SessionService$<init>(org.keycloak.adapters.KeycloakDeployment, com.thkoeln.cide.roomsserver.services.UserService, com.thkoeln.cide.roomsserver.services.RoleService)/roleService">roleService</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-role-service/index.html"><span class="identifier">RoleService</span></a><span class="symbol">)</span></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="for-user.html">forUser</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">forUser</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                             id="com.thkoeln.cide.roomsserver.services.SessionService$forUser(com.thkoeln.cide.roomsserver.models.UserDTO)/user">user</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-user-d-t-o/index.html"><span class="identifier">UserDTO</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="../../com.thkoeln.cide.roomsserver.models/-session/index.html"><span class="identifier">Session</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="get-optional-session.html">getOptionalSession</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">getOptionalSession</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="../../com.thkoeln.cide.roomsserver.models/-session/index.html"><span class="identifier">Session</span></a><span class="symbol">?</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="get-request-origin.html">getRequestOrigin</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">getRequestOrigin</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">!</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="get-session.html">getSession</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">getSession</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="../../com.thkoeln.cide.roomsserver.models/-session/index.html"><span class="identifier">Session</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="get-verified-token.html">getVerifiedToken</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">getVerifiedToken</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span
+                    class="identifier">AccessToken</span><span class="symbol">?</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="is-auth-request.html">isAuthRequest</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">isAuthRequest</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="verify.html">verify</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">verify</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                            id="com.thkoeln.cide.roomsserver.services.SessionService$verify(kotlin.String)/tokenString">tokenString</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><span class="identifier">AccessToken</span></code></td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

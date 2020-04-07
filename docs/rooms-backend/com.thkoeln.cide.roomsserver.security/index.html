@@ -1,0 +1,293 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>com.thkoeln.cide.roomsserver.security - rooms-backend</title>
+    <link href="../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="./index.html">com.thkoeln.cide.roomsserver.security</a><br/>
+<br/>
+<h2>Package com.thkoeln.cide.roomsserver.security</h2>
+<h3>Types</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="-abo-guard/index.html">AboGuard</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">AboGuard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-c-r-u-d-guard/index.html"><span class="identifier">CRUDGuard</span></a><span
+                    class="symbol">&lt;</span><a href="../com.thkoeln.cide.roomsserver.models/-role-d-t-o/index.html"><span class="identifier">RoleDTO</span></a><span class="symbol">,</span>&nbsp;<a
+                    href="../com.thkoeln.cide.roomsserver.models/-role-protocol/index.html"><span class="identifier">RoleProtocol</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-abo-security-filters/index.html">AboSecurityFilters</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">AboSecurityFilters</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-c-r-u-d-filter/index.html"><span
+                    class="identifier">CRUDFilter</span></a><span class="symbol">&lt;</span><a href="../com.thkoeln.cide.roomsserver.models/-role-d-t-o/index.html"><span
+                    class="identifier">RoleDTO</span></a><span class="symbol">,</span>&nbsp;<a href="../com.thkoeln.cide.roomsserver.models/-role-protocol/index.html"><span class="identifier">RoleProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-allow-all/index.html">AllowAll</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">object </span><span class="identifier">AllowAll</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-security-filter/index.html"><span class="identifier">SecurityFilter</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-allow-department-entity-role/index.html">AllowDepartmentEntityRole</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">AllowDepartmentEntityRole</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-security-filter/index.html"><span
+                    class="identifier">SecurityFilter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-allow-logged-in/index.html">AllowLoggedIn</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">object </span><span class="identifier">AllowLoggedIn</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-security-filter/index.html"><span
+                    class="identifier">SecurityFilter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-allow-nobody/index.html">AllowNobody</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">object </span><span class="identifier">AllowNobody</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-security-filter/index.html"><span
+                    class="identifier">SecurityFilter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-allow-room-entity-role/index.html">AllowRoomEntityRole</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">AllowRoomEntityRole</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-security-filter/index.html"><span
+                    class="identifier">SecurityFilter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-allow-user/index.html">AllowUser</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">AllowUser</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-security-filter/index.html"><span class="identifier">SecurityFilter</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-and-filter/index.html">AndFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">AndFilter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-security-filter/index.html"><span class="identifier">SecurityFilter</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-app-role-filter/index.html">AppRoleFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">AppRoleFilter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-security-filter/index.html"><span
+                    class="identifier">SecurityFilter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-contingent-guard/index.html">ContingentGuard</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">ContingentGuard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-security-guard/index.html"><span
+                    class="identifier">SecurityGuard</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-c-r-u-d-filter/index.html">CRUDFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">interface </span><span class="identifier">CRUDFilter</span><span class="symbol">&lt;</span><span class="identifier">DTO</span><span
+                    class="symbol">, </span><span class="identifier">P</span><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-c-r-u-d-guard/index.html">CRUDGuard</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">CRUDGuard</span><span class="symbol">&lt;</span><span class="identifier">DTO</span>&nbsp;<span
+                    class="symbol">:</span>&nbsp;<a href="../com.thkoeln.cide.roomsserver.models.abstracts/-identity/index.html"><span class="identifier">Identity</span></a><span
+                    class="symbol">, </span><span class="identifier">P</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-security-guard/index.html"><span
+                    class="identifier">SecurityGuard</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-department-guard/index.html">DepartmentGuard</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">DepartmentGuard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-c-r-u-d-guard/index.html"><span
+                    class="identifier">CRUDGuard</span></a><span class="symbol">&lt;</span><a href="../com.thkoeln.cide.roomsserver.models/-department-d-t-o/index.html"><span class="identifier">DepartmentDTO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="../com.thkoeln.cide.roomsserver.models/-department-protocol/index.html"><span class="identifier">DepartmentProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-department-role-filter/index.html">DepartmentRoleFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">DepartmentRoleFilter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-security-filter/index.html"><span
+                    class="identifier">SecurityFilter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-department-security-filter/index.html">DepartmentSecurityFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">DepartmentSecurityFilter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-c-r-u-d-filter/index.html"><span
+                    class="identifier">CRUDFilter</span></a><span class="symbol">&lt;</span><a href="../com.thkoeln.cide.roomsserver.models/-department-d-t-o/index.html"><span class="identifier">DepartmentDTO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="../com.thkoeln.cide.roomsserver.models/-department-protocol/index.html"><span class="identifier">DepartmentProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-entity-role-filter/index.html">EntityRoleFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">EntityRoleFilter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-security-filter/index.html"><span
+                    class="identifier">SecurityFilter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-guard/index.html">Guard</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">Guard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-security-guard/index.html"><span class="identifier">SecurityGuard</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-or-filter/index.html">OrFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">OrFilter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-security-filter/index.html"><span class="identifier">SecurityFilter</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-reservation-guard/index.html">ReservationGuard</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">ReservationGuard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-c-r-u-d-guard/index.html"><span
+                    class="identifier">CRUDGuard</span></a><span class="symbol">&lt;</span><a href="../com.thkoeln.cide.roomsserver.models/-reservation-d-t-o/index.html"><span class="identifier">ReservationDTO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="../com.thkoeln.cide.roomsserver.models/-reservation-protocol/index.html"><span class="identifier">ReservationProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-reservation-security-filter/index.html">ReservationSecurityFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">ReservationSecurityFilter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-c-r-u-d-filter/index.html"><span
+                    class="identifier">CRUDFilter</span></a><span class="symbol">&lt;</span><a href="../com.thkoeln.cide.roomsserver.models/-reservation-d-t-o/index.html"><span class="identifier">ReservationDTO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="../com.thkoeln.cide.roomsserver.models/-reservation-protocol/index.html"><span class="identifier">ReservationProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-role-guard/index.html">RoleGuard</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">RoleGuard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-c-r-u-d-guard/index.html"><span class="identifier">CRUDGuard</span></a><span
+                    class="symbol">&lt;</span><a href="../com.thkoeln.cide.roomsserver.models/-role-d-t-o/index.html"><span class="identifier">RoleDTO</span></a><span class="symbol">,</span>&nbsp;<a
+                    href="../com.thkoeln.cide.roomsserver.models/-role-protocol/index.html"><span class="identifier">RoleProtocol</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-role-security-filters/index.html">RoleSecurityFilters</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">RoleSecurityFilters</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-c-r-u-d-filter/index.html"><span
+                    class="identifier">CRUDFilter</span></a><span class="symbol">&lt;</span><a href="../com.thkoeln.cide.roomsserver.models/-role-d-t-o/index.html"><span
+                    class="identifier">RoleDTO</span></a><span class="symbol">,</span>&nbsp;<a href="../com.thkoeln.cide.roomsserver.models/-role-protocol/index.html"><span class="identifier">RoleProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-room-guard/index.html">RoomGuard</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">RoomGuard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-c-r-u-d-guard/index.html"><span class="identifier">CRUDGuard</span></a><span
+                    class="symbol">&lt;</span><a href="../com.thkoeln.cide.roomsserver.models/-room-d-t-o/index.html"><span class="identifier">RoomDTO</span></a><span class="symbol">,</span>&nbsp;<a
+                    href="../com.thkoeln.cide.roomsserver.models/-room-protocol/index.html"><span class="identifier">RoomProtocol</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-room-role-filter/index.html">RoomRoleFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">RoomRoleFilter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-security-filter/index.html"><span
+                    class="identifier">SecurityFilter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-room-security-filter/index.html">RoomSecurityFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">RoomSecurityFilter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-c-r-u-d-filter/index.html"><span
+                    class="identifier">CRUDFilter</span></a><span class="symbol">&lt;</span><a href="../com.thkoeln.cide.roomsserver.models/-room-d-t-o/index.html"><span
+                    class="identifier">RoomDTO</span></a><span class="symbol">,</span>&nbsp;<a href="../com.thkoeln.cide.roomsserver.models/-room-protocol/index.html"><span class="identifier">RoomProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-secured-block.html">SecuredBlock</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">typealias </span><span class="identifier">SecuredBlock</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span
+                    class="symbol">=</span>&nbsp;<span class="symbol">(</span><a href="../com.thkoeln.cide.roomsserver.models/-session/index.html"><span class="identifier">Session</span></a><span
+                    class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">T</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-security-context/index.html">SecurityContext</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">SecurityContext</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-security-filter/index.html">SecurityFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">interface </span><span class="identifier">SecurityFilter</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-security-guard/index.html">SecurityGuard</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">interface </span><span class="identifier">SecurityGuard</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-user-guard/index.html">UserGuard</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">UserGuard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-c-r-u-d-guard/index.html"><span class="identifier">CRUDGuard</span></a><span
+                    class="symbol">&lt;</span><a href="../com.thkoeln.cide.roomsserver.models/-user-d-t-o/index.html"><span class="identifier">UserDTO</span></a><span class="symbol">,</span>&nbsp;<a
+                    href="../com.thkoeln.cide.roomsserver.models/-user-protocol/index.html"><span class="identifier">UserProtocol</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-user-security-filters/index.html">UserSecurityFilters</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">UserSecurityFilters</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-c-r-u-d-filter/index.html"><span
+                    class="identifier">CRUDFilter</span></a><span class="symbol">&lt;</span><a href="../com.thkoeln.cide.roomsserver.models/-user-d-t-o/index.html"><span
+                    class="identifier">UserDTO</span></a><span class="symbol">,</span>&nbsp;<a href="../com.thkoeln.cide.roomsserver.models/-user-protocol/index.html"><span class="identifier">UserProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

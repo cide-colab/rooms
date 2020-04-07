@@ -1,0 +1,85 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>RoleController - rooms-backend</title>
+    <link href="../../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="../index.html">com.thkoeln.cide.roomsserver.controllers</a>&nbsp;/&nbsp;<a href="./index.html">RoleController</a><br/>
+<br/>
+<h1>RoleController</h1>
+<code><span class="identifier">@RestController</span> <span class="identifier">@RequestMapping</span><span class="symbol">(</span>["roles"]<span class="symbol">)</span> <span
+        class="keyword">class </span><span class="identifier">RoleController</span></code>
+<h3>Constructors</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="-init-.html">&lt;init&gt;</a></h4>
+        </td>
+        <td>
+            <code><span class="identifier">RoleController</span><span class="symbol">(</span><span class="identifier"
+                                                                                                   id="com.thkoeln.cide.roomsserver.controllers.RoleController$<init>(com.thkoeln.cide.roomsserver.services.RoleService, com.thkoeln.cide.roomsserver.security.RoleGuard)/service">service</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.services/-role-service/index.html"><span class="identifier">RoleService</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.controllers.RoleController$<init>(com.thkoeln.cide.roomsserver.services.RoleService, com.thkoeln.cide.roomsserver.security.RoleGuard)/guard">guard</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.security/-role-guard/index.html"><span class="identifier">RoleGuard</span></a><span class="symbol">)</span></code>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="create.html">create</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">create</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                            id="com.thkoeln.cide.roomsserver.controllers.RoleController$create(com.thkoeln.cide.roomsserver.models.RoleProtocol)/role">role</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-role-protocol/index.html"><span class="identifier">RoleProtocol</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="delete.html">delete</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">delete</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                            id="com.thkoeln.cide.roomsserver.controllers.RoleController$delete(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="get.html">get</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                         id="com.thkoeln.cide.roomsserver.controllers.RoleController$get(kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.RoleProjections)), com.thkoeln.cide.roomsserver.models.filters.RoleFilters)/projection">projection</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models.projections/-role-projections/index.html"><span class="identifier">RoleProjections</span></a><span
+                    class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier"
+                                                                                                               id="com.thkoeln.cide.roomsserver.controllers.RoleController$get(kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.RoleProjections)), com.thkoeln.cide.roomsserver.models.filters.RoleFilters)/filter">filter</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models.filters/-role-filters.html"><span class="identifier">RoleFilters</span></a><span
+                    class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.thkoeln.cide.roomsserver.models.projections/-list-projection/index.html"><span
+                    class="identifier">ListProjection</span></a><span class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models.projections/-projection-entity/index.html"><span
+                    class="identifier">ProjectionEntity</span></a><span class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-role-d-t-o/index.html"><span class="identifier">RoleDTO</span></a><span
+                    class="symbol">&gt;</span><span class="symbol">&gt;</span></code><br/>
+            <code><span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                         id="com.thkoeln.cide.roomsserver.controllers.RoleController$get(kotlin.String, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.RoleProjections)))/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.controllers.RoleController$get(kotlin.String, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.RoleProjections)))/projection">projection</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models.projections/-role-projections/index.html"><span class="identifier">RoleProjections</span></a><span
+                    class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a></code></td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>
