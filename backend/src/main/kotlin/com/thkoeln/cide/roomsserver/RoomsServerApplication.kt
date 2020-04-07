@@ -20,6 +20,7 @@ class RoomsServerApplication {
 //                    .apis(RequestHandlerSelectors.any())
 //                    .paths(PathSelectors.any())
 //                    .build()
+
 }
 
 fun main(args: Array<String>) {
