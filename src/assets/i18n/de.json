@@ -1,0 +1,390 @@
+{
+  "dialog": {
+    "qr_code": {
+      "close": "Schließen"
+    },
+    "simple_confirm": {
+      "default": {
+        "confirm": "Ja",
+        "chancel": "Abbrechen"
+      },
+      "delete_department": {
+        "title": "Abteilung löschen",
+        "text": "Soll die Abteilung {{name}} wirklich gelöscht werden?"
+      },
+      "reset_edit_data": {
+        "title": "Daten zurücksetzen",
+        "text": "Sollen die Änderungen wirklich verworfen werden?"
+      },
+      "delete_room": {
+        "title": "Raum löschen",
+        "text": "Soll der Raum {{name}} wirklich gelöscht werden?"
+      },
+      "delete_abo": {
+        "title": "Abo löschen",
+        "text": "Soll das Abo für den Nutzer {{user}} wirklich gelöscht werden?"
+      }
+    }
+  },
+  "snackbar": {
+    "unauthorized": {
+      "message": "Unathorisierte Aktion!"
+    },
+    "edit": {
+      "department": {
+        "success": "Abteilung {{name}} wurde erfolgreich bearbeitet.",
+        "failed": "Bearbeiten der Abteilung {{name}} fehlgeschlagen."
+      },
+      "room": {
+        "success": "Raum {{name}} mit der Nummer {{number}} wurde erfolgreich bearbeitet.",
+        "failed": "Bearbeiten des Raum {{name}} mit der Nummer {{number}} fehlgeschlagen."
+      },
+      "abo": {
+        "success": "Abo für den Nutzer {{user}} wurde erfolgreich bearbeitet.",
+        "failed": "Bearbeiten des Abos für den Nutzer {{user}} fehlgeschlagen."
+      }
+    },
+    "create": {
+      "department": {
+        "success": "Abteilung {{name}} wurde erfolgreich erstellt.",
+        "failed": "Erstellen der Abteilung {{name}} fehlgeschlagen."
+      },
+      "room": {
+        "success": "Raum {{name}} mit der Nummer {{number}} wurde erfolgreich erstellt.",
+        "failed": "Erstellen des Raum {{name}} mit der Nummer {{number}} fehlgeschlagen."
+      },
+      "abo": {
+        "success": "Das Abo für den Nutzer {{user}} wurde erfolgreich erstellt.",
+        "failed": "Das Erstellen des Abos für den Nutzer {{user}} ist fehlgeschlagen."
+      }
+    },
+    "delete": {
+      "department": {
+        "success": "Abteilung {{name}} wurde erfolgreich gelöscht.",
+        "failed": "Löschen der Abteilung {{name}} fehlgeschlagen."
+      },
+      "room": {
+        "success": "Raum {{name}} mit der Nummer {{number}} wurde erfolgreich gelöscht.",
+        "failed": "Löschen des Raum {{name}} mit der Nummer {{number}} fehlgeschlagen."
+      },
+      "abo": {
+        "success": "Abo für den Nutzer {{user}} wurde erfolgreich gelöscht.",
+        "failed": "Löschen des Abos für den Nutzer {{user}} fehlgeschlagen."
+      }
+    }
+  },
+  "nav": {
+    "groups": {
+      "general": "Allgemein",
+      "administration": "Administration",
+      "user": "Benutzer"
+    },
+    "links": {
+      "rooms": "Räume",
+      "departments": "Abteilungen",
+      "roles": "Rollen",
+      "abos": "Abos",
+      "logout": "Abmelden",
+      "login": "Anmelden",
+      "help": "Hilfe",
+      "settings": "Einstellungen",
+      "my_abos": "Meine Abos",
+      "my_reservations": "Meine Buchungen"
+    }
+  },
+  "page": {
+    "main": {
+      "title": "Rooms"
+    },
+    "department": {
+      "list": {
+        "title": "Abteilungen"
+      },
+      "create": {
+        "title": "Abteilung erstellen"
+      },
+      "edit": {
+        "title": "Abteilung bearbeiten"
+      },
+      "detail": {
+        "title": "Abteilung",
+        "labels": {
+          "description": "Beschreibung",
+          "no_description": "Keine Beschreibung vorhanden",
+          "rooms": "Räume",
+          "no_room": "Kein Raum zugeordnet"
+        }
+      }
+    },
+    "room": {
+      "list": {
+        "title": "Räume"
+      },
+      "create": {
+        "title": "Raum erstellen"
+      },
+      "edit": {
+        "title": "Raum bearbeiten"
+      },
+      "detail": {
+        "title": "Raum",
+        "labels": {
+          "room": "Raum",
+          "description": "Beschreibung",
+          "no_description": "Keine Beschreibung vorhanden"
+        }
+      }
+    },
+    "abo": {
+      "list": {
+        "titles": {
+          "all": "Abos",
+          "user": "Abos {{user}}",
+          "owner": "Meine Abos"
+        }
+      },
+      "create": {
+        "title": "Abo erstellen"
+      },
+      "edit": {
+        "title": "Abo bearbeiten"
+      },
+      "detail": {
+        "title": "Abo",
+        "labels": {
+          "minutes": "Minuten",
+          "weekly": "wöchentlich",
+          "renew": "Erneuerung",
+          "period": "Zeitraum",
+          "room": "Raum",
+          "rooms": "Räume",
+          "contingent": "Kontingent",
+          "details": "Details",
+          "description": "Beschreibung",
+          "no_description": "Keine Beschreibung vorhanden"
+        },
+        "formats": {
+          "period_date": "dd.MM.yy"
+        }
+      }
+    },
+    "reservation": {
+      "list": {
+        "titles": {
+          "all": "Buchungen",
+          "user": "Buchungen {{user}}",
+          "owner": "Meine Buchungen"
+        }
+      },
+      "create": {
+        "title": "Buchung erstellen"
+      }
+    },
+    "user": {
+      "abo": {
+        "list": {
+          "title": "Meine Abos"
+        }
+      }
+    }
+  },
+  "toolbar": {
+    "search": "Suche..."
+  },
+  "component": {
+    "room_detail_card": {
+      "labels": {
+        "room": "Raum"
+      }
+    },
+    "abo_preview_card": {
+      "labels": {
+        "minutes": "Minuten",
+        "period": "Zeitraum",
+        "room": "Raum",
+        "rooms": "Räume"
+      },
+      "formats": {
+        "period_date": "dd.MM.yy"
+      }
+    },
+    "department_form": {
+      "name": {
+        "label": "Name",
+        "errors": {
+          "required": "Ein Name wird benötigt!"
+        }
+      },
+      "description": {
+        "label": "Beschreibung"
+      }
+    },
+    "room_form": {
+      "name": {
+        "label": "Name",
+        "errors": {
+          "required": "Ein Name wird benötigt!"
+        }
+      },
+      "department": {
+        "label": "Abteilung",
+        "errors": {
+          "required": "Es muss eine Abteilung ausgewählt werden!"
+        }
+      },
+      "number": {
+        "label": "Nummer",
+        "errors": {
+          "required": "Eine Nummer wird benötigt!"
+        }
+      },
+      "description": {
+        "label": "Beschreibung"
+      }
+    },
+    "abo_form": {
+      "steps": {
+        "details": "Details",
+        "rooms": "Räume"
+      },
+      "user": {
+        "label": "Empfänger",
+        "errors": {
+          "required": "Es wird ein Empfänger benötigt!"
+        }
+      },
+      "description": {
+        "label": "Beschreibung"
+      },
+      "rooms": {
+        "label": "Räume",
+        "query": "Raum suchen",
+        "select_all": "Alle auswählen",
+        "errors": {
+          "required": "Es muss mindestens ein Raum ausgewählt werden!"
+        }
+      },
+      "start": {
+        "label": "Start",
+        "errors": {
+          "required": "Ein Startzeitpunkt für das Abo muss definiert werden!"
+        }
+      },
+      "end": {
+        "label": "Ende",
+        "errors": {
+          "required": "Ein Endzeitpunkt für das Abo muss definiert werden!"
+        }
+      },
+      "unlimited_end": {
+        "label": "Unbegrenzte Laufzeit"
+      },
+      "unlimited_contingent": {
+        "label": "Unbegrenztes Buchungskontingent"
+      },
+      "contingent": {
+        "label": "Buchungskontingent pro Woche",
+        "suffix": "Minuten",
+        "errors": {
+          "required": "Ein Kontingent muss definiert werden!"
+        }
+      }
+    },
+    "abo_form": {
+      "steps": {
+        "details": "Details",
+        "rooms": "Räume"
+      },
+      "user": {
+        "label": "Empfänger",
+        "errors": {
+          "required": "Es wird ein Empfänger benötigt!"
+        }
+      },
+      "description": {
+        "label": "Beschreibung"
+      },
+      "rooms": {
+        "label": "Räume",
+        "query": "Raum suchen",
+        "select_all": "Alle auswählen",
+        "errors": {
+          "required": "Es muss mindestens ein Raum ausgewählt werden!"
+        }
+      },
+      "start": {
+        "label": "Start",
+        "errors": {
+          "required": "Ein Startzeitpunkt für das Abo muss definiert werden!"
+        }
+      },
+      "end": {
+        "label": "Ende",
+        "errors": {
+          "required": "Ein Endzeitpunkt für das Abo muss definiert werden!"
+        }
+      },
+      "unlimited_end": {
+        "label": "Unbegrenzte Laufzeit"
+      },
+      "unlimited_contingent": {
+        "label": "Unbegrenztes Buchungskontingent"
+      },
+      "contingent": {
+        "label": "Buchungskontingent pro Woche",
+        "suffix": "Minuten",
+        "errors": {
+          "required": "Ein Kontingent muss definiert werden!"
+        }
+      }
+    },
+    "reservation_form": {
+      "user": {
+        "label": "Benutzer",
+        "errors": {
+          "required": "Es wird ein Benutzer benötigt!"
+        }
+      },
+      "title": {
+        "label": "Veranstaltungstitel",
+        "errors": {
+          "required": "Es wird ein Titel benötigt!"
+        }
+      },
+      "description": {
+        "label": "Beschreibung"
+      },
+      "room": {
+        "label": "Raum",
+        "min": "min",
+        "errors": {
+          "required": "Es muss ein Raum ausgewählt werden!"
+        }
+      },
+      "date": {
+        "label": "Datum",
+        "errors": {
+          "required": "Es muss ein Datum festgelegt werden!"
+        }
+      },
+      "start": {
+        "label": "Start",
+        "errors": {
+          "required": "Es muss ein Startzeitpunkt festgelegt werden!"
+        }
+      },
+      "end": {
+        "label": "End",
+        "errors": {
+          "required": "Es muss ein Endzeitpunkt festgelegt werden!"
+        }
+      },
+      "overall": {
+        "clock": "Uhr",
+        "contingent_before": "Kontingent",
+        "contingent_consumed": "Aktuelle Buchung",
+        "contingent_after": "Verbleibend"
+      }
+    }
+  }
+}

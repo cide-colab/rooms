@@ -1,0 +1,20 @@
+<mat-drawer-container class="sidenav">
+  <mat-drawer #drawer mode="over" class="sidenav-drawer">
+    <div *ngIf="session">
+      <!--    <app-user-preview *ngIf="session.userId" [userId]="session.userId"></app-user-preview>-->
+      <component-user-preview [userId]="session.userId"></component-user-preview>
+    </div>
+    <button (click)="closeSidenav()" mat-icon-button class="sidenav-close-btn"><i class="icon-clearclose"></i></button>
+    <mat-nav-list *ngIf="nav">
+      <ng-container *ngFor="let group of nav; let i = index">
+        <h3 *ngIf="group.title" mat-subheader>{{group.title}}</h3>
+        <mat-list-item *ngFor="let item of group.items" (click)="onNavItemClicked(item)">
+          <i mat-list-icon [ngClass]="item.iconClass"></i>
+          <h4 mat-line>{{item.title}}</h4>
+        </mat-list-item>
+        <mat-divider *ngIf="i < nav.length - 1"></mat-divider>
+      </ng-container>
+    </mat-nav-list>
+  </mat-drawer>
+  <ng-content></ng-content>
+</mat-drawer-container>

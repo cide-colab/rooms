@@ -1,0 +1,231 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '../../node_modules/@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+
+// define a real custom palette (using http://mcg.mbitson.com)
+$th-orange: (
+  50 : #fcebe0,
+  100 : #f9ceb3,
+  200 : #f5ad80,
+  300 : #f08c4d,
+  400 : #ed7326,
+  500 : #ea5a00,
+  600 : #e75200,
+  700 : #e44800,
+  800 : #e13f00,
+  900 : #db2e00,
+  A100 : #ffffff,
+  A200 : #ffd6cf,
+  A400 : #ffab9c,
+  A700 : #ff9583,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$th-purple: (
+  50 : #f6e6f2,
+  100 : #e9c1de,
+  200 : #da98c9,
+  300 : #cb6eb3,
+  400 : #bf4fa2,
+  500 : #b43092,
+  600 : #ad2b8a,
+  700 : #a4247f,
+  800 : #9c1e75,
+  900 : #8c1363,
+  A100 : #ffc0e8,
+  A200 : #ff8dd5,
+  A400 : #ff5ac1,
+  A700 : #ff41b8,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$th-red: (
+  50 : #f8e4e2,
+  100 : #efbcb7,
+  200 : #e48f87,
+  300 : #d96257,
+  400 : #d04033,
+  500 : #c81e0f,
+  600 : #c21a0d,
+  700 : #bb160b,
+  800 : #b41208,
+  900 : #a70a04,
+  A100 : #ffd2d1,
+  A200 : #ffa09e,
+  A400 : #ff6e6b,
+  A700 : #ff5552,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$rooms-web-primary: mat-palette($th-purple);
+$rooms-web-accent: mat-palette($th-orange);
+
+// The warn palette is optional (defaults to red).
+$rooms-web-warn: mat-palette($th-red);
+
+$rooms-foreground: #333333;
+
+@function foreground-palette($color) {
+  @return (
+    base:              $color,
+    divider:           $black-12-opacity,
+    dividers:          $black-12-opacity,
+    disabled:          rgba($color, 0.38),
+    disabled-button:   rgba($color, 0.38),
+    disabled-text:     rgba($color, 0.38),
+    hint-text:         rgba($color, 0.38),
+    secondary-text:    rgba($color, 0.54),
+    icon:              rgba($color, 0.54),
+    icons:             rgba($color, 0.54),
+    text:              rgba($color, 0.87),
+    slider-off:        rgba($color, 0.26),
+    slider-off-active: rgba($color, 0.38),
+  );
+};
+
+// Create the theme object (a Sass map containing all of the palettes).
+$rooms-web-theme: map-merge(
+    mat-light-theme($rooms-web-primary, $rooms-web-accent, $rooms-web-warn),
+    (
+      foreground: foreground-palette($rooms-foreground)
+    )
+);
+//$rooms-web-theme: mat-light-theme($rooms-web-primary, $rooms-web-accent, $rooms-web-warn);
+
+
+$foreground: map-get($rooms-web-theme, foreground);
+
+/** =============================== PLACEHOLDER =============================== **/
+
+%title {
+  font-size: 12pt;
+  font-weight: 500;
+  color: mat-color($foreground, base);
+}
+
+%sub-title {
+  font-size: 10pt;
+  color: mat-color($foreground, secondary-text);
+}
+
+%avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  width: 64px;
+  height: 64px;
+}
+
+%actions-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px;
+}
+
+%horizontal-list {
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  flex-wrap: nowrap;
+
+  > * {
+    margin-right: 4px;
+    position: relative;
+    display: inline-flex;
+    animation: slide-up 0.4s ease;
+  }
+
+  > * :last-child {
+    margin-right: 0;
+  }
+}
+
+%vertical-list {
+
+  > * {
+    padding: 1px;
+    margin-bottom: 4px;
+  }
+
+  > * :last-child {
+    margin-bottom: 0;
+  }
+}
+
+%avatar-list-container {
+  padding-bottom: 16px;
+
+  %avatar-list {
+    background: mat-color($foreground, base, if(map-get($rooms-web-theme, is-dark), 0.1, 0.04));
+  }
+}
+
+/**  =============================== ANIMATIONS =============================== **/
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

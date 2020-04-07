@@ -1,0 +1,111 @@
+<mat-horizontal-stepper #stepper [linear]="true" class="stepper" xmlns="http://www.w3.org/1999/html">
+  <mat-step [stepControl]="formControls.detailGroup" class="step">
+    <form [formGroup]="formControls.detailGroup" class="form-container">
+      <ng-template matStepLabel>{{TRANSLATION_KEYS.component.abo_form.steps.details | translate}}</ng-template>
+
+      <div class="form-fields">
+        <mat-form-field appearance="fill" class="full-width">
+          <input [matAutocomplete]="userAutoComplete" formControlName="user" matInput required>
+          <mat-label>{{TRANSLATION_KEYS.component.abo_form.user.label | translate}}</mat-label>
+          <mat-autocomplete #userAutoComplete="matAutocomplete" [displayWith]="displayUser">
+            <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+              <span>{{user.givenName}} ({{user.principal}})</span>
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error *ngIf="formControls.detailGroup.get('user').errors?.requireSelect">
+            {{TRANSLATION_KEYS.component.abo_form.user.errors.required | translate}}
+          </mat-error>
+        </mat-form-field>
+
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>{{TRANSLATION_KEYS.component.abo_form.description.label | translate}}</mat-label>
+          <textarea #description formControlName="description" matInput></textarea>
+          <mat-hint align="end">{{description.value.length}} / 100</mat-hint>
+        </mat-form-field>
+
+        <br>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>{{TRANSLATION_KEYS.component.abo_form.start.label | translate}}</mat-label>
+          <input [matDatepicker]="start_date_picker" formControlName="start" matInput required>
+          <mat-datepicker-toggle [for]="start_date_picker" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #start_date_picker touchUi="true"></mat-datepicker>
+          <mat-error *ngIf="formControls.detailGroup.get('start').errors?.required">
+            {{TRANSLATION_KEYS.component.abo_form.start.errors.required | translate}}
+          </mat-error>
+        </mat-form-field>
+        <mat-checkbox formControlName="unlimited_end" matPrefix
+        >{{TRANSLATION_KEYS.component.abo_form.unlimited_end.label | translate}}</mat-checkbox>
+        <mat-form-field *ngIf="!formControls.detailGroup.get('unlimited_end').value" appearance="fill"
+                        class="full-width">
+          <mat-label>{{TRANSLATION_KEYS.component.abo_form.end.label | translate}}</mat-label>
+          <input [matDatepicker]="end_date_picker" [min]="formControls.detailGroup.get('start').value"
+                 formControlName="end" matInput required>
+          <mat-datepicker-toggle [for]="end_date_picker" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #end_date_picker touchUi="true"></mat-datepicker>
+          <mat-error *ngIf="formControls.detailGroup.get('end').errors?.required">
+            {{TRANSLATION_KEYS.component.abo_form.end.errors.required | translate}}
+          </mat-error>
+        </mat-form-field>
+
+        <br>
+        <br>
+        <mat-checkbox formControlName="unlimited_contingent" matPrefix
+        >{{TRANSLATION_KEYS.component.abo_form.unlimited_contingent.label | translate}}</mat-checkbox>
+        <mat-form-field *ngIf="!formControls.detailGroup.get('unlimited_contingent').value" appearance="fill"
+                        class="full-width">
+          <mat-label>{{TRANSLATION_KEYS.component.abo_form.contingent.label | translate}}</mat-label>
+          <input [min]="0" formControlName="contingent" matInput required type="number">
+          <span matSuffix>{{TRANSLATION_KEYS.component.abo_form.contingent.suffix | translate}}</span>
+          <mat-error *ngIf="formControls.detailGroup.get('contingent').errors?.required">
+            {{TRANSLATION_KEYS.component.abo_form.contingent.errors.required | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-actions fixed">
+        <button color="primary" mat-fab matStepperNext><i class="icon-navigate_nextchevron_right"></i></button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="formControls.roomsGroup" class="step">
+    <form #roomsForm (ngSubmit)="submit()" [formGroup]="formControls.roomsGroup" class="form-container">
+      <ng-template matStepLabel>{{TRANSLATION_KEYS.component.abo_form.steps.rooms | translate}}</ng-template>
+      <div class="form-fields">
+
+        <div class="selected-rooms-list-container">
+          <div class="selected-rooms-list">
+            <div *ngFor="let room of getSelectedRooms()" class="list-item">
+              <component-room-preview-small [room]="room"></component-room-preview-small>
+              <i (click)="selectRoom(room, false)" class="icon-clearclose small-preview-list-delete"></i>
+            </div>
+            <mat-error *ngIf="formControls.roomsGroup.get('rooms').errors?.required" class="selected-rooms-error">
+              {{TRANSLATION_KEYS.component.abo_form.rooms.errors.required | translate}}
+            </mat-error>
+          </div>
+        </div>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>{{TRANSLATION_KEYS.component.abo_form.rooms.query | translate}}</mat-label>
+          <input formControlName="query" matInput>
+          <span matSuffix><i class="icon-search"></i></span>
+        </mat-form-field>
+
+        <mat-checkbox (change)="selectAll(filteredRooms, $event.checked)" *ngIf="filteredRooms | async as filteredRooms"
+                      [checked]="allSelected(filteredRooms)">{{TRANSLATION_KEYS.component.abo_form.rooms.select_all | translate}}</mat-checkbox>
+        <div *ngIf="filteredRooms | async as filteredRooms" class="filtered-rooms-list">
+          <div *ngFor="let room of filteredRooms" class="selectable-list-item">
+            <component-room-preview-card (selectionChange)="selectRoom(room, $event)" [room]="room"
+                                         [selectable]="true"
+                                         [selected]="isSelected(room)"></component-room-preview-card>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions fixed">
+        <button color="secondary" mat-fab matStepperPrevious><i class="icon-keyboard_arrow_left"></i></button>
+        <button color="primary" mat-fab matStepperNext><i class="icon-check"></i></button>
+      </div>
+    </form>
+  </mat-step>
+</mat-horizontal-stepper>

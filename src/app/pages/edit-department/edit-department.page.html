@@ -1,0 +1,11 @@
+<div class="page">
+  <div class="page-head">
+    <component-toolbar [title]="TRANSLATION_KEYS.page.department.edit.title | translate">
+      <button mat-icon-button (click)="resetClicked()"><i class="icon-reset"></i></button>
+    </component-toolbar>
+  </div>
+  <div class="page-content">
+    <component-department-form *ngIf="department | async as department" class="fill-page-height" (onSubmit)="onSubmit($event)"
+                               [value]="department"></component-department-form>
+  </div>
+</div>

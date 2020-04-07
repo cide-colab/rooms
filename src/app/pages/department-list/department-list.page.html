@@ -1,0 +1,21 @@
+<div class="page">
+  <div class="page-head">
+    <component-toolbar (search)="onSearch($event, departments)" *ngIf="departments | async as departments"
+                       [searchEnabled]="true"
+                       [title]="TRANSLATION_KEYS.page.department.list.title | translate"></component-toolbar>
+  </div>
+  <div class="page-content">
+    <div *ngIf="filteredDepartments" class="card-list">
+      <div class="card-list-item" *ngFor="let department of filteredDepartments" mat-ripple
+           [routerLink]="['/', 'departments', department.id]">
+        <component-department-preview-card [department]="department"></component-department-preview-card>
+      </div>
+    </div>
+  </div>
+  <div class="page-actions">
+    <button *ngIf="canCreate" mat-fab color="primary" routerLink="/departments/create"><i
+      class="icon-add"></i></button>
+  </div>
+</div>
+
+

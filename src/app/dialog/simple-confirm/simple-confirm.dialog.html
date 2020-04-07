@@ -1,0 +1,8 @@
+<h1 mat-dialog-title><i *ngIf="data.icon_class" [class]="data.icon_class"></i> {{data.title}}</h1>
+<div mat-dialog-content>
+  <p [innerHTML]="data.text"></p>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button (click)="onChancel()">{{data.chancelText}}</button>
+  <button mat-button (click)="onConfirm()">{{data.confirmText}}</button>
+</div>

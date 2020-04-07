@@ -1,0 +1,7 @@
+<div *ngIf="user | async as user" class="user-preview-container">
+  <img class="user-avatar" [src]="user.imageUrl"/>
+  <div class="user-details">
+    <div class="user-name">{{user.givenName}} {{user.familyName}}</div>
+    <div class="user-principal">{{user.principal}}</div>
+  </div>
+</div>
