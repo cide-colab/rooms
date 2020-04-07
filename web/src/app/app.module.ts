@@ -73,9 +73,7 @@ import {TimeZoneDatePipe, TimezoneService} from './services/timezone.service';
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
 // import {registerLocaleData} from '@angular/common';
-
 // import {I18n} from '@ngx-translate/i18n-polyfill';
-
 // https://medium.com/i18n-and-l10n-resources-for-developers/angular-translation-a-closer-look-at-angular-8-fdf688f3c44a
 // https://blog.angulartraining.com/how-to-internationalize-i18n-your-angular-application-tutorial-dee2c6984bc1
 
