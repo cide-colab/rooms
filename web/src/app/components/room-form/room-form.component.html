@@ -1,0 +1,41 @@
+<form class="form-container" [formGroup]="formGroup" (ngSubmit)="submit()">
+  <div class="form-fields">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>{{TRANSLATION_KEYS.component.room_form.name.label | translate}}</mat-label>
+      <input matInput required formControlName="name">
+      <mat-error *ngIf="formControls.name.errors?.required">
+        {{TRANSLATION_KEYS.component.room_form.name.errors.required | translate}}
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>{{TRANSLATION_KEYS.component.room_form.number.label | translate}}</mat-label>
+      <input matInput required formControlName="number">
+      <mat-error *ngIf="formControls.number.errors?.required">
+        {{TRANSLATION_KEYS.component.room_form.number.errors.required | translate}}
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="full-width">
+      <input [matAutocomplete]="departmentAutoCompete" formControlName="department" matInput required>
+      <mat-label>{{TRANSLATION_KEYS.component.room_form.department.label | translate}}</mat-label>
+      <mat-autocomplete #departmentAutoCompete="matAutocomplete" [displayWith]="displayDepartment">
+        <mat-option *ngFor="let department of filteredDepartments | async" [value]="department">
+          <span> {{department.name}}</span>
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error *ngIf="formControls.department.errors?.requireSelect">
+        {{TRANSLATION_KEYS.component.room_form.department.errors.required | translate}}
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>{{TRANSLATION_KEYS.component.room_form.description.label | translate}}</mat-label>
+      <textarea #description matInput formControlName="description" [maxLength]="512"></textarea>
+      <mat-hint align="end">{{description.value.length}} / 512</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="form-actions">
+    <button mat-fab color="primary" [disabled]="!hasChanges()"><i class="icon-check"></i></button>
+  </div>
+</form>

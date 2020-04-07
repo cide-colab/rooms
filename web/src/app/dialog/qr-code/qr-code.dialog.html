@@ -1,0 +1,14 @@
+<div class="dialog-header">
+  <div class="dialog-icon" mat-dialog-title><i class="icon-qrcode dialog-icon"></i></div>
+  <div>
+    <div class="dialog-title" mat-dialog-title>{{data.title}}</div>
+    <div class="dialog-subtitle" mat-dialog-title>{{data.subtitle}}</div>
+  </div>
+</div>
+
+<div mat-dialog-content>
+  <qrcode [errorCorrectionLevel]="'M'" [qrdata]="data.code" [width]="256"></qrcode>
+</div>
+<div class="dialog-actions" mat-dialog-actions>
+  <button (click)="onChancel()" mat-button>{{TRANSLATION_KEYS.dialog.qr_code.close | translate}}</button>
+</div>

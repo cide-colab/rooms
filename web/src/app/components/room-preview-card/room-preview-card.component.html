@@ -1,0 +1,12 @@
+<mat-card (click)="toggleSelect()" *ngIf="room" class="horizontal-card">
+  <div class="card-avatar-container">
+    <img class="card-avatar" [src]="room.imageUrl"/>
+    <div [class]="'avatar-checkbox' + (isSelected() ? ' selected': '')"><i class="icon-check"></i></div>
+  </div>
+  <div class="card-content">
+    <div class="card-subtitle">{{TRANSLATION_KEYS.component.room_detail_card.labels.room | translate}} {{room.number}}
+      - {{room.department.name}} </div>
+    <div class="card-title">{{room.name}}</div>
+    <div class="card-description">{{getDescriptionPreview()}}</div>
+  </div>
+</mat-card>

@@ -1,0 +1,392 @@
+@import "styles/theme";
+@import "font.css";
+@import "styles/overrides";
+
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($rooms-web-theme);
+
+
+/**  =============================== MAIN =============================== **/
+
+/* You can add global styles to this file, and also import other style files */
+:host {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/**  =============================== GENERAL =============================== **/
+
+.full-width {
+  width: 100%;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+  width: 100%;
+
+  .form-fields {
+    //padding: 8px;
+    max-height: calc(100% - 16px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-actions {
+    @extend %actions-container;
+    display: flex;
+    justify-content: flex-end;
+
+    > * {
+      margin-left: 8px;
+    }
+
+    &.fixed {
+      position: fixed;
+      bottom: 8px;
+      right: 8px;
+    }
+  }
+}
+
+.page {
+  height: 100vh !important;
+  display: flex;
+  flex-direction: column;
+
+  .page-head {
+    flex: 0;
+  }
+
+  .page-content {
+    position: relative;
+    flex: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 16px;
+
+    .page-title {
+      @extend h1;
+      margin-top: 24px !important;
+      margin-bottom: 0 !important;
+      text-align: center;
+    }
+
+    .page-subtitle {
+      color: mat-color($foreground, disabled-text);
+      font-size: 10pt;
+      text-align: center;
+    }
+
+    .page-avatar-container {
+      margin-top: 16px;
+      width: 100%;
+
+      .page-avatar {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+
+    .page-section {
+
+      margin-top: 16px;
+
+      .page-section-header {
+        @extend h4;
+        margin-bottom: 2px !important;
+        font-weight: 500 !important;
+      }
+
+      .page-section-content {
+        text-align: justify;
+
+        &.indented {
+          margin-left: 40px;
+        }
+      }
+
+      .page-section-placeholder {
+        text-align: center;
+        color: mat-color($foreground, disabled-text);
+
+        &:before {
+          content: '<';
+        }
+
+        &:after {
+          content: '>';
+        }
+      }
+    }
+  }
+
+  .page-actions {
+    @extend %actions-container;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+.card-container {
+  padding: 1px;
+}
+
+.horizontal-card {
+  position: relative;
+  display: flex !important;
+  max-width: 100%;
+  align-items: center;
+
+
+  .card-avatar-container {
+    position: relative;
+    height: 64px;
+    width: 64px;
+
+    .card-avatar {
+      @extend %avatar;
+    }
+
+    .card-avatar-overlay {
+      @extend %avatar;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: all cubic-bezier(0.42, 0, 1, 1) 200ms;
+      font-size: 18pt;
+      font-weight: 500;
+
+      small {
+        font-size: 10pt;
+      }
+    }
+
+    .avatar-checkbox {
+      @extend .card-avatar-overlay;
+      background: mat-color($rooms-web-primary, default);
+      color: white;
+      opacity: 0;
+
+      &.selected {
+        opacity: 1;
+      }
+
+    }
+  }
+
+  .card-content {
+    padding-left: 16px;
+    min-height: 64px;
+
+    .card-title {
+      @extend %title;
+    }
+
+    .card-subtitle {
+      @extend %sub-title;
+      font-size: 8pt;
+    }
+
+    .card-description {
+      color: mat-color($foreground, hint-text);
+    }
+  }
+}
+
+
+.page-header {
+  @extend .horizontal-card;
+  margin-top: 16px;
+
+  .page-header-avatar-container {
+    @extend .card-avatar-container;
+
+    .page-header-avatar {
+      @extend .card-avatar;
+
+    }
+
+    .page-header-avatar-overlay {
+      @extend .card-avatar-overlay;
+
+    }
+  }
+
+  .page-header-title-container {
+    @extend .card-content;
+
+    .page-title {
+      margin: 0 !important;
+      text-align: left;
+    }
+
+    .page-subtitle {
+      text-align: left;
+    }
+  }
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-list {
+  @extend %vertical-list;
+}
+
+
+.dialog-header {
+  display: flex;
+
+  .dialog-icon {
+    @extend h1;
+    margin-right: 8px !important;
+  }
+
+  .dialog-title {
+    @extend h1;
+    margin-bottom: 0 !important;
+  }
+
+  .dialog-subtitle {
+    @extend h3;
+  }
+}
+
+
+.spinner {
+  margin: 8px auto;
+}
+
+.mat-select-panel mat-option.mat-option {
+  margin: 1rem 0;
+  overflow: visible;
+  line-height: initial;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.mat-option-text.mat-option-text {
+  white-space: normal;
+}
+
+.stepper {
+  background: none;
+
+  .mat-horizontal-content-container {
+    padding: 0;
+  }
+}
+
+.mat-horizontal-stepper-header-container {
+  display: none !important;
+}
+
+.small-preview-card {
+  padding: 8px !important;
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .small-preview-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin-bottom: 4px;
+  }
+
+  .small-preview-info {
+    text-align: center;
+    font-size: 9pt;
+    line-height: 9pt;
+    max-lines: 1;
+    white-space: nowrap;
+    min-width: 85px;
+    width: 100%;
+    overflow: hidden; /* "overflow"-Wert darf nicht "visible" sein */
+
+    text-overflow: ellipsis;
+  }
+}
+
+.small-preview-list-delete {
+  background: mat-color($rooms-web-primary, default);
+  width: 18px;
+  height: 18px;
+  border: 3px solid white;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  color: white;
+  right: 12px;
+  top: 6px;
+  position: absolute;
+}
+
+.dropdown-right-info {
+  float: right;
+}
+
+.flex-wrap-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  > * {
+    flex: 1;
+  }
+}
+
+.info-field {
+  background: mat-color($rooms-web-primary, default);
+  color: white;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1px;
+  padding: 4px;
+  text-align: center;
+
+  &.error {
+    background: mat-color($rooms-web-warn, default);
+  }
+}

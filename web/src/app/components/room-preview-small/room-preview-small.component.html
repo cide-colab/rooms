@@ -1,0 +1,5 @@
+<div *ngIf="room" class="small-preview-card">
+  <img [src]="room.imageUrl" class="small-preview-avatar">
+  <div class="small-preview-info">{{room.number}}</div>
+  <div class="small-preview-info">{{room.department.name}}</div>
+</div>

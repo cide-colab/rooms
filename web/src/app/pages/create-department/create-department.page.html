@@ -1,0 +1,8 @@
+<div class="page">
+  <div class="page-head">
+    <component-toolbar [title]="TRANSLATION_KEYS.page.department.create.title | translate"></component-toolbar>
+  </div>
+  <div class="page-content">
+    <component-department-form class="fill-page-height" (onSubmit)="onSubmit($event)"></component-department-form>
+  </div>
+</div>

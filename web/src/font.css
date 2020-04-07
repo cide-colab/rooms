@@ -1,0 +1,114 @@
+@font-face {
+  font-family: 'rooms';
+  src:  url('assets/fonts/rooms.eot?650z85');
+  src:  url('assets/fonts/rooms.eot?650z85#iefix') format('embedded-opentype'),
+    url('assets/fonts/rooms.ttf?650z85') format('truetype'),
+    url('assets/fonts/rooms.woff?650z85') format('woff'),
+    url('assets/fonts/rooms.svg?650z85#rooms') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'rooms' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-reset:before {
+  content: "\e91c";
+}
+.icon-qrcode:before {
+  content: "\e900";
+}
+.icon-infinite:before {
+  content: "\e901";
+}
+.icon-vpn_key:before {
+  content: "\e902";
+}
+.icon-add:before {
+  content: "\e903";
+}
+.icon-clearclose:before {
+  content: "\e904";
+}
+.icon-createmode_editedit:before {
+  content: "\e905";
+}
+.icon-access_timequery_builderschedule:before {
+  content: "\e906";
+}
+.icon-notes:before {
+  content: "\e907";
+}
+.icon-keyboard_arrow_left:before {
+  content: "\e908";
+}
+.icon-navigate_nextchevron_right:before {
+  content: "\e909";
+}
+.icon-timer:before {
+  content: "\e90a";
+}
+.icon-local_print_shopprint:before {
+  content: "\e90b";
+}
+.icon-check:before {
+  content: "\e90c";
+}
+.icon-menu:before {
+  content: "\e90d";
+}
+.icon-refresh:before {
+  content: "\e90e";
+}
+.icon-person:before {
+  content: "\e90f";
+}
+.icon-dashboard:before {
+  content: "\e910";
+}
+.icon-delete:before {
+  content: "\e911";
+}
+.icon-exit_to_app:before {
+  content: "\e912";
+}
+.icon-help:before {
+  content: "\e913";
+}
+.icon-home:before {
+  content: "\e914";
+}
+.icon-info_outline:before {
+  content: "\e915";
+}
+.icon-search:before {
+  content: "\e916";
+}
+.icon-settings:before {
+  content: "\e917";
+}
+.icon-today:before {
+  content: "\e918";
+}
+.icon-calendar_today:before {
+  content: "\e919";
+}
+.icon-logout:before {
+  content: "\e91a";
+}
+.icon-meeting_room:before {
+  content: "\e91b";
+}
