@@ -1,0 +1,117 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>RoomController - rooms-backend</title>
+    <link href="../../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="../index.html">com.thkoeln.cide.roomsserver.controllers</a>&nbsp;/&nbsp;<a href="./index.html">RoomController</a><br/>
+<br/>
+<h1>RoomController</h1>
+<code><span class="identifier">@RestController</span> <span class="identifier">@RequestMapping</span><span class="symbol">(</span>["rooms"]<span class="symbol">)</span> <span
+        class="keyword">class </span><span class="identifier">RoomController</span></code>
+<h3>Constructors</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="-init-.html">&lt;init&gt;</a></h4>
+        </td>
+        <td>
+            <code><span class="identifier">RoomController</span><span class="symbol">(</span><span class="identifier"
+                                                                                                   id="com.thkoeln.cide.roomsserver.controllers.RoomController$<init>(com.thkoeln.cide.roomsserver.services.RoomService, com.thkoeln.cide.roomsserver.security.RoomGuard)/service">service</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.services/-room-service/index.html"><span class="identifier">RoomService</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.controllers.RoomController$<init>(com.thkoeln.cide.roomsserver.services.RoomService, com.thkoeln.cide.roomsserver.security.RoomGuard)/guard">guard</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.security/-room-guard/index.html"><span class="identifier">RoomGuard</span></a><span class="symbol">)</span></code>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="create.html">create</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">create</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                            id="com.thkoeln.cide.roomsserver.controllers.RoomController$create(com.thkoeln.cide.roomsserver.models.RoomProtocol)/room">room</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-room-protocol/index.html"><span class="identifier">RoomProtocol</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="delete.html">delete</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">delete</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                            id="com.thkoeln.cide.roomsserver.controllers.RoomController$delete(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="get.html">get</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                         id="com.thkoeln.cide.roomsserver.controllers.RoomController$get(kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.RoomProjections)), com.thkoeln.cide.roomsserver.models.filters.RoomFilters)/projection">projection</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models.projections/-room-projections/index.html"><span class="identifier">RoomProjections</span></a><span
+                    class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier"
+                                                                                                               id="com.thkoeln.cide.roomsserver.controllers.RoomController$get(kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.RoomProjections)), com.thkoeln.cide.roomsserver.models.filters.RoomFilters)/filter">filter</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models.filters/-room-filters/index.html"><span class="identifier">RoomFilters</span></a><span
+                    class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.thkoeln.cide.roomsserver.models.projections/-list-projection/index.html"><span
+                    class="identifier">ListProjection</span></a><span class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models.projections/-projection-entity/index.html"><span
+                    class="identifier">ProjectionEntity</span></a><span class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-room-d-t-o/index.html"><span class="identifier">RoomDTO</span></a><span
+                    class="symbol">&gt;</span><span class="symbol">&gt;</span></code><br/>
+            <code><span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                         id="com.thkoeln.cide.roomsserver.controllers.RoomController$get(kotlin.String, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.RoomProjections)))/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.controllers.RoomController$get(kotlin.String, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.RoomProjections)))/projection">projection</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models.projections/-room-projections/index.html"><span class="identifier">RoomProjections</span></a><span
+                    class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="get-reservations.html">getReservations</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">getReservations</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                     id="com.thkoeln.cide.roomsserver.controllers.RoomController$getReservations(kotlin.String, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.ReservationProjections)))/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.controllers.RoomController$getReservations(kotlin.String, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.ReservationProjections)))/projection">projection</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models.projections/-reservation-projections.html"><span
+                    class="identifier">ReservationProjections</span></a><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="../../com.thkoeln.cide.roomsserver.models.projections/-list-projection/index.html"><span class="identifier">ListProjection</span></a><span class="symbol">&lt;</span><a
+                    href="../../com.thkoeln.cide.roomsserver.models.projections/-projection-entity/index.html"><span class="identifier">ProjectionEntity</span></a><span class="symbol">&lt;</span><a
+                    href="../../com.thkoeln.cide.roomsserver.models/-reservation-d-t-o/index.html"><span class="identifier">ReservationDTO</span></a><span class="symbol">&gt;</span><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="update.html">update</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">update</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                            id="com.thkoeln.cide.roomsserver.controllers.RoomController$update(kotlin.String, com.thkoeln.cide.roomsserver.models.RoomProtocol)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.controllers.RoomController$update(kotlin.String, com.thkoeln.cide.roomsserver.models.RoomProtocol)/room">room</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-room-protocol/index.html"><span class="identifier">RoomProtocol</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

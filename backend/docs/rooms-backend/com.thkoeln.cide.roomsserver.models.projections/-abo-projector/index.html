@@ -1,0 +1,84 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>AboProjector - rooms-backend</title>
+    <link href="../../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="../index.html">com.thkoeln.cide.roomsserver.models.projections</a>&nbsp;/&nbsp;<a href="./index.html">AboProjector</a><br/>
+<br/>
+<h1>AboProjector</h1>
+<code><span class="identifier">@Service</span> <span class="keyword">class </span><span class="identifier">AboProjector</span>&nbsp;<span class="symbol">:</span>&nbsp;<a
+        href="../-projector/index.html"><span class="identifier">Projector</span></a><span class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-abo-d-a-o/index.html"><span
+        class="identifier">AboDAO</span></a><span class="symbol">,</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-abo-d-t-o/index.html"><span class="identifier">AboDTO</span></a><span
+        class="symbol">,</span>&nbsp;<a href="../-abo-projections/index.html"><span class="identifier">AboProjections</span></a><span class="symbol">&gt;</span></code>
+<h3>Constructors</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="-init-.html">&lt;init&gt;</a></h4>
+        </td>
+        <td>
+            <code><span class="identifier">AboProjector</span><span class="symbol">(</span><span class="identifier"
+                                                                                                 id="com.thkoeln.cide.roomsserver.models.projections.AboProjector$<init>(com.thkoeln.cide.roomsserver.models.AboConverter, com.thkoeln.cide.roomsserver.models.DepartmentConverter, com.thkoeln.cide.roomsserver.models.RoomConverter, com.thkoeln.cide.roomsserver.repositories.DepartmentRepository, com.thkoeln.cide.roomsserver.repositories.RoomRepository, com.thkoeln.cide.roomsserver.models.UserConverter, com.thkoeln.cide.roomsserver.security.AboGuard)/converter">converter</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-abo-converter/index.html"><span class="identifier">AboConverter</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.models.projections.AboProjector$<init>(com.thkoeln.cide.roomsserver.models.AboConverter, com.thkoeln.cide.roomsserver.models.DepartmentConverter, com.thkoeln.cide.roomsserver.models.RoomConverter, com.thkoeln.cide.roomsserver.repositories.DepartmentRepository, com.thkoeln.cide.roomsserver.repositories.RoomRepository, com.thkoeln.cide.roomsserver.models.UserConverter, com.thkoeln.cide.roomsserver.security.AboGuard)/departmentConverter">departmentConverter</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-department-converter/index.html"><span class="identifier">DepartmentConverter</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.models.projections.AboProjector$<init>(com.thkoeln.cide.roomsserver.models.AboConverter, com.thkoeln.cide.roomsserver.models.DepartmentConverter, com.thkoeln.cide.roomsserver.models.RoomConverter, com.thkoeln.cide.roomsserver.repositories.DepartmentRepository, com.thkoeln.cide.roomsserver.repositories.RoomRepository, com.thkoeln.cide.roomsserver.models.UserConverter, com.thkoeln.cide.roomsserver.security.AboGuard)/roomConverter">roomConverter</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-room-converter/index.html"><span class="identifier">RoomConverter</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.models.projections.AboProjector$<init>(com.thkoeln.cide.roomsserver.models.AboConverter, com.thkoeln.cide.roomsserver.models.DepartmentConverter, com.thkoeln.cide.roomsserver.models.RoomConverter, com.thkoeln.cide.roomsserver.repositories.DepartmentRepository, com.thkoeln.cide.roomsserver.repositories.RoomRepository, com.thkoeln.cide.roomsserver.models.UserConverter, com.thkoeln.cide.roomsserver.security.AboGuard)/departmentRepository">departmentRepository</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.repositories/-department-repository/index.html"><span
+                    class="identifier">DepartmentRepository</span></a><span class="symbol">, </span><span class="identifier"
+                                                                                                          id="com.thkoeln.cide.roomsserver.models.projections.AboProjector$<init>(com.thkoeln.cide.roomsserver.models.AboConverter, com.thkoeln.cide.roomsserver.models.DepartmentConverter, com.thkoeln.cide.roomsserver.models.RoomConverter, com.thkoeln.cide.roomsserver.repositories.DepartmentRepository, com.thkoeln.cide.roomsserver.repositories.RoomRepository, com.thkoeln.cide.roomsserver.models.UserConverter, com.thkoeln.cide.roomsserver.security.AboGuard)/roomRepository">roomRepository</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.repositories/-room-repository/index.html"><span class="identifier">RoomRepository</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.models.projections.AboProjector$<init>(com.thkoeln.cide.roomsserver.models.AboConverter, com.thkoeln.cide.roomsserver.models.DepartmentConverter, com.thkoeln.cide.roomsserver.models.RoomConverter, com.thkoeln.cide.roomsserver.repositories.DepartmentRepository, com.thkoeln.cide.roomsserver.repositories.RoomRepository, com.thkoeln.cide.roomsserver.models.UserConverter, com.thkoeln.cide.roomsserver.security.AboGuard)/userConverter">userConverter</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-user-converter/index.html"><span class="identifier">UserConverter</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.models.projections.AboProjector$<init>(com.thkoeln.cide.roomsserver.models.AboConverter, com.thkoeln.cide.roomsserver.models.DepartmentConverter, com.thkoeln.cide.roomsserver.models.RoomConverter, com.thkoeln.cide.roomsserver.repositories.DepartmentRepository, com.thkoeln.cide.roomsserver.repositories.RoomRepository, com.thkoeln.cide.roomsserver.models.UserConverter, com.thkoeln.cide.roomsserver.security.AboGuard)/guard">guard</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.security/-abo-guard/index.html"><span class="identifier">AboGuard</span></a><span
+                    class="symbol">)</span></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="get.html">get</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                         id="com.thkoeln.cide.roomsserver.models.projections.AboProjector$get(com.thkoeln.cide.roomsserver.models.projections.AboProjections, com.thkoeln.cide.roomsserver.models.AboDAO)/projection">projection</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-abo-projections/index.html"><span class="identifier">AboProjections</span></a><span class="symbol">, </span><span class="identifier"
+                                                                                                                                                                                id="com.thkoeln.cide.roomsserver.models.projections.AboProjector$get(com.thkoeln.cide.roomsserver.models.projections.AboProjections, com.thkoeln.cide.roomsserver.models.AboDAO)/entity">entity</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-abo-d-a-o/index.html"><span class="identifier">AboDAO</span></a><span class="symbol">)</span><span
+                    class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span
+                    class="symbol">?</span></code><br/>
+            <code><span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                         id="com.thkoeln.cide.roomsserver.models.projections.AboProjector$get(com.thkoeln.cide.roomsserver.models.projections.AboProjections, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.AboDAO)))/projection">projection</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-abo-projections/index.html"><span class="identifier">AboProjections</span></a><span class="symbol">, </span><span class="identifier"
+                                                                                                                                                                                id="com.thkoeln.cide.roomsserver.models.projections.AboProjector$get(com.thkoeln.cide.roomsserver.models.projections.AboProjections, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.AboDAO)))/entities">entities</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-abo-d-a-o/index.html"><span class="identifier">AboDAO</span></a><span class="symbol">&gt;</span><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span
+                    class="symbol">?</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="to-d-t-o.html">toDTO</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><a href="../../com.thkoeln.cide.roomsserver.models/-abo-d-a-o/index.html"><span class="identifier">AboDAO</span></a><span
+                    class="symbol">.</span><span class="identifier">toDTO</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="../../com.thkoeln.cide.roomsserver.models/-abo-d-t-o/index.html"><span class="identifier">AboDTO</span></a></code></td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

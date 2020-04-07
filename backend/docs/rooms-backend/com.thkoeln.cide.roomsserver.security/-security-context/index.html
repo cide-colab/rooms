@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>SecurityContext - rooms-backend</title>
+    <link href="../../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="../index.html">com.thkoeln.cide.roomsserver.security</a>&nbsp;/&nbsp;<a href="./index.html">SecurityContext</a><br/>
+<br/>
+<h1>SecurityContext</h1>
+<code><span class="keyword">class </span><span class="identifier">SecurityContext</span></code>
+<h3>Constructors</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="-init-.html">&lt;init&gt;</a></h4>
+        </td>
+        <td>
+            <code><span class="identifier">SecurityContext</span><span class="symbol">(</span><span class="identifier"
+                                                                                                    id="com.thkoeln.cide.roomsserver.security.SecurityContext$<init>(kotlin.Boolean, com.thkoeln.cide.roomsserver.models.Session)/authorized">authorized</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.security.SecurityContext$<init>(kotlin.Boolean, com.thkoeln.cide.roomsserver.models.Session)/session">session</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-session/index.html"><span class="identifier">Session</span></a><span class="symbol">?</span><span
+                    class="symbol">)</span></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Properties</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="authorized.html">authorized</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">val </span><span class="identifier">authorized</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="do-secured.html">doSecured</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">doSecured</span><span
+                    class="symbol">(</span><span class="identifier"
+                                                 id="com.thkoeln.cide.roomsserver.security.SecurityContext$doSecured(kotlin.Function1((com.thkoeln.cide.roomsserver.models.Session, com.thkoeln.cide.roomsserver.security.SecurityContext.doSecured.T)))/securedBlock">securedBlock</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-secured-block.html"><span class="identifier">SecuredBlock</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span
+                    class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code></td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

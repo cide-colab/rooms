@@ -1,0 +1,251 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>com.thkoeln.cide.roomsserver.models.projections - rooms-backend</title>
+    <link href="../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="./index.html">com.thkoeln.cide.roomsserver.models.projections</a><br/>
+<br/>
+<h2>Package com.thkoeln.cide.roomsserver.models.projections</h2>
+<h3>Types</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="-abo-projections/index.html">AboProjections</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">AboProjections</span>&nbsp;<span class="symbol">:</span>&nbsp;<a
+                    href="-projections/index.html"><span class="identifier">Projections</span></a><span class="symbol">&lt;</span><a
+                    href="../com.thkoeln.cide.roomsserver.models/-abo-d-t-o/index.html"><span class="identifier">AboDTO</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-abo-projector/index.html">AboProjector</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">AboProjector</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-projector/index.html"><span class="identifier">Projector</span></a><span
+                    class="symbol">&lt;</span><a href="../com.thkoeln.cide.roomsserver.models/-abo-d-a-o/index.html"><span class="identifier">AboDAO</span></a><span class="symbol">,</span>&nbsp;<a
+                    href="../com.thkoeln.cide.roomsserver.models/-abo-d-t-o/index.html"><span class="identifier">AboDTO</span></a><span class="symbol">,</span>&nbsp;<a
+                    href="-abo-projections/index.html"><span class="identifier">AboProjections</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-department-projections/index.html">DepartmentProjections</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">DepartmentProjections</span>&nbsp;<span class="symbol">:</span>&nbsp;<a
+                    href="-projections/index.html"><span class="identifier">Projections</span></a><span class="symbol">&lt;</span><a
+                    href="../com.thkoeln.cide.roomsserver.models/-department-d-t-o/index.html"><span class="identifier">DepartmentDTO</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-department-projector/index.html">DepartmentProjector</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">DepartmentProjector</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-projector/index.html"><span
+                    class="identifier">Projector</span></a><span class="symbol">&lt;</span><a href="../com.thkoeln.cide.roomsserver.models/-department-d-a-o/index.html"><span class="identifier">DepartmentDAO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="../com.thkoeln.cide.roomsserver.models/-department-d-t-o/index.html"><span class="identifier">DepartmentDTO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="-department-projections/index.html"><span class="identifier">DepartmentProjections</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-entity-permission/index.html">EntityPermission</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EntityPermission</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-list-permission/index.html">ListPermission</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">ListPermission</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-list-projection/index.html">ListProjection</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">ListProjection</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span
+                    class="symbol">:</span>&nbsp;<a href="-projection-entity/index.html"><span class="identifier">ProjectionEntity</span></a><span class="symbol">&lt;</span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span
+                    class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-permission-entity-projection/index.html">PermissionEntityProjection</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">PermissionEntityProjection</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span
+                    class="symbol">:</span>&nbsp;<a href="-permission-projection/index.html"><span class="identifier">PermissionProjection</span></a><span class="symbol">&lt;</span><span
+                    class="identifier">T</span><span class="symbol">,</span>&nbsp;<a href="-entity-permission/index.html"><span class="identifier">EntityPermission</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-permission-list-projection/index.html">PermissionListProjection</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">PermissionListProjection</span><span class="symbol">&lt;</span><span class="identifier">T</span><span
+                    class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-permission-projection/index.html"><span class="identifier">PermissionProjection</span></a><span
+                    class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span
+                    class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<a href="-list-permission/index.html"><span
+                    class="identifier">ListPermission</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-permission-projection/index.html">PermissionProjection</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">PermissionProjection</span><span class="symbol">&lt;</span><span
+                    class="identifier">T</span><span class="symbol">, </span><span class="identifier">P</span><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-projection-entity/index.html">ProjectionEntity</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">ProjectionEntity</span><span class="symbol">&lt;</span><span
+                    class="identifier">DTO</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span
+                    class="identifier">Any</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-projections/index.html">Projections</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">interface </span><span class="identifier">Projections</span><span class="symbol">&lt;</span><span class="identifier">T</span><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-projector/index.html">Projector</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">Projector</span><span class="symbol">&lt;</span><span
+                    class="identifier">DAO</span><span class="symbol">, </span><span class="identifier">DTO</span>&nbsp;<span class="symbol">:</span>&nbsp;<a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">P</span>&nbsp;<span
+                    class="symbol">:</span>&nbsp;<a href="-projections/index.html"><span class="identifier">Projections</span></a><span class="symbol">&lt;</span><span
+                    class="identifier">DTO</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-reservation-projections.html">ReservationProjections</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">ReservationProjections</span>&nbsp;<span class="symbol">:</span>&nbsp;<a
+                    href="-projections/index.html"><span class="identifier">Projections</span></a><span class="symbol">&lt;</span><a
+                    href="../com.thkoeln.cide.roomsserver.models/-reservation-d-t-o/index.html"><span class="identifier">ReservationDTO</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-reservation-projector/index.html">ReservationProjector</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">ReservationProjector</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-projector/index.html"><span
+                    class="identifier">Projector</span></a><span class="symbol">&lt;</span><a href="../com.thkoeln.cide.roomsserver.models/-reservation-d-a-o/index.html"><span class="identifier">ReservationDAO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="../com.thkoeln.cide.roomsserver.models/-reservation-d-t-o/index.html"><span class="identifier">ReservationDTO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="-reservation-projections.html"><span class="identifier">ReservationProjections</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-role-projections/index.html">RoleProjections</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">RoleProjections</span>&nbsp;<span class="symbol">:</span>&nbsp;<a
+                    href="-projections/index.html"><span class="identifier">Projections</span></a><span class="symbol">&lt;</span><a
+                    href="../com.thkoeln.cide.roomsserver.models/-role-d-t-o/index.html"><span class="identifier">RoleDTO</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-role-projector/index.html">RoleProjector</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">RoleProjector</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-projector/index.html"><span class="identifier">Projector</span></a><span
+                    class="symbol">&lt;</span><a href="../com.thkoeln.cide.roomsserver.models/-role-d-a-o/index.html"><span class="identifier">RoleDAO</span></a><span class="symbol">,</span>&nbsp;<a
+                    href="../com.thkoeln.cide.roomsserver.models/-role-d-t-o/index.html"><span class="identifier">RoleDTO</span></a><span class="symbol">,</span>&nbsp;<a
+                    href="-role-projections/index.html"><span class="identifier">RoleProjections</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-room-projections/index.html">RoomProjections</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">RoomProjections</span>&nbsp;<span class="symbol">:</span>&nbsp;<a
+                    href="-projections/index.html"><span class="identifier">Projections</span></a><span class="symbol">&lt;</span><a
+                    href="../com.thkoeln.cide.roomsserver.models/-room-d-t-o/index.html"><span class="identifier">RoomDTO</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-room-projector/index.html">RoomProjector</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">RoomProjector</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-projector/index.html"><span class="identifier">Projector</span></a><span
+                    class="symbol">&lt;</span><a href="../com.thkoeln.cide.roomsserver.models/-room-d-a-o/index.html"><span class="identifier">RoomDAO</span></a><span class="symbol">,</span>&nbsp;<a
+                    href="../com.thkoeln.cide.roomsserver.models/-room-d-t-o/index.html"><span class="identifier">RoomDTO</span></a><span class="symbol">,</span>&nbsp;<a
+                    href="-room-projections/index.html"><span class="identifier">RoomProjections</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-user-projections/index.html">UserProjections</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">UserProjections</span>&nbsp;<span class="symbol">:</span>&nbsp;<a
+                    href="-projections/index.html"><span class="identifier">Projections</span></a><span class="symbol">&lt;</span><a
+                    href="../com.thkoeln.cide.roomsserver.models/-user-d-t-o/index.html"><span class="identifier">UserDTO</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="-user-projector/index.html">UserProjector</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">UserProjector</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-projector/index.html"><span class="identifier">Projector</span></a><span
+                    class="symbol">&lt;</span><a href="../com.thkoeln.cide.roomsserver.models/-user-d-a-o/index.html"><span class="identifier">UserDAO</span></a><span class="symbol">,</span>&nbsp;<a
+                    href="../com.thkoeln.cide.roomsserver.models/-user-d-t-o/index.html"><span class="identifier">UserDTO</span></a><span class="symbol">,</span>&nbsp;<a
+                    href="-user-projections/index.html"><span class="identifier">UserProjections</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Extensions for External Classes</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="kotlin.collections.-list/index.html">kotlin.collections.List</a></h4>
+        </td>
+        <td>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="project.html">project</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">DAO</span><span class="symbol">, </span><span class="identifier">DTO</span>&nbsp;<span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span
+                    class="symbol">, </span><span class="identifier">P</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-projections/index.html"><span
+                    class="identifier">Projections</span></a><span class="symbol">&lt;</span><span class="identifier">DTO</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span> <span
+                    class="identifier">DAO</span><span class="symbol">.</span><span class="identifier">project</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                        id="com.thkoeln.cide.roomsserver.models.projections$project(com.thkoeln.cide.roomsserver.models.projections.project.DAO, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.project.P)), com.thkoeln.cide.roomsserver.models.projections.Projector((com.thkoeln.cide.roomsserver.models.projections.project.DAO, com.thkoeln.cide.roomsserver.models.projections.project.DTO, com.thkoeln.cide.roomsserver.models.projections.project.P)))/projections">projections</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><span class="identifier">P</span><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier"
+                                                                                                                                                                                id="com.thkoeln.cide.roomsserver.models.projections$project(com.thkoeln.cide.roomsserver.models.projections.project.DAO, kotlin.collections.List((com.thkoeln.cide.roomsserver.models.projections.project.P)), com.thkoeln.cide.roomsserver.models.projections.Projector((com.thkoeln.cide.roomsserver.models.projections.project.DAO, com.thkoeln.cide.roomsserver.models.projections.project.DTO, com.thkoeln.cide.roomsserver.models.projections.project.P)))/projector">projector</span><span
+                    class="symbol">:</span>&nbsp;<a href="-projector/index.html"><span class="identifier">Projector</span></a><span class="symbol">&lt;</span><span class="identifier">DAO</span><span
+                    class="symbol">,</span>&nbsp;<span class="identifier">DTO</span><span class="symbol">,</span>&nbsp;<span class="identifier">P</span><span class="symbol">&gt;</span><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="-projection-entity/index.html"><span class="identifier">ProjectionEntity</span></a><span
+                    class="symbol">&lt;</span><span class="identifier">DTO</span><span class="symbol">&gt;</span></code></td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

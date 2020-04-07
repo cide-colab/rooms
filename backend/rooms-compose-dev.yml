@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+  mysql:
+    container_name: rooms_db_dev
+    image: mysql
+    ports:
+    - 3309:3306
+    restart: always
+    #command: mysqld --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: rooms_dev
+      MYSQL_ROOT_PASSWORD: 1YaKN6M6dP13
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_USER: rooms_user
+      MYSQL_PASSWORD: 1YaKN6M6dP13
+
+  server:
+    restart: always
+    image: thkoeln/rooms-server-dev
+    container_name: rooms_server_dev
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql/rooms_dev?autoReconnect=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: rooms_user
+      SPRING_DATASOURCE_PASSWORD: 1YaKN6M6dP13
+    ports:
+    - 8086:8080
+    depends_on:
+    - mysql

@@ -1,0 +1,134 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>CRUDFilter - rooms-backend</title>
+    <link href="../../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="../index.html">com.thkoeln.cide.roomsserver.security</a>&nbsp;/&nbsp;<a href="./index.html">CRUDFilter</a><br/>
+<br/>
+<h1>CRUDFilter</h1>
+<code><span class="keyword">interface </span><span class="identifier">CRUDFilter</span><span class="symbol">&lt;</span><span class="identifier">DTO</span><span class="symbol">, </span><span
+        class="identifier">P</span><span class="symbol">&gt;</span></code>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="create.html">create</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">create</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                  id="com.thkoeln.cide.roomsserver.security.CRUDFilter$create(com.thkoeln.cide.roomsserver.security.CRUDFilter.P)/protocol">protocol</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">P</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-security-filter/index.html"><span
+                    class="identifier">SecurityFilter</span></a></code><br/>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">create</span><span class="symbol">(</span><span class="symbol">)</span><span
+                    class="symbol">: </span><a href="../-security-filter/index.html"><span class="identifier">SecurityFilter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="delete.html">delete</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">delete</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                  id="com.thkoeln.cide.roomsserver.security.CRUDFilter$delete(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="../-security-filter/index.html"><span class="identifier">SecurityFilter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="read.html">read</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">read</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                id="com.thkoeln.cide.roomsserver.security.CRUDFilter$read(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="../-security-filter/index.html"><span class="identifier">SecurityFilter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="read-all.html">readAll</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">readAll</span><span class="symbol">(</span><span class="symbol">)</span><span
+                    class="symbol">: </span><a href="../-security-filter/index.html"><span class="identifier">SecurityFilter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="update.html">update</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">update</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                  id="com.thkoeln.cide.roomsserver.security.CRUDFilter$update(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="../-security-filter/index.html"><span class="identifier">SecurityFilter</span></a></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="../-abo-security-filters/index.html">AboSecurityFilters</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">AboSecurityFilters</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CRUDFilter</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-role-d-t-o/index.html"><span class="identifier">RoleDTO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-role-protocol/index.html"><span class="identifier">RoleProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-department-security-filter/index.html">DepartmentSecurityFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">DepartmentSecurityFilter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CRUDFilter</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-department-d-t-o/index.html"><span class="identifier">DepartmentDTO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-department-protocol/index.html"><span class="identifier">DepartmentProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-reservation-security-filter/index.html">ReservationSecurityFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">ReservationSecurityFilter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CRUDFilter</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-reservation-d-t-o/index.html"><span class="identifier">ReservationDTO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-reservation-protocol/index.html"><span class="identifier">ReservationProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-role-security-filters/index.html">RoleSecurityFilters</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">RoleSecurityFilters</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CRUDFilter</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-role-d-t-o/index.html"><span class="identifier">RoleDTO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-role-protocol/index.html"><span class="identifier">RoleProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-room-security-filter/index.html">RoomSecurityFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">RoomSecurityFilter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CRUDFilter</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-room-d-t-o/index.html"><span class="identifier">RoomDTO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-room-protocol/index.html"><span class="identifier">RoomProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-user-security-filters/index.html">UserSecurityFilters</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">UserSecurityFilters</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CRUDFilter</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-user-d-t-o/index.html"><span class="identifier">UserDTO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-user-protocol/index.html"><span class="identifier">UserProtocol</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

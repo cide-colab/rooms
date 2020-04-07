@@ -1,0 +1,128 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>RoleRepository - rooms-backend</title>
+    <link href="../../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="../index.html">com.thkoeln.cide.roomsserver.repositories</a>&nbsp;/&nbsp;<a href="./index.html">RoleRepository</a><br/>
+<br/>
+<h1>RoleRepository</h1>
+<code><span class="keyword">interface </span><span class="identifier">RoleRepository</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Repository</span><span
+        class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-role-d-a-o/index.html"><span class="identifier">RoleDAO</span></a><span class="symbol">,</span>&nbsp;<a
+        href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="delete.html">delete</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">delete</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                  id="com.thkoeln.cide.roomsserver.repositories.RoleRepository$delete(com.thkoeln.cide.roomsserver.models.RoleDAO)/role">role</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-role-d-a-o/index.html"><span class="identifier">RoleDAO</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="delete-by-id.html">deleteById</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">deleteById</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                      id="com.thkoeln.cide.roomsserver.repositories.RoleRepository$deleteById(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="delete-by-resource.html">deleteByResource</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">deleteByResource</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                            id="com.thkoeln.cide.roomsserver.repositories.RoleRepository$deleteByResource(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="exists-by-id.html">existsById</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">existsById</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                      id="com.thkoeln.cide.roomsserver.repositories.RoleRepository$existsById(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span
+                    class="identifier">Boolean</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="exists-by-user-id-and-resource-and-role-and-scope.html">existsByUserIdAndResourceAndRoleAndScope</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">existsByUserIdAndResourceAndRoleAndScope</span><span class="symbol">(</span><span
+                    class="identifier"
+                    id="com.thkoeln.cide.roomsserver.repositories.RoleRepository$existsByUserIdAndResourceAndRoleAndScope(kotlin.String, kotlin.String, com.thkoeln.cide.roomsserver.models.Role, com.thkoeln.cide.roomsserver.models.Scope)/userId">userId</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.repositories.RoleRepository$existsByUserIdAndResourceAndRoleAndScope(kotlin.String, kotlin.String, com.thkoeln.cide.roomsserver.models.Role, com.thkoeln.cide.roomsserver.models.Scope)/resource">resource</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">?</span><span class="symbol">, </span><span class="identifier"
+                                                                               id="com.thkoeln.cide.roomsserver.repositories.RoleRepository$existsByUserIdAndResourceAndRoleAndScope(kotlin.String, kotlin.String, com.thkoeln.cide.roomsserver.models.Role, com.thkoeln.cide.roomsserver.models.Scope)/role">role</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-role/index.html"><span class="identifier">Role</span></a><span class="symbol">, </span><span
+                    class="identifier"
+                    id="com.thkoeln.cide.roomsserver.repositories.RoleRepository$existsByUserIdAndResourceAndRoleAndScope(kotlin.String, kotlin.String, com.thkoeln.cide.roomsserver.models.Role, com.thkoeln.cide.roomsserver.models.Scope)/scope">scope</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-scope/index.html"><span class="identifier">Scope</span></a><span class="symbol">)</span><span
+                    class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="find-all.html">findAll</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">findAll</span><span class="symbol">(</span><span class="symbol">)</span><span
+                    class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-role-d-a-o/index.html"><span class="identifier">RoleDAO</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="find-by-id.html">findById</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">findById</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                    id="com.thkoeln.cide.roomsserver.repositories.RoleRepository$findById(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="../../com.thkoeln.cide.roomsserver.models/-role-d-a-o/index.html"><span class="identifier">RoleDAO</span></a><span
+                    class="symbol">?</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="find-by-user-id.html">findByUserId</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">findByUserId</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                        id="com.thkoeln.cide.roomsserver.repositories.RoleRepository$findByUserId(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-role-d-a-o/index.html"><span class="identifier">RoleDAO</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="save.html">save</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">save</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                id="com.thkoeln.cide.roomsserver.repositories.RoleRepository$save(com.thkoeln.cide.roomsserver.models.RoleDAO)/role">role</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-role-d-a-o/index.html"><span class="identifier">RoleDAO</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="../../com.thkoeln.cide.roomsserver.models/-role-d-a-o/index.html"><span class="identifier">RoleDAO</span></a><span
+                    class="symbol">?</span></code></td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

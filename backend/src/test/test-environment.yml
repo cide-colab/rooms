@@ -1,0 +1,18 @@
+version: '3.3'
+
+services:
+  mysql:
+    container_name: rooms_test_db
+    image: mysql
+    ports:
+      - 3310:3306
+    restart: always
+    #command: mysqld --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./rooms/database:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: rooms
+      MYSQL_ROOT_PASSWORD: 1YaKN6M6dP13
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_USER: rooms_test
+      MYSQL_PASSWORD: 1YaKN6M6dP13

@@ -1,0 +1,126 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>Converter - rooms-backend</title>
+    <link href="../../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="../index.html">com.thkoeln.cide.roomsserver.models.abstracts</a>&nbsp;/&nbsp;<a href="./index.html">Converter</a><br/>
+<br/>
+<h1>Converter</h1>
+<code><span class="keyword">interface </span><span class="identifier">Converter</span><span class="symbol">&lt;</span><span class="identifier">DTO</span><span class="symbol">, </span><span
+        class="identifier">DAO</span><span class="symbol">&gt;</span></code>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="no-converter.html">noConverter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span
+                    class="identifier">noConverter</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="to-d-a-o.html">toDAO</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">I</span><span class="symbol">&gt;</span> <span
+                    class="identifier">toDAO</span><span class="symbol">(</span><span class="identifier"
+                                                                                      id="com.thkoeln.cide.roomsserver.models.abstracts.Converter$toDAO(com.thkoeln.cide.roomsserver.models.abstracts.Converter.toDAO.I)/input">input</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">I</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">DAO</span></code><br/>
+            <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">I</span><span class="symbol">&gt;</span> <span
+                    class="identifier">toDAO</span><span class="symbol">(</span><span class="identifier"
+                                                                                      id="com.thkoeln.cide.roomsserver.models.abstracts.Converter$toDAO(kotlin.collections.Iterable((com.thkoeln.cide.roomsserver.models.abstracts.Converter.toDAO.I)))/values">values</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><span class="identifier">Iterable</span></a><span
+                    class="symbol">&lt;</span><span class="identifier">I</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span
+                    class="identifier">DAO</span><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="to-d-t-o.html">toDTO</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">I</span><span class="symbol">&gt;</span> <span
+                    class="identifier">toDTO</span><span class="symbol">(</span><span class="identifier"
+                                                                                      id="com.thkoeln.cide.roomsserver.models.abstracts.Converter$toDTO(com.thkoeln.cide.roomsserver.models.abstracts.Converter.toDTO.I)/input">input</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">I</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">DTO</span></code><br/>
+            <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">I</span><span class="symbol">&gt;</span> <span
+                    class="identifier">toDTO</span><span class="symbol">(</span><span class="identifier"
+                                                                                      id="com.thkoeln.cide.roomsserver.models.abstracts.Converter$toDTO(kotlin.collections.Iterable((com.thkoeln.cide.roomsserver.models.abstracts.Converter.toDTO.I)))/values">values</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><span class="identifier">Iterable</span></a><span
+                    class="symbol">&lt;</span><span class="identifier">I</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span
+                    class="identifier">DTO</span><span class="symbol">&gt;</span></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="../../com.thkoeln.cide.roomsserver.models/-abo-converter/index.html">AboConverter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">AboConverter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span
+                    class="identifier">Converter</span></a><span class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-abo-d-t-o/index.html"><span
+                    class="identifier">AboDTO</span></a><span class="symbol">,</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-abo-d-a-o/index.html"><span
+                    class="identifier">AboDAO</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../../com.thkoeln.cide.roomsserver.models/-department-converter/index.html">DepartmentConverter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">DepartmentConverter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Converter</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-department-d-t-o/index.html"><span class="identifier">DepartmentDTO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-department-d-a-o/index.html"><span class="identifier">DepartmentDAO</span></a><span class="symbol">&gt;</span></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../../com.thkoeln.cide.roomsserver.models/-reservation-converter/index.html">ReservationConverter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">ReservationConverter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Converter</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-reservation-d-t-o/index.html"><span class="identifier">ReservationDTO</span></a><span
+                    class="symbol">,</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-reservation-d-a-o/index.html"><span class="identifier">ReservationDAO</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../../com.thkoeln.cide.roomsserver.models/-role-converter/index.html">RoleConverter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">RoleConverter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span
+                    class="identifier">Converter</span></a><span class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-role-d-t-o/index.html"><span
+                    class="identifier">RoleDTO</span></a><span class="symbol">,</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-role-d-a-o/index.html"><span
+                    class="identifier">RoleDAO</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../../com.thkoeln.cide.roomsserver.models/-room-converter/index.html">RoomConverter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">RoomConverter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span
+                    class="identifier">Converter</span></a><span class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-room-d-t-o/index.html"><span
+                    class="identifier">RoomDTO</span></a><span class="symbol">,</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-room-d-a-o/index.html"><span
+                    class="identifier">RoomDAO</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../../com.thkoeln.cide.roomsserver.models/-user-converter/index.html">UserConverter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">UserConverter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span
+                    class="identifier">Converter</span></a><span class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-user-d-t-o/index.html"><span
+                    class="identifier">UserDTO</span></a><span class="symbol">,</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-user-d-a-o/index.html"><span
+                    class="identifier">UserDAO</span></a><span class="symbol">&gt;</span></code></td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

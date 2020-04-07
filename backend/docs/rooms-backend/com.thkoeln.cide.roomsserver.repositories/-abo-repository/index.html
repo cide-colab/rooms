@@ -1,0 +1,125 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>AboRepository - rooms-backend</title>
+    <link href="../../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="../index.html">com.thkoeln.cide.roomsserver.repositories</a>&nbsp;/&nbsp;<a href="./index.html">AboRepository</a><br/>
+<br/>
+<h1>AboRepository</h1>
+<code><span class="identifier">@Service</span> <span class="keyword">interface </span><span class="identifier">AboRepository</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Repository</span><span
+        class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-abo-d-a-o/index.html"><span class="identifier">AboDAO</span></a><span class="symbol">,</span>&nbsp;<a
+        href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="delete.html">delete</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">delete</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                  id="com.thkoeln.cide.roomsserver.repositories.AboRepository$delete(com.thkoeln.cide.roomsserver.models.AboDAO)/abo">abo</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-abo-d-a-o/index.html"><span class="identifier">AboDAO</span></a><span class="symbol">)</span><span
+                    class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="delete-by-id.html">deleteById</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">deleteById</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                      id="com.thkoeln.cide.roomsserver.repositories.AboRepository$deleteById(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="exists-by-id.html">existsById</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">existsById</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                      id="com.thkoeln.cide.roomsserver.repositories.AboRepository$existsById(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span
+                    class="identifier">Boolean</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="exists-by-resource-and-user-id.html">existsByResourceAndUserId</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">existsByResourceAndUserId</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                                     id="com.thkoeln.cide.roomsserver.repositories.AboRepository$existsByResourceAndUserId(kotlin.String, kotlin.String)/resource">resource</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.repositories.AboRepository$existsByResourceAndUserId(kotlin.String, kotlin.String)/userId">userId</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span
+                    class="identifier">Boolean</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="find-all.html">findAll</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">findAll</span><span class="symbol">(</span><span class="symbol">)</span><span
+                    class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-abo-d-a-o/index.html"><span class="identifier">AboDAO</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="find-by-id.html">findById</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">findById</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                    id="com.thkoeln.cide.roomsserver.repositories.AboRepository$findById(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="../../com.thkoeln.cide.roomsserver.models/-abo-d-a-o/index.html"><span class="identifier">AboDAO</span></a><span
+                    class="symbol">?</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="find-by-resource-and-user-id.html">findByResourceAndUserId</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">findByResourceAndUserId</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                                   id="com.thkoeln.cide.roomsserver.repositories.AboRepository$findByResourceAndUserId(kotlin.String, kotlin.String)/resourceId">resourceId</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.repositories.AboRepository$findByResourceAndUserId(kotlin.String, kotlin.String)/userId">userId</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-abo-d-a-o/index.html"><span class="identifier">AboDAO</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="find-by-user-id.html">findByUserId</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">findByUserId</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                        id="com.thkoeln.cide.roomsserver.repositories.AboRepository$findByUserId(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-abo-d-a-o/index.html"><span class="identifier">AboDAO</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="save.html">save</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">save</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                id="com.thkoeln.cide.roomsserver.repositories.AboRepository$save(com.thkoeln.cide.roomsserver.models.AboDAO)/abo">abo</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-abo-d-a-o/index.html"><span class="identifier">AboDAO</span></a><span class="symbol">)</span><span
+                    class="symbol">: </span><a href="../../com.thkoeln.cide.roomsserver.models/-abo-d-a-o/index.html"><span class="identifier">AboDAO</span></a><span class="symbol">?</span></code>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

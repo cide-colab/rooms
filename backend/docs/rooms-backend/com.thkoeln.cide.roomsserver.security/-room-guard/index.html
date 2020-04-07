@@ -1,0 +1,52 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>RoomGuard - rooms-backend</title>
+    <link href="../../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="../index.html">com.thkoeln.cide.roomsserver.security</a>&nbsp;/&nbsp;<a href="./index.html">RoomGuard</a><br/>
+<br/>
+<h1>RoomGuard</h1>
+<code><span class="identifier">@Service</span> <span class="keyword">class </span><span class="identifier">RoomGuard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a
+        href="../-c-r-u-d-guard/index.html"><span class="identifier">CRUDGuard</span></a><span class="symbol">&lt;</span><a
+        href="../../com.thkoeln.cide.roomsserver.models/-room-d-t-o/index.html"><span class="identifier">RoomDTO</span></a><span class="symbol">,</span>&nbsp;<a
+        href="../../com.thkoeln.cide.roomsserver.models/-room-protocol/index.html"><span class="identifier">RoomProtocol</span></a><span class="symbol">&gt;</span></code>
+<h3>Constructors</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="-init-.html">&lt;init&gt;</a></h4>
+        </td>
+        <td>
+            <code><span class="identifier">RoomGuard</span><span class="symbol">(</span><span class="identifier"
+                                                                                              id="com.thkoeln.cide.roomsserver.security.RoomGuard$<init>(com.thkoeln.cide.roomsserver.security.RoomSecurityFilter, com.thkoeln.cide.roomsserver.security.Guard)/filter">filter</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-room-security-filter/index.html"><span class="identifier">RoomSecurityFilter</span></a><span class="symbol">, </span><span
+                    class="identifier"
+                    id="com.thkoeln.cide.roomsserver.security.RoomGuard$<init>(com.thkoeln.cide.roomsserver.security.RoomSecurityFilter, com.thkoeln.cide.roomsserver.security.Guard)/guard">guard</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-guard/index.html"><span class="identifier">Guard</span></a><span class="symbol">)</span></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="get-reservations.html">getReservations</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span
+                    class="identifier">getReservations</span><span class="symbol">(</span><span class="identifier"
+                                                                                                id="com.thkoeln.cide.roomsserver.security.RoomGuard$getReservations(kotlin.String, kotlin.Function1((com.thkoeln.cide.roomsserver.models.Session, com.thkoeln.cide.roomsserver.security.RoomGuard.getReservations.T)))/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.security.RoomGuard$getReservations(kotlin.String, kotlin.Function1((com.thkoeln.cide.roomsserver.models.Session, com.thkoeln.cide.roomsserver.security.RoomGuard.getReservations.T)))/secured">secured</span><span
+                    class="symbol">:</span>&nbsp;<a href="../-secured-block.html"><span class="identifier">SecuredBlock</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span
+                    class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code></td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

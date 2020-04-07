@@ -1,0 +1,152 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>SecurityFilter - rooms-backend</title>
+    <link href="../../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="../index.html">com.thkoeln.cide.roomsserver.security</a>&nbsp;/&nbsp;<a href="./index.html">SecurityFilter</a><br/>
+<br/>
+<h1>SecurityFilter</h1>
+<code><span class="keyword">interface </span><span class="identifier">SecurityFilter</span></code>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="and.html">and</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">open</span> <span class="keyword">infix</span> <span class="keyword">fun </span><span class="identifier">and</span><span class="symbol">(</span><span
+                    class="identifier" id="com.thkoeln.cide.roomsserver.security.SecurityFilter$and(com.thkoeln.cide.roomsserver.security.SecurityFilter)/filter">filter</span><span
+                    class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SecurityFilter</span></a><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="../-and-filter/index.html"><span class="identifier">AndFilter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="is-authorized.html">isAuthorized</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">isAuthorized</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                        id="com.thkoeln.cide.roomsserver.security.SecurityFilter$isAuthorized(com.thkoeln.cide.roomsserver.models.Session, org.springframework.context.ApplicationContext)/session">session</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-session/index.html"><span class="identifier">Session</span></a><span class="symbol">?</span><span
+                    class="symbol">, </span><span class="identifier"
+                                                  id="com.thkoeln.cide.roomsserver.security.SecurityFilter$isAuthorized(com.thkoeln.cide.roomsserver.models.Session, org.springframework.context.ApplicationContext)/context">context</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">ApplicationContext</span><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="or.html">or</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">open</span> <span class="keyword">infix</span> <span class="keyword">fun </span><span class="identifier">or</span><span class="symbol">(</span><span
+                    class="identifier" id="com.thkoeln.cide.roomsserver.security.SecurityFilter$or(com.thkoeln.cide.roomsserver.security.SecurityFilter)/filter">filter</span><span
+                    class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SecurityFilter</span></a><span class="symbol">)</span><span class="symbol">: </span><a
+                    href="../-or-filter/index.html"><span class="identifier">OrFilter</span></a></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="../-allow-all/index.html">AllowAll</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">object </span><span class="identifier">AllowAll</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span
+                    class="identifier">SecurityFilter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-allow-department-entity-role/index.html">AllowDepartmentEntityRole</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">AllowDepartmentEntityRole</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SecurityFilter</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-allow-logged-in/index.html">AllowLoggedIn</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">object </span><span class="identifier">AllowLoggedIn</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SecurityFilter</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-allow-nobody/index.html">AllowNobody</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">object </span><span class="identifier">AllowNobody</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span
+                    class="identifier">SecurityFilter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-allow-room-entity-role/index.html">AllowRoomEntityRole</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">AllowRoomEntityRole</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SecurityFilter</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-allow-user/index.html">AllowUser</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">AllowUser</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span
+                    class="identifier">SecurityFilter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-and-filter/index.html">AndFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">AndFilter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span
+                    class="identifier">SecurityFilter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-app-role-filter/index.html">AppRoleFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">AppRoleFilter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SecurityFilter</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-department-role-filter/index.html">DepartmentRoleFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">DepartmentRoleFilter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SecurityFilter</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-entity-role-filter/index.html">EntityRoleFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">EntityRoleFilter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SecurityFilter</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-or-filter/index.html">OrFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">OrFilter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span
+                    class="identifier">SecurityFilter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="../-room-role-filter/index.html">RoomRoleFilter</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">RoomRoleFilter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SecurityFilter</span></a></code>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

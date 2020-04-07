@@ -1,0 +1,78 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>ReservationRepository - rooms-backend</title>
+    <link href="../../../style.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<a href="../../index.html">rooms-backend</a>&nbsp;/&nbsp;<a href="../index.html">com.thkoeln.cide.roomsserver.repositories</a>&nbsp;/&nbsp;<a href="./index.html">ReservationRepository</a><br/>
+<br/>
+<h1>ReservationRepository</h1>
+<code><span class="keyword">interface </span><span class="identifier">ReservationRepository</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Repository</span><span
+        class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-reservation-d-a-o/index.html"><span class="identifier">ReservationDAO</span></a><span class="symbol">,</span>&nbsp;<a
+        href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="find-all.html">findAll</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">findAll</span><span class="symbol">(</span><span class="symbol">)</span><span
+                    class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-reservation-d-a-o/index.html"><span class="identifier">ReservationDAO</span></a><span class="symbol">&gt;</span></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="find-by-id.html">findById</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">findById</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                    id="com.thkoeln.cide.roomsserver.repositories.ReservationRepository$findById(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="../../com.thkoeln.cide.roomsserver.models/-reservation-d-a-o/index.html"><span
+                    class="identifier">ReservationDAO</span></a><span class="symbol">?</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="find-by-room-id.html">findByRoomId</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">findByRoomId</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                        id="com.thkoeln.cide.roomsserver.repositories.ReservationRepository$findByRoomId(kotlin.String)/id">id</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-reservation-d-a-o/index.html"><span class="identifier">ReservationDAO</span></a><span class="symbol">&gt;</span></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="find-by-room-id-and-user-id.html">findByRoomIdAndUserId</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">findByRoomIdAndUserId</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                                 id="com.thkoeln.cide.roomsserver.repositories.ReservationRepository$findByRoomIdAndUserId(kotlin.String, kotlin.String)/roomId">roomId</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">, </span><span class="identifier" id="com.thkoeln.cide.roomsserver.repositories.ReservationRepository$findByRoomIdAndUserId(kotlin.String, kotlin.String)/userId">userId</span><span
+                    class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span
+                    class="symbol">&lt;</span><a href="../../com.thkoeln.cide.roomsserver.models/-reservation-d-a-o/index.html"><span class="identifier">ReservationDAO</span></a><span class="symbol">&gt;</span></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="save.html">save</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">save</span><span class="symbol">(</span><span class="identifier"
+                                                                                                                                                                id="com.thkoeln.cide.roomsserver.repositories.ReservationRepository$save(com.thkoeln.cide.roomsserver.models.ReservationDAO)/abo">abo</span><span
+                    class="symbol">:</span>&nbsp;<a href="../../com.thkoeln.cide.roomsserver.models/-reservation-d-a-o/index.html"><span class="identifier">ReservationDAO</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a href="../../com.thkoeln.cide.roomsserver.models/-reservation-d-a-o/index.html"><span
+                    class="identifier">ReservationDAO</span></a><span class="symbol">?</span></code></td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

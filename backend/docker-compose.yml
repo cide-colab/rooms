@@ -1,0 +1,40 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./rooms/database:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: rooms
+      MYSQL_ROOT_PASSWORD: 1YaKN6M6dP13
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_USER: rooms_user
+      MYSQL_PASSWORD: 1YaKN6M6dP13
+
+  server:
+    image: cide/rooms-server
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db/rooms?autoReconnect=true
+      SPRING_DATASOURCE_USERNAME: rooms_user
+      SPRING_DATASOURCE_PASSWORD: 1YaKN6M6dP13
+    ports:
+      - 8080:8080
+    volumes:
+      - ./rooms/server:/rooms
+    depends_on:
+      - db
+
+  web:
+    image: cide/rooms-web
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./rooms/web:/usr/share/nginx/html
+    depends_on:
+      - server
