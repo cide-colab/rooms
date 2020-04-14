@@ -256,49 +256,10 @@
       "description": {
         "label": "Beschreibung"
       },
-      "rooms": {
-        "label": "Räume",
-        "query": "Raum suchen",
-        "select_all": "Alle auswählen",
+      "title": {
+        "label": "Name",
         "errors": {
-          "required": "Es muss mindestens ein Raum ausgewählt werden!"
-        }
-      },
-      "start": {
-        "label": "Start",
-        "errors": {
-          "required": "Ein Startzeitpunkt für das Abo muss definiert werden!"
-        }
-      },
-      "end": {
-        "label": "Ende",
-        "errors": {
-          "required": "Ein Endzeitpunkt für das Abo muss definiert werden!"
-        }
-      },
-      "unlimited_end": {
-        "label": "Unbegrenzte Laufzeit"
-      },
-      "unlimited_contingent": {
-        "label": "Unbegrenztes Buchungskontingent"
-      },
-      "contingent": {
-        "label": "Buchungskontingent pro Woche",
-        "suffix": "Minuten",
-        "errors": {
-          "required": "Ein Kontingent muss definiert werden!"
-        }
-      }
-    },
-    "abo_form": {
-      "steps": {
-        "details": "Details",
-        "rooms": "Räume"
-      },
-      "user": {
-        "label": "Empfänger",
-        "errors": {
-          "required": "Es wird ein Empfänger benötigt!"
+          "required": "Ein Abo benötigt einen Namen!"
         }
       },
       "description": {

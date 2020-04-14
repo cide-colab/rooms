@@ -137,8 +137,9 @@ export class AboFormComponent implements OnInit {
         contingent: [value.contingent],
         unlimited_end: [value.unlimited_end],
         unlimited_contingent: [value.unlimited_contingent],
-        description: [value.description, Validators.maxLength(100)],
-        user: [value.user, [Validators.required, AppValidators.requireSelect]]
+        description: [value.description, Validators.maxLength(500)],
+        user: [value.user, [Validators.required, AppValidators.requireSelect]],
+        title: [value.title, [Validators.required, Validators.maxLength(25)]]
       }),
       roomsGroup: this.formBuilder.group({
         query: [''],
@@ -156,7 +157,8 @@ export class AboFormComponent implements OnInit {
       unlimited_contingent: false,
       description: '',
       user: null,
-      rooms: []
+      rooms: [],
+      title: ''
     };
   }
 

@@ -276,6 +276,12 @@ export const TRANSLATION_KEYS = {
       description: {
         label: 'component.abo_form.description.label'
       },
+      title: {
+        label: 'component.abo_form.title.label',
+        errors: {
+          required: 'component.abo_form.title.errors.required'
+        }
+      },
       rooms: {
         label: 'component.abo_form.rooms.label',
         query: 'component.abo_form.rooms.query',

@@ -11,16 +11,18 @@
   </div>
   <div class="page-content">
     <div *ngIf="abo | async as abo" class="detail-page">
-      <div class="page-header">
-        <div class="page-header-avatar-container">
-          <img [src]="abo.user.imageUrl" class="page-header-avatar"/>
-        </div>
-        <div class="page-header-title-container">
-          <div class="page-title">{{abo.user.givenName}}</div>
-          <div class="page-subtitle">{{abo.user.principal}}
-          </div>
-        </div>
-      </div>
+      <div class="page-title">{{abo.title}}</div>
+      <div class="page-subtitle">{{abo.user.givenName}} ({{abo.user.principal}})</div>
+<!--      <div class="page-header">-->
+<!--        <div class="page-header-avatar-container">-->
+<!--          <img [src]="abo.user.imageUrl" class="page-header-avatar"/>-->
+<!--        </div>-->
+<!--        <div class="page-header-title-container">-->
+<!--          <div class="page-title">{{abo.title}}</div>-->
+<!--          <div class="page-subtitle">{{abo.user.givenName}} ({{abo.user.principal}})-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="page-section">
         <div class="page-section-header">{{TRANSLATION_KEYS.page.abo.detail.labels.description | translate}}:</div>
         <p class="page-section-content">{{abo.description}}</p>

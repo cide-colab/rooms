@@ -14,6 +14,7 @@ export interface BaseAbo extends RestEntity<AboLinks>, BaseEntity {
   contingent: number;
   unlimited_end: boolean;
   unlimited_contingent: boolean;
+  title: string;
   description?: string;
 }
 

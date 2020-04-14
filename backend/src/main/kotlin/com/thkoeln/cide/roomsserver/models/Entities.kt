@@ -282,6 +282,7 @@ class Reservation(
 ) : PersistableEntity(id), BaseReservation, Ownable
 
 interface BaseAbo : BaseEntity {
+    val title: String
     val start: OffsetDateTime
     val end: OffsetDateTime
     val contingent: Long
@@ -307,7 +308,11 @@ class Abo(
         override val unlimited_contingent: Boolean = false,
 
         @Lob
-        @Column(name = "description", length = 100)
+        @Column(name = "title", length = 25)
+        override val title: String,
+
+        @Lob
+        @Column(name = "description", length = 500)
         override val description: String?,
 
 //        val renew: Long,

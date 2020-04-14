@@ -7,9 +7,9 @@
     </div>
   </div>
   <div class="card-content">
-    <div *ngIf="!showUsername" class="card-subtitle">
-      {{TRANSLATION_KEYS.component.abo_preview_card.labels.period | translate}}
-      : {{abo.start | date: (TRANSLATION_KEYS.component.abo_preview_card.formats.period_date | translate)}}
+    <div *ngIf="showUsername" class="card-subtitle">{{abo.title}}</div>
+    <div *ngIf="showUsername" class="card-title">{{abo.user.givenName}} ({{abo.user.principal}})</div>
+    <div *ngIf="!showUsername" class="card-title">{{abo.title}}</div>
       -  {{abo.unlimited_end ? '&#8734;' : (abo.end | date: (TRANSLATION_KEYS.component.abo_preview_card.formats.period_date | translate))}}
     </div>
     <div *ngIf="showUsername" class="card-subtitle">{{abo.user.principal}}</div>
