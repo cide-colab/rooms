@@ -2,6 +2,7 @@ import {Link, Links, ListLinks, RestEntity, RestListEntity} from './rest-entity.
 import {BaseEntity} from './base-entity.model';
 import {BaseUser} from './user.model';
 import {BaseRoom, DetailedRoom} from './room.model';
+import {SimpleReservation} from './reservation.model';
 
 export interface AboLinks extends Links {
   rooms: Link;
@@ -26,6 +27,7 @@ export interface SimpleAbo extends BaseAbo {
 export interface DetailedAbo extends BaseAbo {
   user: BaseUser;
   rooms: DetailedRoom[];
+  reservations: SimpleReservation[];
 }
 
 // tslint:disable-next-line:no-empty-interface

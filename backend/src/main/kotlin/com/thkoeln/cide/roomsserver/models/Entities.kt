@@ -269,14 +269,17 @@ class Reservation(
         @ManyToOne
         override val user: User,
 
+        @ManyToOne
+        val abo: Abo,
+
 //        @OneToMany(mappedBy = "reservation", cascade = [CascadeType.ALL])
 //        @ElementCollection
 //        @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 //        @Column(name = "contingent")
-        @OneToMany(mappedBy = "reservation", cascade = [CascadeType.ALL])
+//        @OneToMany(mappedBy = "reservation", cascade = [CascadeType.ALL])
 //        @JsonIgnoreProperties(allowGetters = false, allowSetters = true)
 //        @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-        var contingent_allocations: List<ContingentAllocation> = listOf(),
+//        var contingent_allocations: List<ContingentAllocation> = listOf(),
 
         id: UUID = UUID.randomUUID()
 ) : PersistableEntity(id), BaseReservation, Ownable
@@ -336,7 +339,7 @@ class Abo(
         @OneToMany(mappedBy = "abo", cascade = [CascadeType.ALL])
 //        @JsonIgnoreProperties(allowGetters = false, allowSetters = true)
 //        @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-        val contingent_allocations: List<ContingentAllocation> = listOf(),
+        val reservations: List<Reservation> = listOf(),
 
         id: UUID = UUID.randomUUID()
 ) : PersistableEntity(id), BaseAbo, Ownable
@@ -344,20 +347,20 @@ class Abo(
 interface BaseContingentAllocation {
     val minutes: Long
 }
-
-@Entity
-@Table(uniqueConstraints = [UniqueConstraint(columnNames = ["abo_id", "reservation_id"])])
-class ContingentAllocation(
-
-        @ManyToOne
-        @JoinColumn
-        val abo: Abo,
-
-        @ManyToOne
-        @JoinColumn
-        val reservation: Reservation?,
-
-        override val minutes: Long,
-
-        id: UUID = UUID.randomUUID()
-) : PersistableEntity(id), BaseContingentAllocation, Serializable
+//
+//@Entity
+//@Table(uniqueConstraints = [UniqueConstraint(columnNames = ["abo_id", "reservation_id"])])
+//class ContingentAllocation(
+//
+//        @ManyToOne
+//        @JoinColumn
+//        val abo: Abo,
+//
+//        @ManyToOne
+//        @JoinColumn
+//        val reservation: Reservation?,
+//
+//        override val minutes: Long,
+//
+//        id: UUID = UUID.randomUUID()
+//) : PersistableEntity(id), BaseContingentAllocation, Serializable

@@ -3,6 +3,9 @@ import {BackendService, TokenRequirement} from '../backend/backend.service';
 import {AboListEntity, BaseAbo, DetailedAbo, SimpleAbo} from '../../models/abo.model';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {BaseContingent, ContingentListEntity} from '../../models/contingent.model';
+import * as moment from 'moment';
+import {RestEntity} from '../../models/rest-entity.model';
 
 @Injectable({
   providedIn: 'root'
@@ -51,5 +54,12 @@ export class AboService {
   getBaseByUser(id: string): Observable<SimpleAbo[]> {
     return this.backendService.get<AboListEntity<SimpleAbo>>(`users/${id}/abos`, TokenRequirement.REQUIRED)
       .pipe(map(value => value._embedded.abos));
+  }
+
+  getContingentOnDate(id: string, date: Date): Observable<BaseContingent> {
+    return this.backendService.get<BaseContingent>(
+      `abos/${id}/contingent?date=${encodeURIComponent(moment(date).format())}`,
+      TokenRequirement.REQUIRED
+    );
   }
 }

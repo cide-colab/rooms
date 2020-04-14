@@ -3,8 +3,7 @@
     <mat-form-field appearance="fill" class="full-width">
       <input [matAutocomplete]="userAutoCompete" formControlName="user" matInput required>
       <mat-label>{{TRANSLATION_KEYS.component.reservation_form.user.label | translate}}</mat-label>
-      <mat-autocomplete #userAutoCompete="matAutocomplete" (optionSelected)="onNewUserSelected($event.option.value)"
-                        [displayWith]="displayUser">
+      <mat-autocomplete #userAutoCompete="matAutocomplete" [displayWith]="displayUser">
         <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
           <span>{{user.givenName}} ({{user.principal}})</span>
         </mat-option>
@@ -16,15 +15,29 @@
 
     <br>
     <mat-form-field appearance="fill" class="full-width">
+      <input [matAutocomplete]="aboAutoCompete" formControlName="abo" matInput required>
+      <mat-label>{{TRANSLATION_KEYS.component.reservation_form.abo.label | translate}}</mat-label>
+      <mat-autocomplete #aboAutoCompete="matAutocomplete" [displayWith]="displayAbo">
+        <mat-option *ngFor="let abo of filteredAbos | async" [value]="abo">
+          <span>{{abo.title}}</span>
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error *ngIf="formControls.abo.errors?.requireSelect">
+        {{TRANSLATION_KEYS.component.reservation_form.abo.errors.required | translate}}
+      </mat-error>
+    </mat-form-field>
+
+    <br>
+    <mat-form-field appearance="fill" class="full-width">
       <input [matAutocomplete]="roomAutoCompete" formControlName="room" matInput required>
-      <span *ngIf="formControls.room.value" matSuffix><small><i
-        class="icon-timer"></i> {{getAvailableContingentFor(formControls.room.value)}} {{TRANSLATION_KEYS.component.reservation_form.room.min | translate}}</small></span>
+<!--      <span *ngIf="formControls.room.value" matSuffix><small><i-->
+<!--        class="icon-timer"></i> {{getAvailableContingentFor(formControls.room.value)}} {{TRANSLATION_KEYS.component.reservation_form.room.min | translate}}</small></span>-->
       <mat-label>{{TRANSLATION_KEYS.component.reservation_form.room.label | translate}}</mat-label>
-      <mat-autocomplete #roomAutoCompete="matAutocomplete" (optionSelected)="onNewRoomSelected($event)"
-                        [displayWith]="displayRoom">
+      <mat-autocomplete #roomAutoCompete="matAutocomplete" [displayWith]="displayRoom">
         <mat-option *ngFor="let room of filteredRooms | async" [value]="room">
-          <span>{{room.number}} {{room.name}} <small class="dropdown-right-info"><i
-            class="icon-timer"></i> {{getAvailableContingentFor(room)}} {{TRANSLATION_KEYS.component.reservation_form.room.min | translate}}</small></span>
+          <span>{{room.number}} {{room.name}}
+<!--            <small class="dropdown-right-info"><i class="icon-timer"></i> {{getAvailableContingentFor(room)}} {{TRANSLATION_KEYS.component.reservation_form.room.min | translate}}</small>-->
+          </span>
         </mat-option>
       </mat-autocomplete>
       <mat-error *ngIf="formControls.user.errors?.requireSelect">
@@ -32,53 +45,25 @@
       </mat-error>
     </mat-form-field>
 
-
     <br>
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>{{TRANSLATION_KEYS.component.reservation_form.date.label | translate}}</mat-label>
-      <input (dateChange)="onNewDateSelected($event)" [matDatepicker]="date_date_picker" formControlName="date" matInput
-             required>
+      <input [matDatepicker]="date_date_picker" [min]="minDate" [max]="maxDate" formControlName="date" matInput required>
       <mat-datepicker-toggle [for]="date_date_picker" matSuffix></mat-datepicker-toggle>
       <mat-datepicker #date_date_picker touchUi="true"></mat-datepicker>
       <mat-error *ngIf="formControls.date.errors?.required">
         {{TRANSLATION_KEYS.component.reservation_form.date.errors.required | translate}}
       </mat-error>
     </mat-form-field>
-
-    <style>
-      .test {
-        min-width: fit-content;
-        border-radius: 50vh;
-        margin: 1px;
-        padding: 4px 4px 4px 4px;
-        border: 2px rgba(51, 51, 51, 0.54) solid;
-      }
-    </style>
-
-    <section>
-      <label>Verfügbare Slots</label>
+    <section *ngIf="slots | async as slots">
+      <label *ngIf="slots.length > 0">{{TRANSLATION_KEYS.component.reservation_form.slots.label | translate}}</label>
       <br>
       <mat-radio-group class="flex-wrap-container" formControlName="slot" style="justify-content: space-between">
-        <mat-radio-button *ngFor="let slot of slots | async" [value]="slot" class="test">{{slot.start | date: 'HH:mm'}}
+        <mat-radio-button *ngFor="let slot of slots" [value]="slot" class="radio-chip">{{slot.start | date: 'HH:mm'}}
           - {{slot.end | date: 'HH:mm'}} Uhr
         </mat-radio-button>
       </mat-radio-group>
     </section>
-
-    <!--    <mat-form-field class="flex-wrap-container">-->
-    <!--      <input type="checkbox" *ngFor="let slot of availableSlots" style="-->
-    <!--      min-width: 100px;-->
-    <!--      text-align: center;-->
-    <!--      justify-content: center;-->
-    <!--       align-items: center;-->
-    <!--       border-radius: 2px;-->
-    <!--       background-color: #8c1363;-->
-    <!--       color: white;-->
-    <!--       margin: 1px;-->
-    <!--       padding: 4px;-->
-    <!--">{{slot.start | date: 'hh:mm'}} - {{slot.end | date: 'hh:mm'}} Uhr-->
-    <!--      </input>-->
-    <!--    </mat-form-field>-->
     <br>
     <div *ngIf="formControls.slot.value" class="flex-wrap-container">
       <mat-form-field appearance="fill">
@@ -87,8 +72,6 @@
                matInput type="time">
         <span matSuffix>{{TRANSLATION_KEYS.component.reservation_form.overall.clock | translate}}</span>
         <mat-label>{{TRANSLATION_KEYS.component.reservation_form.start.label | translate}}</mat-label>
-        <mat-hint align="end">Raum verfügbar bis 18:00 Uhr</mat-hint>
-        <!--        <ngx-material-timepicker #start_picker (timeSet)="onNewDateSelecterd"></ngx-material-timepicker>-->
         <ngx-material-timepicker #start_picker></ngx-material-timepicker>
       </mat-form-field>
       <mat-form-field appearance="fill">
@@ -97,25 +80,40 @@
                matInput type="time">
         <span matSuffix>{{TRANSLATION_KEYS.component.reservation_form.overall.clock | translate}}</span>
         <mat-label>{{TRANSLATION_KEYS.component.reservation_form.end.label | translate}}</mat-label>
-        <!--        <ngx-material-timepicker #end_picker (timeSet)="recalculateMeta(null, $event)"></ngx-material-timepicker>-->
         <ngx-material-timepicker #end_picker></ngx-material-timepicker>
       </mat-form-field>
     </div>
-    <mat-error *ngIf="contingentError">{{contingentError}}</mat-error>
-    <div class="flex-wrap-container">
-      <div [ngClass]="['info-field']">
-        <small>{{TRANSLATION_KEYS.component.reservation_form.overall.contingent_before | translate}}</small>
-        <span>{{contingentBefore}} {{TRANSLATION_KEYS.component.reservation_form.room.min | translate}}</span>
-      </div>
-      <div [ngClass]="['info-field', contingentAfter >= 0 ? '' : 'error']">
-        <small>{{TRANSLATION_KEYS.component.reservation_form.overall.contingent_consumed | translate}}</small>
-        <span>{{contingentConsumed}} {{TRANSLATION_KEYS.component.reservation_form.room.min | translate}}</span>
-      </div>
-      <div [ngClass]="['info-field', contingentAfter >= 0 ? '' : 'error']">
-        <small>{{TRANSLATION_KEYS.component.reservation_form.overall.contingent_after | translate}}</small>
-        <span>{{contingentAfter}} {{TRANSLATION_KEYS.component.reservation_form.room.min | translate}}</span>
-      </div>
-    </div>
+    <mat-error *ngIf="contingentError | async as contingentError">{{contingentError}}</mat-error>
+
+<!--    <section *ngIf="contingentAllocations">-->
+<!--      <mat-card *ngFor="let allocation of contingentAllocations">-->
+<!--        <div>{{allocation.abo.description}}</div>-->
+<!--        <mat-slider-->
+<!--          class="full-width"-->
+<!--          [max]="allocation.max"-->
+<!--          [min]="0"-->
+<!--          [step]="1"-->
+<!--          [thumbLabel]="true"-->
+<!--          [tickInterval]="1"-->
+<!--          [value]="allocation.value"-->
+<!--          (change)="allocation.value = $event.value">-->
+<!--        </mat-slider>-->
+<!--      </mat-card>-->
+<!--    </section>-->
+    <!--    <div class="flex-wrap-container">-->
+    <!--      <div [ngClass]="['info-field']">-->
+    <!--        <small>{{TRANSLATION_KEYS.component.reservation_form.overall.contingent_before | translate}}</small>-->
+    <!--        <span>{{contingentBefore}} {{TRANSLATION_KEYS.component.reservation_form.room.min | translate}}</span>-->
+    <!--      </div>-->
+    <!--      <div [ngClass]="['info-field', contingentAfter >= 0 ? '' : 'error']">-->
+    <!--        <small>{{TRANSLATION_KEYS.component.reservation_form.overall.contingent_consumed | translate}}</small>-->
+    <!--        <span>{{contingentConsumed}} {{TRANSLATION_KEYS.component.reservation_form.room.min | translate}}</span>-->
+    <!--      </div>-->
+    <!--      <div [ngClass]="['info-field', contingentAfter >= 0 ? '' : 'error']">-->
+    <!--        <small>{{TRANSLATION_KEYS.component.reservation_form.overall.contingent_after | translate}}</small>-->
+    <!--        <span>{{contingentAfter}} {{TRANSLATION_KEYS.component.reservation_form.room.min | translate}}</span>-->
+    <!--      </div>-->
+    <!--    </div>-->
     <br>
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>{{TRANSLATION_KEYS.component.reservation_form.title.label | translate}}</mat-label>

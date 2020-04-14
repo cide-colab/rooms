@@ -10,27 +10,13 @@
     <div *ngIf="showUsername" class="card-subtitle">{{abo.title}}</div>
     <div *ngIf="showUsername" class="card-title">{{abo.user.givenName}} ({{abo.user.principal}})</div>
     <div *ngIf="!showUsername" class="card-title">{{abo.title}}</div>
-      -  {{abo.unlimited_end ? '&#8734;' : (abo.end | date: (TRANSLATION_KEYS.component.abo_preview_card.formats.period_date | translate))}}
-    </div>
-    <div *ngIf="showUsername" class="card-subtitle">{{abo.user.principal}}</div>
-    <div *ngIf="showUsername" class="card-title">{{abo.user.givenName}}</div>
-    <div *ngIf="!showUsername" class="card-title">
-      {{
-      abo.rooms.length > 1
-        ? (TRANSLATION_KEYS.component.abo_preview_card.labels.rooms | translate)
-        : (TRANSLATION_KEYS.component.abo_preview_card.labels.room | translate)
-      }}:
-      <span
-        *ngFor="let room of abo.rooms; let i = index"> {{room.number}} {{i < abo.rooms.length - 1 ? '-' : ''}}</span>
-    </div>
     <div class="card-description">
-      <div>{{abo.description}}</div>
-      <div *ngIf="showUsername">
+      <div>
         {{TRANSLATION_KEYS.component.abo_preview_card.labels.period | translate}}
         : {{abo.start | date: (TRANSLATION_KEYS.component.abo_preview_card.formats.period_date | translate)}}
         -  {{abo.unlimited_end ? '&#8734;' : (abo.end | date: (TRANSLATION_KEYS.component.abo_preview_card.formats.period_date | translate))}}
       </div>
-      <div *ngIf="showUsername">
+      <div>
         {{
         abo.rooms.length > 1
           ? (TRANSLATION_KEYS.component.abo_preview_card.labels.rooms | translate)

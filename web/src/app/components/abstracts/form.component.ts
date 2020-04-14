@@ -54,7 +54,7 @@ import {TRANSLATION_KEYS} from '../../../app.translation-tree';
 export abstract class FormComponent<T> implements OnInit {
 
   @Input()
-  value: T = this.getDefaultValue();
+  value: T;
 
   TRANSLATION_KEYS = TRANSLATION_KEYS;
 
@@ -63,8 +63,10 @@ export abstract class FormComponent<T> implements OnInit {
 
   formGroup: FormGroup;
   isLocked = false;
+  creating = true;
 
   ngOnInit(): void {
+    this.getInitValue();
     this.reset();
   }
 
@@ -85,6 +87,17 @@ export abstract class FormComponent<T> implements OnInit {
     this.formGroup = this.getFormGroup(this.value);
   }
 
+  private getInitValue() {
+    if (!this.value) {
+      this.creating = false;
+      this.value = this.getDefaultValue();
+    }
+  }
+
+  get editing(): boolean {
+    return !this.creating;
+  }
+
   abstract getDefaultValue(): T;
 
   hasChanges(): boolean {
@@ -93,19 +106,27 @@ export abstract class FormComponent<T> implements OnInit {
 
   abstract getFormGroup(value: T): FormGroup;
 
+  prepareValueForSubmit(defaultValue: T, formGroup: FormGroup): T {
+    return {
+      ...defaultValue,
+      ...formGroup.value
+    };
+  }
+
+  validate(defaultValue: T, formGroup: FormGroup): boolean {
+    return formGroup.invalid;
+  }
+
   submit() {
     if (this.isLocked) {
       return;
     }
     this.lock();
-    if (this.formGroup.invalid) {
+    if (this.validate(this.value, this.formGroup)) {
       this.unlock();
       return;
     }
-    const mergedValue = {
-      ...this.value,
-      ...this.formGroup.value
-    };
+    const mergedValue = this.prepareValueForSubmit(this.value, this.formGroup);
     this.onSubmit.emit(mergedValue);
     this.unlock();
   }

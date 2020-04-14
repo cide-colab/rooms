@@ -63,6 +63,7 @@ export class CreateReservationPage implements OnInit {
   }
 
   async onSubmit(reservation: SimpleReservation) {
+    console.log(reservation);
     if (
       !await this.sessionService.hasPermissionPromise('create:reservation', reservation.room.id) ||
       !await this.sessionService.hasPermissionPromise('create:reservation', reservation.user.id)
@@ -70,20 +71,16 @@ export class CreateReservationPage implements OnInit {
       this.snackbarService.open(TRANSLATION_KEYS.snackbar.unauthorized);
       return;
     }
-    // this.aboService.save(abo).subscribe(
-    //   next => {
-    //     this.snackbarService.open(TRANSLATION_KEYS.snackbar.create.abo.success, {
-    //       user: abo.user.givenName
-    //     });
-    //     this.router.navigate(['/abos']);
-    //   },
-    //   error => {
-    //     console.log(error);
-    //     this.snackbarService.open(TRANSLATION_KEYS.snackbar.create.abo.failed, {
-    //       user: abo.user.givenName
-    //     });
-    //   }
-    // );
+    this.reservationService.save(reservation).subscribe(
+      next => {
+        this.snackbarService.open(TRANSLATION_KEYS.snackbar.create.reservation.success);
+        this.router.navigate(['/reservations']);
+      },
+      error => {
+        console.log(error);
+        this.snackbarService.open(TRANSLATION_KEYS.snackbar.create.reservation.failed);
+      }
+    );
   }
 
 }

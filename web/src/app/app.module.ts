@@ -69,6 +69,7 @@ import {ReservationFormComponent} from './components/reservation-form/reservatio
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {MatRadioModule} from '@angular/material/radio';
 import {TimeZoneDatePipe, TimezoneService} from './services/timezone.service';
+import {MatSliderModule} from '@angular/material/slider';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -155,6 +156,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatMomentDateModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatSliderModule,
     NgxMaterialTimepickerModule.setLocale('de-DE')
   ],
   providers: [

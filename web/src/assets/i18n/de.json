@@ -56,6 +56,10 @@
       "abo": {
         "success": "Das Abo für den Nutzer {{user}} wurde erfolgreich erstellt.",
         "failed": "Das Erstellen des Abos für den Nutzer {{user}} ist fehlgeschlagen."
+      },
+      "reservation": {
+        "success": "Die Buchung wurde erfolgreich erstellt.",
+        "failed": "Erstellen der Buchung fehlgeschlagen."
       }
     },
     "delete": {
@@ -262,9 +266,6 @@
           "required": "Ein Abo benötigt einen Namen!"
         }
       },
-      "description": {
-        "label": "Beschreibung"
-      },
       "rooms": {
         "label": "Räume",
         "query": "Raum suchen",
@@ -306,6 +307,12 @@
           "required": "Es wird ein Benutzer benötigt!"
         }
       },
+      "abo": {
+        "label": "Abo",
+        "errors": {
+          "required": "Es muss ein Abo ausgewählt werden!"
+        }
+      },
       "title": {
         "label": "Veranstaltungstitel",
         "errors": {
@@ -339,6 +346,12 @@
         "errors": {
           "required": "Es muss ein Endzeitpunkt festgelegt werden!"
         }
+      },
+      "contingent": {
+        "error": "Das Kontingent wurde um {{error}} Minuten überschritten."
+      },
+      "slots": {
+        "label": "Verfügbare Slots"
       },
       "overall": {
         "clock": "Uhr",

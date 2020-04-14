@@ -158,6 +158,7 @@ export class AboFormComponent implements OnInit {
       description: '',
       user: null,
       rooms: [],
+      reservations: [],
       title: ''
     };
   }
