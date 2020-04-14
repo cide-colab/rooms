@@ -44,13 +44,14 @@ export class ReservationFormComponent extends FormComponent<SimpleReservation> i
 
   slots = new Subject<BaseSlot[]>();
 
-  minStart = new Subject<string>();
-  minEnd = new Subject<string>();
-  maxStart = new Subject<string>();
-  maxEnd = new Subject<string>();
-  // minEnd = this.minStart;
-  // maxStart = '23:00';
-  // maxEnd = this.maxStart;
+  // minStart = new Subject<string>();
+  // minEnd = new Subject<string>();
+  // maxStart = new Subject<string>();
+  // maxEnd = new Subject<string>();
+  minStart = '07:00';
+  minEnd = this.minStart;
+  maxStart = '23:00';
+  maxEnd = this.maxStart;
 
   // reservations: SimpleReservation[];
   // abos: SimpleAbo[];
@@ -104,19 +105,24 @@ export class ReservationFormComponent extends FormComponent<SimpleReservation> i
     );
 
     this.formControls.start.valueChanges.subscribe(start => {
-      this.minEnd.next(start);
+      // this.minEnd.next(start);
+      this.minEnd = start;
       // console.log('Value: ' + start);
     });
 
     // TODO das klappt noch nicht
     this.formControls.slot.valueChanges
       .subscribe(slot => {
-        this.minStart.next(slot.start.toSimpleTimeString());
-        this.maxStart.next(slot.end.minusMinutes(15).toSimpleTimeString());
-        this.maxEnd.next(slot.end.toSimpleTimeString());
-        this.minEnd.next(slot.start.toSimpleTimeString());
-        // this.formControls.start.setValue(slot.start.toSimpleTimeString());
-        // this.formControls.end.setValue(slot.start.plusMinutes(15).toSimpleTimeString());
+        this.minStart = new Date(slot.start).toSimpleTimeString();
+        this.maxStart = new Date(slot.end).minusMinutes(15).toSimpleTimeString();
+        this.maxEnd = new Date(slot.end).toSimpleTimeString();
+        this.minEnd = new Date(slot.start).toSimpleTimeString();
+        // this.minStart.next(new Date(slot.start).toSimpleTimeString());
+        // this.maxStart.next(new Date(slot.end).minusMinutes(15).toSimpleTimeString());
+        // this.maxEnd.next(new Date(slot.end).toSimpleTimeString());
+        // this.minEnd.next(new Date(slot.start).toSimpleTimeString());
+        // this.formControls.start.setValue(new Date(slot.start).toSimpleTimeString());
+        // this.formControls.end.setValue(new Date(slot.start).plusMinutes(15).toSimpleTimeString());
       });
     //
     // this.minStart.subscribe(v => console.log('Min Start ' + v));

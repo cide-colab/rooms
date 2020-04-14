@@ -82,7 +82,7 @@
     <br>
     <div *ngIf="formControls.slot.value" class="flex-wrap-container">
       <mat-form-field appearance="fill">
-        <input [format]="24" [max]="maxStart | async" [min]="minStart | async" [ngxTimepicker]="start_picker"
+        <input [format]="24" [max]="maxStart" [min]="minStart" [ngxTimepicker]="start_picker"
                formControlName="start"
                matInput type="time">
         <span matSuffix>{{TRANSLATION_KEYS.component.reservation_form.overall.clock | translate}}</span>
@@ -92,7 +92,7 @@
         <ngx-material-timepicker #start_picker></ngx-material-timepicker>
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <input [format]="24" [max]="maxEnd | async" [min]="minEnd | async" [ngxTimepicker]="end_picker"
+        <input [format]="24" [max]="maxEnd" [min]="minEnd" [ngxTimepicker]="end_picker"
                formControlName="end"
                matInput type="time">
         <span matSuffix>{{TRANSLATION_KEYS.component.reservation_form.overall.clock | translate}}</span>
