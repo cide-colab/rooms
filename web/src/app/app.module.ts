@@ -17,7 +17,7 @@ import {BackendService} from './services/backend/backend.service';
 import {UserPreviewComponent} from './components/user-preview/user-preview.component';
 import {MatListModule} from '@angular/material/list';
 import {keycloakInitializer} from './app.init';
-import {DepartmentListPage} from './pages/admin/department-list/department-list.page';
+import {DepartmentListPage} from './pages/general/department-list/department-list.page';
 import {CreateDepartmentPage} from './pages/detail/create-department/create-department.page';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {DepartmentFormComponent} from './components/department-form/department-form.component';
@@ -36,7 +36,7 @@ import {EditDepartmentPage} from './pages/detail/edit-department/edit-department
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {SnackbarService} from './services/snackbar/snackbar.service';
-import {RoomListPage} from './pages/admin/room-list/room-list.page';
+import {RoomListPage} from './pages/general/room-list/room-list.page';
 import {EditRoomPage} from './pages/detail/edit-room/edit-room.page';
 import {CreateRoomPage} from './pages/detail/create-room/create-room.page';
 import {RoomDetailPage} from './pages/detail/room-detail/room-detail.page';
@@ -70,9 +70,11 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {MatRadioModule} from '@angular/material/radio';
 import {TimeZoneDatePipe, TimezoneService} from './services/timezone.service';
 import {MatSliderModule} from '@angular/material/slider';
-import { MyReservationsComponent } from './pages/user/my-reservations/my-reservations.component';
-import { MyAboListPageComponent } from './pages/user/my-abos/my-abo-list-page.component';
-import { AboListComponent } from './components/abos/abo-list/abo-list.component';
+import {MyReservationListPageComponent} from './pages/user/my-reservations/my-reservation-list-page.component';
+import {MyAboListPageComponent} from './pages/user/my-abos/my-abo-list-page.component';
+import {AboListComponent} from './components/abos/abo-list/abo-list.component';
+import {ReservationListComponent} from './components/reservation-list/reservation-list.component';
+import {ReservationPreviewCardComponent} from './components/reservation-preview-card/reservation-preview-card.component';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -125,9 +127,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     EditReservationPage,
     ReservationFormComponent,
     TimeZoneDatePipe,
-    MyReservationsComponent,
+    MyReservationListPageComponent,
     MyAboListPageComponent,
-    AboListComponent
+    AboListComponent,
+    ReservationListComponent,
+    ReservationPreviewCardComponent
   ],
   imports: [
     BrowserModule,

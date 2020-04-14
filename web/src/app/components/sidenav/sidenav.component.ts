@@ -82,6 +82,7 @@ export class SidenavComponent implements OnInit, AfterViewInit {
         event: NavEvent.LINK
       });
     }
+
     return {
       title: await this.translate.get(TRANSLATION_KEYS.nav.group.administration).toPromise(),
       items: itemList
@@ -100,7 +101,7 @@ export class SidenavComponent implements OnInit, AfterViewInit {
       itemList.push({
         title: await this.translate.get(TRANSLATION_KEYS.nav.link.my_reservations).toPromise(),
         iconClass: 'icon-calendar_today',
-        href: `/users/${session.userId}/reservations`,
+        href: `/my/reservations`,
         event: NavEvent.LINK
       });
       itemList.push({
