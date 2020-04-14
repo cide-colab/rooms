@@ -94,7 +94,7 @@ export class SidenavComponent implements OnInit, AfterViewInit {
       itemList.push({
         title: await this.translate.get(TRANSLATION_KEYS.nav.link.my_abos).toPromise(),
         iconClass: 'icon-timer',
-        href: `/users/${session.userId}/abos`,
+        href: `/my/abos`,
         event: NavEvent.LINK
       });
       itemList.push({
