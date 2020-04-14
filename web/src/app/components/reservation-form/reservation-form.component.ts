@@ -222,7 +222,7 @@ export class ReservationFormComponent extends FormComponent<SimpleReservation> i
   }
 
   onNewRoomSelected(event: MatAutocompleteSelectedEvent) {
-    this.updateContingents(null, event.option.value);
+    // this.updateContingents(null, event.option.value);
     this.updateSlots(event.option.value);
   }
 
