@@ -5,6 +5,9 @@ import {Subject} from 'rxjs';
 import {SimpleAbo} from '../../../models/abo.model';
 import {AboService} from '../../../services/abo/abo.service';
 import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {TranslateService} from '@ngx-translate/core';
+import {mergeMap} from 'rxjs/operators';
 
 @Component({
   templateUrl: './abo-list-page.component.html',
@@ -21,7 +24,9 @@ export class AboListPageComponent implements OnInit {
   constructor(
     private readonly sessionService: SessionService,
     private readonly aboService: AboService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly snackBar: MatSnackBar,
+    private readonly translateService: TranslateService
   ) {
   }
 
@@ -34,6 +39,9 @@ export class AboListPageComponent implements OnInit {
         next => this.abos.next(next),
         error => {
           console.log(error);
+          this.translateService.get(TRANSLATION_KEYS.abo.multi)
+            .pipe(mergeMap(it => this.translateService.get(TRANSLATION_KEYS.error.failed_to_fetch, {class: it})))
+            .subscribe(msg => this.snackBar.open(msg));
         }
       );
 

@@ -5,6 +5,11 @@ export const TRANSLATION_KEYS = {
     multi: 'department.multi'
   },
 
+  abo: {
+    single: 'abo.single',
+    multi: 'abo.multi'
+  },
+
   error: {
     failed_to_fetch: 'error.failed_to_fetch'
   },

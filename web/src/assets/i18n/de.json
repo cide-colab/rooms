@@ -3,6 +3,10 @@
     "single": "Abteilung",
     "multi": "Abteilungen"
   },
+  "abo": {
+    "single": "Abo",
+    "multi": "Abos"
+  },
   "error": {
     "failed_to_fetch": "Das Laden der {{class}} ist fehlgeschlagen."
   },
