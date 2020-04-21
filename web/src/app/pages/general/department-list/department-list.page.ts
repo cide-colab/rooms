@@ -46,4 +46,11 @@ export class DepartmentListPage implements OnInit {
   onItemClicked(item: BaseDepartment) {
     this.router.navigate(['/', 'departments', item.id]);
   }
+
+  onCreateClicked() {
+    if (!this.canCreate) {
+      return;
+    }
+    this.router.navigate(['/', 'departments', 'create']);
+  }
 }

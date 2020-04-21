@@ -9,7 +9,7 @@
                                [items]="departments | async"></component-department-list>
   </div>
   <div class="page-actions">
-    <button *ngIf="canCreate" mat-fab color="primary" routerLink="/departments/create"><i
+    <button (click)="onCreateClicked()" *ngIf="canCreate" color="primary" mat-fab><i
       class="icon-add"></i></button>
   </div>
 </div>
