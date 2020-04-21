@@ -1,7 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {SimpleAbo} from '../../../models/abo.model';
 import {TRANSLATION_KEYS} from '../../../../app.translation-tree';
-import {Subject} from 'rxjs';
 import {ListComponent} from '../../abstracts/list.component';
 
 @Component({

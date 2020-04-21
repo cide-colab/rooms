@@ -171,6 +171,10 @@ $foreground: map-get($rooms-web-theme, foreground);
   object-position: center;
   width: 64px;
   height: 64px;
+
+  &.not_rounded {
+    border-radius: 0;
+  }
 }
 
 %actions-container {
