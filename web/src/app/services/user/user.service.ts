@@ -23,18 +23,4 @@ export class UserService {
       map(value => value._embedded.users)
     );
   }
-
-  getContingents(userId: string, roomId?: string, date?: Date): Observable<BaseContingent[]> {
-    const params = [];
-    if (date) {
-      params.push(`date=${encodeURIComponent(moment(date).format())}`);
-    }
-    if (roomId) {
-      params.push(`room=${roomId}`);
-    }
-    const paramString = `${params.length > 0 ? '?' : ''}${params.join('&')}`;
-    return this.backendService.get<ContingentListEntity<BaseContingent>>(`users/${userId}/contingents${paramString}`, TokenRequirement.REQUIRED).pipe(
-      map(value => value._embedded.contingents)
-    );
-  }
 }

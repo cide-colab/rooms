@@ -145,7 +145,7 @@ body {
     @extend %actions-container;
     position: fixed;
     bottom: 0;
-    left: 0;
+    //left: 0;
     right: 0;
   }
 }
@@ -389,4 +389,12 @@ body {
   &.error {
     background: mat-color($rooms-web-warn, default);
   }
+}
+
+.radio-chip {
+  min-width: fit-content;
+  border-radius: 50vh;
+  margin: 1px;
+  padding: 4px 4px 4px 4px;
+  border: 2px rgba(51, 51, 51, 0.54) solid;
 }

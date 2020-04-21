@@ -19,8 +19,7 @@ class RepositoryConfig {
                         User::class.java,
                         Reservation::class.java,
                         Abo::class.java,
-                        Role::class.java,
-                        ContingentAllocation::class.java
+                        Role::class.java
                 )
             }
         }

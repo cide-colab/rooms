@@ -1,4 +1,19 @@
 {
+  "department": {
+    "single": "Abteilung",
+    "multi": "Abteilungen"
+  },
+  "abo": {
+    "single": "Abo",
+    "multi": "Abos"
+  },
+  "room": {
+    "single": "Raum",
+    "multi": "Räume"
+  },
+  "error": {
+    "failed_to_fetch": "Das Laden der {{class}} ist fehlgeschlagen."
+  },
   "dialog": {
     "qr_code": {
       "close": "Schließen"
@@ -56,6 +71,10 @@
       "abo": {
         "success": "Das Abo für den Nutzer {{user}} wurde erfolgreich erstellt.",
         "failed": "Das Erstellen des Abos für den Nutzer {{user}} ist fehlgeschlagen."
+      },
+      "reservation": {
+        "success": "Die Buchung wurde erfolgreich erstellt.",
+        "failed": "Erstellen der Buchung fehlgeschlagen."
       }
     },
     "delete": {
@@ -256,53 +275,11 @@
       "description": {
         "label": "Beschreibung"
       },
-      "rooms": {
-        "label": "Räume",
-        "query": "Raum suchen",
-        "select_all": "Alle auswählen",
+      "title": {
+        "label": "Name",
         "errors": {
-          "required": "Es muss mindestens ein Raum ausgewählt werden!"
+          "required": "Ein Abo benötigt einen Namen!"
         }
-      },
-      "start": {
-        "label": "Start",
-        "errors": {
-          "required": "Ein Startzeitpunkt für das Abo muss definiert werden!"
-        }
-      },
-      "end": {
-        "label": "Ende",
-        "errors": {
-          "required": "Ein Endzeitpunkt für das Abo muss definiert werden!"
-        }
-      },
-      "unlimited_end": {
-        "label": "Unbegrenzte Laufzeit"
-      },
-      "unlimited_contingent": {
-        "label": "Unbegrenztes Buchungskontingent"
-      },
-      "contingent": {
-        "label": "Buchungskontingent pro Woche",
-        "suffix": "Minuten",
-        "errors": {
-          "required": "Ein Kontingent muss definiert werden!"
-        }
-      }
-    },
-    "abo_form": {
-      "steps": {
-        "details": "Details",
-        "rooms": "Räume"
-      },
-      "user": {
-        "label": "Empfänger",
-        "errors": {
-          "required": "Es wird ein Empfänger benötigt!"
-        }
-      },
-      "description": {
-        "label": "Beschreibung"
       },
       "rooms": {
         "label": "Räume",
@@ -345,6 +322,12 @@
           "required": "Es wird ein Benutzer benötigt!"
         }
       },
+      "abo": {
+        "label": "Abo",
+        "errors": {
+          "required": "Es muss ein Abo ausgewählt werden!"
+        }
+      },
       "title": {
         "label": "Veranstaltungstitel",
         "errors": {
@@ -378,6 +361,12 @@
         "errors": {
           "required": "Es muss ein Endzeitpunkt festgelegt werden!"
         }
+      },
+      "contingent": {
+        "error": "Das Kontingent wurde um {{error}} Minuten überschritten."
+      },
+      "slots": {
+        "label": "Verfügbare Slots"
       },
       "overall": {
         "clock": "Uhr",

@@ -1,13 +1,11 @@
 import {BaseRoom} from './room.model';
-import {BaseAbo} from './abo.model';
-import {Links, RestListEntity} from './rest-entity.model';
+import {AboLinks, BaseAbo} from './abo.model';
+import {Links, RestEntity, RestListEntity} from './rest-entity.model';
 
 export interface ContingentLinks extends Links {
 }
 
-export interface BaseContingent {
-  rooms: BaseRoom[];
-  abo: BaseAbo;
+export interface BaseContingent extends RestEntity<AboLinks> {
   used: number;
   left: number;
 }

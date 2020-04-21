@@ -1,0 +1,19 @@
+@import "../../../../styles/theme";
+
+.filtered-rooms-list {
+  @extend %vertical-list;
+  flex-grow: 1;
+}
+
+.selected-rooms-list-container {
+  @extend %avatar-list-container;
+
+  .selected-rooms-list {
+    @extend %avatar-list;
+    @extend %horizontal-list;
+  }
+
+  .selected-rooms-error {
+    margin: 16px;
+  }
+}

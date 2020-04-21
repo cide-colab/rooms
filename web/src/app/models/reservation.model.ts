@@ -2,6 +2,13 @@ import {Link, Links, ListLinks, RestEntity, RestListEntity} from './rest-entity.
 import {BaseEntity} from './base-entity.model';
 import {BaseUser} from './user.model';
 import {BaseRoom, DetailedRoom} from './room.model';
+import {BaseAbo, SimpleAbo} from './abo.model';
+
+
+export interface ContingentAllocation {
+  abo: BaseAbo;
+  minutes: number;
+}
 
 export interface ReservationLinks extends Links {
   room: Link;
@@ -18,11 +25,13 @@ export interface BaseReservation extends RestEntity<ReservationLinks>, BaseEntit
 export interface SimpleReservation extends BaseReservation {
   user: BaseUser;
   room: BaseRoom;
+  abo: SimpleAbo;
 }
 
 export interface DetailedReservation extends BaseReservation {
   user: BaseUser;
   room: DetailedRoom;
+  abo: SimpleAbo;
 }
 
 // tslint:disable-next-line:no-empty-interface

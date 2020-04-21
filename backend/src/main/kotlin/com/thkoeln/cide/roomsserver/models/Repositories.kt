@@ -210,11 +210,11 @@ interface ReservationRepository : Repository<Reservation, UUID> {
     fun findAll(): List<Reservation>
 
     @Query("""
-        SELECT r.* FROM reservation r 
-        WHERE r.room_id = :room_id 
-        AND (r.start BETWEEN :start AND :end OR r.end BETWEEN :start AND :end)
+        select r from Reservation r
+        where r.start BETWEEN :start AND :end
+        AND r.room.id = :room_id
         ORDER BY r.start
-    """, nativeQuery = true)
+    """)
     fun findForDate(room_id: UUID, start: OffsetDateTime, end: OffsetDateTime): List<Reservation>
 
     @Query("select r from Reservation r")

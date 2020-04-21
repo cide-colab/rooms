@@ -1,5 +1,24 @@
-
 export const TRANSLATION_KEYS = {
+
+  department: {
+    single: 'department.single',
+    multi: 'department.multi'
+  },
+
+  abo: {
+    single: 'abo.single',
+    multi: 'abo.multi'
+  },
+
+  room: {
+    single: 'room.single',
+    multi: 'room.multi'
+  },
+
+  error: {
+    failed_to_fetch: 'error.failed_to_fetch'
+  },
+
   dialog: {
     qr_code: {
       close: 'dialog.qr_code.close'
@@ -55,6 +74,10 @@ export const TRANSLATION_KEYS = {
       abo: {
         success: 'snackbar.create.abo.success',
         failed: 'snackbar.create.abo.failed'
+      },
+      reservation: {
+        success: 'snackbar.create.reservation.success',
+        failed: 'snackbar.create.reservation.failed'
       }
     },
     delete: {
@@ -276,6 +299,12 @@ export const TRANSLATION_KEYS = {
       description: {
         label: 'component.abo_form.description.label'
       },
+      title: {
+        label: 'component.abo_form.title.label',
+        errors: {
+          required: 'component.abo_form.title.errors.required'
+        }
+      },
       rooms: {
         label: 'component.abo_form.rooms.label',
         query: 'component.abo_form.rooms.query',
@@ -317,6 +346,12 @@ export const TRANSLATION_KEYS = {
           required: 'component.reservation_form.user.errors.required'
         }
       },
+      abo: {
+        label: 'component.reservation_form.abo.label',
+        errors: {
+          required: 'component.reservation_form.abo.errors.required'
+        }
+      },
       title: {
         label: 'component.reservation_form.title.label',
         errors: {
@@ -350,6 +385,12 @@ export const TRANSLATION_KEYS = {
         errors: {
           required: 'component.reservation_form.end.errors.required'
         }
+      },
+      contingent: {
+        error: 'component.reservation_form.contingent.error'
+      },
+      slots: {
+        label: 'component.reservation_form.slots.label'
       },
       overall: {
         clock: 'component.reservation_form.overall.clock',

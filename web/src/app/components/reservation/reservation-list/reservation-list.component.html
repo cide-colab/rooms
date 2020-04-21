@@ -1,0 +1,5 @@
+<div *ngIf="filteredItems | async as filteredItems" class="card-list">
+  <div *ngFor="let item of filteredItems" (click)="emitItemClick(item)" class="card-list-item" mat-ripple>
+    <component-reservation-preview-card [reservation]="item" [mode]="mode"></component-reservation-preview-card>
+  </div>
+</div>

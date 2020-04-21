@@ -44,6 +44,10 @@ class RoomController @Autowired constructor(
         val reservations = reservationRepository.findForDate(id, dayStart, dayEnd)
         val result = mutableListOf<Slot>()
 
+        logger.debug(dayStart.toString())
+        logger.debug(dayEnd.toString())
+        logger.debug(reservations.size.toString())
+
         if (reservations.isEmpty()) {
             result.add(Slot(officeStart, officeEnd, Duration.between(officeStart, officeEnd).toMinutes()))
         } else {

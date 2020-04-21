@@ -1,4 +1,6 @@
 import {AbstractControl, FormGroup, ValidatorFn} from '@angular/forms';
+import {Moment} from 'moment';
+import * as moment from 'moment';
 
 // export const NO_JSON_ERROR = 'NOT_AN_OPTION';
 // export const INVALID_DATE_RANGE_ERROR = 'INVALID_DATE_RANGE';
@@ -12,6 +14,33 @@ export class AppValidators {
       return {requireSelect: true};
     }
     return null;
+  }
+
+  static dateBetween(min: Date | Moment, max: Date | Moment): any {
+    return (control: AbstractControl): { [key: string]: any } => {
+      if (!moment(control.value).isBetween(moment(min), moment(max))) {
+        return {invalidDate: true};
+      }
+      return null;
+    };
+  }
+
+  static minDate(min: Date | Moment): any {
+    return (control: AbstractControl): { [key: string]: any } => {
+      if (!moment(control.value).isAfter(moment(min))) {
+        return {invalidDate: true};
+      }
+      return null;
+    };
+  }
+
+  static maxDate(max: Date | Moment): any {
+    return (control: AbstractControl): { [key: string]: any } => {
+      if (!moment(control.value).isBefore(moment(max))) {
+        return {invalidDate: true};
+      }
+      return null;
+    };
   }
 
   // static noString(control: AbstractControl) {

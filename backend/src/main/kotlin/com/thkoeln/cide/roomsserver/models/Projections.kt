@@ -55,6 +55,7 @@ interface SimpleAboProjection : BaseAboProjection {
 interface DetailedAboProjection : BaseAboProjection {
     fun getUser(): SimpleUserProjection
     fun getRooms(): List<DetailedRoomProjection>
+    fun getReservations(): List<SimpleReservationProjection>
 }
 
 
@@ -95,7 +96,7 @@ interface BaseReservationProjection : BaseReservation, BaseProjection {
 interface SimpleReservationProjection : BaseReservationProjection {
     fun getUser(): SimpleUserProjection
     fun getRoom(): BaseRoomProjection
-    fun getContingents(): List<SimpleContingentAllocationProjection>
+//    fun getContingents(): List<SimpleContingentAllocationProjection>
 }
 
 @Projection(name = Projections.DETAILED, types = [Reservation::class])
@@ -115,15 +116,15 @@ interface SimpleUserProjection : BaseUserProjection
 interface DetailedUserProjection : BaseUserProjection
 
 
-@Projection(name = Projections.BASE, types = [ContingentAllocation::class])
-interface BaseContingentAllocationProjection : BaseContingentAllocation, BaseProjection
-
-@Projection(name = Projections.SIMPLE, types = [ContingentAllocation::class])
-interface SimpleContingentAllocationProjection : BaseContingentAllocation, BaseProjection {
-    fun getAbo(): BaseAboProjection
-}
-
-@Projection(name = Projections.DETAILED, types = [ContingentAllocation::class])
-interface DetailedContingentAllocationProjection : BaseContingentAllocation, BaseProjection {
-    fun getAbo(): SimpleAboProjection
-}
+//@Projection(name = Projections.BASE, types = [ContingentAllocation::class])
+//interface BaseContingentAllocationProjection : BaseContingentAllocation, BaseProjection
+//
+//@Projection(name = Projections.SIMPLE, types = [ContingentAllocation::class])
+//interface SimpleContingentAllocationProjection : BaseContingentAllocation, BaseProjection {
+//    fun getAbo(): BaseAboProjection
+//}
+//
+//@Projection(name = Projections.DETAILED, types = [ContingentAllocation::class])
+//interface DetailedContingentAllocationProjection : BaseContingentAllocation, BaseProjection {
+//    fun getAbo(): SimpleAboProjection
+//}

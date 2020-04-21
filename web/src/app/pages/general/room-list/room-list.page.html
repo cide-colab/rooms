@@ -1,0 +1,13 @@
+<div class="page">
+  <div class="page-head">
+    <component-toolbar *ngIf="rooms | async as rooms" [filterableComponents]="[room_list]" [searchEnabled]="true"
+                       [title]="TRANSLATION_KEYS.page.room.list.title | translate"></component-toolbar>
+  </div>
+  <div class="page-content">
+    <component-room-list #room_list (itemClicked)="onItemClicked($event)" [items]="rooms | async"></component-room-list>
+  </div>
+  <div class="page-actions">
+    <button (click)="onCreateClicked()" *ngIf="canCreate" color="primary" mat-fab><i
+      class="icon-add"></i></button>
+  </div>
+</div>
