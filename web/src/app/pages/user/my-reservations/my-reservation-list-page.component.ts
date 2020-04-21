@@ -16,6 +16,7 @@ export class MyReservationListPageComponent implements OnInit {
   TRANSLATION_KEYS = TRANSLATION_KEYS;
 
   reservations = new Subject<SimpleReservation[]>();
+  canCreate = false;
 
   constructor(
     private readonly sessionService: SessionService,
@@ -25,6 +26,8 @@ export class MyReservationListPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.sessionService.hasPermission('create:reservation').subscribe(canCreate => this.canCreate = canCreate);
+
     this.sessionService.getSession().pipe(
       switchMap(it => this.reservationService.getSimpleByUser(it.userId))
     ).subscribe(
@@ -37,6 +40,14 @@ export class MyReservationListPageComponent implements OnInit {
 
   onItemClicked(reservation: SimpleReservation) {
     this.router.navigate(['/', 'reservations', reservation.id]);
+  }
+
+  onCreateClicked() {
+    this.sessionService.getSession().subscribe(session => {
+      this.router.navigate(['/', 'reservations', 'create'], {
+        queryParams: {user: session.userId}
+      });
+    });
   }
 
 }

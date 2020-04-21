@@ -15,8 +15,25 @@ export const TRANSLATION_KEYS = {
     multi: 'room.multi'
   },
 
+  reservation: {
+    single: 'reservation.single',
+    multi: 'reservation.multi',
+  },
+
   error: {
     failed_to_fetch: 'error.failed_to_fetch'
+  },
+
+  general: {
+    my_x: 'general.my_x'
+  },
+
+  date: {
+    short_date: 'date.short_date',
+    long_date: 'date.long_date',
+    time: 'date.time',
+    date_time: 'date.date_time',
+    time_x_to_y_range: 'date.time_x_to_y_range'
   },
 
   dialog: {

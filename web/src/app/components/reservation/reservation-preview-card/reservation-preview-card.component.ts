@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SimpleReservation} from '../../../models/reservation.model';
+import {TRANSLATION_KEYS} from '../../../../app.translation-tree';
+import {cut} from '../../../app.utils';
 
 export type ReservationPreviewCardMode = 'private' | 'public';
 
@@ -9,6 +11,8 @@ export type ReservationPreviewCardMode = 'private' | 'public';
   styleUrls: ['./reservation-preview-card.component.scss']
 })
 export class ReservationPreviewCardComponent implements OnInit {
+
+  TRANSLATION_KEYS = TRANSLATION_KEYS;
 
   @Input()
   reservation: SimpleReservation;
@@ -22,4 +26,7 @@ export class ReservationPreviewCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getCuttedDescription() {
+    return cut(this.reservation.description);
+  }
 }

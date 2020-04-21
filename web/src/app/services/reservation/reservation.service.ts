@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {forkJoin, Observable} from 'rxjs';
 import {ReservationListEntity, SimpleReservation} from '../../models/reservation.model';
 import {BackendService, TokenRequirement} from '../backend/backend.service';
 import {map} from 'rxjs/operators';
-import {SimpleAbo} from '../../models/abo.model';
+import {SessionService} from '../session/session.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,8 @@ export class ReservationService {
   }
 
   constructor(
-    private backendService: BackendService
+    private readonly backendService: BackendService,
+    private readonly sessionService: SessionService
   ) {
   }
 
@@ -33,5 +34,24 @@ export class ReservationService {
 
   save(reservation: SimpleReservation): Observable<SimpleReservation> {
     return this.backendService.post('reservations', ReservationService.createProtocol(reservation), TokenRequirement.REQUIRED);
+  }
+
+  getSimpleWhereAdmin(): Observable<SimpleReservation[]> {
+    return forkJoin(
+      [
+        this.sessionService.getSession(),
+        this.backendService.get<ReservationListEntity<SimpleReservation>>('reservations?projection=simple', TokenRequirement.REQUIRED)
+          .pipe(map(it => it._embedded.reservations))
+      ]
+    ).pipe(
+      map(([session, result]) => {
+        return result
+          .filter(item => session.acl.find(aclEntry =>
+            aclEntry.id === item.id
+            && (aclEntry.permission === 'create' || aclEntry.permission === 'update')
+            ) !== null
+          );
+      })
+    );
   }
 }

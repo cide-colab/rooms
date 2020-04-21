@@ -11,8 +11,22 @@
     "single": "Raum",
     "multi": "Räume"
   },
+  "reservation": {
+    "single": "Buchung",
+    "multi": "Buchungen"
+  },
   "error": {
     "failed_to_fetch": "Das Laden der {{class}} ist fehlgeschlagen."
+  },
+  "general": {
+    "my_x": "Meine {{x}}"
+  },
+  "date": {
+    "short_date": "dd.MM.yyyy",
+    "long_date": "dd. MMMM yyyy",
+    "time": "HH:mm",
+    "date_time": "dd.MM yyyy HH:mm",
+    "time_x_to_y_range": "{{x}} - {{y}} Uhr"
   },
   "dialog": {
     "qr_code": {

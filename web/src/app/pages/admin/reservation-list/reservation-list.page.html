@@ -1,17 +1,14 @@
 <div class="page">
   <div class="page-head">
-    <!--    <component-toolbar (search)="onSearch($event)" [searchEnabled]="true" [title]="title"></component-toolbar>-->
-    <component-toolbar [title]="title"></component-toolbar>
+    <component-toolbar [filterableComponents]="[reservation_list]" [searchEnabled]="true"
+                       [title]="TRANSLATION_KEYS.reservation.multi | translate"></component-toolbar>
   </div>
   <div class="page-content">
-    <!--    <div *ngIf="filteredAbos | async as filteredAbos" class="card-list">-->
-    <!--      <div *ngFor="let abo of filteredAbos" [routerLink]="['/', 'abos', abo.id]" class="card-list-item" mat-ripple>-->
-    <!--        <component-abo-preview-card [abo]="abo" [showUsername]="showUsername"></component-abo-preview-card>-->
-    <!--      </div>-->
-    <!--    </div>-->
+    <component-reservation-list #reservation_list (itemClicked)="onItemClicked($event)" [items]="reservations | async"
+                                mode="private"></component-reservation-list>
   </div>
   <div class="page-actions">
-    <button *ngIf="canCreate" color="primary" mat-fab routerLink="/reservations/create"><i
+    <button (click)="onCreateClicked()" *ngIf="canCreate" color="primary" mat-fab><i
       class="icon-add"></i></button>
   </div>
 </div>
