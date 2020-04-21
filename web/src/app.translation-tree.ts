@@ -10,6 +10,11 @@ export const TRANSLATION_KEYS = {
     multi: 'abo.multi'
   },
 
+  room: {
+    single: 'room.single',
+    multi: 'room.multi'
+  },
+
   error: {
     failed_to_fetch: 'error.failed_to_fetch'
   },

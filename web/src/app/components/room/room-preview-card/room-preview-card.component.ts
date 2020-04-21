@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {SimpleRoom} from '../../models/room.model';
-import {cut} from '../../app.utils';
-import {TRANSLATION_KEYS} from '../../../app.translation-tree';
-import {SelectableComponent} from '../abstracts/selectable.component';
+import {SimpleRoom} from '../../../models/room.model';
+import {cut} from '../../../app.utils';
+import {TRANSLATION_KEYS} from '../../../../app.translation-tree';
+import {SelectableComponent} from '../../abstracts/selectable.component';
 
 @Component({
   selector: 'component-room-preview-card',

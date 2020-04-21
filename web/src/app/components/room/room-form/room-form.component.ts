@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {BaseDepartment} from '../../models/department.model';
-import {SimpleRoom} from '../../models/room.model';
+import {BaseDepartment} from '../../../models/department.model';
+import {SimpleRoom} from '../../../models/room.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {FormComponent} from '../abstracts/form.component';
-import {DepartmentService} from '../../services/department/department.service';
-import {AppValidators} from '../../app.validator';
+import {FormComponent} from '../../abstracts/form.component';
+import {DepartmentService} from '../../../services/department/department.service';
+import {AppValidators} from '../../../app.validator';
 import {Observable} from 'rxjs';
 import {debounceTime, map, switchMap} from 'rxjs/operators';
-import {SessionService} from '../../services/session/session.service';
+import {SessionService} from '../../../services/session/session.service';
 
 @Component({
   selector: 'component-room-form',

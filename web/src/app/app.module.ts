@@ -40,10 +40,10 @@ import {RoomListPage} from './pages/general/room-list/room-list.page';
 import {EditRoomPage} from './pages/detail/edit-room/edit-room.page';
 import {CreateRoomPage} from './pages/detail/create-room/create-room.page';
 import {RoomDetailPage} from './pages/detail/room-detail/room-detail.page';
-import {RoomFormComponent} from './components/room-form/room-form.component';
+import {RoomFormComponent} from './components/room/room-form/room-form.component';
 import {RoomService} from './services/room/room.service';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {RoomPreviewCardComponent} from './components/room-preview-card/room-preview-card.component';
+import {RoomPreviewCardComponent} from './components/room/room-preview-card/room-preview-card.component';
 import {QRCodeModule} from 'angularx-qrcode';
 import {QrCodeDialog} from './dialog/qr-code/qr-code.dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -56,7 +56,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {RoomPreviewSmallComponent} from './components/room-preview-small/room-preview-small.component';
+import {RoomPreviewSmallComponent} from './components/room/room-preview-small/room-preview-small.component';
 import {AboPreviewCardComponent} from './components/abo-preview-card/abo-preview-card.component';
 import {ReservationListPage} from './pages/admin/reservation-list/reservation-list.page';
 import {ReservationDetailPage} from './pages/detail/reservation-detail/reservation-detail.page';
@@ -76,6 +76,7 @@ import {AboListComponent} from './components/abos/abo-list/abo-list.component';
 import {ReservationListComponent} from './components/reservation-list/reservation-list.component';
 import {ReservationPreviewCardComponent} from './components/reservation-preview-card/reservation-preview-card.component';
 import {DepartmentListComponent} from './components/department/department-list/department-list.component';
+import {RoomListComponent} from './components/room/room-list/room-list.component';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -133,7 +134,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AboListComponent,
     ReservationListComponent,
     ReservationPreviewCardComponent,
-    DepartmentListComponent
+    DepartmentListComponent,
+    RoomListComponent
   ],
   imports: [
     BrowserModule,

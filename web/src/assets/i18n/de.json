@@ -7,6 +7,10 @@
     "single": "Abo",
     "multi": "Abos"
   },
+  "room": {
+    "single": "Raum",
+    "multi": "Räume"
+  },
   "error": {
     "failed_to_fetch": "Das Laden der {{class}} ist fehlgeschlagen."
   },

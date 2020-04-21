@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {SimpleRoom} from '../../models/room.model';
+import {SimpleRoom} from '../../../models/room.model';
 
 @Component({
   selector: 'component-room-preview-small',

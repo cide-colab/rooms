@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RoomFormComponent } from './room-form.component';
+import {RoomFormComponent} from './room-form.component';
 
 describe('RoomFormComponent', () => {
   let component: RoomFormComponent;

@@ -7,7 +7,7 @@ import {SessionService} from '../../../services/session/session.service';
 import {TranslateService} from '@ngx-translate/core';
 import {SimpleConfirmDialog} from '../../../dialog/simple-confirm/simple-confirm.dialog';
 import {SimpleRoom} from '../../../models/room.model';
-import {RoomFormComponent} from '../../../components/room-form/room-form.component';
+import {RoomFormComponent} from '../../../components/room/room-form/room-form.component';
 import {RoomService} from '../../../services/room/room.service';
 import {from} from 'rxjs';
 import {tap} from 'rxjs/operators';

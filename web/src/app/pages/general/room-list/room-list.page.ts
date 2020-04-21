@@ -3,8 +3,11 @@ import {TRANSLATION_KEYS} from '../../../../app.translation-tree';
 import {SessionService} from '../../../services/session/session.service';
 import {SimpleRoom} from '../../../models/room.model';
 import {RoomService} from '../../../services/room/room.service';
-import {Observable} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {mergeMap} from 'rxjs/operators';
+import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'page-room-list',
@@ -13,40 +16,42 @@ import {tap} from 'rxjs/operators';
 })
 export class RoomListPage implements OnInit {
 
-  constructor(
-    private readonly sessionService: SessionService,
-    private readonly roomService: RoomService
-  ) {
-  }
+  rooms = new Subject<SimpleRoom[]>();
 
   TRANSLATION_KEYS = TRANSLATION_KEYS;
   canCreate = false;
-  rooms: Observable<SimpleRoom[]>;
-  filteredRooms: SimpleRoom[];
 
-  private static shouldShowRoom(room: SimpleRoom, query: string): boolean {
-    return room.name.toLowerCase().includes(query.toLowerCase())
-      || room.number.toLowerCase().includes(query.toLowerCase())
-      || room.department.name.toLowerCase().includes(query.toLowerCase());
+  constructor(
+    private readonly sessionService: SessionService,
+    private readonly roomService: RoomService,
+    private readonly router: Router,
+    private readonly snackBar: MatSnackBar,
+    private readonly translateService: TranslateService
+  ) {
   }
 
   ngOnInit() {
     this.sessionService.hasPermission('create:room').subscribe(canCreate => this.canCreate = canCreate);
-    this.rooms = this.roomService.getAllWithDepartment().pipe(
-      tap(rooms => this.onSearch('', rooms))
+    this.roomService.getAllSimple().subscribe(
+      next => this.rooms.next(next),
+      error => {
+        console.log(error);
+        this.translateService.get(TRANSLATION_KEYS.room.multi)
+          .pipe(mergeMap(it => this.translateService.get(TRANSLATION_KEYS.error.failed_to_fetch, {class: it})))
+          .subscribe(msg => this.snackBar.open(msg));
+      }
     );
-    // this.onSearch('');
   }
 
-  onSearch(query: string, rooms: SimpleRoom[]) {
-    if (!this.rooms) {
+  onItemClicked(item: SimpleRoom) {
+    this.router.navigate(['/', 'rooms', item.id]);
+  }
+
+  onCreateClicked() {
+    if (!this.canCreate) {
       return;
     }
-    if (!query || query.length === 0) {
-      this.filteredRooms = rooms.slice();
-    } else {
-      this.filteredRooms = rooms.filter(room => RoomListPage.shouldShowRoom(room, query));
-    }
+    this.router.navigate(['/', 'rooms', 'create']);
   }
 
 }

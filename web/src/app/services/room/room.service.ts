@@ -27,7 +27,7 @@ export class RoomService {
     return this.backendService.post('rooms', RoomService.getProtocol(room), TokenRequirement.REQUIRED);
   }
 
-  getAllWithDepartment(): Observable<SimpleRoom[]> {
+  getAllSimple(): Observable<SimpleRoom[]> {
     return this.backendService.get<RoomListEntity<SimpleRoom>>(
       'rooms?projection=detailed',
       TokenRequirement.IF_LOGGED_IN

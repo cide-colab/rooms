@@ -62,7 +62,7 @@ export class AboFormComponent implements OnInit {
       debounceTime(200)
     ).subscribe(value => this.filterRooms(value));
 
-    this.roomService.getAllWithDepartment().pipe(
+    this.roomService.getAllSimple().pipe(
       tap(rooms => this.filteredRooms.next(rooms))
     ).subscribe(rooms => this.rooms = rooms);
   }

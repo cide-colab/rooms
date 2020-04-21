@@ -1,17 +1,13 @@
 <div class="page">
   <div class="page-head">
-    <component-toolbar (search)="onSearch($event, rooms)" *ngIf="rooms | async as rooms" [searchEnabled]="true"
+    <component-toolbar *ngIf="rooms | async as rooms" [filterableComponents]="[room_list]" [searchEnabled]="true"
                        [title]="TRANSLATION_KEYS.page.room.list.title | translate"></component-toolbar>
   </div>
   <div class="page-content">
-    <div *ngIf="filteredRooms" class="card-list">
-      <div class="card-list-item" *ngFor="let room of filteredRooms" mat-ripple [routerLink]="['/', 'rooms', room.id]">
-        <component-room-preview-card [room]="room"></component-room-preview-card>
-      </div>
-    </div>
+    <component-room-list #room_list (itemClicked)="onItemClicked($event)" [items]="rooms | async"></component-room-list>
   </div>
   <div class="page-actions">
-    <button *ngIf="canCreate" mat-fab color="primary" routerLink="/rooms/create"><i
+    <button (click)="onCreateClicked()" *ngIf="canCreate" color="primary" mat-fab><i
       class="icon-add"></i></button>
   </div>
 </div>
