@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TRANSLATION_KEYS} from '../../../app.translation-tree';
-import {SimpleAbo} from '../../models/abo.model';
+import {TRANSLATION_KEYS} from '../../../../app.translation-tree';
+import {SimpleAbo} from '../../../models/abo.model';
 
 @Component({
   selector: 'component-abo-preview-card',

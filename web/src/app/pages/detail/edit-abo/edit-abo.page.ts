@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {TRANSLATION_KEYS} from '../../../../app.translation-tree';
 import {DetailedAbo} from '../../../models/abo.model';
-import {AboFormComponent} from '../../../components/abo-form/abo-form.component';
+import {AboFormComponent} from '../../../components/abo/abo-form/abo-form.component';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {SnackbarService} from '../../../services/snackbar/snackbar.service';

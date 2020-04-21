@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {SessionUser} from '../../models/user.model';
-import {UserService} from '../../services/user/user.service';
+import {SessionUser} from '../../../models/user.model';
+import {UserService} from '../../../services/user/user.service';
 import {Observable} from 'rxjs';
 
 @Component({

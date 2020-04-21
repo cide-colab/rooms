@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {TRANSLATION_KEYS} from '../../../app.translation-tree';
-import {ListComponent} from '../abstracts/list.component';
-import {SimpleReservation} from '../../models/reservation.model';
-import {SimpleAbo} from '../../models/abo.model';
+import {TRANSLATION_KEYS} from '../../../../app.translation-tree';
+import {ListComponent} from '../../abstracts/list.component';
+import {SimpleReservation} from '../../../models/reservation.model';
 
 @Component({
   selector: 'component-reservation-list',

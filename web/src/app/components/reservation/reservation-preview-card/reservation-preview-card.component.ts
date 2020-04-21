@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {SimpleReservation} from '../../models/reservation.model';
+import {SimpleReservation} from '../../../models/reservation.model';
 
 export type ReservationPreviewCardMode = 'private' | 'public';
 

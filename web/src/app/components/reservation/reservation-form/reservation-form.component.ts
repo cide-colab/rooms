@@ -1,23 +1,22 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BaseRoom} from '../../models/room.model';
-import {BaseUser} from '../../models/user.model';
-import {FormComponent} from '../abstracts/form.component';
+import {BaseRoom} from '../../../models/room.model';
+import {BaseUser} from '../../../models/user.model';
+import {FormComponent} from '../../abstracts/form.component';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {RoomService} from '../../services/room/room.service';
-import {UserService} from '../../services/user/user.service';
-import {SimpleReservation} from '../../models/reservation.model';
-import {AppValidators} from '../../app.validator';
+import {RoomService} from '../../../services/room/room.service';
+import {UserService} from '../../../services/user/user.service';
+import {SimpleReservation} from '../../../models/reservation.model';
+import {AppValidators} from '../../../app.validator';
 import {Subject} from 'rxjs';
 import {debounceTime, map, startWith, tap} from 'rxjs/operators';
-import {SessionService} from '../../services/session/session.service';
-import {AboService} from '../../services/abo/abo.service';
-import {ReservationService} from '../../services/reservation/reservation.service';
-import {BaseSlot} from '../../models/slot.model';
-import {BaseAbo, SimpleAbo} from '../../models/abo.model';
+import {SessionService} from '../../../services/session/session.service';
+import {AboService} from '../../../services/abo/abo.service';
+import {ReservationService} from '../../../services/reservation/reservation.service';
+import {BaseSlot} from '../../../models/slot.model';
+import {BaseAbo, SimpleAbo} from '../../../models/abo.model';
 import {TranslateService} from '@ngx-translate/core';
-import {BaseContingent} from '../../models/contingent.model';
-import {TRANSLATION_KEYS} from '../../../app.translation-tree';
-import * as moment from 'moment';
+import {BaseContingent} from '../../../models/contingent.model';
+import {TRANSLATION_KEYS} from '../../../../app.translation-tree';
 
 @Component({
   selector: 'component-reservation-form',

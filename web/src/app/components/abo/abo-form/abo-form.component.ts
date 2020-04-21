@@ -1,16 +1,16 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {DetailedAbo, SimpleAbo} from '../../models/abo.model';
-import {AppValidators} from '../../app.validator';
-import {UserService} from '../../services/user/user.service';
+import {DetailedAbo, SimpleAbo} from '../../../models/abo.model';
+import {AppValidators} from '../../../app.validator';
+import {UserService} from '../../../services/user/user.service';
 import {Observable, Subject} from 'rxjs';
-import {BaseUser} from '../../models/user.model';
-import {SimpleRoom} from '../../models/room.model';
-import {RoomService} from '../../services/room/room.service';
+import {BaseUser} from '../../../models/user.model';
+import {SimpleRoom} from '../../../models/room.model';
+import {RoomService} from '../../../services/room/room.service';
 import {debounceTime, map, tap} from 'rxjs/operators';
-import {SessionService} from '../../services/session/session.service';
-import {TRANSLATION_KEYS} from '../../../app.translation-tree';
-import {Semester} from '../../app.utils';
+import {SessionService} from '../../../services/session/session.service';
+import {TRANSLATION_KEYS} from '../../../../app.translation-tree';
+import {Semester} from '../../../app.utils';
 
 @Component({
   selector: 'component-abo-form',

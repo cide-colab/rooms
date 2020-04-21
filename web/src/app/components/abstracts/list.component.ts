@@ -1,7 +1,7 @@
 import {EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {Subject} from 'rxjs';
 import {FilterableComponent} from './filterable.component';
-import {ReservationPreviewCardMode} from '../reservation-preview-card/reservation-preview-card.component';
+import {ReservationPreviewCardMode} from '../reservation/reservation-preview-card/reservation-preview-card.component';
 
 export abstract class ListComponent<T> implements FilterableComponent, OnChanges {
 
