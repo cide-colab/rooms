@@ -1,4 +1,11 @@
 {
+  "department": {
+    "single": "Abteilung",
+    "multi": "Abteilungen"
+  },
+  "error": {
+    "failed_to_fetch": "Das Laden der {{class}} ist fehlgeschlagen."
+  },
   "dialog": {
     "qr_code": {
       "close": "Schließen"

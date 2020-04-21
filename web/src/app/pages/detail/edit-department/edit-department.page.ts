@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DepartmentService} from '../../../services/department/department.service';
 import {BaseDepartment} from '../../../models/department.model';
-import {DepartmentFormComponent} from '../../../components/department-form/department-form.component';
+import {DepartmentFormComponent} from '../../../components/department/department-form/department-form.component';
 import {MatDialog} from '@angular/material/dialog';
 import {SimpleConfirmDialog} from '../../../dialog/simple-confirm/simple-confirm.dialog';
 import {SessionService} from '../../../services/session/session.service';

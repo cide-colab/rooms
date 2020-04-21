@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {BaseDepartment} from '../../models/department.model';
+import {BaseDepartment} from '../../../models/department.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {FormComponent} from '../abstracts/form.component';
+import {FormComponent} from '../../abstracts/form.component';
 
 @Component({
   selector: 'component-department-form',

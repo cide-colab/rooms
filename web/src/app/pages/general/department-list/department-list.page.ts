@@ -3,8 +3,11 @@ import {SessionService} from '../../../services/session/session.service';
 import {DepartmentService} from '../../../services/department/department.service';
 import {BaseDepartment} from '../../../models/department.model';
 import {TRANSLATION_KEYS} from '../../../../app.translation-tree';
-import {Observable} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {mergeMap} from 'rxjs/operators';
+import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'page-department-list',
@@ -16,30 +19,31 @@ export class DepartmentListPage implements OnInit {
   TRANSLATION_KEYS = TRANSLATION_KEYS;
 
   canCreate = false;
-  departments: Observable<BaseDepartment[]>;
-  filteredDepartments: BaseDepartment[];
+  departments = new Subject<BaseDepartment[]>();
 
   constructor(
     private readonly sessionService: SessionService,
-    private readonly departmentService: DepartmentService
+    private readonly departmentService: DepartmentService,
+    private readonly router: Router,
+    private readonly snackBar: MatSnackBar,
+    private readonly translateService: TranslateService
   ) {
   }
 
   ngOnInit() {
     this.sessionService.hasPermission('create:department').subscribe(canCreate => this.canCreate = canCreate);
-    this.departments = this.departmentService.getAll().pipe(
-      tap(department => this.onSearch('', department))
+    this.departmentService.getAll().subscribe(
+      next => this.departments.next(next),
+      error => {
+        console.log(error);
+        this.translateService.get(TRANSLATION_KEYS.department.multi)
+          .pipe(mergeMap(it => this.translateService.get(TRANSLATION_KEYS.error.failed_to_fetch, {class: it})))
+          .subscribe(msg => this.snackBar.open(msg));
+      }
     );
   }
 
-  onSearch(text: string, departments: BaseDepartment[]) {
-    if (!this.departments) {
-      return;
-    }
-    if (!text || text.length === 0) {
-      this.filteredDepartments = departments.slice();
-    } else {
-      this.filteredDepartments = departments.filter(department => department.name.toLowerCase().indexOf(text.toLowerCase()) !== -1);
-    }
+  onItemClicked(item: BaseDepartment) {
+    this.router.navigate(['/', 'departments', item.id]);
   }
 }

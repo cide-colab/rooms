@@ -20,13 +20,13 @@ import {keycloakInitializer} from './app.init';
 import {DepartmentListPage} from './pages/general/department-list/department-list.page';
 import {CreateDepartmentPage} from './pages/detail/create-department/create-department.page';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {DepartmentFormComponent} from './components/department-form/department-form.component';
+import {DepartmentFormComponent} from './components/department/department-form/department-form.component';
 import {ToolbarComponent} from './components/toolbar/toolbar.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {DepartmentService} from './services/department/department.service';
-import {DepartmentPreviewCardComponent} from './components/department-list-item/department-preview-card.component';
+import {DepartmentPreviewCardComponent} from './components/department/department-list-item/department-preview-card.component';
 import {DateAdapter, MatRippleModule} from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
 import {DepartmentDetailPage} from './pages/detail/department-detail/department-detail.page';
@@ -75,6 +75,7 @@ import {MyAboListPageComponent} from './pages/user/my-abos/my-abo-list-page.comp
 import {AboListComponent} from './components/abos/abo-list/abo-list.component';
 import {ReservationListComponent} from './components/reservation-list/reservation-list.component';
 import {ReservationPreviewCardComponent} from './components/reservation-preview-card/reservation-preview-card.component';
+import {DepartmentListComponent} from './components/department/department-list/department-list.component';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -131,7 +132,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MyAboListPageComponent,
     AboListComponent,
     ReservationListComponent,
-    ReservationPreviewCardComponent
+    ReservationPreviewCardComponent,
+    DepartmentListComponent
   ],
   imports: [
     BrowserModule,

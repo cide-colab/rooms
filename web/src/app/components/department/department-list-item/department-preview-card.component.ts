@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BaseDepartment} from '../../models/department.model';
-import {cut} from '../../app.utils';
+import {BaseDepartment} from '../../../models/department.model';
+import {cut} from '../../../app.utils';
 
 @Component({
   selector: 'component-department-preview-card',

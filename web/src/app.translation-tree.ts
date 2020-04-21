@@ -1,5 +1,14 @@
-
 export const TRANSLATION_KEYS = {
+
+  department: {
+    single: 'department.single',
+    multi: 'department.multi'
+  },
+
+  error: {
+    failed_to_fetch: 'error.failed_to_fetch'
+  },
+
   dialog: {
     qr_code: {
       close: 'dialog.qr_code.close'
