@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DepartmentPreviewCardComponent } from './department-preview-card.component';
+import {DepartmentPreviewCardComponent} from './department-preview-card.component';
 
 describe('DepartmentListItemComponent', () => {
   let component: DepartmentPreviewCardComponent;
