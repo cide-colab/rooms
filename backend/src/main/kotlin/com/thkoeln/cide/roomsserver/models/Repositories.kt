@@ -1,5 +1,6 @@
 package com.thkoeln.cide.roomsserver.models
 
+import com.thkoeln.cide.roomsserver.controllers.PersistableType
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.Repository
 import org.springframework.data.repository.query.Param
@@ -21,13 +22,17 @@ interface RoomRepository : Repository<Room, UUID> {
 
     @Query("select r from Room r")
     @RestResource(exported = false)
-    fun uncheckedFindAll(): List<Room>
+    fun unsaveFindAll(): List<Room>
 
     @PreAuthorize("hasPermission(#room.department, 'create:room') || hasPermission(room, 'update')")
     fun save(room: Room): Room?
 
     @PreAuthorize("hasPermission(#room, 'delete')")
     fun delete(room: Room)
+
+    @RestResource(exported = false)
+    @Query("select r from Room r where r.department = :department")
+    fun unsaveFindByDepartment(department: Department): List<Room>
 
 //    fun existsById(id: String): Boolean
 
@@ -43,7 +48,7 @@ interface DepartmentRepository : Repository<Department, UUID> {
 
     @Query("select d from Department d")
     @RestResource(exported = false)
-    fun uncheckedFindAll(): List<Department>
+    fun unsaveFindAll(): List<Department>
 
     @PostAuthorize("hasPermission(returnObject, 'read')")
     fun findById(id: UUID?): Department?
@@ -70,7 +75,7 @@ interface UserRepository : Repository<User, UUID> {
 
     @Query("select u from User u")
     @RestResource(exported = false)
-    fun uncheckedFindAll(): List<User>
+    fun unsaveFindAll(): List<User>
 
     //    @PreAuthorize("@authManager.hasUserAnyRoleOfType('ADMIN')")
     fun findById(id: UUID): User?
@@ -250,3 +255,30 @@ interface ReservationRepository : Repository<Reservation, UUID> {
 //    fun findById(id: UUID): ContingentAllocation?
 //
 //}
+
+@RepositoryRestResource(collectionResourceRel = "acl", path = "acl")
+interface ACLRepository: Repository<AccessControlItem, UUID> {
+
+    fun findAll(): List<AccessControlItem>
+
+    @Query("select a from AccessControlItem a")
+    @RestResource(exported = false)
+    fun unsavedFindAll(): List<AccessControlItem>
+
+    @Query("select a from AccessControlItem a where a.permission in :permission and a.entityId in :entityIds")
+    @RestResource(exported = false)
+    fun unsavedFindByPermissionAndEntityId(entityIds: List<UUID>, vararg permission: String): List<AccessControlItem>
+
+    @Query("select a from AccessControlItem a where a.permission in :permission and a.entityId = :entityId")
+    @RestResource(exported = false)
+    fun unsavedFindByPermissionAndEntityId(entityId: UUID, vararg permission: String): List<AccessControlItem>
+
+    @Query("select a from AccessControlItem a where a.permission in :permission and a.entityType = :entityType")
+    @RestResource(exported = false)
+    fun unsavedFindByPermissionAndEntityType(entityType: PersistableType, vararg permission: String): List<AccessControlItem>
+
+    fun save(entry: AccessControlItem): AccessControlItem
+    fun saveAll(entries: Iterable<AccessControlItem>): List<AccessControlItem>
+
+
+}

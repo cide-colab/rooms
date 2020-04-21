@@ -91,6 +91,7 @@ dependencies {
 	runtime("org.springframework.boot:spring-boot-devtools:$springBootVersion")
 
 	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.11.0.rc1")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.+")
 	implementation("org.springframework.data:spring-data-rest-hal-browser:3.0.8.RELEASE")
 
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")

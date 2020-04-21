@@ -1,8 +1,5 @@
 package com.thkoeln.cide.roomsserver.controllers
 
-import com.thkoeln.cide.roomsserver.extensions.*
-import com.thkoeln.cide.roomsserver.models.Abo
-import com.thkoeln.cide.roomsserver.models.Room
 import com.thkoeln.cide.roomsserver.models.User
 import com.thkoeln.cide.roomsserver.models.UserRepository
 import com.thkoeln.cide.roomsserver.services.ACLEntry
@@ -10,21 +7,16 @@ import com.thkoeln.cide.roomsserver.services.ACLService
 import org.keycloak.KeycloakPrincipal
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.ApplicationEventPublisher
+import org.springframework.data.rest.core.event.AfterCreateEvent
+import org.springframework.data.rest.core.event.BeforeCreateEvent
 import org.springframework.data.rest.webmvc.RepositoryRestController
-import org.springframework.format.annotation.DateTimeFormat
-import org.springframework.hateoas.CollectionModel
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import java.time.OffsetDateTime
 import java.util.*
-import javax.transaction.Transactional
 
 
 data class Session(
@@ -47,10 +39,12 @@ data class Session(
 @RequestMapping("/users")
 class UserController @Autowired constructor(
         private val userRepository: UserRepository,
-        private val aclService: ACLService
+        private val aclService: ACLService,
+        private val eventPublisher: ApplicationEventPublisher
 ) {
 
     private val logger = LoggerFactory.getLogger(UserController::class.java)
+
 
     @GetMapping("/session")
     fun get(authentication: Authentication?): ResponseEntity<Session> {
@@ -58,10 +52,13 @@ class UserController @Autowired constructor(
             if (userRepository.existsByPrincipal(token.preferredUsername)) {
                 userRepository.findByPrincipal(token.preferredUsername)
             } else {
-                userRepository.save(User(token.preferredUsername, token.givenName ?: "", token.familyName
-                        ?: "", token.email ?: ""))
+                User(token.preferredUsername, token.givenName ?: "", token.familyName ?: "", token.email ?: "")
+                        .also { eventPublisher.publishEvent(BeforeCreateEvent(it)) }
+                        .let { userRepository.save(it) }
+                        .also { eventPublisher.publishEvent(AfterCreateEvent(it)) }
             }
         }
+
         return ResponseEntity(Session(user?.id, aclService.getACL(user)), HttpStatus.OK)
     }
 

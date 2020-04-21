@@ -75,7 +75,7 @@ class ACLService @Autowired constructor(
         else -> emptyList()
     }
 
-    fun createACLForRooms(user: User?): List<ACLEntry> = roomRepository.uncheckedFindAll().flatMap { room ->
+    fun createACLForRooms(user: User?): List<ACLEntry> = roomRepository.unsaveFindAll().flatMap { room ->
         when {
             user.hasAnyRole { it.isAppAdmin() || it.isAdminFor(room.department) || it.isAdminFor(room) } -> listOf(
                     aclEntryFor(room, Permissions.read),
@@ -91,7 +91,7 @@ class ACLService @Autowired constructor(
         }
     }
 
-    fun createACLForDepartments(user: User?): List<ACLEntry> = departmentRepository.uncheckedFindAll().flatMap { department ->
+    fun createACLForDepartments(user: User?): List<ACLEntry> = departmentRepository.unsaveFindAll().flatMap { department ->
         when {
             user.hasAnyRole { it.isAppAdmin() || it.isAdminFor(department) } -> listOf(
                     aclEntryFor(department, Permissions.read),
@@ -106,7 +106,7 @@ class ACLService @Autowired constructor(
         }
     }
 
-    fun createACLForUsers(user: User?): List<ACLEntry> = userRepository.uncheckedFindAll().flatMap { userEntry ->
+    fun createACLForUsers(user: User?): List<ACLEntry> = userRepository.unsaveFindAll().flatMap { userEntry ->
         when {
             user.isOwnerOf(userEntry) || user.hasAnyRole { it.isAppAdmin() } -> listOf(
                     aclEntryFor(userEntry, Permissions.read),

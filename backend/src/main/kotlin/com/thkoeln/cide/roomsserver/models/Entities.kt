@@ -1,18 +1,21 @@
 package com.thkoeln.cide.roomsserver.models
 
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import org.hibernate.annotations.CreationTimestamp
-import org.hibernate.annotations.GenericGenerator
-import org.hibernate.annotations.Type
-import org.hibernate.annotations.UpdateTimestamp
+import com.thkoeln.cide.roomsserver.controllers.PersistableType
+import org.hibernate.annotations.*
+import org.hibernate.cfg.AvailableSettings.USER
+import org.hibernate.type.EntityType
 import org.springframework.data.domain.Persistable
 import org.springframework.format.annotation.DateTimeFormat
 import java.io.Serializable
 import java.time.OffsetDateTime
 import java.util.*
 import javax.persistence.*
-
+import javax.persistence.CascadeType
+import javax.persistence.Entity
+import javax.persistence.Table
 
 @MappedSuperclass
 abstract class PersistableEntity(//    @JsonProperty(value = "id")
@@ -24,6 +27,10 @@ abstract class PersistableEntity(//    @JsonProperty(value = "id")
         @Type(type = "uuid-char")
         private var id: UUID
 ) : Persistable<UUID>, BaseEntity {
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false)
+    open val type = PersistableType.APP
 
     @Version
     override val version: Long? = null
@@ -60,6 +67,43 @@ abstract class PersistableEntity(//    @JsonProperty(value = "id")
     }
 }
 
+interface BaseAccessControlItem {
+    val entityType: PersistableType
+    val entityId: UUID?
+    val permission: String
+    val isGenerated: Boolean
+}
+
+@Entity
+@Table(name = "acl")
+class AccessControlItem(
+
+        @Type(type = "uuid-char")
+        override val entityId: UUID?,
+
+        @Enumerated(EnumType.STRING)
+        override val entityType: PersistableType,
+
+        override val permission: String,
+
+        @ManyToOne
+        val user: User,
+
+        override val isGenerated: Boolean = false,
+
+        @ManyToOne
+        val parent: AccessControlItem? = null,
+
+        id: UUID = UUID.randomUUID(),
+
+        @OneToMany(mappedBy = "parent", cascade = [CascadeType.ALL])
+        val children: List<AccessControlItem> = listOf()
+) : PersistableEntity(id), BaseAccessControlItem {
+
+    @JsonEnumDefaultValue()
+    override val type = PersistableType.ACCESS_CONTROL_ITEM
+}
+
 enum class RoleName {
     ADMIN
 }
@@ -80,42 +124,7 @@ interface BaseEntity {
     val createdAt: OffsetDateTime
 
     val updatedAt: OffsetDateTime
-
-    //    @get:JsonProperty("id")
-//    val id: UUID
 }
-
-//@MappedSuperclass
-//abstract class PersistableEntity : BaseEntity, Serializable {
-//
-//    @Version
-//    override val version: Long? = null
-//
-//    @field:CreationTimestamp
-//    override val createdAt: OffsetDateTime = OffsetDateTime.now()
-//
-//    @field:UpdateTimestamp
-//    override val updatedAt: OffsetDateTime = OffsetDateTime.now()
-//
-//    val persisted: Boolean
-//        get() = version != null
-//
-////    @JsonIgnore
-////    fun isNew() = !persisted
-//
-////    override fun getId(): UUID = id
-//
-////    @get:JsonProperty("id")
-////    @GeneratedValue(generator = "UUID")
-////    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-////    @GeneratedValue(generator = "uuid2")
-////    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-////    @Id
-////    @GeneratedValue(generator = "UUID")
-////    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-////    @Type(type = "uuid-char")
-////    override val id: UUID = UUID.fromString("80fa2fd6-0748-43b2-af4b-5edf5cc4b0e7")
-//}
 
 interface BaseUser : BaseEntity {
     val principal: String
@@ -143,8 +152,13 @@ class User(
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "user", orphanRemoval = true)
         val reservations: List<Reservation> = listOf(),
 
+        @OneToMany(cascade = [CascadeType.ALL], mappedBy = "user", orphanRemoval = true)
+        val acl: List<AccessControlItem> = listOf(),
+
         id: UUID = UUID.randomUUID()
-) : PersistableEntity(id), BaseUser
+) : PersistableEntity(id), BaseUser {
+    override val type = PersistableType.USER
+}
 
 
 interface BaseRole : BaseEntity, Scoped, Ownable {
@@ -170,7 +184,9 @@ class Role(
         override val user: User,
 
         id: UUID = UUID.randomUUID()
-) : PersistableEntity(id), BaseRole
+) : PersistableEntity(id), BaseRole {
+    override val type = PersistableType.ROLE
+}
 
 interface BaseDepartment : BaseEntity {
     val name: String
@@ -194,7 +210,9 @@ class Department(
         val rooms: List<Room> = listOf(),
 
         id: UUID = UUID.randomUUID()
-) : PersistableEntity(id), BaseDepartment
+) : PersistableEntity(id), BaseDepartment {
+    override val type = PersistableType.DEPARTMENT
+}
 
 interface Scoped {
     val scope: Scope
@@ -237,7 +255,9 @@ class Room(
         val abos: List<Abo> = listOf(),
 
         id: UUID = UUID.randomUUID()
-) : PersistableEntity(id), BaseRoom
+) : PersistableEntity(id), BaseRoom {
+    override val type = PersistableType.ROOM
+}
 
 interface BaseReservation : BaseEntity {
     val title: String
@@ -248,7 +268,6 @@ interface BaseReservation : BaseEntity {
 
 @Entity
 @JsonIgnoreProperties(value = ["contingent_allocations"], allowGetters = false, allowSetters = true)
-//@Table(uniqueConstraints= [UniqueConstraint(columnNames = ["contingent", "abo"])])
 class Reservation(
 
         override val title: String,
@@ -272,17 +291,10 @@ class Reservation(
         @ManyToOne
         val abo: Abo,
 
-//        @OneToMany(mappedBy = "reservation", cascade = [CascadeType.ALL])
-//        @ElementCollection
-//        @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-//        @Column(name = "contingent")
-//        @OneToMany(mappedBy = "reservation", cascade = [CascadeType.ALL])
-//        @JsonIgnoreProperties(allowGetters = false, allowSetters = true)
-//        @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-//        var contingent_allocations: List<ContingentAllocation> = listOf(),
-
         id: UUID = UUID.randomUUID()
-) : PersistableEntity(id), BaseReservation, Ownable
+) : PersistableEntity(id), BaseReservation, Ownable {
+    override val type = PersistableType.RESERVATION
+}
 
 interface BaseAbo : BaseEntity {
     val title: String
@@ -318,18 +330,6 @@ class Abo(
         @Column(name = "description", length = 500)
         override val description: String?,
 
-//        val renew: Long,
-
-//        val endless: Boolean,
-
-//        val unlimited: Boolean,
-
-//        @Enumerated(EnumType.STRING)
-//        override val scope: Scope,
-//
-//        @ManyToOne
-//        override val department: Department?,
-
         @ManyToMany
         val rooms: List<Room>,
 
@@ -337,30 +337,9 @@ class Abo(
         override val user: User,
 
         @OneToMany(mappedBy = "abo", cascade = [CascadeType.ALL])
-//        @JsonIgnoreProperties(allowGetters = false, allowSetters = true)
-//        @JsonProperty(access = JsonProperty.Access.READ_ONLY)
         val reservations: List<Reservation> = listOf(),
 
         id: UUID = UUID.randomUUID()
-) : PersistableEntity(id), BaseAbo, Ownable
-
-interface BaseContingentAllocation {
-    val minutes: Long
+) : PersistableEntity(id), BaseAbo, Ownable {
+    override val type = PersistableType.ABO
 }
-//
-//@Entity
-//@Table(uniqueConstraints = [UniqueConstraint(columnNames = ["abo_id", "reservation_id"])])
-//class ContingentAllocation(
-//
-//        @ManyToOne
-//        @JoinColumn
-//        val abo: Abo,
-//
-//        @ManyToOne
-//        @JoinColumn
-//        val reservation: Reservation?,
-//
-//        override val minutes: Long,
-//
-//        id: UUID = UUID.randomUUID()
-//) : PersistableEntity(id), BaseContingentAllocation, Serializable
