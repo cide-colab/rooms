@@ -34,6 +34,10 @@ interface RoomRepository : Repository<Room, UUID> {
     @Query("select r from Room r where r.department = :department")
     fun unsaveFindByDepartment(department: Department): List<Room>
 
+    @RestResource(exported = false)
+    @Query("select r from Room r where r.id = :id")
+    fun unsaveFindById(id: UUID): Room?
+
 //    fun existsById(id: String): Boolean
 
 //    @Modifying
@@ -51,7 +55,7 @@ interface DepartmentRepository : Repository<Department, UUID> {
     fun unsaveFindAll(): List<Department>
 
     @PostAuthorize("hasPermission(returnObject, 'read')")
-    fun findById(id: UUID?): Department?
+    fun findById(id: UUID): Department?
 
     @PreAuthorize("hasPermission(null, 'create:department') || hasPermission(department, 'update')")
     fun save(department: Department): Department?
@@ -61,6 +65,10 @@ interface DepartmentRepository : Repository<Department, UUID> {
     //    fun existsByName(name: String): Boolean
     @PreAuthorize("hasPermission(#department, 'delete')")
     fun delete(department: Department)
+
+    @RestResource(exported = false)
+    @Query("select d from Department d where d.id = :id")
+    fun unsaveFindById(id: UUID): Department?
 //
 //    @Modifying
 //    @Query("UPDATE DepartmentDAO SET name=:name, description=:description WHERE id=:id")
