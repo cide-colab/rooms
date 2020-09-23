@@ -12,7 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize
 import java.util.*
 
 @RepositoryRestResource(collectionResourceRel = "abos", path = "abos")
-interface AboRepository : Repository<Abo, UUID> {
+interface AboRepo : Repository<Abo, UUID> {
 
     @PostFilter("hasPermission(filterObject, 'read')")
     fun findAll(): List<Abo>

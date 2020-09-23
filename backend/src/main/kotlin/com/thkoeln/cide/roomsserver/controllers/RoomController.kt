@@ -1,8 +1,8 @@
 package com.thkoeln.cide.roomsserver.controllers
 
 import com.thkoeln.cide.roomsserver.extensions.fixEmbedded
-import com.thkoeln.cide.roomsserver.models.ReservationRepository
-import com.thkoeln.cide.roomsserver.models.RoomRepository
+import com.thkoeln.cide.roomsserver.repositories.ReservationRepo
+import com.thkoeln.cide.roomsserver.repositories.RoomRepo
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.rest.webmvc.RepositoryRestController
@@ -28,8 +28,8 @@ data class Slot(
 @RepositoryRestController
 @RequestMapping("/rooms")
 class RoomController @Autowired constructor(
-        private val roomRepository: RoomRepository,
-        private val reservationRepository: ReservationRepository
+        private val roomRepo: RoomRepo,
+        private val reservationRepository: ReservationRepo
 ) {
 
     private val logger = LoggerFactory.getLogger(RoomController::class.java)

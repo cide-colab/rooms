@@ -1,9 +1,9 @@
 package com.thkoeln.cide.roomsserver.controllers
 
 import com.thkoeln.cide.roomsserver.models.User
-import com.thkoeln.cide.roomsserver.models.UserRepository
-import com.thkoeln.cide.roomsserver.services.ACLEntry
-import com.thkoeln.cide.roomsserver.services.ACLService
+import com.thkoeln.cide.roomsserver.repositories.UserRepo
+//import com.thkoeln.cide.roomsserver.services.ACLEntry
+//import com.thkoeln.cide.roomsserver.services.ACLService
 import org.keycloak.KeycloakPrincipal
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -20,8 +20,8 @@ import java.util.*
 
 
 data class Session(
-        val userId: UUID?,
-        val acl: List<ACLEntry>
+        val userId: UUID?
+//        val acl: List<ACLEntry>
 )
 
 //@JsonPropertyOrder("content", "links")
@@ -38,8 +38,8 @@ data class Session(
 @RepositoryRestController
 @RequestMapping("/users")
 class UserController @Autowired constructor(
-        private val userRepository: UserRepository,
-        private val aclService: ACLService,
+        private val userRepository: UserRepo,
+//        private val aclService: ACLService,
         private val eventPublisher: ApplicationEventPublisher
 ) {
 
@@ -59,7 +59,8 @@ class UserController @Autowired constructor(
             }
         }
 
-        return ResponseEntity(Session(user?.id, aclService.getACL(user)), HttpStatus.OK)
+//        return ResponseEntity(Session(user?.id, aclService.getACL(user)), HttpStatus.OK)
+        return ResponseEntity(Session(user?.id), HttpStatus.OK)
     }
 
 //    // TODO CHECK FUNCTIONALITY

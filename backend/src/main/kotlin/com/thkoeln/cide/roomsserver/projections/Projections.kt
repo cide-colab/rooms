@@ -1,5 +1,6 @@
-package com.thkoeln.cide.roomsserver.models
+package com.thkoeln.cide.roomsserver.projections
 
+import com.thkoeln.cide.roomsserver.models.*
 import org.springframework.data.rest.core.config.Projection
 import java.util.*
 

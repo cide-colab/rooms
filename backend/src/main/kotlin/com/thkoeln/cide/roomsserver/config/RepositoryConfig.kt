@@ -18,8 +18,8 @@ class RepositoryConfig {
                         Department::class.java,
                         User::class.java,
                         Reservation::class.java,
-                        Abo::class.java,
-                        Role::class.java
+                        Abo::class.java
+//                        Role::class.java
                 )
             }
         }

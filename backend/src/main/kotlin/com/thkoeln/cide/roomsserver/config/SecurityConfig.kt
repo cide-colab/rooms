@@ -1,7 +1,6 @@
 package com.thkoeln.cide.roomsserver.config
 
-import com.thkoeln.cide.roomsserver.security.PermissionHandlerEvaluator
-import com.thkoeln.cide.roomsserver.services.ACLService
+//import com.thkoeln.cide.roomsserver.security.PermissionHandlerEvaluator
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter
 import org.keycloak.adapters.springsecurity.management.HttpSessionManager
@@ -64,9 +63,10 @@ class SecurityConfig : KeycloakWebSecurityConfigurerAdapter() {
         return HttpSessionManager()
     }
 
-    @Bean
-    @Lazy
-    @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
-    fun getPermissionEvaluator(aclService: ACLService) = PermissionHandlerEvaluator(aclService)
+//    @Bean
+//    @Lazy
+//    @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
+//    fun getPermissionEvaluator(aclService: ACLService) = PermissionHandlerEvaluator(aclService)
 
 }
+

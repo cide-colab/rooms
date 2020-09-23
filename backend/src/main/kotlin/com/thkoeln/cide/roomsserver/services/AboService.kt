@@ -2,7 +2,7 @@ package com.thkoeln.cide.roomsserver.services
 
 import com.thkoeln.cide.roomsserver.extensions.isInWeekOf
 import com.thkoeln.cide.roomsserver.extensions.sumBy
-import com.thkoeln.cide.roomsserver.models.AboRepository
+import com.thkoeln.cide.roomsserver.repositories.AboRepo
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
@@ -15,7 +15,7 @@ data class Contingent(
 )
 
 @Service
-class AboService @Autowired constructor(private val aboRepository: AboRepository) {
+class AboService @Autowired constructor(private val aboRepository: AboRepo) {
     fun getContingentForAboOnDate(id: UUID, date: OffsetDateTime) = aboRepository.findById(id)
             ?.let { abo ->
                 val used = abo.reservations

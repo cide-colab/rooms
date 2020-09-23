@@ -9,7 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize
 import java.time.OffsetDateTime
 import java.util.*
 
-interface ReservationRepository : Repository<Reservation, UUID> {
+interface ReservationRepo : Repository<Reservation, UUID> {
 
     @PostFilter("hasPermission(filterObject, 'read')")
     fun findAll(): List<Reservation>
