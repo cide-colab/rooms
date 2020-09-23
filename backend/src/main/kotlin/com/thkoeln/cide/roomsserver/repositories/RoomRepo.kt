@@ -15,7 +15,7 @@ interface RoomRepo : Repository<Room, UUID> {
     @PostAuthorize("hasPermission(returnObject, 'read')")
     fun findById(id: UUID): Room?
 
-    @PostFilter("hasPermission(filterObject, 'read')")
+    @PostFilter("hasPermission(filterObject, 'READ')")
     fun findAll(): List<Room>
 
     @Query("select r from Room r")

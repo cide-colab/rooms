@@ -1,13 +1,14 @@
 buildscript {
 	ext {
 		kotlinVersion = '1.3.61'
-		springBootVersion = '2.2.5.RELEASE'
+		springBootVersion = '2.3.4.RELEASE'
 		keycloakVersion = '9.0.0'
 		gradleDockerVersion   = "1.2"
 		mysqlVersion = "8.0.16"
 		jacksonVersion = "2.10.0.pr1"
 		apacheCommonsVersion = "4.5.9"
 		dokka_version = "0.10.0"
+		ehVersion = "2.6.11"
 //		swaggerVersion = "3.0.0-SNAPSHOT"
 	}
 	repositories {
@@ -83,7 +84,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
 	implementation("org.springframework.boot:spring-boot-starter-data-rest:$springBootVersion")
 	implementation("org.springframework.boot:spring-boot-starter-security:$springBootVersion")
-	implementation("org.springframework.boot:spring-boot-security-acl:$springBootVersion")
+	implementation("org.springframework.security:spring-security-acl")
+	implementation("org.springframework:spring-context-support")
+	implementation("net.sf.ehcache:ehcache-core:$ehVersion")
 
 
 //	implementation("org.springframework.boot:spring-boot-starter-mail:$springBootVersion")

@@ -19,7 +19,7 @@ abstract class PersistableEntity(
         @GeneratedValue(generator = "UUID")
         @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
         @Type(type = "uuid-char")
-        private var id: UUID
+        private var id: Long
 ) : Persistable<UUID>, BaseEntity {
 
     @Version
