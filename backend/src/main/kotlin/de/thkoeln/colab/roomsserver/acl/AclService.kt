@@ -1,9 +1,7 @@
 package de.thkoeln.colab.roomsserver.acl
 
 import de.thkoeln.colab.roomsserver.extensions.contains
-import org.springframework.data.repository.Repository
 import org.springframework.stereotype.Service
-import javax.management.relation.Role
 import kotlin.reflect.KClass
 
 @Service
@@ -46,40 +44,17 @@ class AclService(
             classRepo.findByClassName(targetObject::class.java.name)
                     ?: throw AclClassNotFoundException(targetObject::class.java.name)
 
-//    fun createClassIfNotExistsFor(targetClass: KClass<*>) =
-//            classRepo.findByClassName(targetClass.java.name)
-//                    ?: classRepo.save(AclClass(targetClass.java.name))
-
     fun createOrUpdateClassByTargetClass(targetClass: KClass<*>) =
             classRepo.saveAndFlush(classRepo.findByClassName(targetClass.java.name) ?: AclClass(targetClass.java.name))
 
     fun createOrUpdateSidByPrincipal(principal: String) =
             sidRepo.saveAndFlush(sidRepo.findByPrincipal(principal) ?:AclSid(principal))
 
-//
-//    fun createRoleIfNotExists(roleForm: RoleForm): AclRole? {
-//        val role = createRoleIfNotExists(AclRole(roleForm.name))
-//        permissionRepo.deleteAllByRole(role)
-//        val permissions = roleForm.permissions
-//                .map { AclPermission(it.targetClass, it.action, role) }
-//                .map { permissionRepo.save(it) }
-//        return roleRepo.findById(role.id)
-//    }
-
     fun createRoleIfNotExists(role: AclRole) =
             roleRepo.saveAndFlush(role)
 
     fun createPermissions(permissions: List<AclPermission>) = permissions.map { createPermission(it) }
     fun createPermission(permission: AclPermission) = permissionRepo.saveAndFlush(permission)
-
-//    fun createRole(role: AclRole, permissions: List<AclPermission>) =
-//            roleRepo.save(role).also { savedRole ->
-//                permissions.forEach {  }
-//            }
-//            role.permissions
-//                    .map { permissionRepo.save(it) }
-//                    .let { role.copy(permissions = it) }
-//                    .let { roleRepo.save(it) }
 
     fun hasPermission(targetObject: Any, principal: String, permission: AclAction) =
             hasPermission(targetObject, principal, permission, getClassOrThrowException(targetObject))

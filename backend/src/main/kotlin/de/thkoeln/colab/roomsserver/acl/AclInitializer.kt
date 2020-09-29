@@ -28,14 +28,13 @@ class AclInitializer {
         val departmentClass = aclService.createOrUpdateClassByTargetClass(Department::class)
         val aboClass = aclService.createOrUpdateClassByTargetClass(Abo::class)
         val reservationClass = aclService.createOrUpdateClassByTargetClass(Reservation::class)
-        val itemClass = aclService.createOrUpdateClassByTargetClass(Item::class)
 
         val applicationIdentity = aclService.createOrUpdateObjectIdentityByTargetObject(Application)
 
         val adminRole = aclService.createOrUpdateRoleByName(AclRole("Admin"))
         val guestRole = aclService.createOrUpdateRoleByName(AclRole("Guest"))
 
-        listOf(userClass, roomClass, departmentClass, aboClass, reservationClass, itemClass, applicationClass)
+        listOf(userClass, roomClass, departmentClass, aboClass, reservationClass, applicationClass)
                 .flatMap { targetClass -> AclAction.values().map { action -> AclPermission(targetClass, action, adminRole) } }
                 .map { aclService.createOrUpdatePermission(it) }
 
