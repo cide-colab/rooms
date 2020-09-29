@@ -2,7 +2,6 @@ package de.thkoeln.colab.roomsserver.models
 
 import javax.persistence.*
 
-
 interface BaseRoom {
     val number: String
     val name: String
@@ -34,5 +33,4 @@ data class Room(
 
         @ManyToMany(mappedBy = "rooms")
         val abos: List<Abo> = listOf()
-) : AbstractEntity(id), BaseRoom {
-}
+) : AbstractEntity(id), BaseRoom

@@ -23,11 +23,11 @@ class AlreadyExistsException(string: String) : RestException("Duplicate Entity $
 class ConflictException(string: String) : RestException(string)
 class NotFoundException(string: String) : RestException("Resource not found $string.")
 
-class NotEnoughContingentException() : RestException("Not enough contingent")
-class ContingentNotMatchException() : RestException("Time in Allocations not matching")
-class UserNotOwnerOfAboException() : RestException("User is not owner of allocated abo")
-class AboOutOfBoundsException() : RestException("Abo is not available for given reservation time")
-class AboNotForRoomException() : RestException("Abo is not available for given room")
+class NotEnoughContingentException : RestException("Not enough contingent")
+class ContingentNotMatchException : RestException("Time in Allocations not matching")
+class UserNotOwnerOfAboException : RestException("User is not owner of allocated abo")
+class AboOutOfBoundsException : RestException("Abo is not available for given reservation time")
+class AboNotForRoomException : RestException("Abo is not available for given room")
 
 @ControllerAdvice
 class RestResponseEntityExceptionHandler : ResponseEntityExceptionHandler() {

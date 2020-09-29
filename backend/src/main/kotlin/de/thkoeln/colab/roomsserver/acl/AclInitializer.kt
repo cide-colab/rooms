@@ -1,14 +1,11 @@
 package de.thkoeln.colab.roomsserver.acl
 
-//import de.thkoeln.colab.roomsserver.services.ACLService
-
 import de.thkoeln.colab.roomsserver.models.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.ApplicationRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-
 
 @Configuration
 class AclInitializer {

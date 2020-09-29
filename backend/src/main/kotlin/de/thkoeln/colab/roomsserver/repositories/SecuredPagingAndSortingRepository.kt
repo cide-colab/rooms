@@ -9,7 +9,7 @@ import org.springframework.security.access.prepost.PostFilter
 import org.springframework.security.access.prepost.PreAuthorize
 
 @NoRepositoryBean
-interface SecuredPagingAndSortingRepository<T, ID>: Repository<T, ID> {
+interface SecuredPagingAndSortingRepository<T, ID> : Repository<T, ID> {
 
     @PreAuthorize("hasPermission(#entity, 'CREATE')")
     fun <S : T> save(entity: S): S

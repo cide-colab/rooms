@@ -1,4 +1,4 @@
-package de.thkoeln.colab.roomsserver.controllers.old
+package de.thkoeln.colab.roomsserver.controllers
 
 import de.thkoeln.colab.roomsserver.services.AboService
 import org.slf4j.LoggerFactory
@@ -21,7 +21,7 @@ class AboController @Autowired constructor(
 
     private val logger = LoggerFactory.getLogger(AboController::class.java)
 
-//    @PreAuthorize("hasPermission(#id, 'read')")
+    //    @PreAuthorize("hasPermission(#id, 'read')")
     @GetMapping("/{id}/contingent")
     fun getSlots(@PathVariable id: Long, @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) date: OffsetDateTime) =
             ResponseEntity(aboService.getContingentForAboOnDate(id, date), HttpStatus.OK)

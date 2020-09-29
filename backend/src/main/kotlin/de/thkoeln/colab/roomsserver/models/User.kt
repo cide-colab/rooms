@@ -5,7 +5,6 @@ import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.OneToMany
 
-
 interface BaseUser {
     val principal: String
     val givenName: String
@@ -13,7 +12,6 @@ interface BaseUser {
     val email: String
     val imageUrl: String?
 }
-
 
 @Entity
 data class User(

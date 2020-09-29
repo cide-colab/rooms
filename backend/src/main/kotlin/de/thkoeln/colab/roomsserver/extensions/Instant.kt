@@ -4,7 +4,6 @@ import java.time.*
 import java.time.temporal.WeekFields
 import java.util.*
 
-
 val OffsetDateTime.endOfDay
     get() = toLocalDate().atTime(LocalTime.MAX).atOffset(offset)
 

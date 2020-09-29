@@ -5,14 +5,6 @@ import org.springframework.format.annotation.DateTimeFormat
 import java.time.OffsetDateTime
 import javax.persistence.*
 
-enum class Permissions(val mask: Int) {
-    READ(0),
-    WRITE(1),
-    CREATE(2),
-    DELETE(3),
-    ADMINISTER(4)
-}
-
 interface BaseAbo {
     val title: String
     val start: OffsetDateTime
@@ -57,5 +49,4 @@ data class Abo(
 
         @OneToMany(mappedBy = "abo", cascade = [CascadeType.ALL])
         val reservations: List<Reservation> = listOf()
-) : AbstractEntity(id), BaseAbo {
-}
+) : AbstractEntity(id), BaseAbo

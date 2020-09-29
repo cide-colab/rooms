@@ -1,4 +1,4 @@
-package de.thkoeln.colab.roomsserver.controllers.old
+package de.thkoeln.colab.roomsserver.controllers
 
 import de.thkoeln.colab.roomsserver.extensions.fixEmbedded
 import de.thkoeln.colab.roomsserver.repositories.ReservationRepo
@@ -33,7 +33,7 @@ class RoomController @Autowired constructor(
 
     private val logger = LoggerFactory.getLogger(RoomController::class.java)
 
-    //    @PreAuthorize("hasPermission(#id, 'read')")
+//    @PreAuthorize("hasPermission(#id, 'read')")
     @GetMapping("/{id}/slots")
     fun getSlots(@PathVariable id: Long, @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) date: OffsetDateTime): ResponseEntity<CollectionModel<out Any>> {
         val dayStart = date.withHour(0).withMinute(0).withSecond(0)

@@ -15,8 +15,7 @@ object Projections {
 }
 
 @Projection(name = Projections.BASE, types = [Room::class])
-interface BaseRoomProjection : BaseRoom, BaseProjection {
-}
+interface BaseRoomProjection : BaseRoom, BaseProjection
 
 @Projection(name = Projections.SIMPLE, types = [Room::class])
 interface SimpleRoomProjection : BaseRoomProjection {
@@ -43,8 +42,7 @@ interface DetailedDepartmentProjection : BaseDepartmentProjection
 
 
 @Projection(name = Projections.BASE, types = [Abo::class])
-interface BaseAboProjection : BaseAbo, BaseProjection {
-}
+interface BaseAboProjection : BaseAbo, BaseProjection
 
 @Projection(name = Projections.SIMPLE, types = [Abo::class])
 interface SimpleAboProjection : BaseAboProjection {
@@ -90,8 +88,7 @@ interface DetailedAboProjection : BaseAboProjection {
 
 
 @Projection(name = Projections.BASE, types = [Reservation::class])
-interface BaseReservationProjection : BaseReservation, BaseProjection {
-}
+interface BaseReservationProjection : BaseReservation, BaseProjection
 
 @Projection(name = Projections.SIMPLE, types = [Reservation::class])
 interface SimpleReservationProjection : BaseReservationProjection {

@@ -1,4 +1,4 @@
-package de.thkoeln.colab.roomsserver.controllers.old
+package de.thkoeln.colab.roomsserver.controllers
 
 import de.thkoeln.colab.roomsserver.models.User
 import de.thkoeln.colab.roomsserver.repositories.UserRepo

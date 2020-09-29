@@ -8,7 +8,6 @@ import javax.persistence.Entity
 import javax.persistence.Lob
 import javax.persistence.ManyToOne
 
-
 interface BaseReservation {
     val title: String
     val description: String?
@@ -42,5 +41,4 @@ data class Reservation(
         val abo: Abo,
 
         private val id: Long = 0
-) : AbstractEntity(id), BaseReservation {
-}
+) : AbstractEntity(id), BaseReservation

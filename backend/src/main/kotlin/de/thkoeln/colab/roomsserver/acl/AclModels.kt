@@ -3,7 +3,6 @@ package de.thkoeln.colab.roomsserver.acl
 import de.thkoeln.colab.roomsserver.models.AbstractEntity
 import javax.persistence.*
 
-
 @Entity
 data class AclSid(
 

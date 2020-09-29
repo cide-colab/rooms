@@ -48,7 +48,7 @@ class AclService(
             classRepo.saveAndFlush(classRepo.findByClassName(targetClass.java.name) ?: AclClass(targetClass.java.name))
 
     fun createOrUpdateSidByPrincipal(principal: String) =
-            sidRepo.saveAndFlush(sidRepo.findByPrincipal(principal) ?:AclSid(principal))
+            sidRepo.saveAndFlush(sidRepo.findByPrincipal(principal) ?: AclSid(principal))
 
     fun createRoleIfNotExists(role: AclRole) =
             roleRepo.saveAndFlush(role)
@@ -82,17 +82,17 @@ class AclService(
 
     fun createOrUpdateRoleByName(role: AclRole) = with(roleRepo) {
         val existing = findByName(role.name)
-        saveAndFlush(existing?:role)
+        saveAndFlush(existing ?: role)
     }
 
     fun createOrUpdatePermission(permission: AclPermission) = with(permissionRepo) {
         val existing = findByRoleAndActionAndTargetClass(permission.role, permission.action, permission.targetClass)
-        saveAndFlush(existing?:permission)
+        saveAndFlush(existing ?: permission)
     }
 
     fun createOrUpdateRoleAllocation(allocation: AclRoleAllocation) = with(roleAllocationRepo) {
         val existing = findByScopeAndSidAndRole(allocation.scope, allocation.sid, allocation.role)
-        saveAndFlush(existing?:allocation)
+        saveAndFlush(existing ?: allocation)
     }
 
 }

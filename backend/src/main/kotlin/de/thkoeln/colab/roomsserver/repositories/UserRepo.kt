@@ -6,7 +6,6 @@ import org.springframework.data.rest.core.annotation.RestResource
 import org.springframework.security.access.prepost.PostAuthorize
 import java.util.*
 
-
 interface UserRepo : SecuredPagingAndSortingRepository<User, UUID> {
 
     @Query("select u from User u")

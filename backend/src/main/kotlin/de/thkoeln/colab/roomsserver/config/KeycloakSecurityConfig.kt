@@ -1,7 +1,5 @@
 package de.thkoeln.colab.roomsserver.config
 
-//import com.thkoeln.cide.roomsserver.security.PermissionHandlerEvaluator
-
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter
 import org.keycloak.adapters.springsecurity.management.HttpSessionManager
@@ -16,7 +14,6 @@ import org.springframework.security.web.authentication.session.RegisterSessionAu
 import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
-
 @KeycloakConfiguration
 class KeycloakSecurityConfig : KeycloakWebSecurityConfigurerAdapter() {
 
@@ -24,7 +21,7 @@ class KeycloakSecurityConfig : KeycloakWebSecurityConfigurerAdapter() {
     fun configureGlobal(auth: AuthenticationManagerBuilder) {
         val keycloakAuthenticationProvider = keycloakAuthenticationProvider()
         keycloakAuthenticationProvider.setGrantedAuthoritiesMapper(SimpleAuthorityMapper())
-        auth.authenticationProvider(keycloakAuthenticationProvider);
+        auth.authenticationProvider(keycloakAuthenticationProvider)
     }
 
 
@@ -65,7 +62,7 @@ class KeycloakSecurityConfig : KeycloakWebSecurityConfigurerAdapter() {
 
     @Bean
     @ConditionalOnMissingBean(HttpSessionManager::class)
-    protected override fun httpSessionManager(): HttpSessionManager? {
+    override fun httpSessionManager(): HttpSessionManager? {
         return HttpSessionManager()
     }
 

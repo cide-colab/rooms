@@ -2,7 +2,6 @@ package de.thkoeln.colab.roomsserver.acl
 
 import org.springframework.data.repository.Repository
 
-
 interface AclClassRepo : Repository<AclClass, Long> {
     fun saveAndFlush(aclClass: AclClass): AclClass
     fun findByClassName(className: String): AclClass?
@@ -18,7 +17,7 @@ interface AclSidRepo : Repository<AclSid, Long> {
     fun findByPrincipal(principal: String): AclSid?
 }
 
-interface AclRoleAllocationRepo: Repository<AclRoleAllocation, Long> {
+interface AclRoleAllocationRepo : Repository<AclRoleAllocation, Long> {
     fun saveAndFlush(roleAllocation: AclRoleAllocation): AclRoleAllocation
     fun findAllBySidAndScope(sid: AclSid, objectIdentity: AclObjectIdentity): List<AclRoleAllocation>
     fun findAllBySid(sid: AclSid): List<AclRoleAllocation>
@@ -26,14 +25,14 @@ interface AclRoleAllocationRepo: Repository<AclRoleAllocation, Long> {
 
 }
 
-interface AclPermissionRepo: Repository<AclPermission, Long> {
+interface AclPermissionRepo : Repository<AclPermission, Long> {
     fun deleteAllByRole(role: AclRole)
     fun existsByRoleAndActionAndTargetClass(role: AclRole, action: AclAction, targetClass: AclClass): Boolean
     fun findByRoleAndActionAndTargetClass(role: AclRole, action: AclAction, targetClass: AclClass): AclPermission?
     fun saveAndFlush(permission: AclPermission): AclPermission
 }
 
-interface AclRoleRepo: Repository<AclRole, Long> {
+interface AclRoleRepo : Repository<AclRole, Long> {
     fun saveAndFlush(role: AclRole): AclRole
     fun findById(id: Long): AclRole?
     fun findByName(roleName: String): AclRole?
