@@ -1,18 +1,10 @@
 package de.thkoeln.colab.roomsserver.acl
 
 import de.thkoeln.colab.roomsserver.extensions.contains
+import org.springframework.data.repository.Repository
 import org.springframework.stereotype.Service
+import javax.management.relation.Role
 import kotlin.reflect.KClass
-
-data class PermissionForm(
-        val targetClass: AclClass,
-        val action: AclAction
-)
-
-data class RoleForm(
-        val name: String,
-        val permissions: List<PermissionForm> = listOf()
-)
 
 @Service
 class AclService(
@@ -30,48 +22,55 @@ class AclService(
                     ?: listOf()
 
     fun createRoleAllocationFor(aclSid: AclSid, role: AclRole, scope: AclObjectIdentity) =
-            roleAllocationRepo.save(AclRoleAllocation(aclSid, role, scope))
+            roleAllocationRepo.saveAndFlush(AclRoleAllocation(aclSid, role, scope))
 
     fun createRoleAllocationFor(principal: String, role: AclRole, scope: AclObjectIdentity) =
             sidRepo.findByPrincipal(principal)
                     ?.let { createRoleAllocationFor(it, role, scope) }
 
 
-    fun createObjectIdentityFor(targetObject: Any): AclObjectIdentity =
+    fun createOrUpdateObjectIdentityByTargetObject(targetObject: Any): AclObjectIdentity =
             lookup.getId(targetObject).let { targetId ->
 
                 val targetClass = classRepo.findByClassName(targetObject::class.java.name)
                         ?: throw AclClassNotFoundException(targetObject::class.java.name)
-
-                objectIdRepo.findByObjectIdAndObjectClass(targetId, targetClass)
-                        ?: objectIdRepo.save(AclObjectIdentity(targetId, targetClass))
+                createOrUpdateObjectIdentityByIdAndTargetClass(targetId, targetClass)
             }
+
+    private fun createOrUpdateObjectIdentityByIdAndTargetClass(targetId: Long, targetClass: AclClass) =
+            objectIdRepo.saveAndFlush(objectIdRepo.findByObjectIdAndObjectClass(targetId, targetClass)
+                    ?: AclObjectIdentity(targetId, targetClass))
 
 
     private fun getClassOrThrowException(targetObject: Any) =
             classRepo.findByClassName(targetObject::class.java.name)
                     ?: throw AclClassNotFoundException(targetObject::class.java.name)
 
-    fun createClassIfNotExistsFor(targetClass: KClass<*>) =
-            classRepo.findByClassName(targetClass.java.name)
-                    ?: classRepo.save(AclClass(targetClass.java.name))
+//    fun createClassIfNotExistsFor(targetClass: KClass<*>) =
+//            classRepo.findByClassName(targetClass.java.name)
+//                    ?: classRepo.save(AclClass(targetClass.java.name))
 
-    fun createSidFor(principal: String) =
-            sidRepo.findByPrincipal(principal)
-                    ?: sidRepo.save(AclSid(principal))
+    fun createOrUpdateClassByTargetClass(targetClass: KClass<*>) =
+            classRepo.saveAndFlush(classRepo.findByClassName(targetClass.java.name) ?: AclClass(targetClass.java.name))
 
-    fun createRole(roleForm: RoleForm): AclRole? {
-        val role = createRole(AclRole(roleForm.name))
-        val permissions = roleForm.permissions
-                .map { AclPermission(it.targetClass, it.action, role) }
-                .map { permissionRepo.save(it) }
-        return roleRepo.findById(role.id)
-    }
+    fun createOrUpdateSidByPrincipal(principal: String) =
+            sidRepo.saveAndFlush(sidRepo.findByPrincipal(principal) ?:AclSid(principal))
 
-    fun createRole(role: AclRole) = roleRepo.save(role)
+//
+//    fun createRoleIfNotExists(roleForm: RoleForm): AclRole? {
+//        val role = createRoleIfNotExists(AclRole(roleForm.name))
+//        permissionRepo.deleteAllByRole(role)
+//        val permissions = roleForm.permissions
+//                .map { AclPermission(it.targetClass, it.action, role) }
+//                .map { permissionRepo.save(it) }
+//        return roleRepo.findById(role.id)
+//    }
+
+    fun createRoleIfNotExists(role: AclRole) =
+            roleRepo.saveAndFlush(role)
 
     fun createPermissions(permissions: List<AclPermission>) = permissions.map { createPermission(it) }
-    fun createPermission(permission: AclPermission) = permissionRepo.save(permission)
+    fun createPermission(permission: AclPermission) = permissionRepo.saveAndFlush(permission)
 
 //    fun createRole(role: AclRole, permissions: List<AclPermission>) =
 //            roleRepo.save(role).also { savedRole ->
@@ -105,5 +104,20 @@ class AclService(
                     ?.flatMap { it.role.permissions }
                     ?.contains { it.action == action && it.targetClass.id == targetClass.id }
                     ?: false
+
+    fun createOrUpdateRoleByName(role: AclRole) = with(roleRepo) {
+        val existing = findByName(role.name)
+        saveAndFlush(existing?:role)
+    }
+
+    fun createOrUpdatePermission(permission: AclPermission) = with(permissionRepo) {
+        val existing = findByRoleAndActionAndTargetClass(permission.role, permission.action, permission.targetClass)
+        saveAndFlush(existing?:permission)
+    }
+
+    fun createOrUpdateRoleAllocation(allocation: AclRoleAllocation) = with(roleAllocationRepo) {
+        val existing = findByScopeAndSidAndRole(allocation.scope, allocation.sid, allocation.role)
+        saveAndFlush(existing?:allocation)
+    }
 
 }

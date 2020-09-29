@@ -8,13 +8,12 @@ import org.springframework.data.domain.Persistable
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.util.*
 import javax.persistence.*
+import javax.persistence.Version
 
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener::class)
 abstract class AbstractEntity(
-//    @JsonProperty(value = "id")
-//    @JsonIgnore
         @Id
         @Column(name = "id", nullable = false)
         @GeneratedValue(strategy = GenerationType.IDENTITY)

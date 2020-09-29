@@ -9,7 +9,7 @@ interface BaseDepartment {
 }
 
 @Entity
-class Department(
+data class Department(
 
         @Column(unique = true)
         override val name: String,
@@ -23,6 +23,5 @@ class Department(
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "department", orphanRemoval = true)
         val rooms: List<Room> = listOf(),
 
-        id: Long = 0
-) : AbstractEntity(id), BaseDepartment {
-}
+        private val id: Long = 0
+) : AbstractEntity(id), BaseDepartment

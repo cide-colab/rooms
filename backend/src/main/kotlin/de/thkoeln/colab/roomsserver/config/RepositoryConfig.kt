@@ -22,9 +22,4 @@ class RepositoryConfig {
                     )
                 }
             }
-
-//    @Bean
-//    fun authorEventHandler(): ReservationEventHandler {
-//        return ReservationEventHandler()
-//    }
 }

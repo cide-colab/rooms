@@ -1,8 +1,8 @@
-package de.thkoeln.colab.roomsserver.controllers
+package de.thkoeln.colab.roomsserver.controllers.old
 
 import de.thkoeln.colab.roomsserver.extensions.fixEmbedded
 import de.thkoeln.colab.roomsserver.repositories.ReservationRepo
-import de.thkoeln.colab.roomsserver.repositories.RoomRepository
+import de.thkoeln.colab.roomsserver.repositories.RoomRepo
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.rest.webmvc.RepositoryRestController
@@ -27,7 +27,7 @@ data class Slot(
 @RepositoryRestController
 @RequestMapping("/rooms")
 class RoomController @Autowired constructor(
-        private val roomRepository: RoomRepository,
+        private val roomRepo: RoomRepo,
         private val reservationRepository: ReservationRepo
 ) {
 

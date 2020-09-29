@@ -1,4 +1,4 @@
-package de.thkoeln.colab.roomsserver.controllers
+package de.thkoeln.colab.roomsserver.controllers.old
 
 //@RepositoryRestController
 //@RequestMapping("/items")

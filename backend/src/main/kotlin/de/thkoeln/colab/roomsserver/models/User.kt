@@ -16,19 +16,24 @@ interface BaseUser {
 
 
 @Entity
-class User(
+data class User(
+
         @Column(unique = true, columnDefinition = "LONGBLOB")
         override val principal: String,
+
         override val givenName: String,
+
         override val familyName: String,
+
         override val email: String,
+
         override val imageUrl: String? = null,
+
+        private val id: Long = 0,
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "user", orphanRemoval = true)
         val abos: List<Abo> = listOf(),
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "user", orphanRemoval = true)
-        val reservations: List<Reservation> = listOf(),
-
-        id: Long = 0
+        val reservations: List<Reservation> = listOf()
 ) : AbstractEntity(id), BaseUser

@@ -18,7 +18,7 @@ interface BaseReservation {
 
 @Entity
 @JsonIgnoreProperties(value = ["contingent_allocations"], allowGetters = false, allowSetters = true)
-class Reservation(
+data class Reservation(
 
         override val title: String,
 
@@ -26,21 +26,21 @@ class Reservation(
         @Column(name = "description", length = 100)
         override val description: String?,
 
-        @DateTimeFormat(pattern = jsonDateFormat)
+        @DateTimeFormat(pattern = "EEE MMM dd yyyy HH:mm:ss z XX")
         override val start: OffsetDateTime,
 
-        @DateTimeFormat(pattern = jsonDateFormat)
+        @DateTimeFormat(pattern = "EEE MMM dd yyyy HH:mm:ss z XX")
         override val end: OffsetDateTime,
 
         @ManyToOne
         val room: Room,
 
         @ManyToOne
-        override val user: User,
+        val user: User,
 
         @ManyToOne
         val abo: Abo,
 
-        id: Long = 0
-) : AbstractEntity(id), BaseReservation, Ownable {
+        private val id: Long = 0
+) : AbstractEntity(id), BaseReservation {
 }

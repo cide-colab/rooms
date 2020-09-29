@@ -1,4 +1,4 @@
-package de.thkoeln.colab.roomsserver.controllers
+package de.thkoeln.colab.roomsserver.controllers.old
 
 import de.thkoeln.colab.roomsserver.models.Reservation
 import org.slf4j.LoggerFactory

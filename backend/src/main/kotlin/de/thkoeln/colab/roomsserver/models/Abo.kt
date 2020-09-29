@@ -25,12 +25,12 @@ interface BaseAbo {
 
 @Entity
 @JsonIgnoreProperties(value = ["contingent_allocations"], allowGetters = false, allowSetters = true)
-class Abo(
+data class Abo(
 
-        @DateTimeFormat(pattern = jsonDateFormat)
+        @DateTimeFormat(pattern = "EEE MMM dd yyyy HH:mm:ss z XX")
         override val start: OffsetDateTime,
 
-        @DateTimeFormat(pattern = jsonDateFormat)
+        @DateTimeFormat(pattern = "EEE MMM dd yyyy HH:mm:ss z XX")
         override val end: OffsetDateTime,
 
         override val contingent: Long,
@@ -51,11 +51,11 @@ class Abo(
         val rooms: List<Room>,
 
         @ManyToOne
-        override val user: User,
+        val user: User,
+
+        private val id: Long = 0,
 
         @OneToMany(mappedBy = "abo", cascade = [CascadeType.ALL])
-        val reservations: List<Reservation> = listOf(),
-
-        id: Long = 0
-) : AbstractEntity(id), BaseAbo, Ownable {
+        val reservations: List<Reservation> = listOf()
+) : AbstractEntity(id), BaseAbo {
 }

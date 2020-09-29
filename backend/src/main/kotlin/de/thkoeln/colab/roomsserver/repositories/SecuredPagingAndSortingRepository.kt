@@ -7,63 +7,56 @@ import org.springframework.data.repository.Repository
 import org.springframework.security.access.prepost.PostAuthorize
 import org.springframework.security.access.prepost.PostFilter
 import org.springframework.security.access.prepost.PreAuthorize
-import org.springframework.security.access.prepost.PreFilter
-import java.util.*
-
-//ISSUE with Optionals https://github.com/spring-projects/spring-framework/issues/20433
-
-//fun <T, ID> SecuredPagingAndSortingRepository<T, ID>.findByIdK(id: ID) = findById(id).orElseGet { null }
-//fun <T, ID> SecuredPagingAndSortingRepository<T, ID>.findOneK(example: Example<T>) = findOne(example).orElseGet { null }
 
 @NoRepositoryBean
 interface SecuredPagingAndSortingRepository<T, ID>: Repository<T, ID> {
 
-//    @PreAuthorize("hasPermission(#entity, 'CREATE') || hasPermission(#entity, 'ADMINISTRATION')")
+    @PreAuthorize("hasPermission(#entity, 'CREATE')")
     fun <S : T> save(entity: S): S
 
-    @PostFilter("hasPermission(filterObject, 'READ') || hasPermission(filterObject, 'ADMINISTRATION')")
-    fun findAll(): MutableIterable<T>
+    @PostFilter("hasPermission(filterObject, 'READ')")
+    fun findAll(): List<T>
 
-    @PreAuthorize("hasPermission(returnObject, 'DELETE') || hasPermission(returnObject, 'ADMINISTRATION')")
-    fun deleteById(id: ID)
+//    @PreFilter("hasPermission(#entities, 'DELETE')")
+//    fun deleteAll(entities: Iterable<T>)
+//
+//    @PreFilter("hasPermission(#entities, 'DELETE')")
+//    fun deleteAll(vararg entities: T)
 
-    @PreFilter("hasPermission(#entities, 'DELETE') || hasPermission(returnObject, 'ADMINISTRATION')")
-    fun deleteAll(entities: MutableIterable<T>)
-
-    @PreAuthorize("hasPermission(returnObject, 'DELETE') || hasPermission(returnObject, 'ADMINISTRATION')")
-    fun deleteAll()
-
-    @PreFilter("hasPermission(#entities, 'CREATE') || hasPermission(#entities, 'ADMINISTRATION')")
-    fun <S : T> saveAll(entities: MutableIterable<S>): MutableIterable<S>
+//    @PreFilter("hasPermission(#entities, 'CREATE')")
+//    fun <S : T> saveAll(entities: Iterable<S>): List<S>
+//
+//    @PreFilter("hasPermission(#entities, 'CREATE')")
+//    fun <S : T> saveAll(vararg entities: S): List<S>
 
     // TODO Secure
     fun count(): Long
 
-    @PostFilter("hasPermission(filterObject, 'READ') || hasPermission(filterObject, 'ADMINISTRATION')")
-    fun findAllById(ids: MutableIterable<ID>): MutableIterable<T>
+    @PostFilter("hasPermission(filterObject, 'READ')")
+    fun findAllByIdIn(ids: Iterable<ID>): List<T>
 
-    @PostAuthorize("hasPermission(returnObject, 'READ') || hasPermission(returnObject, 'ADMINISTRATION')")
+    // TODO Secure
     fun existsById(id: ID): Boolean
 
-    @PostAuthorize("hasPermission(returnObject, 'READ') || hasPermission(returnObject, 'ADMINISTRATION')")
+    @PostAuthorize("hasPermission(returnObject, 'READ')")
     fun findById(id: ID): T?
 
-    @PreAuthorize("hasPermission(returnObject, 'DELETE') || hasPermission(returnObject, 'ADMINISTRATION')")
+    @PreAuthorize("hasPermission(#entity, 'DELETE')")
     fun delete(entity: T)
 
-    @PostFilter("hasPermission(filterObject, 'READ') || hasPermission(filterObject, 'ADMINISTRATION')")
-    fun findAll(sort: Sort): MutableIterable<T>
+    @PostFilter("hasPermission(filterObject, 'READ')")
+    fun findAll(sort: Sort): List<T>
 
-    @PostFilter("hasPermission(filterObject, 'READ') || hasPermission(filterObject, 'ADMINISTRATION')")
-    fun <S : T> findAll(example: Example<S>): MutableIterable<S>
+    @PostFilter("hasPermission(filterObject, 'READ')")
+    fun <S : T> findAll(example: Example<S>): List<S>
 
-    @PostFilter("hasPermission(filterObject, 'READ') || hasPermission(filterObject, 'ADMINISTRATION')")
-    fun <S : T> findAll(example: Example<S>, sort: Sort): MutableIterable<S>
+    @PostFilter("hasPermission(filterObject, 'READ')")
+    fun <S : T> findAll(example: Example<S>, sort: Sort): List<S>
 
     // TODO Secure
     fun <S : T> count(example: Example<S>): Long
 
-    @PostAuthorize("hasPermission(returnObject, 'READ') || hasPermission(returnObject, 'ADMINISTRATION')")
+    @PostAuthorize("hasPermission(returnObject, 'READ')")
     fun <S : T> findOne(example: Example<S>): S?
 
     // TODO Secure

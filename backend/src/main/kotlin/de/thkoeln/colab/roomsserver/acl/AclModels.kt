@@ -6,6 +6,8 @@ import javax.persistence.*
 
 @Entity
 data class AclSid(
+
+        @Column(unique = true)
         val principal: String,
 
         private val id: Long = 0,
@@ -16,7 +18,10 @@ data class AclSid(
 
 @Entity
 data class AclClass(
+
+        @Column(unique = true)
         val className: String,
+
         private val id: Long = 0,
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "objectClass")
@@ -27,6 +32,7 @@ data class AclClass(
 ) : AbstractEntity(id)
 
 @Entity
+//@Table(uniqueConstraints = [UniqueConstraint(columnNames = ["objectId", "objectClass"])])
 data class AclObjectIdentity(
 
         val objectId: Long,
@@ -41,6 +47,7 @@ data class AclObjectIdentity(
 ) : AbstractEntity(id)
 
 @Entity
+//@Table(uniqueConstraints = [UniqueConstraint(columnNames = ["targetClass", "action", "role"])])
 data class AclPermission(
 
         @ManyToOne
@@ -58,6 +65,7 @@ data class AclPermission(
 @Entity
 data class AclRole(
 
+        @Column(unique = true)
         val name: String,
 
         private val id: Long = 0,
@@ -70,6 +78,7 @@ data class AclRole(
 ) : AbstractEntity(id)
 
 @Entity
+//@Table(uniqueConstraints = [UniqueConstraint(columnNames = ["sid", "role", "scope"])])
 data class AclRoleAllocation(
 
         @ManyToOne

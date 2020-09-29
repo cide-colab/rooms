@@ -1,4 +1,4 @@
-package de.thkoeln.colab.roomsserver.controllers
+package de.thkoeln.colab.roomsserver.controllers.old
 
 import de.thkoeln.colab.roomsserver.models.User
 import de.thkoeln.colab.roomsserver.repositories.UserRepo
@@ -22,15 +22,6 @@ data class Session(
         val userId: Long?
 //        val acl: List<ACLEntry>
 )
-
-//@JsonPropertyOrder("content", "links")
-//class FixedCollectionModel<T>(
-//        @JsonProperty("_embedded")
-//        @JsonInclude(JsonInclude.Include.ALWAYS)
-//        @JsonSerialize(using = HalResourcesSerializer::class)
-//        @JsonDeserialize(using = HalResourcesDeserializer::class)
-//        var content: Collection<T>
-//) : CollectionModel<T>()
 
 
 // https://stackoverflow.com/questions/25980759/spring-data-rest-custom-query-integration

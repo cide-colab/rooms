@@ -2,28 +2,20 @@ package de.thkoeln.colab.roomsserver.repositories
 
 import de.thkoeln.colab.roomsserver.models.User
 import org.springframework.data.jpa.repository.Query
-import org.springframework.data.repository.Repository
 import org.springframework.data.rest.core.annotation.RestResource
-import org.springframework.security.access.prepost.PostFilter
+import org.springframework.security.access.prepost.PostAuthorize
 import java.util.*
 
 
-interface UserRepo : Repository<User, UUID> {
-
-    @PostFilter("hasPermission(filterObject, 'read')")
-    fun findAll(): List<User>
+interface UserRepo : SecuredPagingAndSortingRepository<User, UUID> {
 
     @Query("select u from User u")
     @RestResource(exported = false)
     fun unsaveFindAll(): List<User>
 
-    //    @PreAuthorize("@authManager.hasUserAnyRoleOfType('ADMIN')")
-    fun findById(id: UUID): User?
-
-    //    @PreAuthorize("@authManager.hasUserPrincipal(#principal)")
+    @PostAuthorize("hasPermission(returnObject, 'READ')")
     fun findByPrincipal(principal: String): User?
 
-    fun save(user: User): User?
-
+    // TODO secure
     fun existsByPrincipal(principal: String): Boolean
 }

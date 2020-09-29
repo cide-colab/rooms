@@ -22,30 +22,28 @@ class AclInitializer {
     @Bean
     fun initializer(): ApplicationRunner = ApplicationRunner {
 
-        val applicationClass = aclService.createClassIfNotExistsFor(Application::class)
-        val userClass = aclService.createClassIfNotExistsFor(User::class)
-        val roomClass = aclService.createClassIfNotExistsFor(Room::class)
-        val departmentClass = aclService.createClassIfNotExistsFor(Department::class)
-        val aboClass = aclService.createClassIfNotExistsFor(Abo::class)
-        val reservationClass = aclService.createClassIfNotExistsFor(Reservation::class)
-        val itemClass = aclService.createClassIfNotExistsFor(Item::class)
+        val applicationClass = aclService.createOrUpdateClassByTargetClass(Application::class)
+        val userClass = aclService.createOrUpdateClassByTargetClass(User::class)
+        val roomClass = aclService.createOrUpdateClassByTargetClass(Room::class)
+        val departmentClass = aclService.createOrUpdateClassByTargetClass(Department::class)
+        val aboClass = aclService.createOrUpdateClassByTargetClass(Abo::class)
+        val reservationClass = aclService.createOrUpdateClassByTargetClass(Reservation::class)
+        val itemClass = aclService.createOrUpdateClassByTargetClass(Item::class)
 
-        val applicationIdentity = aclService.createObjectIdentityFor(Application)
+        val applicationIdentity = aclService.createOrUpdateObjectIdentityByTargetObject(Application)
 
+        val adminRole = aclService.createOrUpdateRoleByName(AclRole("Admin"))
+        val guestRole = aclService.createOrUpdateRoleByName(AclRole("Guest"))
 
-        val allowAll = listOf(userClass, roomClass, departmentClass, aboClass, reservationClass, itemClass, applicationClass)
-                .flatMap { targetClass -> AclAction.values().map { action -> PermissionForm(targetClass, action) } }
+        listOf(userClass, roomClass, departmentClass, aboClass, reservationClass, itemClass, applicationClass)
+                .flatMap { targetClass -> AclAction.values().map { action -> AclPermission(targetClass, action, adminRole) } }
+                .map { aclService.createOrUpdatePermission(it) }
 
-        val admin = aclService.createSidFor(adminPrincipal)
-        val anonymous = aclService.createSidFor(ANONYMOUS_PRINCIPAL)
+        val admin = aclService.createOrUpdateSidByPrincipal(adminPrincipal)
+        val anonymous = aclService.createOrUpdateSidByPrincipal(ANONYMOUS_PRINCIPAL)
 
-        aclService.createRole(RoleForm("Admin", allowAll))?.let {  adminRole ->
-            aclService.createRoleAllocationFor(admin, adminRole, applicationIdentity)
-        }
-
-        aclService.createRole(RoleForm("Guest"))?.let { guestRole ->
-            aclService.createRoleAllocationFor(anonymous, guestRole, applicationIdentity)
-        }
+        aclService.createOrUpdateRoleAllocation(AclRoleAllocation(admin, adminRole, applicationIdentity))
+        aclService.createOrUpdateRoleAllocation(AclRoleAllocation(anonymous, guestRole, applicationIdentity))
 
     }
 
