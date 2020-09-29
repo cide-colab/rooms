@@ -36,6 +36,7 @@ interface AclPermissionRepo : Repository<AclPermission, Long> {
     fun existsByRoleAndActionAndTargetClass(role: AclRole, action: AclAction, targetClass: AclClass): Boolean
     fun findByRoleAndActionAndTargetClass(role: AclRole, action: AclAction, targetClass: AclClass): AclPermission?
     fun saveAndFlush(permission: AclPermission): AclPermission
+    fun findByRole(role: AclRole): List<AclPermission>
 }
 
 interface AclRoleRepo : Repository<AclRole, Long> {

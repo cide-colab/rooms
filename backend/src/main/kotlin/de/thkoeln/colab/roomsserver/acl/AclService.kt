@@ -82,7 +82,7 @@ class AclService(
     private fun hasPermission(principal: String, targetObjectIdentity: AclObjectIdentity, action: AclAction, targetClass: AclClass) =
             sidRepo.findByPrincipal(principal)
                     ?.let { roleAllocationRepo.findAllBySidAndScope(it, targetObjectIdentity) }
-                    ?.flatMap { it.role.permissions }
+                    ?.flatMap { permissionRepo.findByRole(it.role) }
                     ?.contains { it.action == action && it.targetClass.id == targetClass.id }
                     ?: false
 

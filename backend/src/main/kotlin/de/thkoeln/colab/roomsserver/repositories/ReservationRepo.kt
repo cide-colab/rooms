@@ -12,7 +12,7 @@ import org.springframework.data.rest.core.annotation.RestResource
 import org.springframework.security.access.prepost.PreAuthorize
 import java.time.OffsetDateTime
 
-interface ReservationRepo : SecuredPagingAndSortingRepository<Reservation, Long> {
+interface ReservationRepo : SecuredRepository<Reservation, Long> {
 
     @Query("""
         select r from Reservation r
