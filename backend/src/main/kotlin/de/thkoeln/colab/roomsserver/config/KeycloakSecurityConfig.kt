@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2020  colab  TH-Köln
+ * @author Florian Leonhard
+ * All rights reserved
+ */
+
 package de.thkoeln.colab.roomsserver.config
 
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration

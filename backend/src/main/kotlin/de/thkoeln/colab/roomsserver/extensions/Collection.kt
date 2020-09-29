@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2020  colab  TH-Köln
+ * @author Florian Leonhard
+ * All rights reserved
+ */
+
 package de.thkoeln.colab.roomsserver.extensions
 
 fun <T> Collection<T>.contains(predicate: (value: T) -> Boolean) = find(predicate) != null
