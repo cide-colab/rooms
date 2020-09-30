@@ -12,6 +12,7 @@ import org.springframework.data.repository.Repository
 
 interface AclClassRepo : InternalRepository<AclClass, Long> {
     fun findByClassName(className: String): AclClass?
+    fun findByAlias(alias: String): AclClass?
 }
 
 interface AclObjectIdentityRepo : InternalRepository<AclObjectIdentity, Long> {
@@ -24,9 +25,9 @@ interface AclSidRepo : InternalRepository<AclSid, Long> {
 }
 
 interface AclRoleAllocationRepo : InternalRepository<AclRoleAllocation, Long> {
-    fun findAllBySidAndScope(sid: AclSid, objectIdentity: AclObjectIdentity): List<AclRoleAllocation>
+    fun findAllBySidAndContext(sid: AclSid, context: AclObjectIdentity): List<AclRoleAllocation>
     fun findAllBySid(sid: AclSid): List<AclRoleAllocation>
-    fun findByScopeAndSidAndRole(scope: AclObjectIdentity?, sid: AclSid, role: AclRole): AclRoleAllocation?
+    fun findByContextAndSidAndRole(context: AclObjectIdentity, sid: AclSid, role: AclRole): AclRoleAllocation?
 
 }
 

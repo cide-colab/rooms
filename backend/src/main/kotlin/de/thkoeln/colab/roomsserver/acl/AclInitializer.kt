@@ -26,12 +26,12 @@ class AclInitializer {
     @Bean
     fun initializer(): ApplicationRunner = ApplicationRunner {
 
-        val applicationClass = aclService.createOrUpdateClassByTargetClass(Application::class)
-        val userClass = aclService.createOrUpdateClassByTargetClass(User::class)
-        val roomClass = aclService.createOrUpdateClassByTargetClass(Room::class)
-        val departmentClass = aclService.createOrUpdateClassByTargetClass(Department::class)
-        val aboClass = aclService.createOrUpdateClassByTargetClass(Abo::class)
-        val reservationClass = aclService.createOrUpdateClassByTargetClass(Reservation::class)
+        val applicationClass = aclService.createOrUpdateClassByTargetClass(AclClass(Application::class.java.name, "application", "Application"))
+        val userClass = aclService.createOrUpdateClassByTargetClass(AclClass(User::class.java.name, "user", "User"))
+        val roomClass = aclService.createOrUpdateClassByTargetClass(AclClass(Room::class.java.name, "room", "Room"))
+        val departmentClass = aclService.createOrUpdateClassByTargetClass(AclClass(Department::class.java.name, "department", "Department"))
+        val aboClass = aclService.createOrUpdateClassByTargetClass(AclClass(Abo::class.java.name, "abo", "Abo"))
+        val reservationClass = aclService.createOrUpdateClassByTargetClass(AclClass(Reservation::class.java.name, "reservation", "Reservation"))
 
         val applicationIdentity = aclService.createOrUpdateObjectIdentityByTargetObject(Application)
 

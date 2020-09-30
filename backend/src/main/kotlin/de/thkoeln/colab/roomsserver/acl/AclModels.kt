@@ -30,6 +30,10 @@ data class AclClass(
         @Column(unique = true)
         val className: String,
 
+        val alias: String,
+
+        val prettyName: String,
+
         @Id
         @Column(name = "id", nullable = false)
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,12 +55,15 @@ data class AclObjectIdentity(
         @ManyToOne
         val objectClass: AclClass,
 
+        @ManyToOne
+        val parent: AclObjectIdentity?,
+
         @Id
         @Column(name = "id", nullable = false)
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         override var id: Long = 0,
 
-        @OneToMany(cascade = [CascadeType.ALL], mappedBy = "scope")
+        @OneToMany(cascade = [CascadeType.ALL], mappedBy = "context")
         val allocations: List<AclRoleAllocation> = listOf()
 ) : AbstractEntity()
 
@@ -108,7 +115,7 @@ data class AclRoleAllocation(
         val role: AclRole,
 
         @ManyToOne
-        val scope: AclObjectIdentity?,
+        val context: AclObjectIdentity,
 
         @Id
         @Column(name = "id", nullable = false)
@@ -126,3 +133,22 @@ enum class AclAction {
 object Application
 
 const val ANONYMOUS_PRINCIPAL = "anonymous"
+
+data class ContextForm (
+        val classAlias: String,
+        val id: Long
+)
+
+data class PermissionCheckForm (
+        val target: String,
+        val context: ContextForm,
+        val action: AclAction
+)
+
+
+data class PermissionEntry(
+        val target: String,
+        val contextId: Long?,
+        val context: String?,
+        val action: AclAction
+)

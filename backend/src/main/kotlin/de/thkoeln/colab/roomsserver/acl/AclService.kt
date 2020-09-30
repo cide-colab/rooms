@@ -8,9 +8,7 @@ package de.thkoeln.colab.roomsserver.acl
 
 import de.thkoeln.colab.roomsserver.extensions.contains
 import org.springframework.stereotype.Service
-import org.springframework.transaction.event.TransactionalEventListener
 import javax.transaction.Transactional
-import kotlin.reflect.KClass
 
 @Service
 class AclService(
@@ -30,9 +28,9 @@ class AclService(
     fun createRoleAllocationFor(aclSid: AclSid, role: AclRole, scope: AclObjectIdentity) =
             roleAllocationRepo.saveAndFlush(AclRoleAllocation(aclSid, role, scope))
 
-    fun createRoleAllocationFor(principal: String, role: AclRole, scope: AclObjectIdentity) =
+    fun createRoleAllocationFor(principal: String, role: AclRole, context: AclObjectIdentity) =
             sidRepo.findByPrincipal(principal)
-                    ?.let { createRoleAllocationFor(it, role, scope) }
+                    ?.let { createRoleAllocationFor(it, role, context) }
 
 
     fun createOrUpdateObjectIdentityByTargetObject(targetObject: Any): AclObjectIdentity =
@@ -40,20 +38,21 @@ class AclService(
 
                 val targetClass = classRepo.findByClassName(targetObject::class.java.name)
                         ?: throw AclClassNotFoundException(targetObject::class.java.name)
-                createOrUpdateObjectIdentityByIdAndTargetClass(targetId, targetClass)
-            }
 
-    private fun createOrUpdateObjectIdentityByIdAndTargetClass(targetId: Long, targetClass: AclClass) =
-            objectIdRepo.saveAndFlush(objectIdRepo.findByObjectIdAndObjectClass(targetId, targetClass)
-                    ?: AclObjectIdentity(targetId, targetClass))
+                val parent = getParent(targetObject)
+                val entity = objectIdRepo.findByObjectIdAndObjectClass(targetId, targetClass)
+                        ?: AclObjectIdentity(targetId, targetClass, parent)
+
+                objectIdRepo.saveAndFlush(entity)
+            }
 
 
     private fun getClassOrThrowException(targetObject: Any) =
             classRepo.findByClassName(targetObject::class.java.name)
                     ?: throw AclClassNotFoundException(targetObject::class.java.name)
 
-    fun createOrUpdateClassByTargetClass(targetClass: KClass<*>) =
-            classRepo.saveAndFlush(classRepo.findByClassName(targetClass.java.name) ?: AclClass(targetClass.java.name))
+    fun createOrUpdateClassByTargetClass(targetClass: AclClass) =
+            classRepo.saveAndFlush(classRepo.findByClassName(targetClass.className) ?: targetClass)
 
     fun createOrUpdateSidByPrincipal(principal: String) =
             sidRepo.saveAndFlush(sidRepo.findByPrincipal(principal) ?: AclSid(principal))
@@ -64,29 +63,30 @@ class AclService(
     fun createPermissions(permissions: List<AclPermission>) = permissions.map { createPermission(it) }
     fun createPermission(permission: AclPermission) = permissionRepo.saveAndFlush(permission)
 
-    fun hasPermission(targetObject: Any, principal: String, permission: AclAction) =
-            hasPermission(targetObject, principal, permission, getClassOrThrowException(targetObject))
+    fun hasPermission(targetObject: Any, principal: String, permission: AclAction): Boolean {
+        val sid = sidRepo.findByPrincipal(principal) ?: return false
+        val targetClass = getClassOrThrowException(targetObject)
+        val context = getObjectIdentity(targetObject) ?: getParent(targetObject) ?: return false
 
-    private fun hasPermission(domainObject: Any, sid: String, permission: AclAction, targetClass: AclClass): Boolean =
-            hasSelfPermission(domainObject, sid, permission, targetClass) || lookup.getParents(domainObject)
-                    .any { parent -> hasPermission(parent, sid, permission, targetClass) }
+        return hasPermission(context, sid, permission, targetClass)
+    }
 
-    private fun hasSelfPermission(domainObject: Any, principal: String, permission: AclAction, targetClass: AclClass): Boolean =
-            getObjectIdentity(domainObject)
-                    ?.let { hasPermission(principal, it, permission, targetClass) }
-                    ?: false
-
-    private fun getObjectIdentity(domainObject: Any) =
-            lookup.getId(domainObject)
-                    .let { objectIdRepo.findByObjectIdAndObjectClass(it, getClassOrThrowException(domainObject)) }
+    private fun getParent(targetObject: Any) =
+        lookup.getParent(targetObject)?.let { parent -> getObjectIdentity(parent) }
 
 
-    private fun hasPermission(principal: String, targetObjectIdentity: AclObjectIdentity, action: AclAction, targetClass: AclClass) =
-            sidRepo.findByPrincipal(principal)
-                    ?.let { roleAllocationRepo.findAllBySidAndScope(it, targetObjectIdentity) }
-                    ?.flatMap { permissionRepo.findByRole(it.role) }
-                    ?.contains { it.action == action && it.targetClass.id == targetClass.id }
-                    ?: false
+    private fun getObjectIdentity(targetObject: Any) =
+            objectIdRepo.findByObjectIdAndObjectClass(lookup.getId(targetObject), getClassOrThrowException(targetObject))
+
+
+    private fun hasPermission(context: AclObjectIdentity, sid: AclSid, permission: AclAction, targetClass: AclClass): Boolean =
+            hasSelfPermission(context, sid, permission, targetClass) ||
+                    context.parent?.let { parent -> hasPermission(parent, sid, permission, targetClass) } ?: false
+
+    private fun hasSelfPermission(context: AclObjectIdentity, sid: AclSid, action: AclAction, targetClass: AclClass): Boolean =
+            roleAllocationRepo.findAllBySidAndContext(sid, context)
+                    .flatMap { permissionRepo.findByRole(it.role) }
+                    .contains { it.action == action && it.targetClass.id == targetClass.id }
 
     fun createOrUpdateRoleByName(role: AclRole) = with(roleRepo) {
         val existing = findByName(role.name)
@@ -99,7 +99,7 @@ class AclService(
     }
 
     fun createOrUpdateRoleAllocation(allocation: AclRoleAllocation) = with(roleAllocationRepo) {
-        val existing = findByScopeAndSidAndRole(allocation.scope, allocation.sid, allocation.role)
+        val existing = findByContextAndSidAndRole(allocation.context, allocation.sid, allocation.role)
         saveAndFlush(existing ?: allocation)
     }
 
@@ -108,4 +108,38 @@ class AclService(
         objectIdRepo.deleteByObjectIdAndObjectClass(lookup.getId(entity), getClassOrThrowException(entity))
     }
 
+    fun hasPermission(form: PermissionCheckForm, principal: String): Boolean {
+        val sid = sidRepo.findByPrincipal(principal) ?: return false
+        val targetClass = getClassByAliasOrThrowException(form.target)
+        val contextClass = getClassByAliasOrThrowException(form.context.classAlias)
+        val context = objectIdRepo.findByObjectIdAndObjectClass(form.context.id, contextClass) ?: return false
+        return hasPermission(context, sid, form.action, targetClass)
+    }
+
+    private fun getClassByAliasOrThrowException(alias: String): AclClass =
+        classRepo.findByAlias(alias) ?: throw AclClassNotFoundException(alias)
+
+    fun createAcl(contextForm: ContextForm, principal: String): List<PermissionEntry> {
+        val sid = sidRepo.findByPrincipal(principal) ?: return listOf()
+        val contextClass = getClassByAliasOrThrowException(contextForm.classAlias)
+        val context = objectIdRepo.findByObjectIdAndObjectClass(contextForm.id, contextClass) ?: return listOf()
+        return getContextPermissions(sid, context)
+    }
+
+    private fun getContextPermissions(sid: AclSid, context: AclObjectIdentity): List<PermissionEntry> {
+        val contextEntries = roleAllocationRepo.findAllBySidAndContext(sid, context).flatMap { allocation ->
+            permissionRepo.findByRole(allocation.role).map { permission ->
+                PermissionEntry(
+                        target = permission.targetClass.alias,
+                        context = allocation.context.objectClass.alias,
+                        contextId = allocation.context.objectId,
+                        action = permission.action
+                )
+            }
+        }
+        val parentEntries = (context.parent?.let { getContextPermissions(sid, it) } ?: listOf())
+
+        val allEntries = contextEntries + parentEntries
+        return allEntries.distinct()
+    }
 }

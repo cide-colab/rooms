@@ -13,11 +13,11 @@ import org.springframework.stereotype.Service
 
 @Service
 class AclLookupStrategy {
-    fun getParents(targetObject: Any): List<Any> = when (targetObject) {
+    fun getParent(targetObject: Any): Any? = when (targetObject) {
         is Abo -> targetObject.rooms
-        is Room -> listOf(targetObject.department)
-        is Application -> listOf() // Termination condition
-        else -> listOf<Any>(Application) // Application is the parent of everything except Application
+        is Room -> targetObject.department
+        is Application -> null // Termination condition
+        else -> Application // Application is the parent of everything except Application
     }
 
     fun getId(targetObject: Any): Long = when (targetObject) {
