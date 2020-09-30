@@ -37,11 +37,8 @@ class UserCreationFilter: Filter {
                 ?.keycloakSecurityContext
                 ?.token
                 ?.takeIf { !userRepo.existsByPrincipal(principal) }
-                ?.let { userRepo.unsecuredSave(User(it.preferredUsername, it.givenName ?: "", it.familyName ?: "", it.email ?: "")) }
-//                ?.let { userRepo.unsecuredSave(User(it.preferredUsername, it.givenName ?: "", it.familyName ?: "", it.email ?: "")) }
-//                ?.let { User(it.preferredUsername, it.givenName ?: "", it.familyName ?: "", it.email ?: "") }
-//                ?.also { logger.debug("Added user ${it.principal}") }
-
+                ?.let { User(it.preferredUsername, it.givenName ?: "", it.familyName ?: "", it.email ?: "") }
+                ?.let { userRepo.unsecuredSave(it) }
         chain?.doFilter(request, response)
     }
 
