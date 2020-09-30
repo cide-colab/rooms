@@ -53,8 +53,11 @@ class Abo(
         @ManyToOne
         val user: User,
 
-        private val id: Long = 0,
+        @Id
+        @Column(name = "id", nullable = false)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        override var id: Long = 0,
 
         @OneToMany(mappedBy = "abo", cascade = [CascadeType.ALL])
         val reservations: List<Reservation> = listOf()
-) : AbstractEntity(id), BaseAbo
+) : AbstractEntity(), BaseAbo

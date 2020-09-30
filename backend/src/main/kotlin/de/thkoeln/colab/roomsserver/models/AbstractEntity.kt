@@ -17,27 +17,17 @@ import javax.persistence.*
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener::class)
-abstract class AbstractEntity(
-        @Id
-        @Column(name = "id", nullable = false)
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private var id: Long
-) : Persistable<Long> {
+abstract class AbstractEntity {
+
+    abstract var id: Long
 
     @Version
-    var version: Long = 0
-
-    @Transient
-    override fun getId(): Long = id
-
-    fun setId(id: Long) {
-        this.id = id
-    }
+    var version: Long = 1
 
     @Transient
     private var isNew = true
 
-    override fun isNew() = isNew
+    fun isNew() = isNew
 
     @PrePersist
     @PostLoad
@@ -45,13 +35,15 @@ abstract class AbstractEntity(
         isNew = false
     }
 
-    @CreatedBy
-    @ManyToOne
-    var createdBy: User? = null
+// TODO implement PROBLEM: Stack overflow in line 28 when making put request
+//    @CreatedBy
+//    @ManyToOne
+//    var createdBy: User? = null
 
-    @LastModifiedBy
-    @ManyToOne
-    var lastModifiedBy: User? = null
+// TODO implement PROBLEM: Stack overflow in line 28 when making put request
+//    @LastModifiedBy
+//    @ManyToOne
+//    var lastModifiedBy: User? = null
 
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate

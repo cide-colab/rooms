@@ -32,11 +32,14 @@ class Room(
 
         override val imageUrl: String? = null,
 
-        private val id: Long = 0,
+        @Id
+        @Column(name = "id", nullable = false)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        override var id: Long = 0,
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "room", orphanRemoval = true)
         val reservations: List<Reservation> = listOf(),
 
         @ManyToMany(mappedBy = "rooms")
         val abos: List<Abo> = listOf()
-) : AbstractEntity(id), BaseRoom
+) : AbstractEntity(), BaseRoom

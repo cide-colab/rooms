@@ -29,5 +29,8 @@ class Department(
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "department", orphanRemoval = true)
         val rooms: List<Room> = listOf(),
 
-        private val id: Long = 0
-) : AbstractEntity(id), BaseDepartment
+        @Id
+        @Column(name = "id", nullable = false)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        override var id: Long = 0
+) : AbstractEntity(), BaseDepartment

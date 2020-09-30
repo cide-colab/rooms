@@ -6,10 +6,7 @@
 
 package de.thkoeln.colab.roomsserver.models
 
-import javax.persistence.CascadeType
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.OneToMany
+import javax.persistence.*
 
 interface BaseUser {
     val principal: String
@@ -33,11 +30,14 @@ class User(
 
         override val imageUrl: String? = null,
 
-        private val id: Long = 0,
+        @Id
+        @Column(name = "id", nullable = false)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        override var id: Long = 0,
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "user", orphanRemoval = true)
         val abos: List<Abo> = listOf(),
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "user", orphanRemoval = true)
         val reservations: List<Reservation> = listOf()
-) : AbstractEntity(id), BaseUser
+) : AbstractEntity(), BaseUser

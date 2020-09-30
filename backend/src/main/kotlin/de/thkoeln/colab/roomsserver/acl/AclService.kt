@@ -8,6 +8,8 @@ package de.thkoeln.colab.roomsserver.acl
 
 import de.thkoeln.colab.roomsserver.extensions.contains
 import org.springframework.stereotype.Service
+import org.springframework.transaction.event.TransactionalEventListener
+import javax.transaction.Transactional
 import kotlin.reflect.KClass
 
 @Service
@@ -99,6 +101,11 @@ class AclService(
     fun createOrUpdateRoleAllocation(allocation: AclRoleAllocation) = with(roleAllocationRepo) {
         val existing = findByScopeAndSidAndRole(allocation.scope, allocation.sid, allocation.role)
         saveAndFlush(existing ?: allocation)
+    }
+
+    @Transactional
+    fun deleteObjectIdentityByTargetObject(entity: Any) {
+        objectIdRepo.deleteByObjectIdAndObjectClass(lookup.getId(entity), getClassOrThrowException(entity))
     }
 
 }

@@ -15,11 +15,14 @@ data class AclSid(
         @Column(unique = true)
         val principal: String,
 
-        private val id: Long = 0,
+        @Id
+        @Column(name = "id", nullable = false)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        override var id: Long = 0,
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "sid")
         val roleAllocations: List<AclRoleAllocation> = listOf()
-) : AbstractEntity(id)
+) : AbstractEntity()
 
 @Entity
 data class AclClass(
@@ -27,14 +30,17 @@ data class AclClass(
         @Column(unique = true)
         val className: String,
 
-        private val id: Long = 0,
+        @Id
+        @Column(name = "id", nullable = false)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        override var id: Long = 0,
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "objectClass")
         val identities: List<AclObjectIdentity> = listOf(),
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "targetClass")
         val permissions: List<AclPermission> = listOf()
-) : AbstractEntity(id)
+) : AbstractEntity()
 
 @Entity
 //@Table(uniqueConstraints = [UniqueConstraint(columnNames = ["objectId", "objectClass"])])
@@ -45,11 +51,14 @@ data class AclObjectIdentity(
         @ManyToOne
         val objectClass: AclClass,
 
-        private val id: Long = 0,
+        @Id
+        @Column(name = "id", nullable = false)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        override var id: Long = 0,
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "scope")
         val allocations: List<AclRoleAllocation> = listOf()
-) : AbstractEntity(id)
+) : AbstractEntity()
 
 @Entity
 //@Table(uniqueConstraints = [UniqueConstraint(columnNames = ["targetClass", "action", "role"])])
@@ -64,8 +73,11 @@ data class AclPermission(
         @ManyToOne
         val role: AclRole,
 
-        private val id: Long = 0
-) : AbstractEntity(id)
+        @Id
+        @Column(name = "id", nullable = false)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        override var id: Long = 0
+) : AbstractEntity()
 
 @Entity
 data class AclRole(
@@ -73,14 +85,17 @@ data class AclRole(
         @Column(unique = true)
         val name: String,
 
-        private val id: Long = 0,
+        @Id
+        @Column(name = "id", nullable = false)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        override var id: Long = 0,
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "role")
         val permissions: List<AclPermission> = listOf(),
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "role")
         val allocations: List<AclRoleAllocation> = listOf()
-) : AbstractEntity(id)
+) : AbstractEntity()
 
 @Entity
 //@Table(uniqueConstraints = [UniqueConstraint(columnNames = ["sid", "role", "scope"])])
@@ -95,8 +110,11 @@ data class AclRoleAllocation(
         @ManyToOne
         val scope: AclObjectIdentity?,
 
-        private val id: Long = 0
-) : AbstractEntity(id)
+        @Id
+        @Column(name = "id", nullable = false)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        override var id: Long = 0
+) : AbstractEntity()
 
 enum class AclAction {
     CREATE,

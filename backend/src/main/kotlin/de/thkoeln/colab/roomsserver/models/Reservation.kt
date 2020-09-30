@@ -9,10 +9,7 @@ package de.thkoeln.colab.roomsserver.models
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.OffsetDateTime
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Lob
-import javax.persistence.ManyToOne
+import javax.persistence.*
 
 interface BaseReservation {
     val title: String
@@ -46,5 +43,8 @@ class Reservation(
         @ManyToOne
         val abo: Abo,
 
-        private val id: Long = 0
-) : AbstractEntity(id), BaseReservation
+        @Id
+        @Column(name = "id", nullable = false)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        override var id: Long = 0
+) : AbstractEntity(), BaseReservation

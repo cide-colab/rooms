@@ -41,9 +41,11 @@ interface KRepository<T, ID>: Repository<T, ID> {
 @NoRepositoryBean
 interface SecuredRepository<T, ID> : KRepository<T, ID> {
 
+    // TODO try to check for UPDATE if update is performed
     @PreAuthorize("hasPermission(#entity, 'CREATE')")
     override fun <S : T> save(entity: S): S
 
+    // TODO try to check for UPDATE if update is performed
     @PreAuthorize("hasPermission(#entity, 'CREATE')")
     override fun <S : T> saveAndFlush(entity: S): S
 
@@ -81,5 +83,52 @@ interface SecuredRepository<T, ID> : KRepository<T, ID> {
     override fun <S : T> findOne(example: Example<S>): S?
 
     // TODO Secure
+    override fun <S : T> exists(example: Example<S>): Boolean
+}
+
+
+@NoRepositoryBean
+interface InternalRepository<T, ID> : KRepository<T, ID> {
+
+    @RestResource(exported = false)
+    override fun <S : T> save(entity: S): S
+
+    @RestResource(exported = false)
+    override fun <S : T> saveAndFlush(entity: S): S
+
+    @RestResource(exported = false)
+    override fun findAll(): List<T>
+
+    @RestResource(exported = false)
+    override fun count(): Long
+
+    @RestResource(exported = false)
+    override fun findAllByIdIn(ids: Iterable<ID>): List<T>
+
+    @RestResource(exported = false)
+    override fun existsById(id: ID): Boolean
+
+    @RestResource(exported = false)
+    override fun findById(id: ID): T?
+
+    @RestResource(exported = false)
+    override fun delete(entity: T)
+
+    @RestResource(exported = false)
+    override fun findAll(sort: Sort): List<T>
+
+    @RestResource(exported = false)
+    override fun <S : T> findAll(example: Example<S>): List<S>
+
+    @RestResource(exported = false)
+    override fun <S : T> findAll(example: Example<S>, sort: Sort): List<S>
+
+    @RestResource(exported = false)
+    override fun <S : T> count(example: Example<S>): Long
+
+    @RestResource(exported = false)
+    override fun <S : T> findOne(example: Example<S>): S?
+
+    @RestResource(exported = false)
     override fun <S : T> exists(example: Example<S>): Boolean
 }
