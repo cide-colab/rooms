@@ -25,10 +25,7 @@ abstract class AbstractEntity(
 ) : Persistable<Long> {
 
     @Version
-    var version: Long? = null
-
-    val persisted: Boolean
-        get() = version != null
+    var version: Long = 0
 
     @Transient
     override fun getId(): Long = id
@@ -50,19 +47,19 @@ abstract class AbstractEntity(
 
     @CreatedBy
     @ManyToOne
-    protected var createdBy: User? = null
+    var createdBy: User? = null
 
     @LastModifiedBy
     @ManyToOne
-    protected var lastModifiedBy: User? = null
+    var lastModifiedBy: User? = null
 
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
-    protected var lastModifiedDate: Date? = null
+    var lastModifiedDate: Date = Date()
 
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
-    protected var createdDate: Date? = null
+    var createdDate: Date = Date()
 
     override fun hashCode(): Int = id.hashCode()
 
