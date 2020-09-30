@@ -23,7 +23,7 @@ interface BaseReservation {
 
 @Entity
 @JsonIgnoreProperties(value = ["contingent_allocations"], allowGetters = false, allowSetters = true)
-data class Reservation(
+class Reservation(
 
         override val title: String,
 

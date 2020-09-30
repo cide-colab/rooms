@@ -31,11 +31,14 @@ class UserCreationFilter: Filter {
     override fun doFilter(request: ServletRequest?, response: ServletResponse?, chain: FilterChain?) {
         val principal = SecurityContextHolder.getContext().authentication.principal.toString()
 
+        // TODO Create roles when user inserted
+
         (SecurityContextHolder.getContext().authentication?.principal as? KeycloakPrincipal<*>)
                 ?.keycloakSecurityContext
                 ?.token
                 ?.takeIf { !userRepo.existsByPrincipal(principal) }
-                ?.let { userRepo.unsafeSave(it.preferredUsername, it.givenName ?: "", it.familyName ?: "", it.email ?: "", "") }
+                ?.let { userRepo.unsecuredSave(User(it.preferredUsername, it.givenName ?: "", it.familyName ?: "", it.email ?: "")) }
+//                ?.let { userRepo.unsecuredSave(User(it.preferredUsername, it.givenName ?: "", it.familyName ?: "", it.email ?: "")) }
 //                ?.let { User(it.preferredUsername, it.givenName ?: "", it.familyName ?: "", it.email ?: "") }
 //                ?.also { logger.debug("Added user ${it.principal}") }
 

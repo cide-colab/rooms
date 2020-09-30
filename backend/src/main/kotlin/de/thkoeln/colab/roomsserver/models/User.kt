@@ -20,7 +20,7 @@ interface BaseUser {
 }
 
 @Entity
-data class User(
+class User(
 
         @Column(unique = true, columnDefinition = "LONGBLOB")
         override val principal: String,

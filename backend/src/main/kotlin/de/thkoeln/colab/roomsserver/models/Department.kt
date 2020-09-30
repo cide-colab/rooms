@@ -15,7 +15,7 @@ interface BaseDepartment {
 }
 
 @Entity
-data class Department(
+class Department(
 
         @Column(unique = true)
         override val name: String,

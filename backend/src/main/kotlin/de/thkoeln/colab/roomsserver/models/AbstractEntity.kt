@@ -25,7 +25,7 @@ abstract class AbstractEntity(
 ) : Persistable<Long> {
 
     @Version
-    val version: Long? = null
+    var version: Long? = null
 
     val persisted: Boolean
         get() = version != null
@@ -50,7 +50,7 @@ abstract class AbstractEntity(
 
     @CreatedBy
     @ManyToOne
-    private val createdBy: User? = null
+    protected var createdBy: User? = null
 
     @LastModifiedBy
     @ManyToOne

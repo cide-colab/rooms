@@ -24,7 +24,7 @@ class EntityAuditorAware(private val userRepository: UserRepo) : AuditorAware<Us
             ?.takeIf(Authentication::isAuthenticated)
             ?.let(Authentication::getPrincipal)
             ?.toString()
-            ?.let(userRepository::findByPrincipal)
+            ?.let(userRepository::unsecuredFindByPrincipal)
             .let { Optional.ofNullable(it) }
 }
 

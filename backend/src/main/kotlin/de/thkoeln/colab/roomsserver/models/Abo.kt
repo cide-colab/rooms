@@ -7,6 +7,8 @@
 package de.thkoeln.colab.roomsserver.models
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import org.springframework.data.annotation.CreatedBy
+import org.springframework.data.annotation.LastModifiedBy
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.OffsetDateTime
 import javax.persistence.*
@@ -23,7 +25,7 @@ interface BaseAbo {
 
 @Entity
 @JsonIgnoreProperties(value = ["contingent_allocations"], allowGetters = false, allowSetters = true)
-data class Abo(
+class Abo(
 
         @DateTimeFormat(pattern = "EEE MMM dd yyyy HH:mm:ss z XX")
         override val start: OffsetDateTime,

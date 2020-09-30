@@ -14,9 +14,10 @@ import org.springframework.data.rest.core.annotation.RestResource
 import org.springframework.security.access.prepost.PostAuthorize
 import org.springframework.security.access.prepost.PostFilter
 import org.springframework.security.access.prepost.PreAuthorize
+import kotlin.math.exp
 
 @NoRepositoryBean
-interface KPagingAndSortingRepository<T, ID>: Repository<T, ID> {
+interface KRepository<T, ID>: Repository<T, ID> {
     fun <S : T> save(entity: S): S
     fun <S : T> saveAndFlush(entity: S): S
     fun findAll(): List<T>
@@ -38,7 +39,7 @@ interface KPagingAndSortingRepository<T, ID>: Repository<T, ID> {
 }
 
 @NoRepositoryBean
-interface SecuredRepository<T, ID> : KPagingAndSortingRepository<T, ID> {
+interface SecuredRepository<T, ID> : KRepository<T, ID> {
 
     @PreAuthorize("hasPermission(#entity, 'CREATE')")
     override fun <S : T> save(entity: S): S

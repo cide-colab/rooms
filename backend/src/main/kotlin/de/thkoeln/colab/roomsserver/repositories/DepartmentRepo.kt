@@ -10,7 +10,7 @@ import de.thkoeln.colab.roomsserver.models.Department
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.rest.core.annotation.RestResource
 
-interface DepartmentRepo : SecuredRepository<Department, Long> {
+interface DepartmentRepo : SecuredRepository<Department, Long>{
 
     @Query("select d from Department d")
     @RestResource(exported = false)

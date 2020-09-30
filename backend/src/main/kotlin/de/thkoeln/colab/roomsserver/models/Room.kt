@@ -16,7 +16,7 @@ interface BaseRoom {
 }
 
 @Entity
-data class Room(
+class Room(
 
         @Column(unique = true)
         override val number: String,
