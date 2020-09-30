@@ -47,11 +47,7 @@ interface UserRepo : SecuredRepository<User, Long>  {
             given_name, 
             family_name, 
             email, 
-            image_url, 
-            created_date, 
-            created_by_id, 
-            last_modified_date,
-            last_modified_by_id,
+            image_url,
             version
         ) 
         VALUES (
@@ -60,10 +56,6 @@ interface UserRepo : SecuredRepository<User, Long>  {
             :#{#user.familyName}, 
             :#{#user.email}, 
             :#{#user.imageUrl}, 
-            :#{#user.createdDate}, 
-            :#{#user.createdBy?.id}, 
-            :#{#user.lastModifiedDate}, 
-            :#{#user.lastModifiedBy?.id},
             :#{#user.version}
         )
     """, nativeQuery = true)

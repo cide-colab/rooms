@@ -45,13 +45,15 @@ abstract class AbstractEntity {
 //    @ManyToOne
 //    var lastModifiedBy: User? = null
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedDate
-    var lastModifiedDate: Date = Date()
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    var createdDate: Date = Date()
+// TODO implement PROBLEM: Is not updated
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @LastModifiedDate
+//    var lastModifiedDate: Date = Date()
+//
+// TODO implement PROBLEM: Is not updated
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @CreatedDate
+//    var createdDate: Date = Date()
 
     override fun hashCode(): Int = id.hashCode()
 

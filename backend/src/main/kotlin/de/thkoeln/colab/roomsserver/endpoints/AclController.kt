@@ -15,5 +15,4 @@ import org.springframework.web.bind.annotation.RequestMapping
 @RequestMapping("permissions")
 class AclController @Autowired constructor(private val aclService: AclService) {
 
-
 }
