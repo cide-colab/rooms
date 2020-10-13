@@ -20,6 +20,7 @@ import {ReservationDetailPage} from './pages/detail/reservation-detail/reservati
 import {EditReservationPage} from './pages/detail/edit-reservation/edit-reservation.page';
 import {MyAboListPageComponent} from './pages/user/my-abos/my-abo-list-page.component';
 import {MyReservationListPageComponent} from './pages/user/my-reservations/my-reservation-list-page.component';
+import {MainComponent} from './components/pages/main/main.component';
 /*
 
     data: {
@@ -36,9 +37,13 @@ import {MyReservationListPageComponent} from './pages/user/my-reservations/my-re
  */
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   component: MainPage,
+  // },
   {
     path: '',
-    component: MainPage,
+    component: MainComponent
   },
   {
     path: 'departments',
