@@ -7,16 +7,12 @@
 package de.thkoeln.colab.roomsserver.models
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import de.thkoeln.colab.roomsserver.core.models.ReservationModel
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.OffsetDateTime
 import javax.persistence.*
 
-interface BaseReservation {
-    val title: String
-    val description: String?
-    val start: OffsetDateTime
-    val end: OffsetDateTime
-}
+
 
 @Entity
 @JsonIgnoreProperties(value = ["contingent_allocations"], allowGetters = false, allowSetters = true)
@@ -46,5 +42,5 @@ class Reservation(
         @Id
         @Column(name = "id", nullable = false)
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        override var id: Long = 0
-) : AbstractEntity(), BaseReservation
+        override val id: Long = 0
+) : AbstractEntity(), ReservationModel

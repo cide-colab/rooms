@@ -6,14 +6,9 @@
 
 package de.thkoeln.colab.roomsserver.models
 
+import de.thkoeln.colab.roomsserver.core.models.RoomModel
 import javax.persistence.*
 
-interface BaseRoom {
-    val number: String
-    val name: String
-    val description: String
-    val imageUrl: String?
-}
 
 @Entity
 class Room(
@@ -35,11 +30,11 @@ class Room(
         @Id
         @Column(name = "id", nullable = false)
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        override var id: Long = 0,
+        override val id: Long = 0,
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "room", orphanRemoval = true)
         val reservations: List<Reservation> = listOf(),
 
         @ManyToMany(mappedBy = "rooms")
         val abos: List<Abo> = listOf()
-) : AbstractEntity(), BaseRoom
+) : AbstractEntity(), RoomModel

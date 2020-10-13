@@ -6,15 +6,9 @@
 
 package de.thkoeln.colab.roomsserver.models
 
+import de.thkoeln.colab.roomsserver.core.models.UserModel
 import javax.persistence.*
 
-interface BaseUser {
-    val principal: String
-    val givenName: String
-    val familyName: String
-    val email: String
-    val imageUrl: String?
-}
 
 @Entity
 class User(
@@ -33,11 +27,11 @@ class User(
         @Id
         @Column(name = "id", nullable = false)
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        override var id: Long = 0,
+        override val id: Long = 0,
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "user", orphanRemoval = true)
         val abos: List<Abo> = listOf(),
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "user", orphanRemoval = true)
         val reservations: List<Reservation> = listOf()
-) : AbstractEntity(), BaseUser
+) : AbstractEntity(), UserModel

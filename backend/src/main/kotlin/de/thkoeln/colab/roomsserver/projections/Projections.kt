@@ -6,6 +6,7 @@
 
 package de.thkoeln.colab.roomsserver.projections
 
+import de.thkoeln.colab.roomsserver.core.models.*
 import de.thkoeln.colab.roomsserver.models.*
 import org.springframework.data.rest.core.config.Projection
 import java.util.*
@@ -21,7 +22,7 @@ object Projections {
 }
 
 @Projection(name = Projections.BASE, types = [Room::class])
-interface BaseRoomProjection : BaseRoom, BaseProjection
+interface BaseRoomProjection : RoomModel, BaseProjection
 
 @Projection(name = Projections.SIMPLE, types = [Room::class])
 interface SimpleRoomProjection : BaseRoomProjection {
@@ -36,7 +37,7 @@ interface DetailedRoomProjection : BaseRoomProjection {
 
 
 @Projection(name = Projections.BASE, types = [Department::class])
-interface BaseDepartmentProjection : BaseDepartment, BaseProjection
+interface BaseDepartmentProjection : DepartmentModel, BaseProjection
 
 
 @Projection(name = Projections.SIMPLE, types = [Department::class])
@@ -48,7 +49,7 @@ interface DetailedDepartmentProjection : BaseDepartmentProjection
 
 
 @Projection(name = Projections.BASE, types = [Abo::class])
-interface BaseAboProjection : BaseAbo, BaseProjection
+interface BaseAboProjection : AboModel, BaseProjection
 
 @Projection(name = Projections.SIMPLE, types = [Abo::class])
 interface SimpleAboProjection : BaseAboProjection {
@@ -94,7 +95,7 @@ interface DetailedAboProjection : BaseAboProjection {
 
 
 @Projection(name = Projections.BASE, types = [Reservation::class])
-interface BaseReservationProjection : BaseReservation, BaseProjection
+interface BaseReservationProjection : ReservationModel, BaseProjection
 
 @Projection(name = Projections.SIMPLE, types = [Reservation::class])
 interface SimpleReservationProjection : BaseReservationProjection {
@@ -111,7 +112,7 @@ interface DetailedReservationProjection : BaseReservationProjection {
 
 
 @Projection(name = Projections.BASE, types = [User::class])
-interface BaseUserProjection : BaseUser, BaseProjection
+interface BaseUserProjection : UserModel, BaseProjection
 
 @Projection(name = Projections.SIMPLE, types = [User::class])
 interface SimpleUserProjection : BaseUserProjection

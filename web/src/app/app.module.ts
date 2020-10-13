@@ -77,6 +77,7 @@ import {ReservationListComponent} from './components/reservation/reservation-lis
 import {ReservationPreviewCardComponent} from './components/reservation/reservation-preview-card/reservation-preview-card.component';
 import {DepartmentListComponent} from './components/department/department-list/department-list.component';
 import {RoomListComponent} from './components/room/room-list/room-list.component';
+import { MainComponent } from './components/main/main.component';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -135,7 +136,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReservationListComponent,
     ReservationPreviewCardComponent,
     DepartmentListComponent,
-    RoomListComponent
+    RoomListComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

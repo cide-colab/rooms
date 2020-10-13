@@ -1,0 +1,3 @@
+interface IdentityModel {
+  id: number;
+}

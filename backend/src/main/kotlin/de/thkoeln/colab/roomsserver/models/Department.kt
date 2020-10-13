@@ -6,13 +6,9 @@
 
 package de.thkoeln.colab.roomsserver.models
 
+import de.thkoeln.colab.roomsserver.core.models.DepartmentModel
 import javax.persistence.*
 
-interface BaseDepartment {
-    val name: String
-    val description: String
-    val imageUrl: String
-}
 
 @Entity
 class Department(
@@ -24,7 +20,7 @@ class Department(
         @Column(name = "description", length = 512)
         override val description: String,
 
-        override val imageUrl: String = "http://swasti.org/wp-content/plugins/awsm-team-pro/images/default-user.png",
+        override val imageUrl: String? = null,
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "department", orphanRemoval = true)
         val rooms: List<Room> = listOf(),
@@ -32,5 +28,5 @@ class Department(
         @Id
         @Column(name = "id", nullable = false)
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        override var id: Long = 0
-) : AbstractEntity(), BaseDepartment
+        override val id: Long = 0
+) : AbstractEntity(), DepartmentModel
