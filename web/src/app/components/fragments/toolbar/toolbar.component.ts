@@ -14,19 +14,32 @@ export class ToolbarComponent implements OnInit {
   constructor(
     private readonly toolbarService: ToolbarService,
     private readonly keycloakService: KeycloakService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.toolbarService.setGlobalTitle('Rooms');
-    this.keycloakService.isLoggedIn().then( loggedIn => {
+    this.keycloakService.isLoggedIn().then(loggedIn => {
       if (loggedIn) {
         this.toolbarService.removeGlobalButton('login');
-        this.toolbarService.addGlobalButton('logout', { title: 'logout', icon: 'logout', click: () => this.logout() } );
+        this.toolbarService.addGlobalButton('logout', {title: 'logout', icon: 'logout', click: () => this.logout()});
       } else {
         this.toolbarService.removeGlobalButton('logout');
-        this.toolbarService.addGlobalButton('login', { title: 'login', icon: 'exit_to_app', click: () => this.login() } );
+        this.toolbarService.addGlobalButton('login', {title: 'login', icon: 'exit_to_app', click: () => this.login()});
       }
     });
+  }
+
+  getFilterEnabled(): Observable<boolean> {
+    return this.toolbarService.getFilterEnabled();
+  }
+
+  getFilterCollapsed(): Observable<boolean> {
+    return this.toolbarService.getFilterCollapsed();
+  }
+
+  filter(value: string) {
+    return this.toolbarService.filter(value);
   }
 
   getButtons(): Observable<ToolbarButton[]> {
@@ -43,6 +56,10 @@ export class ToolbarComponent implements OnInit {
 
   logout() {
     this.keycloakService.logout().then();
+  }
+
+  toggleFilter() {
+    this.toolbarService.toggleSearch();
   }
 
 }

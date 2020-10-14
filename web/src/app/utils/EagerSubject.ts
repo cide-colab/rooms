@@ -3,7 +3,7 @@ import {Observable, Subject, Subscription} from 'rxjs';
 
 export class EagerSubject<T> extends Subject<T> {
 
-  constructor(private value: T) {
+  constructor(public value: T) {
     super();
   }
 

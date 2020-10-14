@@ -18,11 +18,43 @@ export class ToolbarService {
   private pageButtons = new Map<string, ToolbarButton>();
   private buttons = new EagerSubject<ToolbarButton[]>([]);
 
+  private filterQuery = new EagerSubject<string>('');
+  private filterCollapsed = new EagerSubject<boolean>(false);
+  private filterEnabled = new EagerSubject<boolean>(false);
+
   private pageTitle = '';
   private globalTitle = '';
   private title = new EagerSubject<string>('');
 
   constructor() {
+  }
+
+  public enableSearch(flag: boolean) {
+    this.filterEnabled.next(flag);
+  }
+
+  public collapseSearch(flag: boolean) {
+    this.filterCollapsed.next(flag);
+  }
+
+  public toggleSearch() {
+    this.filterCollapsed.next(!this.filterCollapsed.value);
+  }
+
+  public filter(query: string) {
+    this.filterQuery.next(query);
+  }
+
+  public getFilterQuery(): Observable<string> {
+    return this.filterQuery;
+  }
+
+  public getFilterCollapsed(): Observable<boolean> {
+    return this.filterCollapsed;
+  }
+
+  public getFilterEnabled(): Observable<boolean> {
+    return this.filterEnabled;
   }
 
   public setGlobalTitle(title: string) {
