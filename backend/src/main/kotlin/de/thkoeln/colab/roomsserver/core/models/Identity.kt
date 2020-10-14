@@ -6,6 +6,6 @@
 
 package de.thkoeln.colab.roomsserver.core.models
 
-interface IdentityModel {
+interface Identity {
     val id: Long
 }

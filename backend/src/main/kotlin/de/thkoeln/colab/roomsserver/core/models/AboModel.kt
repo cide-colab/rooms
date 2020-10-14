@@ -18,4 +18,4 @@ interface AboModel {
     val description: String
 }
 
-interface AboIdentity: AboModel, IdentityModel
+interface AboIdentity: AboModel, Identity

@@ -44,11 +44,11 @@ class AclInitializer {
             actions.forEach { aclService.createOrUpdatePermission(AclPermission(targetClass, it, this)) }
         }
 
-        adminRole.addPermissions(userClass, READ)
-        adminRole.addPermissions(departmentClass, CREATE, READ, UPDATE, DELETE)
-        adminRole.addPermissions(roomClass, CREATE, READ, UPDATE, DELETE)
-        adminRole.addPermissions(aboClass, CREATE, READ, UPDATE, DELETE)
-        adminRole.addPermissions(reservationClass, CREATE, READ, UPDATE, DELETE)
+        adminRole.addPermissions(userClass, READ, ADMINISTRATE)
+        adminRole.addPermissions(departmentClass, CREATE, READ, UPDATE, DELETE, ADMINISTRATE)
+        adminRole.addPermissions(roomClass, CREATE, READ, UPDATE, DELETE, ADMINISTRATE)
+        adminRole.addPermissions(aboClass, CREATE, READ, UPDATE, DELETE, ADMINISTRATE)
+        adminRole.addPermissions(reservationClass, CREATE, READ, UPDATE, DELETE, ADMINISTRATE)
 
         guestRole.addPermissions(departmentClass, READ)
         guestRole.addPermissions(roomClass, READ)

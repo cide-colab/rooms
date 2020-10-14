@@ -13,4 +13,4 @@ interface RoomModel {
     val imageUrl: String?
 }
 
-interface RoomIdentity: RoomModel, IdentityModel
+interface RoomIdentity: RoomModel, Identity

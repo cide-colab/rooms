@@ -14,4 +14,4 @@ interface UserModel {
     val imageUrl: String?
 }
 
-interface UserIdentity: UserModel, IdentityModel
+interface UserIdentity: UserModel, Identity

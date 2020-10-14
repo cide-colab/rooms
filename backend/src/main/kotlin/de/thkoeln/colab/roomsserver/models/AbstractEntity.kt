@@ -6,13 +6,13 @@
 
 package de.thkoeln.colab.roomsserver.models
 
-import de.thkoeln.colab.roomsserver.core.models.IdentityModel
+import de.thkoeln.colab.roomsserver.core.models.Identity
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import javax.persistence.*
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener::class)
-abstract class AbstractEntity: IdentityModel {
+abstract class AbstractEntity: Identity {
 
     @Version
     var version: Long = 1

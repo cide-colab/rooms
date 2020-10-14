@@ -15,4 +15,4 @@ interface ReservationModel {
     val end: OffsetDateTime
 }
 
-interface ReservationIdentity: ReservationModel, IdentityModel
+interface ReservationIdentity: ReservationModel, Identity

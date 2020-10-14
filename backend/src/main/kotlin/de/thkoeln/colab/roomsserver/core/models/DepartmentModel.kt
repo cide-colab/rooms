@@ -12,4 +12,4 @@ interface DepartmentModel {
     val imageUrl: String?
 }
 
-interface DepartmentIdentity: DepartmentModel, IdentityModel
+interface DepartmentIdentity: DepartmentModel, Identity

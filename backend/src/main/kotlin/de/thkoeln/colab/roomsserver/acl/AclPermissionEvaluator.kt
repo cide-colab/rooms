@@ -27,7 +27,7 @@ class AclPermissionEvaluator(private val aclService: AclService) : PermissionEva
 
         val principal = authentication?.principal?.toString() ?: ANONYMOUS_PRINCIPAL
         logger.debug("Checking Permission for Action: $action on: $target for: $principal")
-        return aclService.hasPermission(target, principal, action)
+        return aclService.hasPermissionForContext(target, principal, action)
     }
 
     override fun hasPermission(authentication: Authentication?, targetId: Serializable?, targetType: String?, permission: Any?): Boolean {

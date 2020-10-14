@@ -6,9 +6,14 @@
 
 package de.thkoeln.colab.roomsserver.models
 
+import com.fasterxml.jackson.annotation.JsonRootName
 import de.thkoeln.colab.roomsserver.acl.AclAction
 import de.thkoeln.colab.roomsserver.core.models.AclEntryModel
+import org.springframework.hateoas.server.core.Relation
 
+
+@JsonRootName(value = "entry")
+@Relation(collectionRelation = "entries", itemRelation = "entry")
 class AclEntry(
         override val contextId: Long,
         override val contextClass: String,

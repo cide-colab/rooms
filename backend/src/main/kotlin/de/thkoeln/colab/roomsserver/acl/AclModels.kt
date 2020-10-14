@@ -127,21 +127,22 @@ enum class AclAction {
     CREATE,
     READ,
     UPDATE,
-    DELETE
+    DELETE,
+    ADMINISTRATE
 }
 
 object Application
 
 const val ANONYMOUS_PRINCIPAL = "anonymous"
 
-data class ContextForm (
-        val classAlias: String,
-        val id: Long
+data class ContextForm(
+        val objectClass: String,
+        val objectId: Long
 )
 
-data class PermissionCheckForm (
+data class PermissionCheckForm(
         val target: String,
-        val context: ContextForm,
+        val context: ContextForm?,
         val action: AclAction
 )
 
