@@ -4,12 +4,19 @@ import {environment} from '../../../environments/environment';
 import {KeycloakService} from 'keycloak-angular';
 import {from, Observable, of} from 'rxjs';
 import {map, mergeMap, switchMap} from 'rxjs/operators';
+import {AclEntryModel} from '../../models/acl-entry.model';
 
 export enum TokenRequirement {
   NAN,
   IF_LOGGED_IN,
   REQUIRED
 }
+
+export interface RestResponse<T> {
+  value: T;
+  links: Map<string, string>;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,6 +34,12 @@ export class BackendService {
     return this.createOptions(tokenRequirement).pipe(
       switchMap(options => this.httpClient.get<T>(this.createUrl(relativeUrl), options))
     );
+  }
+
+  public getCollection<T>(relativeUrl: string, tokenRequirement: TokenRequirement = TokenRequirement.NAN): Observable<T[]> {
+    return this.get<{ _embedded: { [rel: string]: T[] }, _links: Map<string, string> }>(relativeUrl, tokenRequirement).pipe(map(v => {
+      return v._embedded.rel;
+    }));
   }
 
   public post<T, R>(relativeUrl: string, body: T, tokenRequirement: TokenRequirement = TokenRequirement.NAN): Observable<R> {

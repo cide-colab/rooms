@@ -3,8 +3,7 @@ import {BaseUser, SessionUser, UserListEntity} from '../../models/user.model';
 import {BackendService, TokenRequirement} from '../backend/backend.service';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {BaseContingent, ContingentListEntity} from '../../models/contingent.model';
-import * as moment from 'moment';
+import {UserIdentity} from '../../core/models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +11,10 @@ import * as moment from 'moment';
 export class UserService {
 
   constructor(private readonly backendService: BackendService) {
+  }
+
+  getMe(): Observable<UserIdentity> {
+    return this.backendService.get<UserIdentity>('me', TokenRequirement.IF_LOGGED_IN);
   }
 
   getBase(userId: string): Observable<BaseUser> {

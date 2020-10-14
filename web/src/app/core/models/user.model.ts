@@ -1,4 +1,6 @@
-interface UserModel {
+import {IdentityModel} from './identity.model';
+
+export interface UserModel {
   principal: string;
   givenName: string;
   familyName: string;
@@ -6,4 +8,4 @@ interface UserModel {
   imageUrl?: string;
 }
 
-interface UserIdentity extends UserModel, IdentityModel {}
+export interface UserIdentity extends UserModel, IdentityModel {}

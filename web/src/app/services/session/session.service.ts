@@ -2,8 +2,12 @@ import {Injectable} from '@angular/core';
 import {KeycloakService} from 'keycloak-angular';
 import {BackendService, TokenRequirement} from '../backend/backend.service';
 import {Session} from '../../models/session.model';
-import {from, Observable, of} from 'rxjs';
+import {from, Observable, of, Subject} from 'rxjs';
 import {map, take, tap} from 'rxjs/operators';
+import {UserIdentity} from '../../core/models/user.model';
+import {EagerSubject, ValueCache} from '../../utils/EagerSubject';
+import {compilePipeFromMetadata} from '@angular/compiler';
+
 
 @Injectable()
 export class SessionService {
@@ -15,6 +19,9 @@ export class SessionService {
   }
 
   private static SESSION_KEY = 'rooms.session';
+
+  private sessionUser = new EagerSubject<UserIdentity | undefined>(undefined);
+  private sessionUserCache = new ValueCache<UserIdentity>('rooms.session.user');
 
   private static getCachedSession(): Session {
     return JSON.parse(localStorage.getItem(SessionService.SESSION_KEY));
@@ -34,7 +41,27 @@ export class SessionService {
 
   public logout() {
     SessionService.removeCachedSession();
-    this.keycloakService.logout().then();
+    this.sessionUserCache.clear();
+    // this.keycloakService.logout().then();
+  }
+
+  public getSessionUser(forceReload: boolean = false): Observable<UserIdentity | undefined> {
+    if (forceReload || !this.sessionUserCache.hasValue()) {
+      this.fetchSessionUser();
+    }
+    return this.sessionUser;
+  }
+
+  private fetchSessionUser() {
+    this.backendService.get<UserIdentity>('me', TokenRequirement.IF_LOGGED_IN)
+      .subscribe(user => {
+        this.updateSessionUser(user);
+      });
+  }
+
+  private updateSessionUser(user: UserIdentity) {
+    this.sessionUserCache.update(user);
+    this.sessionUser.next(user);
   }
 
   public async isLoggedIn(): Promise<boolean> {
@@ -44,9 +71,10 @@ export class SessionService {
   public hasPermission(permission: string = null, id: string = null, type: string = null, force: boolean = false): Observable<boolean> {
     return this.getSession(force).pipe(
       map(session => session.acl.find(entry =>
-        (permission === null || permission === entry.permission)
-        && (type === null || type === entry.type)
-        && (id === null || id === entry.id)
+          // (permission === null || permission === entry.permission)
+          // && (type === null || type === entry.type)
+          // && (id === null || id === entry.id)
+          true
         ) !== undefined
       )
     );

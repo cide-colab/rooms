@@ -1,7 +1,7 @@
 <div class="page">
   <div class="page-head">
-    <component-toolbar *ngIf="rooms | async as rooms" [filterableComponents]="[room_list]" [searchEnabled]="true"
-                       [title]="TRANSLATION_KEYS.page.room.list.title | translate"></component-toolbar>
+<!--    <component-toolbar *ngIf="rooms | async as rooms" [filterableComponents]="[room_list]" [searchEnabled]="true"-->
+<!--                       [title]="TRANSLATION_KEYS.page.room.list.title | translate"></component-toolbar>-->
   </div>
   <div class="page-content">
     <component-room-list #room_list (itemClicked)="onItemClicked($event)" [items]="rooms | async"></component-room-list>

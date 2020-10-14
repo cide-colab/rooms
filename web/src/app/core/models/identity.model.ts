@@ -1,3 +1,3 @@
-interface IdentityModel {
+export interface IdentityModel {
   id: number;
 }

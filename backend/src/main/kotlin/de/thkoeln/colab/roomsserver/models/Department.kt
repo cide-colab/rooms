@@ -6,7 +6,7 @@
 
 package de.thkoeln.colab.roomsserver.models
 
-import de.thkoeln.colab.roomsserver.core.models.DepartmentModel
+import de.thkoeln.colab.roomsserver.core.models.DepartmentBO
 import javax.persistence.*
 
 
@@ -29,4 +29,4 @@ class Department(
         @Column(name = "id", nullable = false)
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         override val id: Long = 0
-) : AbstractEntity(), DepartmentModel
+) : AbstractEntity(), DepartmentBO

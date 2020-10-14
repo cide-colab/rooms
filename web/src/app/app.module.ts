@@ -21,7 +21,7 @@ import {DepartmentListPage} from './pages/general/department-list/department-lis
 import {CreateDepartmentPage} from './pages/detail/create-department/create-department.page';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {DepartmentFormComponent} from './components/department/department-form/department-form.component';
-import {ToolbarComponent} from './components/toolbar/toolbar.component';
+// import {ToolbarComponent} from './components/toolbar/toolbar.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -79,6 +79,12 @@ import {DepartmentListComponent} from './components/department/department-list/d
 import {RoomListComponent} from './components/room/room-list/room-list.component';
 import {MainComponent} from './components/pages/main/main.component';
 import {MatGridList, MatGridListModule} from '@angular/material/grid-list';
+import {MainMenuComponent} from './components/fragments/main-menu/main-menu.component';
+import { DepartmentsComponent } from './components/pages/departments/departments.component';
+import { RoomsComponent } from './components/pages/rooms/rooms.component';
+import {ToolbarComponent} from './components/fragments/toolbar/toolbar.component';
+import {MatIconModule} from '@angular/material/icon';
+import { IconComponent } from './components/fragments/icon/icon.component';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -138,7 +144,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReservationPreviewCardComponent,
     DepartmentListComponent,
     RoomListComponent,
-    MainComponent
+    MainComponent,
+    MainMenuComponent,
+    DepartmentsComponent,
+    RoomsComponent,
+    IconComponent
   ],
   imports: [
     BrowserModule,
@@ -175,6 +185,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatRadioModule,
     MatSliderModule,
     MatGridListModule,
+    MatIconModule,
     NgxMaterialTimepickerModule.setLocale('de-DE')
   ],
   providers: [
