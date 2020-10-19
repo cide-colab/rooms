@@ -1,4 +1,7 @@
 <mat-toolbar>
+  <button mat-icon-button (click)="openNav()">
+    <component-icon name="menu"></component-icon>
+  </button>
   <span *ngIf="getTitle() | async as title">{{title}}</span>
   <span class="fill-space"></span>
 

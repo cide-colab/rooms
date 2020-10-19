@@ -6,7 +6,13 @@ import {Session} from '../../models/session.model';
 import {Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 import {TRANSLATION_KEYS} from '../../../app.translation-tree';
-import {take} from 'rxjs/operators';
+import {map, take} from 'rxjs/operators';
+import {PermissionService} from '../../services/permission/permission.service';
+import {AclAction, AclClassAlias} from '../../models/acl-entry.model';
+import {forkJoin, from, Observable, Subject} from 'rxjs';
+import {UserIdentity} from '../../core/models/user.model';
+import {UserService} from '../../services/user/user.service';
+import {KeycloakService} from 'keycloak-angular';
 
 enum NavEvent {
   LINK,
@@ -16,14 +22,20 @@ enum NavEvent {
 
 interface NavItem {
   title: string;
-  iconClass: string;
+  icon: string;
   href: string;
+  enabled: boolean;
   event: NavEvent;
 }
 
 interface NavGroup {
   title: string;
   items: NavItem[];
+  enabled: boolean;
+}
+
+function build<T>(item: T): T {
+  return item;
 }
 
 @Component({
@@ -35,7 +47,10 @@ export class SidenavComponent implements OnInit, AfterViewInit {
 
   constructor(
     private readonly sidenavService: SidenavService,
+    private readonly permissionService: PermissionService,
+    private readonly userService: UserService,
     private readonly sessionService: SessionService,
+    private readonly keycloakService: KeycloakService,
     private readonly router: Router,
     private readonly translate: TranslateService
   ) {
@@ -43,8 +58,11 @@ export class SidenavComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatDrawer)
   public drawer: MatDrawer;
-  session: Session;
-  nav: NavGroup[];
+  // session: Session;
+  // nav: NavGroup[];
+
+  groups = new Subject<NavGroup[]>();
+  user: Observable<UserIdentity>;
 
   async ngOnInit() {
     // this.session = await this.sessionService.getSession(true).pipe(take(1)).toPromise();
@@ -54,8 +72,63 @@ export class SidenavComponent implements OnInit, AfterViewInit {
     //   await this.getUserNavGroup(this.session),
     //   await this.getOthersNavGroup(this.session)
     // ].filter(group => group && group.items.length > 0);
+    this.user = this.userService.getMe();
+    this.updateNavItems();
   }
 
+  private updateNavItems() {
+    forkJoin([
+      this.getGeneralGroup(),
+      this.getLoginGroup()
+    ]).subscribe(groups => this.groups.next(groups));
+  }
+
+  private getGeneralGroup(): Observable<NavGroup> {
+    return forkJoin([
+      this.permissionService
+        .hasPermission({target: AclClassAlias.room, action: AclAction.READ})
+        .pipe(map(enabled => build({
+          title: 'Räume',
+          icon: 'meeting_room',
+          enabled,
+          href: '/rooms',
+          event: NavEvent.LINK
+        }))),
+      this.permissionService
+        .hasPermission({target: AclClassAlias.department, action: AclAction.READ})
+        .pipe(map(enabled => build({
+          title: 'Abteilungen',
+          icon: 'home',
+          enabled,
+          href: '/departments',
+          event: NavEvent.LINK
+        })))
+    ]).pipe(map(items => build({title: 'General', items, enabled: items.filter(i => i.enabled).length > 0})));
+  }
+
+  private getLoginGroup(): Observable<NavGroup> {
+    return from(this.keycloakService.isLoggedIn()).pipe(
+      map(loggedIn => build([
+        {
+          title: 'Anmelden',
+          icon: 'exit_to_app',
+          enabled: !loggedIn,
+          href: '#',
+          event: NavEvent.LOGIN
+        },
+        {
+          title: 'Abmelden',
+          icon: 'logout',
+          enabled: loggedIn,
+          href: '#',
+          event: NavEvent.LOGOUT
+        }
+      ])),
+      map(items => build({title: 'General', items, enabled: items.filter(i => i.enabled).length > 0}))
+    );
+  }
+
+  //
   // private async getAdministrationNavGroup(session: Session): Promise<NavGroup> {
   //   const itemList = [];
   //   if (session.acl.find(entry =>
@@ -169,29 +242,29 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   //     items: itemList
   //   };
   // }
-  //
+
   ngAfterViewInit(): void {
-  //   this.sidenavService.setDrawer(this.drawer);
+    this.sidenavService.setDrawer(this.drawer);
   }
-  //
-  // closeSidenav() {
-  //   this.drawer.close();
-  // }
-  //
-  // onNavItemClicked(item: NavItem) {
-  //   switch (item.event) {
-  //     case NavEvent.LOGIN:
-  //       this.sessionService.login();
-  //       break;
-  //     case NavEvent.LINK:
-  //       this.router.navigate([item.href]);
-  //       break;
-  //     case NavEvent.LOGOUT:
-  //       this.sessionService.logout();
-  //       break;
-  //   }
-  //   this.closeSidenav();
-  // }
+
+  closeSidenav() {
+    this.drawer.close();
+  }
+
+  onNavItemClicked(item: NavItem) {
+    switch (item.event) {
+      case NavEvent.LOGIN:
+        this.sessionService.login();
+        break;
+      case NavEvent.LINK:
+        this.router.navigate([item.href]);
+        break;
+      case NavEvent.LOGOUT:
+        this.sessionService.logout();
+        break;
+    }
+    this.closeSidenav();
+  }
 
 }
 

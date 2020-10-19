@@ -3,6 +3,7 @@ import {ToolbarButton, ToolbarService} from '../../../services/toolbar/toolbar.s
 import {SessionService} from '../../../services/session/session.service';
 import {Observable} from 'rxjs';
 import {KeycloakService} from 'keycloak-angular';
+import {SidenavService} from '../../../services/sidenav/sidenav.service';
 
 @Component({
   selector: 'component-toolbar',
@@ -13,7 +14,8 @@ export class ToolbarComponent implements OnInit {
 
   constructor(
     private readonly toolbarService: ToolbarService,
-    private readonly keycloakService: KeycloakService
+    private readonly keycloakService: KeycloakService,
+    private readonly navService: SidenavService
   ) {
   }
 
@@ -60,6 +62,10 @@ export class ToolbarComponent implements OnInit {
 
   toggleFilter() {
     this.toolbarService.toggleSearch();
+  }
+
+  openNav() {
+    this.navService.openSidenav();
   }
 
 }

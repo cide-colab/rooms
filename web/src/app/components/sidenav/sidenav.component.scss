@@ -1,3 +1,5 @@
+@import "../../../styles/theme";
+
 .sidenav {
   height: 100%;
 
@@ -10,6 +12,32 @@
       top: 8px;
     }
 
+  }
+
+  .user-preview-container {
+    display: flex;
+    width: 100%;
+
+    .user-avatar {
+      @extend %avatar;
+      margin: 16px;
+    }
+
+    .user-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-grow: 1;
+      padding: 16px 48px 16px 0;
+
+      .user-name {
+        @extend %title;
+      }
+
+      .user-principal {
+        @extend %sub-title;
+      }
+    }
   }
 
 }

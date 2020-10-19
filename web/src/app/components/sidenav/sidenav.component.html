@@ -1,10 +1,37 @@
-<!--<mat-drawer-container class="sidenav">-->
-<!--  <mat-drawer #drawer mode="over" class="sidenav-drawer">-->
+<mat-drawer-container class="sidenav">
+  <mat-drawer #drawer mode="over" class="sidenav-drawer">
 <!--    <div *ngIf="session">-->
-<!--      &lt;!&ndash;    <app-user-preview *ngIf="session.userId" [userId]="session.userId"></app-user-preview>&ndash;&gt;-->
+      <!--    <app-user-preview *ngIf="session.userId" [userId]="session.userId"></app-user-preview>-->
 <!--      <component-user-preview [userId]="session.userId"></component-user-preview>-->
 <!--    </div>-->
-<!--    <button (click)="closeSidenav()" mat-icon-button class="sidenav-close-btn"><i class="icon-clearclose"></i></button>-->
+
+    <div *ngIf="user | async as user" class="user-preview-container">
+      <img class="user-avatar" [src]="user.imageUrl ? user.imageUrl : '/assets/img/avatar.png'"/>
+      <div class="user-details">
+        <div class="user-name">{{user.givenName}} {{user.familyName}}</div>
+        <div class="user-principal">{{user.principal}}</div>
+      </div>
+    </div>
+
+    <button (click)="closeSidenav()" mat-icon-button class="sidenav-close-btn">
+      <component-icon name="clearclose"></component-icon>
+    </button>
+
+    <mat-nav-list *ngIf="groups | async as groups">
+      <ng-container *ngFor="let group of groups; let i = index">
+        <ng-container *ngIf="group.enabled">
+          <h3 *ngIf="group.title" mat-subheader>{{group.title}}</h3>
+          <ng-container *ngFor="let item of group.items">
+            <mat-list-item *ngIf="item.enabled" (click)="onNavItemClicked(item)">
+              <component-icon [name]="item.icon" mat-list-icon></component-icon>
+              <h4 mat-line>{{item.title}}</h4>
+            </mat-list-item>
+          </ng-container>
+          <mat-divider *ngIf="i < groups.length - 1"></mat-divider>
+        </ng-container>
+      </ng-container>
+    </mat-nav-list>
+
 <!--    <mat-nav-list *ngIf="nav">-->
 <!--      <ng-container *ngFor="let group of nav; let i = index">-->
 <!--        <h3 *ngIf="group.title" mat-subheader>{{group.title}}</h3>-->
@@ -15,6 +42,6 @@
 <!--        <mat-divider *ngIf="i < nav.length - 1"></mat-divider>-->
 <!--      </ng-container>-->
 <!--    </mat-nav-list>-->
-<!--  </mat-drawer>-->
-<!--  <ng-content></ng-content>-->
-<!--</mat-drawer-container>-->
+  </mat-drawer>
+  <ng-content></ng-content>
+</mat-drawer-container>

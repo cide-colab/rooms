@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 
 @Component({
   selector: 'component-icon',
@@ -12,6 +12,7 @@ export class IconComponent implements OnInit {
 
   @Input()
   material = false;
+
 
   constructor() {
   }
