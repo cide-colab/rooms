@@ -9,7 +9,6 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {SidenavService} from './services/sidenav/sidenav.service';
-import {MainPage} from './pages/main/main.page';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {SessionService} from './services/session/session.service';
@@ -30,8 +29,6 @@ import {SimpleConfirmDialog} from './dialog/simple-confirm/simple-confirm.dialog
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {SnackbarService} from './services/snackbar/snackbar.service';
-import {EditRoomPage} from './pages/detail/edit-room/edit-room.page';
-import {CreateRoomPage} from './pages/detail/create-room/create-room.page';
 import {RoomFormComponent} from './components/room/room-form/room-form.component';
 import {RoomService} from './services/room/room.service';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -90,6 +87,7 @@ import { RoomUpdateComponent } from './components/pages/room-update/room-update.
 import { DepartmentEditorComponent } from './components/fragments/department-editor/department-editor.component';
 import { RoomEditorComponent } from './components/fragments/room-editor/room-editor.component';
 import { FormActionsComponent } from './components/fragments/form-actions/form-actions.component';
+import {UrlService} from './services/url/url.service';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -112,13 +110,10 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     SidenavComponent,
-    MainPage,
     UserPreviewComponent,
     DepartmentFormComponent,
     ToolbarComponent,
     SimpleConfirmDialog,
-    EditRoomPage,
-    CreateRoomPage,
     RoomFormComponent,
     RoomPreviewCardComponent,
     QrCodeDialog,
@@ -221,6 +216,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     // {provide: TRANSLATIONS_FORMAT, useValue: 'xlf'},
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     SidenavService,
+    UrlService,
     BackendService,
     SessionService,
     DepartmentService,

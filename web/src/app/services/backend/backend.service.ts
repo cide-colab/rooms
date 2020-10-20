@@ -4,7 +4,7 @@ import {environment} from '../../../environments/environment';
 import {KeycloakService} from 'keycloak-angular';
 import {from, Observable, of} from 'rxjs';
 import {map, mergeMap, switchMap, tap} from 'rxjs/operators';
-import {AclEntryModel} from '../../models/acl-entry.model';
+import {UrlService} from '../url/url.service';
 
 export enum TokenRequirement {
   NAN,
@@ -26,7 +26,8 @@ export class BackendService {
 
   constructor(
     private readonly httpClient: HttpClient,
-    private readonly keycloakService: KeycloakService
+    private readonly keycloakService: KeycloakService,
+    private readonly urlService: UrlService
   ) {
   }
 
@@ -36,19 +37,20 @@ export class BackendService {
     );
   }
 
-  public getSingle<T>(relativeUrl: string): Observable<T> {
-    return this.httpClient.get<T>(this.createUrl(relativeUrl));
+  public getSingle<T>(relativeUrl: string, params: any = {}): Observable<T> {
+    return this.httpClient.get<T>(this.urlService.getUrl(relativeUrl, params));
   }
 
-  public getCollection<T>(relativeUrl: string, rel: string): Observable<T[]> {
-    return this.httpClient.get<{ _embedded: { [rel: string]: T[] }, _links: Map<string, string> }>(this.createUrl(relativeUrl)).pipe(
+  public getCollection<T>(relativeUrl: string, rel: string, params: any = {}): Observable<T[]> {
+    return this.httpClient
+      .get<{ _embedded: { [rel: string]: T[] }, _links: Map<string, string> }>(this.urlService.getUrl(relativeUrl, params)).pipe(
       tap(it => console.log(it)),
       map(v => v._embedded[rel]),
       tap(it => console.log(it))
     );
   }
-  public postSingle<T, R>(relativeUrl: string, body: T): Observable<R> {
-    return this.httpClient.post<R>(this.createUrl(relativeUrl), body);
+  public postSingle<T, R>(relativeUrl: string, body: T, params: any = {}): Observable<R> {
+    return this.httpClient.post<R>(this.urlService.getUrl(relativeUrl, params), body);
   }
 
   public post<T, R>(relativeUrl: string, body: T, tokenRequirement: TokenRequirement = TokenRequirement.NAN): Observable<R> {
@@ -57,8 +59,8 @@ export class BackendService {
     );
   }
 
-  public deleteSingle<T>(relativeUrl: string): Observable<T> {
-    return this.httpClient.delete<T>(this.createUrl(relativeUrl));
+  public deleteSingle<T>(relativeUrl: string, params: any = {}): Observable<T> {
+    return this.httpClient.delete<T>(this.urlService.getUrl(relativeUrl, params));
   }
 
   public delete<T>(relativeUrl: string, tokenRequirement: TokenRequirement = TokenRequirement.NAN): Observable<T> {
@@ -67,8 +69,8 @@ export class BackendService {
     );
   }
 
-  public patchSingle<T, R>(relativeUrl: string, body: T): Observable<R> {
-    return this.httpClient.patch<R>(this.createUrl(relativeUrl), body);
+  public patchSingle<T, R>(relativeUrl: string, body: T, params: any = {}): Observable<R> {
+    return this.httpClient.patch<R>(this.urlService.getUrl(relativeUrl, params), body);
   }
 
   public patch<T, R>(relativeUrl: string, body: T, tokenRequirement: TokenRequirement = TokenRequirement.NAN): Observable<R> {

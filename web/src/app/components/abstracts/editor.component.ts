@@ -1,10 +1,9 @@
 import {EventEmitter, Input, Output} from '@angular/core';
 import {FormGroup} from '@angular/forms';
-import {FormFieldControlHarness} from '@angular/material/form-field/testing';
 
-export abstract class EditorComponent<T> {
+export abstract class EditorComponent<T, D> {
 
-  abstract default: T;
+  abstract default: D;
 
   @Output()
   save: EventEmitter<T> = new EventEmitter<T>();
@@ -50,14 +49,6 @@ export abstract class EditorComponent<T> {
   submit() {
     if (this.valid()) {
       this.save.emit(this.toForm(this.formGroup));
-    }
-  }
-
-  toHref(object: string | any): string {
-    if (typeof object === 'string') {
-      return object;
-    } else {
-      return object._links.self.href;
     }
   }
 }

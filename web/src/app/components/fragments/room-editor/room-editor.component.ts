@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {RoomForm} from '../../../core/models/room.model';
+import {RichRoom, RoomForm} from '../../../core/models/room.model';
 import {EditorComponent} from '../../abstracts/editor.component';
 import {Department} from '../../../core/models/department.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -7,24 +7,23 @@ import {DepartmentService} from '../../../services/department/department.service
 import {Observable} from 'rxjs';
 import {AclAction} from '../../../models/acl-entry.model';
 import {debounceTime, map, switchMap, tap} from 'rxjs/operators';
-import {environment} from '../../../../environments/environment';
-import {strict} from 'assert';
+import {UrlService} from '../../../services/url/url.service';
 
 @Component({
   selector: 'component-room-editor',
   templateUrl: './room-editor.component.html',
   styleUrls: ['./room-editor.component.scss']
 })
-export class RoomEditorComponent extends EditorComponent<RoomForm> implements OnInit {
+export class RoomEditorComponent extends EditorComponent<RoomForm, RichRoom> implements OnInit {
 
   @Input()
-  default: RoomForm = {
+  default: RichRoom = {
     id: undefined,
     name: '',
     number: '',
     imageUrl: '',
     description: '',
-    department: ''
+    department: undefined
   };
 
   formGroup: FormGroup;
@@ -33,12 +32,15 @@ export class RoomEditorComponent extends EditorComponent<RoomForm> implements On
 
   constructor(
     private readonly builder: FormBuilder,
-    private readonly departmentService: DepartmentService
+    private readonly departmentService: DepartmentService,
+    private readonly urlService: UrlService
   ) {
     super();
   }
 
   ngOnInit() {
+    console.log(this.default);
+
     this.formGroup = this.builder.group({
       id: [{value: this.default.id, disabled: true}],
       name: [this.default.name, Validators.required],
@@ -64,15 +66,14 @@ export class RoomEditorComponent extends EditorComponent<RoomForm> implements On
   }
 
   private filter(department: Department, query: string): boolean {
-    return this.displayDepartment(department).toLowerCase().includes(query.toLowerCase())
-    || query === department._links.self.href;
+    return this.displayDepartment(department).toLowerCase().includes(query.toLowerCase());
   }
 
   toForm(formGroup: FormGroup): RoomForm {
     const value = formGroup.getRawValue();
     return {
       ...value,
-      department: this.toHref(value.department)
+      department: this.urlService.getUrl(`departments/${value.department.id}`)
     };
   }
 }

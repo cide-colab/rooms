@@ -1,1 +1,1 @@
-<p>room-update works!</p>
+<component-room-editor *ngIf="room | async as room" [default]="room" (save)="save($event)"></component-room-editor>

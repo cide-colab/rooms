@@ -1,14 +1,13 @@
 import {Identity} from './identity';
 
+
 export interface DepartmentModel {
   name: string;
   description: string;
   imageUrl: string;
 }
 
-export interface Department extends DepartmentModel, Identity {
-  _links: any;
-}
+export interface Department extends DepartmentModel, Identity {}
 
 export interface RichDepartment extends DepartmentModel, Identity {}
 

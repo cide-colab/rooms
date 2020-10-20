@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {DepartmentForm} from '../../../core/models/department.model';
+import {DepartmentForm, RichDepartment} from '../../../core/models/department.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EditorComponent} from '../../abstracts/editor.component';
 
@@ -8,10 +8,10 @@ import {EditorComponent} from '../../abstracts/editor.component';
   templateUrl: './department-editor.component.html',
   styleUrls: ['./department-editor.component.scss']
 })
-export class DepartmentEditorComponent extends EditorComponent<DepartmentForm> implements OnInit {
+export class DepartmentEditorComponent extends EditorComponent<DepartmentForm, RichDepartment> implements OnInit {
 
   @Input()
-  default: DepartmentForm = {
+  default: RichDepartment = {
     id: undefined,
     imageUrl: '',
     name: '',

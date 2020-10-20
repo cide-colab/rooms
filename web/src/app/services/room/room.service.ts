@@ -57,8 +57,8 @@ export class RoomService {
     return this.backendService.deleteSingle(`rooms/${id}`);
   }
 
-  update(room: SimpleRoom): Observable<BaseRoom> {
-    return this.backendService.patch(room._links.self.href, RoomService.getProtocol(room), TokenRequirement.REQUIRED);
+  update(room: RoomForm): Observable<BaseRoom> {
+    return this.backendService.patchSingle(`rooms/${room.id}`, room);
   }
 
   getSlots(roomId: string, date: Date): Observable<BaseSlot[]> {

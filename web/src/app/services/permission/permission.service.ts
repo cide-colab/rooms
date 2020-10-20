@@ -9,10 +9,11 @@ import {Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PermissionService extends BackendService {
+export class PermissionService {
 
-  constructor(httpClient: HttpClient, keycloakService: KeycloakService) {
-    super(httpClient, keycloakService);
+  constructor(
+    private readonly backendService: BackendService
+  ) {
   }
 
   //
@@ -20,7 +21,7 @@ export class PermissionService extends BackendService {
   // private dirty = true;
 
   public hasPermission(form: PermissionCheckForm): Observable<boolean> {
-    return this.post('permissions/check', form, TokenRequirement.IF_LOGGED_IN);
+    return this.backendService.post('permissions/check', form, TokenRequirement.IF_LOGGED_IN);
   }
 
   //

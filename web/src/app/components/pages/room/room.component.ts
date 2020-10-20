@@ -60,7 +60,7 @@ export class RoomComponent implements OnInit, OnDestroy {
         this.toolbarService.addPageButton('update', {
           iconClass: 'icon-createmode_editedit',
           title: 'Bearbeiten',
-          click: () => this.router.navigate(['update'])
+          click: () => this.router.navigate(['/', 'rooms', room.id, 'update'])
         });
       }
     });
