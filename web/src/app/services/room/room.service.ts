@@ -9,6 +9,7 @@ import {BaseSlot, SlotListEntity} from '../../models/slot.model';
 import * as moment from 'moment';
 import {RichRoom, Room} from '../../core/models/room.model';
 import {Projection} from '../../core/projections.model';
+import {RichDepartment} from '../../core/models/department.model';
 
 @Injectable({
   providedIn: 'root'
@@ -74,5 +75,9 @@ export class RoomService {
       `departments/${department.id}/rooms?projection=detailed`,
       TokenRequirement.IF_LOGGED_IN
     ).pipe(map(value => value._embedded.rooms));
+  }
+
+  getByDepartmentId(id: number): Observable<RichRoom[]> {
+    return this.backendService.getCollection(`departments/${id}/rooms?projection=${Projection.RICH}`, 'rooms');
   }
 }

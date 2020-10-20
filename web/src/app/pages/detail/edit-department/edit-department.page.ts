@@ -40,9 +40,9 @@ export class EditDepartmentPage implements OnInit {
 
   ngOnInit(): void {
     const id: string = this.route.snapshot.params.id;
-    this.department = from(this.departmentService.get(id)).pipe(
-      tap(department => this.sessionService.hasPermission('update', department.id).subscribe(canEdit => this.canEdit = canEdit))
-    ).toPromise();
+    // this.department = from(this.departmentService.get(id)).pipe(
+    //   tap(department => this.sessionService.hasPermission('update', department.id).subscribe(canEdit => this.canEdit = canEdit))
+    // ).toPromise();
   }
 
   onSubmit(department: BaseDepartment) {

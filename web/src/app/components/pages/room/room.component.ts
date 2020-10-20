@@ -101,12 +101,12 @@ export class RoomComponent implements OnInit, OnDestroy {
   private delete(room: RichRoom) {
     this.roomService.delete(room.id).subscribe(
       next => {
-        this.snackBar.open(`Raum ${room.number} erfolgreich gelöscht`);
+        this.snackBar.open(`Raum ${room.number} erfolgreich gelöscht`, null, { duration: 3000 });
         this.location.back();
       },
       error => {
         console.log(error);
-        this.snackBar.open(`Raum ${room.number} konnte nicht gelöscht werden`);
+        this.snackBar.open(`Raum ${room.number} konnte nicht gelöscht werden`, null, { duration: 3000 });
       }
     );
   }

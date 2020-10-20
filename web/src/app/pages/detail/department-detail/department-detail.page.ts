@@ -41,10 +41,10 @@ export class DepartmentDetailPage implements OnInit {
 
   ngOnInit() {
     const id: string = this.route.snapshot.params.id;
-    this.department = this.departmentService.get(id).pipe(
-      tap(department => this.sessionService.hasPermission('update', department.id).subscribe(permitted => this.canUpdate = permitted)),
-      tap(department => this.sessionService.hasPermission('delete', department.id).subscribe(permitted => this.canDelete = permitted))
-    );
+    // this.department = this.departmentService.get(id).pipe(
+    //   tap(department => this.sessionService.hasPermission('update', department.id).subscribe(permitted => this.canUpdate = permitted)),
+    //   tap(department => this.sessionService.hasPermission('delete', department.id).subscribe(permitted => this.canDelete = permitted))
+    // );
 
     this.rooms = this.department.pipe(mergeMap(department => this.roomService.getForDepartment(department)));
   }

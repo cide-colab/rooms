@@ -21,12 +21,12 @@ export class DepartmentService {
     return this.backendService.getCollection('departments?projection=rich', 'departments');
   }
 
-  get(id: string): Observable<BaseDepartment> {
-    return this.backendService.get(`departments/${id}`, TokenRequirement.IF_LOGGED_IN);
+  get(id: string): Observable<RichDepartment> {
+    return this.backendService.getSingle(`departments/${id}`);
   }
 
-  delete(department: BaseDepartment): Observable<any> {
-    return this.backendService.delete(department._links.self.href, TokenRequirement.REQUIRED);
+  delete(id: number): Observable<any> {
+    return this.backendService.deleteSingle(`departments/${id}`);
   }
 
   update(department: BaseDepartment): Observable<BaseDepartment> {

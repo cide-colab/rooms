@@ -1,1 +1,22 @@
-<p>department works!</p>
+<div *ngIf="department | async as department" class="detail-page">
+  <div class="page-title">{{department.name}}</div>
+  <div class="page-avatar-container"><img class="page-avatar" [src]="department.imageUrl ? department.imageUrl : '/assets/img/department.svg'"></div>
+  <div class="page-section">
+    <div class="page-section-header">Beschreibung:</div>
+    <p class="page-section-content">{{department.description}}</p>
+    <p *ngIf="!department.description"
+       class="page-section-placeholder">Keine Beschreibung vorhanden</p>
+  </div>
+  <div class="page-section">
+    <div class="page-section-header">Räume:</div>
+
+<!--    <ng-template #loadRoomsProgressBar>-->
+<!--      <mat-progress-spinner class="spinner" color="primary" diameter="40"-->
+<!--                            mode="indeterminate"></mat-progress-spinner>-->
+
+<!--    </ng-template>-->
+<!--      <component-room-list *ngIf="rooms | async as rooms; else loadRoomsProgressBar" [items]="rooms" (itemClick)="roomClicked($event)"></component-room-list>-->
+  </div>
+</div>
+
+<component-room-list *ngIf="rooms | async as rooms" [items]="rooms" (itemClick)="roomClicked($event)"></component-room-list>

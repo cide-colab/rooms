@@ -35,7 +35,6 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {SnackbarService} from './services/snackbar/snackbar.service';
 import {EditRoomPage} from './pages/detail/edit-room/edit-room.page';
 import {CreateRoomPage} from './pages/detail/create-room/create-room.page';
-import {RoomDetailPage} from './pages/detail/room-detail/room-detail.page';
 import {RoomFormComponent} from './components/room/room-form/room-form.component';
 import {RoomService} from './services/room/room.service';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -119,7 +118,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     EditDepartmentPage,
     EditRoomPage,
     CreateRoomPage,
-    RoomDetailPage,
     RoomFormComponent,
     RoomPreviewCardComponent,
     QrCodeDialog,
