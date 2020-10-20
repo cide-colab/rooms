@@ -74,11 +74,9 @@ import {MyAboListPageComponent} from './pages/user/my-abos/my-abo-list-page.comp
 import {AboListComponent} from './components/abo/abo-list/abo-list.component';
 import {ReservationListComponent} from './components/reservation/reservation-list/reservation-list.component';
 import {ReservationPreviewCardComponent} from './components/reservation/reservation-preview-card/reservation-preview-card.component';
-import {DepartmentListComponent} from './components/department/department-list/department-list.component';
 import {MainComponent} from './components/pages/main/main.component';
-import {MatGridList, MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule} from '@angular/material/grid-list';
 import {MainMenuComponent} from './components/fragments/main-menu/main-menu.component';
-import { DepartmentsComponent } from './components/pages/departments/departments.component';
 import { RoomsComponent } from './components/pages/rooms/rooms.component';
 import {ToolbarComponent} from './components/fragments/toolbar/toolbar.component';
 import {MatIconModule} from '@angular/material/icon';
@@ -87,6 +85,9 @@ import {RoomListComponent} from './components/fragments/room-list/room-list.comp
 import { RoomListItemComponent } from './components/fragments/room-list-item/room-list-item.component';
 import { PreviewPipe } from './pipes/preview/preview.pipe';
 import { ActionsComponent } from './components/fragments/actions/actions.component';
+import {DepartmentsComponent} from './components/pages/departments/departments.component';
+import {DepartmentListComponent} from './components/fragments/department-list/department-list.component';
+import { DepartmentListItemComponent } from './components/fragments/department-list-item/department-list-item.component';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -152,7 +153,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     RoomsComponent,
     RoomListItemComponent,
     PreviewPipe,
-    ActionsComponent
+    ActionsComponent,
+    DepartmentListItemComponent
   ],
   imports: [
     BrowserModule,

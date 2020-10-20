@@ -3,6 +3,7 @@ import {BackendService, TokenRequirement} from '../backend/backend.service';
 import {BaseDepartment, DepartmentListEntity} from '../../models/department.model';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {RichDepartment} from '../../core/models/department.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +17,8 @@ export class DepartmentService {
     return this.backendService.post('departments', department, TokenRequirement.REQUIRED);
   }
 
-  getAll(): Observable<BaseDepartment[]> {
-    return this.backendService
-      .get<DepartmentListEntity<BaseDepartment>>('departments', TokenRequirement.IF_LOGGED_IN).pipe(
-        map(value => value._embedded.departments)
-      );
+  getAll(): Observable<RichDepartment[]> {
+    return this.backendService.getCollection('departments?projection=rich', 'departments');
   }
 
   get(id: string): Observable<BaseDepartment> {
