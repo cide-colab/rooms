@@ -46,6 +46,6 @@ export class TimeZoneDatePipe implements PipeTransform {
 
 
   transform(date: Date | string, day: number, format: string = 'yyyy-MM-dd'): string {
-    return moment.tz(date).format(format);
+    return moment.tz(date.toString()).format(format);
   }
 }

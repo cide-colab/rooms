@@ -10,9 +10,10 @@ import {map, take} from 'rxjs/operators';
 import {PermissionService} from '../../services/permission/permission.service';
 import {AclAction, AclClassAlias} from '../../models/acl-entry.model';
 import {forkJoin, from, Observable, Subject} from 'rxjs';
-import {UserIdentity} from '../../core/models/user.model';
+import {User} from '../../core/models/user.model';
 import {UserService} from '../../services/user/user.service';
 import {KeycloakService} from 'keycloak-angular';
+import {build} from '../../utils/global.extensions';
 
 enum NavEvent {
   LINK,
@@ -22,7 +23,7 @@ enum NavEvent {
 
 interface NavItem {
   title: string;
-  icon: string;
+  iconClass: string;
   href: string;
   enabled: boolean;
   event: NavEvent;
@@ -32,10 +33,6 @@ interface NavGroup {
   title: string;
   items: NavItem[];
   enabled: boolean;
-}
-
-function build<T>(item: T): T {
-  return item;
 }
 
 @Component({
@@ -62,7 +59,7 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   // nav: NavGroup[];
 
   groups = new Subject<NavGroup[]>();
-  user: Observable<UserIdentity>;
+  user: Observable<User>;
 
   async ngOnInit() {
     // this.session = await this.sessionService.getSession(true).pipe(take(1)).toPromise();
@@ -89,7 +86,7 @@ export class SidenavComponent implements OnInit, AfterViewInit {
         .hasPermission({target: AclClassAlias.room, action: AclAction.READ})
         .pipe(map(enabled => build({
           title: 'Räume',
-          icon: 'meeting_room',
+          iconClass: 'icon-meeting_room',
           enabled,
           href: '/rooms',
           event: NavEvent.LINK
@@ -98,7 +95,7 @@ export class SidenavComponent implements OnInit, AfterViewInit {
         .hasPermission({target: AclClassAlias.department, action: AclAction.READ})
         .pipe(map(enabled => build({
           title: 'Abteilungen',
-          icon: 'home',
+          iconClass: 'icon-home',
           enabled,
           href: '/departments',
           event: NavEvent.LINK
@@ -111,14 +108,14 @@ export class SidenavComponent implements OnInit, AfterViewInit {
       map(loggedIn => build([
         {
           title: 'Anmelden',
-          icon: 'exit_to_app',
+          iconClass: 'icon-exit_to_app',
           enabled: !loggedIn,
           href: '#',
           event: NavEvent.LOGIN
         },
         {
           title: 'Abmelden',
-          icon: 'logout',
+          iconClass: 'icon-logout',
           enabled: loggedIn,
           href: '#',
           event: NavEvent.LOGOUT
@@ -138,7 +135,7 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   //   )) {
   //     itemList.push({
   //       title: await this.translate.get(TRANSLATION_KEYS.nav.link.roles).toPromise(),
-  //       iconClass: 'icon-vpn_key',
+  //       iconClass: 'iconClass-vpn_key',
   //       href: '#',
   //       event: NavEvent.LINK
   //     });
@@ -150,7 +147,7 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   //   )) {
   //     itemList.push({
   //       title: await this.translate.get(TRANSLATION_KEYS.nav.link.abos).toPromise(),
-  //       iconClass: 'icon-timer',
+  //       iconClass: 'iconClass-timer',
   //       href: '/abos',
   //       event: NavEvent.LINK
   //     });
@@ -167,19 +164,19 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   //   if (session.userId) {
   //     itemList.push({
   //       title: await this.translate.get(TRANSLATION_KEYS.nav.link.my_abos).toPromise(),
-  //       iconClass: 'icon-timer',
+  //       iconClass: 'iconClass-timer',
   //       href: `/my/abos`,
   //       event: NavEvent.LINK
   //     });
   //     itemList.push({
   //       title: await this.translate.get(TRANSLATION_KEYS.nav.link.my_reservations).toPromise(),
-  //       iconClass: 'icon-calendar_today',
+  //       iconClass: 'iconClass-calendar_today',
   //       href: `/my/reservations`,
   //       event: NavEvent.LINK
   //     });
   //     itemList.push({
   //       title: await this.translate.get(TRANSLATION_KEYS.nav.link.logout).toPromise(),
-  //       iconClass: 'icon-logout',
+  //       iconClass: 'iconClass-logout',
   //       href: '#',
   //       event: NavEvent.LOGOUT
   //     });
@@ -195,13 +192,13 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   //   const itemList = [
   //     {
   //       title: await this.translate.get(TRANSLATION_KEYS.nav.link.help).toPromise(),
-  //       iconClass: 'icon-help',
+  //       iconClass: 'iconClass-help',
   //       href: '#',
   //       event: NavEvent.LINK
   //     },
   //     {
   //       title: await this.translate.get(TRANSLATION_KEYS.nav.link.settings).toPromise(),
-  //       iconClass: 'icon-settings',
+  //       iconClass: 'iconClass-settings',
   //       href: '#',
   //       event: NavEvent.LINK
   //     }
@@ -210,7 +207,7 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   //   if (!session.userId) {
   //     itemList.push({
   //       title: await this.translate.get(TRANSLATION_KEYS.nav.link.login).toPromise(),
-  //       iconClass: 'icon-exit_to_app',
+  //       iconClass: 'iconClass-exit_to_app',
   //       href: '#',
   //       event: NavEvent.LOGIN
   //     });
@@ -226,13 +223,13 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   //   const itemList = [
   //     {
   //       title: await this.translate.get(TRANSLATION_KEYS.nav.link.rooms).toPromise(),
-  //       iconClass: 'icon-meeting_room',
+  //       iconClass: 'iconClass-meeting_room',
   //       href: '/rooms',
   //       event: NavEvent.LINK
   //     },
   //     {
   //       title: await this.translate.get(TRANSLATION_KEYS.nav.link.departments).toPromise(),
-  //       iconClass: 'icon-home',
+  //       iconClass: 'iconClass-home',
   //       href: '/departments',
   //       event: NavEvent.LINK
   //     },

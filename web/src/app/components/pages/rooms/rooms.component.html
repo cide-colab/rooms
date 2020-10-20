@@ -1,1 +1,6 @@
-<p>rooms works!</p>
+<component-room-list #room_list (itemClick)="click($event)" [items]="filteredItems | async"></component-room-list>
+<component-actions>
+  <button (click)="create()" *ngIf="(canCreate | async) == true" color="primary" mat-fab>
+    <i class="icon-add"></i>
+  </button>
+</component-actions>

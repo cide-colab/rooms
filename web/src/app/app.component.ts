@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './root.page.html',
-  styleUrls: ['./root.page.scss']
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  selector: 'app-component'
 })
-export class RootPage {
+export class AppComponent {
   title = 'rooms-web';
 
   constructor(public translate: TranslateService) {

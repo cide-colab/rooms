@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {KeycloakService} from 'keycloak-angular';
 import {from, Observable, of} from 'rxjs';
-import {map, mergeMap, switchMap} from 'rxjs/operators';
+import {map, mergeMap, switchMap, tap} from 'rxjs/operators';
 import {AclEntryModel} from '../../models/acl-entry.model';
 
 export enum TokenRequirement {
@@ -36,10 +36,12 @@ export class BackendService {
     );
   }
 
-  public getCollection<T>(relativeUrl: string, tokenRequirement: TokenRequirement = TokenRequirement.NAN): Observable<T[]> {
-    return this.get<{ _embedded: { [rel: string]: T[] }, _links: Map<string, string> }>(relativeUrl, tokenRequirement).pipe(map(v => {
-      return v._embedded.rel;
-    }));
+  public getCollection<T>(relativeUrl: string, rel: string): Observable<T[]> {
+    return this.httpClient.get<{ _embedded: { [rel: string]: T[] }, _links: Map<string, string> }>(this.createUrl(relativeUrl)).pipe(
+      tap(it => console.log(it)),
+      map(v => v._embedded[rel]),
+      tap(it => console.log(it))
+    );
   }
 
   public post<T, R>(relativeUrl: string, body: T, tokenRequirement: TokenRequirement = TokenRequirement.NAN): Observable<R> {

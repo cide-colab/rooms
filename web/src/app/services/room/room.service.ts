@@ -7,6 +7,7 @@ import {BaseRoom, RoomListEntity, SimpleRoom} from '../../models/room.model';
 import {removeTemplate} from '../../app.utils';
 import {BaseSlot, SlotListEntity} from '../../models/slot.model';
 import * as moment from 'moment';
+import {RichRoom, Room} from '../../core/models/room.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,10 @@ export class RoomService {
       ...room,
       department: removeTemplate(room.department._links.self)
     };
+  }
+
+  getAll(): Observable<RichRoom[]> {
+    return this.backendService.getCollection('rooms?projection=rich', 'rooms');
   }
 
   save(room: SimpleRoom): Observable<BaseRoom> {

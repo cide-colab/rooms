@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {APP_INITIALIZER, NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
-import {RootPage} from './pages/root/root.page';
+import {AppComponent} from './app.component';
 import {SidenavComponent} from './components/sidenav/sidenav.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -10,7 +10,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {SidenavService} from './services/sidenav/sidenav.service';
 import {MainPage} from './pages/main/main.page';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {SessionService} from './services/session/session.service';
 import {BackendService} from './services/backend/backend.service';
@@ -21,7 +21,6 @@ import {DepartmentListPage} from './pages/general/department-list/department-lis
 import {CreateDepartmentPage} from './pages/detail/create-department/create-department.page';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {DepartmentFormComponent} from './components/department/department-form/department-form.component';
-// import {ToolbarComponent} from './components/toolbar/toolbar.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -76,7 +75,6 @@ import {AboListComponent} from './components/abo/abo-list/abo-list.component';
 import {ReservationListComponent} from './components/reservation/reservation-list/reservation-list.component';
 import {ReservationPreviewCardComponent} from './components/reservation/reservation-preview-card/reservation-preview-card.component';
 import {DepartmentListComponent} from './components/department/department-list/department-list.component';
-import {RoomListComponent} from './components/room/room-list/room-list.component';
 import {MainComponent} from './components/pages/main/main.component';
 import {MatGridList, MatGridListModule} from '@angular/material/grid-list';
 import {MainMenuComponent} from './components/fragments/main-menu/main-menu.component';
@@ -84,7 +82,11 @@ import { DepartmentsComponent } from './components/pages/departments/departments
 import { RoomsComponent } from './components/pages/rooms/rooms.component';
 import {ToolbarComponent} from './components/fragments/toolbar/toolbar.component';
 import {MatIconModule} from '@angular/material/icon';
-import { IconComponent } from './components/fragments/icon/icon.component';
+import {TokenInterceptor} from './interceptors/token/token.interceptor';
+import {RoomListComponent} from './components/fragments/room-list/room-list.component';
+import { RoomListItemComponent } from './components/fragments/room-list-item/room-list-item.component';
+import { PreviewPipe } from './pipes/preview/preview.pipe';
+import { ActionsComponent } from './components/fragments/actions/actions.component';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -105,7 +107,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    RootPage,
+    AppComponent,
     SidenavComponent,
     MainPage,
     UserPreviewComponent,
@@ -148,7 +150,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     MainMenuComponent,
     DepartmentsComponent,
     RoomsComponent,
-    IconComponent
+    RoomListItemComponent,
+    PreviewPipe,
+    ActionsComponent
   ],
   imports: [
     BrowserModule,
@@ -209,6 +213,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     // I18n,
     // {provide: TRANSLATIONS, useValue: translations},
     // {provide: TRANSLATIONS_FORMAT, useValue: 'xlf'},
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     SidenavService,
     BackendService,
     SessionService,
@@ -221,7 +226,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TimeZoneDatePipe,
     TimezoneService
   ],
-  bootstrap: [RootPage]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

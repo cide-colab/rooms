@@ -3,7 +3,7 @@ import {BaseUser, SessionUser, UserListEntity} from '../../models/user.model';
 import {BackendService, TokenRequirement} from '../backend/backend.service';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {UserIdentity} from '../../core/models/user.model';
+import {User} from '../../core/models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,8 @@ export class UserService {
   constructor(private readonly backendService: BackendService) {
   }
 
-  getMe(): Observable<UserIdentity> {
-    return this.backendService.get<UserIdentity>('me', TokenRequirement.IF_LOGGED_IN);
+  getMe(): Observable<User> {
+    return this.backendService.get<User>('me', TokenRequirement.IF_LOGGED_IN);
   }
 
   getBase(userId: string): Observable<BaseUser> {

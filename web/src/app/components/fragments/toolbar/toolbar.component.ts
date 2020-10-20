@@ -21,15 +21,15 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.toolbarService.setGlobalTitle('Rooms');
-    this.keycloakService.isLoggedIn().then(loggedIn => {
-      if (loggedIn) {
-        this.toolbarService.removeGlobalButton('login');
-        this.toolbarService.addGlobalButton('logout', {title: 'logout', icon: 'logout', click: () => this.logout()});
-      } else {
-        this.toolbarService.removeGlobalButton('logout');
-        this.toolbarService.addGlobalButton('login', {title: 'login', icon: 'exit_to_app', click: () => this.login()});
-      }
-    });
+    // this.keycloakService.isLoggedIn().then(loggedIn => {
+    //   if (loggedIn) {
+    //     this.toolbarService.removeGlobalButton('login');
+    //     this.toolbarService.addGlobalButton('logout', {title: 'logout', iconClass: 'icon-logout', click: () => this.logout()});
+    //   } else {
+    //     this.toolbarService.removeGlobalButton('logout');
+    //     this.toolbarService.addGlobalButton('login', {title: 'login', icon: 'icon-exit_to_app', click: () => this.login()});
+    //   }
+    // });
   }
 
   getFilterEnabled(): Observable<boolean> {

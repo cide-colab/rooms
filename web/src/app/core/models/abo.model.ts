@@ -1,4 +1,6 @@
-interface AboModel {
+import {Identity} from './identity';
+
+export interface AboModel {
   title: string;
   start: string;
   end: string;
@@ -8,4 +10,5 @@ interface AboModel {
   description: string;
 }
 
-interface AboIdentity extends AboModel, IdentityModel {}
+export interface Abo extends AboModel, Identity {}
+export interface RichAbo extends AboModel, Identity {}

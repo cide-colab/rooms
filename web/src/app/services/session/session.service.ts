@@ -4,7 +4,7 @@ import {BackendService, TokenRequirement} from '../backend/backend.service';
 import {Session} from '../../models/session.model';
 import {from, Observable, of, Subject} from 'rxjs';
 import {map, take, tap} from 'rxjs/operators';
-import {UserIdentity} from '../../core/models/user.model';
+import {User} from '../../core/models/user.model';
 import {EagerSubject, ValueCache} from '../../utils/EagerSubject';
 import {compilePipeFromMetadata} from '@angular/compiler';
 
@@ -20,8 +20,8 @@ export class SessionService {
 
   private static SESSION_KEY = 'rooms.session';
 
-  private sessionUser = new EagerSubject<UserIdentity | undefined>(undefined);
-  private sessionUserCache = new ValueCache<UserIdentity>('rooms.session.user');
+  private sessionUser = new EagerSubject<User | undefined>(undefined);
+  private sessionUserCache = new ValueCache<User>('rooms.session.user');
 
   private static getCachedSession(): Session {
     return JSON.parse(localStorage.getItem(SessionService.SESSION_KEY));
@@ -45,7 +45,7 @@ export class SessionService {
     // this.keycloakService.logout().then();
   }
 
-  public getSessionUser(forceReload: boolean = false): Observable<UserIdentity | undefined> {
+  public getSessionUser(forceReload: boolean = false): Observable<User | undefined> {
     if (forceReload || !this.sessionUserCache.hasValue()) {
       this.fetchSessionUser();
     }
@@ -53,13 +53,13 @@ export class SessionService {
   }
 
   private fetchSessionUser() {
-    this.backendService.get<UserIdentity>('me', TokenRequirement.IF_LOGGED_IN)
+    this.backendService.get<User>('me', TokenRequirement.IF_LOGGED_IN)
       .subscribe(user => {
         this.updateSessionUser(user);
       });
   }
 
-  private updateSessionUser(user: UserIdentity) {
+  private updateSessionUser(user: User) {
     this.sessionUserCache.update(user);
     this.sessionUser.next(user);
   }

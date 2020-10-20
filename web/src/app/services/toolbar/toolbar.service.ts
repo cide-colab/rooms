@@ -4,7 +4,7 @@ import {Observable, Subject} from 'rxjs';
 import {EagerSubject} from '../../utils/EagerSubject';
 
 export interface ToolbarButton {
-  icon: string;
+  iconClass: string;
   title: string;
   click: () => void;
 }
@@ -120,6 +120,6 @@ export class ToolbarService {
   }
 
   private notifyTitleChanged() {
-    this.title.next(`${this.globalTitle}${this.pageTitle !== '' ? '-' : ''}${this.pageTitle}`);
+    this.title.next(`${this.globalTitle}${this.pageTitle !== '' ? ' - ' : ''}${this.pageTitle}`);
   }
 }
