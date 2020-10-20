@@ -27,7 +27,6 @@ import {DateAdapter, MatRippleModule} from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
 import {SimpleConfirmDialog} from './dialog/simple-confirm/simple-confirm.dialog';
-import {EditDepartmentPage} from './pages/detail/edit-department/edit-department.page';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {SnackbarService} from './services/snackbar/snackbar.service';
@@ -118,7 +117,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     DepartmentFormComponent,
     ToolbarComponent,
     SimpleConfirmDialog,
-    EditDepartmentPage,
     EditRoomPage,
     CreateRoomPage,
     RoomFormComponent,

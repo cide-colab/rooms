@@ -1,5 +1,6 @@
 import {EventEmitter, Input, Output} from '@angular/core';
 import {FormGroup} from '@angular/forms';
+import {FormFieldControlHarness} from '@angular/material/form-field/testing';
 
 export abstract class EditorComponent<T> {
 
@@ -9,6 +10,10 @@ export abstract class EditorComponent<T> {
   save: EventEmitter<T> = new EventEmitter<T>();
 
   abstract formGroup: FormGroup;
+
+  toForm(formGroup: FormGroup): T {
+    return this.formGroup.getRawValue();
+  }
 
   reset(key?: string) {
     if (key) {
@@ -44,7 +49,15 @@ export abstract class EditorComponent<T> {
 
   submit() {
     if (this.valid()) {
-      this.save.emit(this.formGroup.getRawValue());
+      this.save.emit(this.toForm(this.formGroup));
+    }
+  }
+
+  toHref(object: string | any): string {
+    if (typeof object === 'string') {
+      return object;
+    } else {
+      return object._links.self.href;
     }
   }
 }

@@ -47,6 +47,9 @@ export class BackendService {
       tap(it => console.log(it))
     );
   }
+  public postSingle<T, R>(relativeUrl: string, body: T): Observable<R> {
+    return this.httpClient.post<R>(this.createUrl(relativeUrl), body);
+  }
 
   public post<T, R>(relativeUrl: string, body: T, tokenRequirement: TokenRequirement = TokenRequirement.NAN): Observable<R> {
     return this.createOptions(tokenRequirement).pipe(

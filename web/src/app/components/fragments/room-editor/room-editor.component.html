@@ -1,1 +1,53 @@
-<p>room-editor works!</p>
+<form class="form-container" [formGroup]="formGroup" (ngSubmit)="submit()">
+  <div class="form-fields">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+      <button mat-button *ngIf="hasChanges('name')" matSuffix mat-icon-button aria-label="reset" (click)="reset('name')">
+        <i class="icon-reset"></i>
+      </button>
+      <mat-error *ngIf="hasError('required', 'name')">
+        Bitte gebe einen Namen ein
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nummer</mat-label>
+      <input matInput formControlName="number">
+      <button mat-button *ngIf="hasChanges('number')" matSuffix mat-icon-button aria-label="reset" (click)="reset('number')">
+        <i class="icon-reset"></i>
+      </button>
+      <mat-error *ngIf="hasError('required', 'number')">
+        Bitte gebe eine Nummer ein
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="full-width">
+      <input [matAutocomplete]="departmentAutoCompete" formControlName="department" matInput>
+      <button mat-button *ngIf="hasChanges('department')" matSuffix mat-icon-button aria-label="reset" (click)="reset('department')">
+        <i class="icon-reset"></i>
+      </button>
+      <mat-label>Abteilung</mat-label>
+      <mat-autocomplete #departmentAutoCompete="matAutocomplete" [displayWith]="displayDepartment">
+        <mat-option *ngFor="let department of filteredDepartments | async" [value]="department">
+          <span> {{department.name}}</span>
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error *ngIf="hasError('required', 'department')">
+        Bitte wähle ein Department aus
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Beschreibung</mat-label>
+      <textarea #description matInput formControlName="description" [maxLength]="512"></textarea>
+      <button mat-button *ngIf="hasChanges('description')" matSuffix mat-icon-button aria-label="reset" (click)="reset('description')">
+        <i class="icon-reset"></i>
+      </button>
+      <mat-hint align="end">{{description.value.length}} / 512</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="form-actions">
+    <button mat-fab color="primary" [disabled]="!hasChanges()"><i class="icon-check"></i></button>
+  </div>
+</form>

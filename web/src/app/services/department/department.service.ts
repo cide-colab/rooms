@@ -3,7 +3,9 @@ import {BackendService, TokenRequirement} from '../backend/backend.service';
 import {BaseDepartment, DepartmentListEntity} from '../../models/department.model';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {DepartmentForm, RichDepartment} from '../../core/models/department.model';
+import {Department, DepartmentForm, RichDepartment} from '../../core/models/department.model';
+import {AclAction} from '../../models/acl-entry.model';
+import {Projection} from '../../core/projections.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,7 @@ export class DepartmentService {
   }
 
   save(department: DepartmentForm): Observable<BaseDepartment> {
-    return this.backendService.post('departments', department, TokenRequirement.REQUIRED);
+    return this.backendService.postSingle('departments', department);
   }
 
   getAll(): Observable<RichDepartment[]> {
@@ -31,5 +33,9 @@ export class DepartmentService {
 
   update(department: DepartmentForm): Observable<BaseDepartment> {
     return this.backendService.patchSingle(`departments/${department.id}`, department);
+  }
+
+  getAllByPermission(action: AclAction): Observable<Department[]> {
+    return this.backendService.getCollection(`departments/search/byPermission?action=${action}`, 'departments');
   }
 }

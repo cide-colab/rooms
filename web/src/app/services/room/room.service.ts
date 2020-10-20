@@ -7,7 +7,7 @@ import {BaseRoom, RoomListEntity, SimpleRoom} from '../../models/room.model';
 import {removeTemplate} from '../../app.utils';
 import {BaseSlot, SlotListEntity} from '../../models/slot.model';
 import * as moment from 'moment';
-import {RichRoom, Room} from '../../core/models/room.model';
+import {RichRoom, Room, RoomForm} from '../../core/models/room.model';
 import {Projection} from '../../core/projections.model';
 import {RichDepartment} from '../../core/models/department.model';
 
@@ -34,8 +34,8 @@ export class RoomService {
     return this.backendService.getCollection(`rooms?projection=${Projection.RICH}`, 'rooms');
   }
 
-  save(room: SimpleRoom): Observable<BaseRoom> {
-    return this.backendService.post('rooms', RoomService.getProtocol(room), TokenRequirement.REQUIRED);
+  save(room: RoomForm): Observable<BaseRoom> {
+    return this.backendService.postSingle('rooms', room);
   }
 
   getAllSimple(): Observable<SimpleRoom[]> {
