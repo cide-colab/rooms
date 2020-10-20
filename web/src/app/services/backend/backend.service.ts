@@ -64,6 +64,10 @@ export class BackendService {
     );
   }
 
+  public patchSingle<T, R>(relativeUrl: string, body: T): Observable<R> {
+    return this.httpClient.patch<R>(this.createUrl(relativeUrl), body);
+  }
+
   public patch<T, R>(relativeUrl: string, body: T, tokenRequirement: TokenRequirement = TokenRequirement.NAN): Observable<R> {
     return this.createOptions(tokenRequirement).pipe(
       switchMap(options => this.httpClient.patch<R>(this.createUrl(relativeUrl), body, options))

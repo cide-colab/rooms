@@ -20,7 +20,7 @@ class Department(
         @Column(name = "description", length = 512)
         override val description: String,
 
-        override val imageUrl: String? = null,
+        override val imageUrl: String = "",
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "department", orphanRemoval = true)
         val rooms: List<Room> = listOf(),
@@ -28,5 +28,5 @@ class Department(
         @Id
         @Column(name = "id", nullable = false)
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        override val id: Long = 0
+        override var id: Long = 0
 ) : AbstractEntity(), DepartmentModel

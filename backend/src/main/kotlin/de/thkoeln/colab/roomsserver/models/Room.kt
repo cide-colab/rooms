@@ -6,7 +6,9 @@
 
 package de.thkoeln.colab.roomsserver.models
 
+import de.thkoeln.colab.roomsserver.core.models.Identity
 import de.thkoeln.colab.roomsserver.core.models.RoomModel
+import org.springframework.data.rest.core.config.Projection
 import javax.persistence.*
 
 
@@ -30,7 +32,7 @@ class Room(
         @Id
         @Column(name = "id", nullable = false)
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        override val id: Long = 0,
+        override var id: Long = 0,
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "room", orphanRemoval = true)
         val reservations: List<Reservation> = listOf(),
@@ -38,3 +40,8 @@ class Room(
         @ManyToMany(mappedBy = "rooms")
         val abos: List<Abo> = listOf()
 ) : AbstractEntity(), RoomModel
+
+@Projection(name = Projections.RICH, types = [Room::class])
+interface RichRoom : RoomModel, Identity {
+        fun getDepartment(): Department
+}

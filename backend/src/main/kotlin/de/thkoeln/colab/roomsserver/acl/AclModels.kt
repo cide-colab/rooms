@@ -64,7 +64,10 @@ data class AclObjectIdentity(
         override var id: Long = 0,
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "context")
-        val allocations: List<AclRoleAllocation> = listOf()
+        val allocations: List<AclRoleAllocation> = listOf(),
+
+        @OneToMany(cascade = [CascadeType.ALL], mappedBy = "parent")
+        val children: List<AclObjectIdentity> = listOf()
 ) : AbstractEntity()
 
 @Entity
@@ -133,7 +136,7 @@ enum class AclAction {
 
 object Application
 
-const val ANONYMOUS_PRINCIPAL = "anonymous"
+const val ANONYMOUS_PRINCIPAL = "anonymousUser"
 
 data class ContextForm(
         val objectClass: String,

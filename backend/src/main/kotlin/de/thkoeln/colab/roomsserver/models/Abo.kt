@@ -47,7 +47,7 @@ class Abo(
         @Id
         @Column(name = "id", nullable = false)
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        override val id: Long = 0,
+        override var id: Long = 0,
 
         @OneToMany(mappedBy = "abo", cascade = [CascadeType.ALL])
         val reservations: List<Reservation> = listOf()

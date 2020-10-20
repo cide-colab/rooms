@@ -19,6 +19,9 @@ import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.session.SessionRegistryImpl
 import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy
 import org.springframework.stereotype.Component
+import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.cors.CorsConfigurationSource
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 import org.springframework.web.servlet.HandlerInterceptor
 import org.springframework.web.servlet.ModelAndView
 import org.springframework.web.servlet.config.annotation.CorsRegistry
@@ -50,29 +53,29 @@ class KeycloakSecurityConfig : KeycloakWebSecurityConfigurerAdapter() {
     override fun sessionAuthenticationStrategy() =
             RegisterSessionAuthenticationStrategy(SessionRegistryImpl())
 
-    @Bean
-    fun corsConfigurer(): WebMvcConfigurer = object : WebMvcConfigurer {
-        override fun addCorsMappings(registry: CorsRegistry) {
-            registry.addMapping("/**")
-                    .allowedOrigins("http://localhost:4200")
-                    .allowedMethods("GET", "POST", "PUT", "PATCH", "OPTIONS", "DELETE")
-                    .allowedHeaders("Content-Type, Authorization, Content-Length, X-Requested-With")
-        }
-    }
-
 //    @Bean
-//    fun corsConfigurationSource(): CorsConfigurationSource = UrlBasedCorsConfigurationSource().apply {
-//        registerCorsConfiguration("/**", CorsConfiguration().apply {
-//            addAllowedOrigin("http://localhost:4200")
-//            addAllowedHeader("Content-Type, Authorization, Content-Length, X-Requested-With")
-//            addAllowedMethod("POST")
-//            addAllowedMethod("PUT")
-//            addAllowedMethod("PATCH")
-//            addAllowedMethod("GET")
-//            addAllowedMethod("OPTIONS")
-//            addAllowedMethod("DELETE")
-//        })
+//    fun corsConfigurer(): WebMvcConfigurer = object : WebMvcConfigurer {
+//        override fun addCorsMappings(registry: CorsRegistry) {
+//            registry.addMapping("/**")
+//                    .allowedOrigins("http://localhost:4200")
+//                    .allowedMethods("GET", "POST", "PUT", "PATCH", "OPTIONS", "DELETE")
+//                    .allowedHeaders("Content-Type, Authorization, Content-Length, X-Requested-With")
+//        }
 //    }
+
+    @Bean
+    fun corsConfigurationSource(): CorsConfigurationSource = UrlBasedCorsConfigurationSource().apply {
+        registerCorsConfiguration("/**", CorsConfiguration().apply {
+            addAllowedOrigin("http://localhost:4200")
+            addAllowedHeader("Content-Type, Authorization, Content-Length, X-Requested-With")
+            addAllowedMethod("POST")
+            addAllowedMethod("PUT")
+            addAllowedMethod("PATCH")
+            addAllowedMethod("GET")
+            addAllowedMethod("OPTIONS")
+            addAllowedMethod("DELETE")
+        })
+    }
 
     @Bean
     @ConditionalOnMissingBean(HttpSessionManager::class)

@@ -7,5 +7,5 @@
 package de.thkoeln.colab.roomsserver.core.models
 
 interface Identity {
-    val id: Long
+    var id: Long
 }

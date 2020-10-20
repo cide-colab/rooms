@@ -21,7 +21,7 @@ class AclObjectIdentityHandler @Autowired constructor(private val aclService: Ac
         aclService.createOrUpdateObjectIdentityByTargetObject(entity)
     }
 
-    override fun onAfterDelete(entity: Any) {
+    override fun onBeforeDelete(entity: Any) {
         logger.debug("Deleting ObjectIdentity for Entity $entity")
         aclService.deleteObjectIdentityByTargetObject(entity)
     }

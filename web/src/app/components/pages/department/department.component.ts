@@ -77,7 +77,7 @@ export class DepartmentComponent implements OnInit {
         this.toolbarService.addPageButton('update', {
           iconClass: 'icon-createmode_editedit',
           title: 'Bearbeiten',
-          click: () => this.router.navigate(['update'])
+          click: () => this.router.navigate(['/', 'departments', department.id, 'update'])
         });
       }
     });

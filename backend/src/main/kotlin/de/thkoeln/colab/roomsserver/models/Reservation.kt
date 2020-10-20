@@ -42,5 +42,5 @@ class Reservation(
         @Id
         @Column(name = "id", nullable = false)
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        override val id: Long = 0
+        override var id: Long = 0
 ) : AbstractEntity(), ReservationModel

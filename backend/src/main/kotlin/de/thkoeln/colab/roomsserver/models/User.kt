@@ -27,7 +27,7 @@ class User(
         @Id
         @Column(name = "id", nullable = false)
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        override val id: Long = 0,
+        override var id: Long = 0,
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "user", orphanRemoval = true)
         val abos: List<Abo> = listOf(),

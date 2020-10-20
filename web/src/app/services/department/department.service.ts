@@ -29,7 +29,7 @@ export class DepartmentService {
     return this.backendService.deleteSingle(`departments/${id}`);
   }
 
-  update(department: BaseDepartment): Observable<BaseDepartment> {
-    return this.backendService.patch(department._links.self.href, department, TokenRequirement.REQUIRED);
+  update(department: DepartmentForm): Observable<BaseDepartment> {
+    return this.backendService.patchSingle(`departments/${department.id}`, department);
   }
 }
