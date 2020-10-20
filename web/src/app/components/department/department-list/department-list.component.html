@@ -1,5 +1,0 @@
-<div *ngIf="filteredItems | async as filteredItems" class="card-list">
-  <div (click)="emitItemClick(item)" *ngFor="let item of filteredItems" class="card-list-item" mat-ripple>
-    <component-department-preview-card [department]="item"></component-department-preview-card>
-  </div>
-</div>

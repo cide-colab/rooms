@@ -36,6 +36,10 @@ export class BackendService {
     );
   }
 
+  public getSingle<T>(relativeUrl: string): Observable<T> {
+    return this.httpClient.get<T>(this.createUrl(relativeUrl));
+  }
+
   public getCollection<T>(relativeUrl: string, rel: string): Observable<T[]> {
     return this.httpClient.get<{ _embedded: { [rel: string]: T[] }, _links: Map<string, string> }>(this.createUrl(relativeUrl)).pipe(
       tap(it => console.log(it)),
@@ -48,6 +52,10 @@ export class BackendService {
     return this.createOptions(tokenRequirement).pipe(
       switchMap(options => this.httpClient.post<R>(this.createUrl(relativeUrl), body, options))
     );
+  }
+
+  public deleteSingle<T>(relativeUrl: string): Observable<T> {
+    return this.httpClient.delete<T>(this.createUrl(relativeUrl));
   }
 
   public delete<T>(relativeUrl: string, tokenRequirement: TokenRequirement = TokenRequirement.NAN): Observable<T> {

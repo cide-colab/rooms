@@ -46,17 +46,14 @@ export class SidenavComponent implements OnInit, AfterViewInit {
     private readonly sidenavService: SidenavService,
     private readonly permissionService: PermissionService,
     private readonly userService: UserService,
-    private readonly sessionService: SessionService,
+    // private readonly sessionService: SessionService,
     private readonly keycloakService: KeycloakService,
-    private readonly router: Router,
-    private readonly translate: TranslateService
+    private readonly router: Router
   ) {
   }
 
   @ViewChild(MatDrawer)
   public drawer: MatDrawer;
-  // session: Session;
-  // nav: NavGroup[];
 
   groups = new Subject<NavGroup[]>();
   user: Observable<User>;
@@ -245,19 +242,19 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   }
 
   closeSidenav() {
-    this.drawer.close();
+    this.drawer.close().then();
   }
 
   onNavItemClicked(item: NavItem) {
     switch (item.event) {
       case NavEvent.LOGIN:
-        this.sessionService.login();
+        this.keycloakService.login().then(r => console.log(r));
         break;
       case NavEvent.LINK:
-        this.router.navigate([item.href]);
+        this.router.navigate([item.href]).then();
         break;
       case NavEvent.LOGOUT:
-        this.sessionService.logout();
+        this.keycloakService.logout().then(r => console.log(r));
         break;
     }
     this.closeSidenav();

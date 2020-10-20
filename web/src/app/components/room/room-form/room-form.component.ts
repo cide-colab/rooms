@@ -29,10 +29,10 @@ export class RoomFormComponent extends FormComponent<SimpleRoom> implements OnIn
 
   ngOnInit() {
     super.ngOnInit();
-    this.departments = this.departmentService.getAll()
-      .pipe(map(departments =>
-        departments.filter(department => this.sessionService.hasPermission('create:room', department.id))
-      ));
+    // this.departments = this.departmentService.getAll()
+    //   .pipe(map(departments =>
+    //     departments.filter(department => this.sessionService.hasPermission('create:room', department.id))
+    //   ));
 
 
     this.filteredDepartments = this.formControls.department.valueChanges.pipe(

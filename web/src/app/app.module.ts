@@ -17,7 +17,6 @@ import {BackendService} from './services/backend/backend.service';
 import {UserPreviewComponent} from './components/user/user-preview/user-preview.component';
 import {MatListModule} from '@angular/material/list';
 import {keycloakInitializer} from './app.init';
-import {DepartmentListPage} from './pages/general/department-list/department-list.page';
 import {CreateDepartmentPage} from './pages/detail/create-department/create-department.page';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {DepartmentFormComponent} from './components/department/department-form/department-form.component';
@@ -25,7 +24,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {DepartmentService} from './services/department/department.service';
-import {DepartmentPreviewCardComponent} from './components/department/department-list-item/department-preview-card.component';
 import {DateAdapter, MatRippleModule} from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
 import {DepartmentDetailPage} from './pages/detail/department-detail/department-detail.page';
@@ -35,7 +33,6 @@ import {EditDepartmentPage} from './pages/detail/edit-department/edit-department
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {SnackbarService} from './services/snackbar/snackbar.service';
-import {RoomListPage} from './pages/general/room-list/room-list.page';
 import {EditRoomPage} from './pages/detail/edit-room/edit-room.page';
 import {CreateRoomPage} from './pages/detail/create-room/create-room.page';
 import {RoomDetailPage} from './pages/detail/room-detail/room-detail.page';
@@ -88,6 +85,8 @@ import { ActionsComponent } from './components/fragments/actions/actions.compone
 import {DepartmentsComponent} from './components/pages/departments/departments.component';
 import {DepartmentListComponent} from './components/fragments/department-list/department-list.component';
 import { DepartmentListItemComponent } from './components/fragments/department-list-item/department-list-item.component';
+import { RoomComponent } from './components/pages/room/room.component';
+import { DepartmentComponent } from './components/pages/department/department.component';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -112,15 +111,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     SidenavComponent,
     MainPage,
     UserPreviewComponent,
-    DepartmentListPage,
     CreateDepartmentPage,
     DepartmentFormComponent,
     ToolbarComponent,
-    DepartmentPreviewCardComponent,
     DepartmentDetailPage,
     SimpleConfirmDialog,
     EditDepartmentPage,
-    RoomListPage,
     EditRoomPage,
     CreateRoomPage,
     RoomDetailPage,
@@ -154,7 +150,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     RoomListItemComponent,
     PreviewPipe,
     ActionsComponent,
-    DepartmentListItemComponent
+    DepartmentListItemComponent,
+    RoomComponent,
+    DepartmentComponent
   ],
   imports: [
     BrowserModule,

@@ -1,28 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {MainPage} from './pages/main/main.page';
-import {DepartmentListPage} from './pages/general/department-list/department-list.page';
-import {CreateDepartmentPage} from './pages/detail/create-department/create-department.page';
-import {PermissionGuard} from './permission.guard';
-import {DepartmentDetailPage} from './pages/detail/department-detail/department-detail.page';
-import {EditDepartmentPage} from './pages/detail/edit-department/edit-department.page';
-import {CreateRoomPage} from './pages/detail/create-room/create-room.page';
-import {RoomListPage} from './pages/general/room-list/room-list.page';
-import {RoomDetailPage} from './pages/detail/room-detail/room-detail.page';
-import {EditRoomPage} from './pages/detail/edit-room/edit-room.page';
-import {AboListPageComponent} from './pages/admin/abo-list/abo-list-page.component';
-import {CreateAboPage} from './pages/detail/create-abo/create-abo.page';
-import {AboDetailPage} from './pages/detail/abo-detail/abo-detail.page';
-import {EditAboPage} from './pages/detail/edit-abo/edit-abo.page';
-import {ReservationListPage} from './pages/admin/reservation-list/reservation-list.page';
-import {CreateReservationPage} from './pages/detail/create-reservation/create-reservation.page';
-import {ReservationDetailPage} from './pages/detail/reservation-detail/reservation-detail.page';
-import {EditReservationPage} from './pages/detail/edit-reservation/edit-reservation.page';
-import {MyAboListPageComponent} from './pages/user/my-abos/my-abo-list-page.component';
-import {MyReservationListPageComponent} from './pages/user/my-reservations/my-reservation-list-page.component';
 import {MainComponent} from './components/pages/main/main.component';
 import {DepartmentsComponent} from './components/pages/departments/departments.component';
 import {RoomsComponent} from './components/pages/rooms/rooms.component';
+import {RoomComponent} from './components/pages/room/room.component';
+import {DepartmentComponent} from './components/pages/department/department.component';
 /*
 
     data: {
@@ -52,8 +34,16 @@ const routes: Routes = [
     component: DepartmentsComponent
   },
   {
+    path: 'departments/:id',
+    component: DepartmentComponent
+  },
+  {
     path: 'rooms',
     component: RoomsComponent
+  },
+  {
+    path: 'rooms/:id',
+    component: RoomComponent
   },
   // {
   //   path: 'departments',

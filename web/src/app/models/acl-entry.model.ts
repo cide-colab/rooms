@@ -29,7 +29,7 @@ export const APPLICATION_CONTEXT: ContextForm = {
 };
 
 export interface ContextForm {
-  objectClass: string;
+  objectClass: AclClassAlias;
   objectId: number;
 }
 

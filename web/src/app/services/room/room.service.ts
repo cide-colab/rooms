@@ -8,6 +8,7 @@ import {removeTemplate} from '../../app.utils';
 import {BaseSlot, SlotListEntity} from '../../models/slot.model';
 import * as moment from 'moment';
 import {RichRoom, Room} from '../../core/models/room.model';
+import {Projection} from '../../core/projections.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,12 @@ export class RoomService {
     };
   }
 
+  get(id: number): Observable<RichRoom> {
+    return this.backendService.getSingle(`rooms/${id}?projection=${Projection.RICH}`);
+  }
+
   getAll(): Observable<RichRoom[]> {
-    return this.backendService.getCollection('rooms?projection=rich', 'rooms');
+    return this.backendService.getCollection(`rooms?projection=${Projection.RICH}`, 'rooms');
   }
 
   save(room: SimpleRoom): Observable<BaseRoom> {
@@ -47,8 +52,8 @@ export class RoomService {
     return this.backendService.get(`rooms/${id}`, TokenRequirement.IF_LOGGED_IN);
   }
 
-  delete(room: BaseRoom): Observable<any> {
-    return this.backendService.delete(room._links.self.href, TokenRequirement.REQUIRED);
+  delete(id: number): Observable<any> {
+    return this.backendService.deleteSingle(`rooms/${id}`);
   }
 
   update(room: SimpleRoom): Observable<BaseRoom> {

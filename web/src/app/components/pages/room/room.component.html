@@ -1,0 +1,18 @@
+<div *ngIf="room | async as room">
+  <div class="page-title">{{room.name}}</div>
+  <div class="page-subtitle">Raum {{room.number}}
+    - {{room.department.name}}</div>
+  <div class="page-avatar-container"><img class="page-avatar" [src]="room.imageUrl ? room.imageUrl : '/assets/img/room.svg'"></div>
+  <div class="page-section">
+    <div class="page-section-header">Beschreibung:</div>
+    <p class="page-section-content">{{room.description}}</p>
+    <p *ngIf="!room.description"
+       class="page-section-placeholder">Keine Beschreibung vorhanden</p>
+  </div>
+  <div class="page-section">
+    <div class="page-section-header">Abteilung:</div>
+    <div mat-ripple class="card-container" [routerLink]="['/','departments', room.department.id]">
+      <component-department-list-item [department]="room.department"></component-department-list-item>
+    </div>
+  </div>
+</div>
