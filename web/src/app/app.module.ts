@@ -3,7 +3,7 @@ import {APP_INITIALIZER, NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {SidenavComponent} from './components/sidenav/sidenav.component';
+import {SidenavComponent} from './components/fragments/sidenav/sidenav.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
@@ -17,7 +17,6 @@ import {UserPreviewComponent} from './components/user/user-preview/user-preview.
 import {MatListModule} from '@angular/material/list';
 import {keycloakInitializer} from './app.init';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {DepartmentFormComponent} from './components/department/department-form/department-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -29,10 +28,8 @@ import {SimpleConfirmDialog} from './dialog/simple-confirm/simple-confirm.dialog
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {SnackbarService} from './services/snackbar/snackbar.service';
-import {RoomFormComponent} from './components/room/room-form/room-form.component';
 import {RoomService} from './services/room/room.service';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {RoomPreviewCardComponent} from './components/room/room-preview-card/room-preview-card.component';
 import {QRCodeModule} from 'angularx-qrcode';
 import {QrCodeDialog} from './dialog/qr-code/qr-code.dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -45,7 +42,6 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {RoomPreviewSmallComponent} from './components/room/room-preview-small/room-preview-small.component';
 import {AboPreviewCardComponent} from './components/abo/abo-preview-card/abo-preview-card.component';
 import {ReservationListPage} from './pages/admin/reservation-list/reservation-list.page';
 import {ReservationDetailPage} from './pages/detail/reservation-detail/reservation-detail.page';
@@ -88,6 +84,7 @@ import { DepartmentEditorComponent } from './components/fragments/department-edi
 import { RoomEditorComponent } from './components/fragments/room-editor/room-editor.component';
 import { FormActionsComponent } from './components/fragments/form-actions/form-actions.component';
 import {UrlService} from './services/url/url.service';
+import {RoomPreviewSmallComponent} from './components/room/room-preview-small/room-preview-small.component';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -111,18 +108,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     SidenavComponent,
     UserPreviewComponent,
-    DepartmentFormComponent,
     ToolbarComponent,
     SimpleConfirmDialog,
-    RoomFormComponent,
-    RoomPreviewCardComponent,
     QrCodeDialog,
     AboListPageComponent,
     CreateAboPage,
     EditAboPage,
     AboDetailPage,
     AboFormComponent,
-    RoomPreviewSmallComponent,
     AboPreviewCardComponent,
     ReservationListPage,
     ReservationDetailPage,
@@ -153,7 +146,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     RoomUpdateComponent,
     DepartmentEditorComponent,
     RoomEditorComponent,
-    FormActionsComponent
+    FormActionsComponent,
+    RoomPreviewSmallComponent
   ],
   imports: [
     BrowserModule,

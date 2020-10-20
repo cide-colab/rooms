@@ -105,9 +105,9 @@
                       [checked]="allSelected(filteredRooms)">{{TRANSLATION_KEYS.component.abo_form.rooms.select_all | translate}}</mat-checkbox>
         <div *ngIf="filteredRooms | async as filteredRooms" class="filtered-rooms-list">
           <div *ngFor="let room of filteredRooms" class="selectable-list-item">
-            <component-room-preview-card (selectionChange)="selectRoom(room, $event)" [room]="room"
-                                         [selectable]="true"
-                                         [selected]="isSelected(room)"></component-room-preview-card>
+<!--            <component-room-preview-card (selectionChange)="selectRoom(room, $event)" [room]="room"-->
+<!--                                         [selectable]="true"-->
+<!--                                         [selected]="isSelected(room)"></component-room-preview-card>-->
           </div>
         </div>
       </div>

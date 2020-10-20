@@ -1,19 +1,19 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {SidenavService} from '../../services/sidenav/sidenav.service';
+import {SidenavService} from '../../../services/sidenav/sidenav.service';
 import {MatDrawer} from '@angular/material/sidenav';
-import {SessionService} from '../../services/session/session.service';
-import {Session} from '../../models/session.model';
+import {SessionService} from '../../../services/session/session.service';
+import {Session} from '../../../models/session.model';
 import {Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
-import {TRANSLATION_KEYS} from '../../../app.translation-tree';
+import {TRANSLATION_KEYS} from '../../../../app.translation-tree';
 import {map, take} from 'rxjs/operators';
-import {PermissionService} from '../../services/permission/permission.service';
-import {AclAction, AclClassAlias} from '../../models/acl-entry.model';
+import {PermissionService} from '../../../services/permission/permission.service';
+import {AclAction, AclClassAlias} from '../../../models/acl-entry.model';
 import {forkJoin, from, Observable, Subject} from 'rxjs';
-import {User} from '../../core/models/user.model';
-import {UserService} from '../../services/user/user.service';
+import {User} from '../../../core/models/user.model';
+import {UserService} from '../../../services/user/user.service';
 import {KeycloakService} from 'keycloak-angular';
-import {build} from '../../utils/global.extensions';
+import {build} from '../../../utils/global.extensions';
 
 enum NavEvent {
   LINK,
