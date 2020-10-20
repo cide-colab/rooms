@@ -3,7 +3,7 @@ import {BackendService, TokenRequirement} from '../backend/backend.service';
 import {BaseDepartment, DepartmentListEntity} from '../../models/department.model';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {RichDepartment} from '../../core/models/department.model';
+import {DepartmentForm, RichDepartment} from '../../core/models/department.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class DepartmentService {
   constructor(private readonly backendService: BackendService) {
   }
 
-  save(department: BaseDepartment): Observable<BaseDepartment> {
+  save(department: DepartmentForm): Observable<BaseDepartment> {
     return this.backendService.post('departments', department, TokenRequirement.REQUIRED);
   }
 

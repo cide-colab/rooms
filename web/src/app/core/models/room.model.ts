@@ -14,6 +14,6 @@ export interface RichRoom extends RoomModel, Identity {
   department: Department;
 }
 
-export interface RoomForm extends RoomModel {
+export interface RoomForm extends RoomModel, Identity {
   department: string;
 }

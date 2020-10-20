@@ -5,6 +5,10 @@ import {DepartmentsComponent} from './components/pages/departments/departments.c
 import {RoomsComponent} from './components/pages/rooms/rooms.component';
 import {RoomComponent} from './components/pages/room/room.component';
 import {DepartmentComponent} from './components/pages/department/department.component';
+import {DepartmentUpdateComponent} from './components/pages/department-update/department-update.component';
+import {DepartmentCreateComponent} from './components/pages/department-create/department-create.component';
+import {RoomCreateComponent} from './components/pages/room-create/room-create.component';
+import {RoomUpdateComponent} from './components/pages/room-update/room-update.component';
 /*
 
     data: {
@@ -34,16 +38,32 @@ const routes: Routes = [
     component: DepartmentsComponent
   },
   {
+    path: 'departments/create',
+    component: DepartmentCreateComponent
+  },
+  {
     path: 'departments/:id',
     component: DepartmentComponent
+  },
+  {
+    path: 'departments/:id/update',
+    component: DepartmentUpdateComponent
   },
   {
     path: 'rooms',
     component: RoomsComponent
   },
   {
+    path: 'rooms/create',
+    component: RoomCreateComponent
+  },
+  {
     path: 'rooms/:id',
     component: RoomComponent
+  },
+  {
+    path: 'rooms/:id/update',
+    component: RoomUpdateComponent
   },
   // {
   //   path: 'departments',

@@ -17,7 +17,6 @@ import {BackendService} from './services/backend/backend.service';
 import {UserPreviewComponent} from './components/user/user-preview/user-preview.component';
 import {MatListModule} from '@angular/material/list';
 import {keycloakInitializer} from './app.init';
-import {CreateDepartmentPage} from './pages/detail/create-department/create-department.page';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {DepartmentFormComponent} from './components/department/department-form/department-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -26,7 +25,6 @@ import {MatInputModule} from '@angular/material/input';
 import {DepartmentService} from './services/department/department.service';
 import {DateAdapter, MatRippleModule} from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
-import {DepartmentDetailPage} from './pages/detail/department-detail/department-detail.page';
 import {MatDialogModule} from '@angular/material/dialog';
 import {SimpleConfirmDialog} from './dialog/simple-confirm/simple-confirm.dialog';
 import {EditDepartmentPage} from './pages/detail/edit-department/edit-department.page';
@@ -86,6 +84,13 @@ import {DepartmentListComponent} from './components/fragments/department-list/de
 import { DepartmentListItemComponent } from './components/fragments/department-list-item/department-list-item.component';
 import { RoomComponent } from './components/pages/room/room.component';
 import { DepartmentComponent } from './components/pages/department/department.component';
+import { DepartmentCreateComponent } from './components/pages/department-create/department-create.component';
+import { DepartmentUpdateComponent } from './components/pages/department-update/department-update.component';
+import { RoomCreateComponent } from './components/pages/room-create/room-create.component';
+import { RoomUpdateComponent } from './components/pages/room-update/room-update.component';
+import { DepartmentEditorComponent } from './components/fragments/department-editor/department-editor.component';
+import { RoomEditorComponent } from './components/fragments/room-editor/room-editor.component';
+import { FormActionsComponent } from './components/fragments/form-actions/form-actions.component';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -110,10 +115,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SidenavComponent,
     MainPage,
     UserPreviewComponent,
-    CreateDepartmentPage,
     DepartmentFormComponent,
     ToolbarComponent,
-    DepartmentDetailPage,
     SimpleConfirmDialog,
     EditDepartmentPage,
     EditRoomPage,
@@ -150,7 +153,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     ActionsComponent,
     DepartmentListItemComponent,
     RoomComponent,
-    DepartmentComponent
+    DepartmentComponent,
+    DepartmentCreateComponent,
+    DepartmentUpdateComponent,
+    RoomCreateComponent,
+    RoomUpdateComponent,
+    DepartmentEditorComponent,
+    RoomEditorComponent,
+    FormActionsComponent
   ],
   imports: [
     BrowserModule,
