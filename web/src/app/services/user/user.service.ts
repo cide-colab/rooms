@@ -34,4 +34,10 @@ export class UserService {
       projection: Projection.RICH
     });
   }
+
+  get(id: number): Observable<RichUser> {
+    return this.backendService.getSingle<RichUser>(`users/${id}`, {
+      projection: Projection.RICH
+    });
+  }
 }

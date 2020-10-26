@@ -43,7 +43,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.toolbarService.setPageTitle('Nutzer');
   }
 
-  click(item: RichDepartment) {
+  click(item: RichUser) {
     this.router.navigate(['users', item.id]).then();
   }
 

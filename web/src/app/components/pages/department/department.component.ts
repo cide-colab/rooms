@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Department, RichDepartment} from '../../../core/models/department.model';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -21,7 +21,7 @@ import {SimpleConfirmDialog} from '../../dialogs/simple-confirm/simple-confirm.d
   templateUrl: './department.component.html',
   styleUrls: ['./department.component.scss']
 })
-export class DepartmentComponent implements OnInit {
+export class DepartmentComponent implements OnInit, OnDestroy {
 
   department: Observable<RichDepartment>;
   rooms: Observable<RichRoom[]>;
@@ -130,5 +130,9 @@ export class DepartmentComponent implements OnInit {
         this.snackBar.open(`Abteilung ${department.name} konnte nicht gelöscht werden`, null, { duration: 3000 });
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    this.toolbarService.clearPage();
   }
 }

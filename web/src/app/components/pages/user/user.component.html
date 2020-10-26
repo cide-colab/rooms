@@ -1,1 +1,6 @@
-<p>user works!</p>
+<div *ngIf="user | async as user" class="detail-page">
+  <div class="page-title">{{user.givenName}} {{user.familyName}}</div>
+  <div class="page-subtitle">{{user.principal}}</div>
+  <div class="page-avatar-container"><img class="page-avatar" [src]="user.imageUrl ? user.imageUrl : '/assets/img/avatar.png'"></div>
+</div>
+

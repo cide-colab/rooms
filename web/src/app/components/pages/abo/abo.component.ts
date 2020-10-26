@@ -49,23 +49,8 @@ export class AboComponent implements OnInit, OnDestroy {
       switchMap( id => this.aboService.get(id)),
       tap( abo => this.rooms = this.roomService.getByAbo(abo.id)),
       tap( abo => this.user = this.userService.getByAbo(abo.id)),
-      tap(abo => this.createQrButton(abo)),
       tap(abo => this.createDeleteButton(abo))
     );
-  }
-
-  private createQrButton(abo: RichAbo) {
-    this.toolbarService.addPageButton('code', {
-      iconClass: 'icon-qrcode',
-      title: 'Code',
-      click: () => {
-        QrCodeDialog.createDialog(this.dialog, {
-          title: abo.title,
-          subtitle: `von Nutzer ${abo.user.principal}`,
-          code: `${environment.frontend_url}/abos/${abo.id}`
-        });
-      }
-    });
   }
 
   private createDeleteButton(abo: RichAbo) {
