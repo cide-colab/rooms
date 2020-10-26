@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {Route, RouterModule} from '@angular/router';
 import {MainComponent} from './components/pages/main/main.component';
 import {DepartmentsComponent} from './components/pages/departments/departments.component';
 import {RoomsComponent} from './components/pages/rooms/rooms.component';
@@ -9,61 +9,129 @@ import {DepartmentUpdateComponent} from './components/pages/department-update/de
 import {DepartmentCreateComponent} from './components/pages/department-create/department-create.component';
 import {RoomCreateComponent} from './components/pages/room-create/room-create.component';
 import {RoomUpdateComponent} from './components/pages/room-update/room-update.component';
-/*
+import {AclAction, AclClassAlias, RoutingPermission} from './models/acl-entry.model';
+import {PermissionGuard} from './permission.guard';
 
-    data: {
-      // Permission && Permission
-      entries: [
-        {
-          idKey: null,
-          // Role || Role
-          permissions: ['create:department']
-        }
-      ]
-    }
+export interface AppRoute extends Route {
+  data?: {
+    permission?: RoutingPermission;
+  };
+}
 
- */
+export declare type AppRoutes = AppRoute[];
 
-const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: MainPage,
-  // },
+const routes: AppRoutes = [
   {
     path: '',
     component: MainComponent
   },
   {
     path: 'departments',
-    component: DepartmentsComponent
+    component: DepartmentsComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      permission: {
+        target: AclClassAlias.department,
+        action: AclAction.READ
+      }
+    }
   },
   {
     path: 'departments/create',
-    component: DepartmentCreateComponent
+    component: DepartmentCreateComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      permission: {
+        target: AclClassAlias.department,
+        action: AclAction.CREATE,
+        context: {
+          objectClass: AclClassAlias.application,
+          objectIdAttr: ''
+        }
+      }
+    }
   },
   {
     path: 'departments/:id',
-    component: DepartmentComponent
+    component: DepartmentComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      permission: {
+        target: AclClassAlias.department,
+        action: AclAction.READ,
+        context: {
+          objectClass: AclClassAlias.department,
+          objectIdAttr: 'id'
+        }
+      }
+    }
   },
   {
     path: 'departments/:id/update',
-    component: DepartmentUpdateComponent
+    component: DepartmentUpdateComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      permission: {
+        target: AclClassAlias.department,
+        action: AclAction.UPDATE,
+        context: {
+          objectClass: AclClassAlias.department,
+          objectIdAttr: 'id'
+        }
+      }
+    }
   },
   {
     path: 'rooms',
-    component: RoomsComponent
+    component: RoomsComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      permission: {
+        target: AclClassAlias.room,
+        action: AclAction.READ
+      }
+    }
   },
   {
     path: 'rooms/create',
-    component: RoomCreateComponent
+    component: RoomCreateComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      permission: {
+        target: AclClassAlias.room,
+        action: AclAction.CREATE
+      }
+    }
   },
   {
     path: 'rooms/:id',
-    component: RoomComponent
+    component: RoomComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      permission: {
+        target: AclClassAlias.room,
+        action: AclAction.READ,
+        context: {
+          objectClass: AclClassAlias.room,
+          objectIdAttr: 'id'
+        }
+      }
+    }
   },
   {
     path: 'rooms/:id/update',
-    component: RoomUpdateComponent
+    component: RoomUpdateComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      permission: {
+        target: AclClassAlias.room,
+        action: AclAction.UPDATE,
+        context: {
+          objectClass: AclClassAlias.room,
+          objectIdAttr: 'id'
+        }
+      }
+    }
   },
   // {
   //   path: 'departments',
@@ -266,5 +334,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
+export class RoutingModule {
 }

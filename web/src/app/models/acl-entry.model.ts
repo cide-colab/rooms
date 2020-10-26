@@ -38,3 +38,14 @@ export interface PermissionCheckForm {
   action: AclAction;
   context?: ContextForm;
 }
+
+export interface RoutingPermissionContext {
+  objectClass: AclClassAlias;
+  objectIdAttr: string;
+}
+
+export interface RoutingPermission {
+  target: AclClassAlias;
+  action: AclAction;
+  context?: RoutingPermissionContext;
+}

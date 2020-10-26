@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {APP_INITIALIZER, NgModule} from '@angular/core';
 
-import {AppRoutingModule} from './app-routing.module';
+import {RoutingModule} from './routing.module';
 import {AppComponent} from './app.component';
 import {SidenavComponent} from './components/fragments/sidenav/sidenav.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -149,7 +149,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    RoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     KeycloakAngularModule,

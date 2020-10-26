@@ -3,29 +3,8 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTre
 import {SessionService} from './services/session/session.service';
 import {SnackbarService} from './services/snackbar/snackbar.service';
 import {TRANSLATION_KEYS} from '../app.translation-tree';
-import {take} from 'rxjs/operators';
-
-interface PermissionEntries {
-  idKey?: string;
-  type?: string;
-  permission: string;
-}
-
-/*
-
-    data: {
-      // Permission && Permission
-      entries: [
-        {
-          type: Department
-          idKey: null,
-          // Role || Role
-          permissions: ['create:department']
-        }
-      ]
-    }
-
- */
+import {PermissionService} from './services/permission/permission.service';
+import {AclClassAlias, PermissionCheckForm, RoutingPermission} from './models/acl-entry.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,30 +14,38 @@ export class PermissionGuard implements CanActivate {
   constructor(
     private readonly sessionService: SessionService,
     private readonly router: Router,
-    private readonly snackbarService: SnackbarService
+    private readonly snackbarService: SnackbarService,
+    private readonly permissionService: PermissionService
   ) {
   }
 
-  async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
-    const loggedIn: boolean = route.data.loggedIn;
-    if (loggedIn) {
-      if (!await this.sessionService.isLoggedIn()) {
-        return this.router.parseUrl('');
-      }
+  private static async toPermissionForm(permission: RoutingPermission, route: ActivatedRouteSnapshot): Promise<PermissionCheckForm> {
+    const form: PermissionCheckForm = {
+      action: permission.action,
+      target: permission.target
+    };
+    if (permission.context) {
+      const id = permission.context.objectClass === AclClassAlias.application ? 0 : await route.params[permission.context.objectIdAttr];
+      form.context = {
+        objectClass: permission.context.objectClass,
+        objectId: id
+      };
     }
-    const entries: PermissionEntries[] = route.data.entries;
-    if (!entries || entries.length <= 0) {
+    return form;
+  }
+
+  async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
+    const permission: RoutingPermission = route.data.permission;
+    if (!permission) {
       return true;
     }
 
-    for (const entry of entries) {
-      const id = entry.idKey ? route.paramMap.get(entry.idKey) : null;
-      if (await this.sessionService.hasPermission(entry.permission, id, entry.type).pipe(take(1)).toPromise()) {
-        return true;
-      }
+    const form = await PermissionGuard.toPermissionForm(permission, route);
+    if (await this.permissionService.hasPermission(form).toPromise()) {
+      return true;
     }
+
     this.snackbarService.open(TRANSLATION_KEYS.snackbar.unauthorized);
     return this.router.parseUrl('');
   }
-
 }
