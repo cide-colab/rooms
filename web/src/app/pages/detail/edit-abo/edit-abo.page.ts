@@ -10,7 +10,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {AboService} from '../../../services/abo/abo.service';
 import {from} from 'rxjs';
 import {tap} from 'rxjs/operators';
-import {SimpleConfirmDialog} from '../../../dialog/simple-confirm/simple-confirm.dialog';
+import {SimpleConfirmDialog} from '../../../components/dialogs/simple-confirm/simple-confirm.dialog';
 
 @Component({
   selector: 'page-edit-abo',

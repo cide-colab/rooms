@@ -9,7 +9,7 @@ import {Observable} from 'rxjs';
 import {TRANSLATION_KEYS} from '../../../../app.translation-tree';
 import {DetailedAbo} from '../../../models/abo.model';
 import {tap} from 'rxjs/operators';
-import {SimpleConfirmDialog} from '../../../dialog/simple-confirm/simple-confirm.dialog';
+import {SimpleConfirmDialog} from '../../../components/dialogs/simple-confirm/simple-confirm.dialog';
 
 @Component({
   selector: 'page-abo-detail',

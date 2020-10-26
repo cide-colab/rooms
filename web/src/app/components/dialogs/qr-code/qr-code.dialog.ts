@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {TRANSLATION_KEYS} from '../../../app.translation-tree';
+import {TRANSLATION_KEYS} from '../../../../app.translation-tree';
 
 export interface QrCodeDialogData {
   title: string;

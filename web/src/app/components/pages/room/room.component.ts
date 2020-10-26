@@ -8,9 +8,9 @@ import {PermissionService} from '../../../services/permission/permission.service
 import {AclAction, AclClassAlias} from '../../../models/acl-entry.model';
 import {ToolbarService} from '../../../services/toolbar/toolbar.service';
 import {MatDialog} from '@angular/material/dialog';
-import {QrCodeDialog} from '../../../dialog/qr-code/qr-code.dialog';
+import {QrCodeDialog} from '../../dialogs/qr-code/qr-code.dialog';
 import {environment} from '../../../../environments/environment';
-import {SimpleConfirmDialog} from '../../../dialog/simple-confirm/simple-confirm.dialog';
+import {SimpleConfirmDialog} from '../../dialogs/simple-confirm/simple-confirm.dialog';
 import {SnackbarService} from '../../../services/snackbar/snackbar.service';
 import {Location} from '@angular/common';
 import {MatSnackBar} from '@angular/material/snack-bar';

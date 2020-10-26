@@ -38,7 +38,7 @@ export class DepartmentUpdateComponent implements OnInit, OnDestroy {
     this.departmentForm = this.route.params.pipe(
       map( params => params.id),
       switchMap( id => this.departmentService.get(id)),
-      tap( department => this.toolbarService.setPageTitle(` Abteilung ${department.name} bearbeiten`)),
+      tap( department => this.toolbarService.setPageTitle(`Abteilung ${department.name} bearbeiten`)),
       map( department => DepartmentUpdateComponent.toForm(department))
     );
   }

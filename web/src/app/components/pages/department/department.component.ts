@@ -10,11 +10,11 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {Location} from '@angular/common';
 import {DepartmentService} from '../../../services/department/department.service';
 import {map, switchMap, tap} from 'rxjs/operators';
-import {QrCodeDialog} from '../../../dialog/qr-code/qr-code.dialog';
+import {QrCodeDialog} from '../../dialogs/qr-code/qr-code.dialog';
 import {environment} from '../../../../environments/environment';
 import {RichRoom} from '../../../core/models/room.model';
 import {AclAction, AclClassAlias} from '../../../models/acl-entry.model';
-import {SimpleConfirmDialog} from '../../../dialog/simple-confirm/simple-confirm.dialog';
+import {SimpleConfirmDialog} from '../../dialogs/simple-confirm/simple-confirm.dialog';
 
 @Component({
   selector: 'component-department',

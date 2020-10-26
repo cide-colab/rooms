@@ -13,7 +13,6 @@ import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/h
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {SessionService} from './services/session/session.service';
 import {BackendService} from './services/backend/backend.service';
-import {UserPreviewComponent} from './components/user/user-preview/user-preview.component';
 import {MatListModule} from '@angular/material/list';
 import {keycloakInitializer} from './app.init';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -24,14 +23,14 @@ import {DepartmentService} from './services/department/department.service';
 import {DateAdapter, MatRippleModule} from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
-import {SimpleConfirmDialog} from './dialog/simple-confirm/simple-confirm.dialog';
+import {SimpleConfirmDialog} from './components/dialogs/simple-confirm/simple-confirm.dialog';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {SnackbarService} from './services/snackbar/snackbar.service';
 import {RoomService} from './services/room/room.service';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {QRCodeModule} from 'angularx-qrcode';
-import {QrCodeDialog} from './dialog/qr-code/qr-code.dialog';
+import {QrCodeDialog} from './components/dialogs/qr-code/qr-code.dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {AboListPageComponent} from './pages/admin/abo-list/abo-list-page.component';
 import {CreateAboPage} from './pages/detail/create-abo/create-abo.page';
@@ -107,7 +106,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     SidenavComponent,
-    UserPreviewComponent,
     ToolbarComponent,
     SimpleConfirmDialog,
     QrCodeDialog,
