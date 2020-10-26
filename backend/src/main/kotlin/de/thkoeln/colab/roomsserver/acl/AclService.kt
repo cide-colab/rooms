@@ -6,6 +6,7 @@
 
 package de.thkoeln.colab.roomsserver.acl
 
+import de.thkoeln.colab.roomsserver.config.RoleConfiguration
 import de.thkoeln.colab.roomsserver.models.AclEntry
 import org.springframework.stereotype.Service
 import javax.transaction.Transactional
@@ -18,7 +19,8 @@ class AclService(
         private val roleAllocationRepo: AclRoleAllocationRepo,
         private val permissionRepo: AclPermissionRepo,
         private val roleRepo: AclRoleRepo,
-        private val lookup: AclLookupStrategy
+        private val lookup: AclLookupStrategy,
+        private val roleConfiguration: RoleConfiguration
 ) {
     fun getRoleAllocationsFor(principal: String) =
             sidRepo.findByPrincipal(principal)
@@ -32,7 +34,6 @@ class AclService(
             sidRepo.findByPrincipal(principal)
                     ?.let { createRoleAllocationFor(it, role, context) }
 
-
     fun createOrUpdateObjectIdentityByTargetObject(targetObject: Any): AclObjectIdentity =
             lookup.getId(targetObject).let { targetId ->
 
@@ -44,6 +45,15 @@ class AclService(
                         ?: AclObjectIdentity(targetId, targetClass, parent)
 
                 objectIdRepo.saveAndFlush(entity)
+                        .also { oid ->
+                            println(oid.objectId)
+                            getOwner(targetObject)?.let { owner ->
+                                println("Principal: $owner")
+                                this.roleRepo.findByName(roleConfiguration.owner)
+                                        ?.let { role -> this.createRoleAllocationFor(owner, role, oid) }
+                            }
+                        }
+
             }
 
 
@@ -67,6 +77,8 @@ class AclService(
             lookup.getParent(targetObject)
                     ?.let { parent -> getObjectIdentity(parent) }
 
+    private fun getOwner(targetObject: Any) =
+            lookup.getOwnerPrincipal(targetObject)
 
     private fun getObjectIdentity(targetObject: Any) =
             objectIdRepo.findByObjectIdAndObjectClassClassName(lookup.getId(targetObject), targetObject::class.java.name)

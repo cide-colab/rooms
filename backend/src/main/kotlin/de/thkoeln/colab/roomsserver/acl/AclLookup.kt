@@ -6,9 +6,7 @@
 
 package de.thkoeln.colab.roomsserver.acl
 
-import de.thkoeln.colab.roomsserver.models.Abo
-import de.thkoeln.colab.roomsserver.models.AbstractEntity
-import de.thkoeln.colab.roomsserver.models.Room
+import de.thkoeln.colab.roomsserver.models.*
 import org.springframework.stereotype.Service
 
 @Service
@@ -24,5 +22,12 @@ class AclLookupStrategy {
         is AbstractEntity -> targetObject.id
         is Application -> 0
         else -> throw throw Throwable("This should never happen")
+    }
+
+    fun getOwnerPrincipal(targetObject: Any): String? = when (targetObject) {
+        is User -> targetObject.principal
+        is Abo -> targetObject.user.principal
+        is Reservation -> targetObject.user.principal
+        else -> null
     }
 }

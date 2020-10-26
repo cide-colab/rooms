@@ -46,7 +46,8 @@ interface SecuredRepository<T, ID> : KRepository<T, ID> {
     override fun <S : T> save(entity: S): S
 
     // TODO try to check for UPDATE if update is performed
-    @PreAuthorize("hasPermission(#entity, 'CREATE')")
+//    @PreAuthorize("hasPermission(#entity, 'CREATE')")
+    @RestResource(exported = false)
     override fun <S : T> saveAndFlush(entity: S): S
 
     @PostFilter("hasPermission(filterObject, 'READ')")

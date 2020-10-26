@@ -13,7 +13,7 @@ import javax.persistence.*
 @Entity
 class User(
 
-        @Column(unique = true, columnDefinition = "LONGBLOB")
+        @Column(unique = true)
         override val principal: String,
 
         override val givenName: String,

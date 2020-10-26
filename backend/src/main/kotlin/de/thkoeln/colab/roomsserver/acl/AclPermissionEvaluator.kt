@@ -6,6 +6,7 @@
 
 package de.thkoeln.colab.roomsserver.acl
 
+import de.thkoeln.colab.roomsserver.models.AbstractEntity
 import org.slf4j.LoggerFactory
 import org.springframework.security.access.PermissionEvaluator
 import org.springframework.security.core.Authentication
@@ -18,7 +19,7 @@ class AclPermissionEvaluator(private val aclService: AclService) : PermissionEva
 
     override fun hasPermission(authentication: Authentication?, domainObject: Any?, permission: Any?): Boolean {
         val target = if (domainObject is Optional<*>) domainObject.orElse(null) else domainObject
-        logger.debug("Checking Permission for Action: $permission on: $target for: ${authentication?.principal?.toString()}")
+        logger.debug("Checking Permission for Action: $permission on: $target ${if (target is AbstractEntity) target.id.toString() else ""} for: ${authentication?.principal?.toString()}")
         target ?: return false
         permission ?: return false
         val action = AclAction.values()

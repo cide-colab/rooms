@@ -6,13 +6,17 @@
 
 package de.thkoeln.colab.roomsserver.acl
 
+import de.thkoeln.colab.roomsserver.acl.AclAction.*
+import de.thkoeln.colab.roomsserver.config.RoleConfiguration
 import de.thkoeln.colab.roomsserver.models.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.ApplicationRunner
+import org.springframework.context.ApplicationEventPublisher
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import de.thkoeln.colab.roomsserver.acl.AclAction.*
+import org.springframework.data.rest.core.event.AfterCreateEvent
+import org.springframework.data.rest.core.event.RepositoryEvent
 
 @Configuration
 class AclInitializer {
@@ -22,6 +26,9 @@ class AclInitializer {
 
     @Value("\${rooms.admin.principal}")
     private lateinit var adminPrincipal: String
+
+    @Autowired
+    private lateinit var roleConfig: RoleConfiguration
 
     @Bean
     fun initializer(): ApplicationRunner = ApplicationRunner {
@@ -35,10 +42,10 @@ class AclInitializer {
 
         val applicationIdentity = aclService.createOrUpdateObjectIdentityByTargetObject(Application)
 
-        val adminRole = aclService.createOrUpdateRoleByName(AclRole("Admin"))
-        val guestRole = aclService.createOrUpdateRoleByName(AclRole("Guest"))
-        val userRole = aclService.createOrUpdateRoleByName(AclRole("User"))
-        val ownerRole = aclService.createOrUpdateRoleByName(AclRole("Owner"))
+        val adminRole = aclService.createOrUpdateRoleByName(AclRole(roleConfig.admin))
+        val guestRole = aclService.createOrUpdateRoleByName(AclRole(roleConfig.guest))
+        val userRole = aclService.createOrUpdateRoleByName(AclRole(roleConfig.user))
+        val ownerRole = aclService.createOrUpdateRoleByName(AclRole(roleConfig.owner))
 
         fun AclRole.addPermissions(targetClass: AclClass, vararg actions: AclAction) {
             actions.forEach { aclService.createOrUpdatePermission(AclPermission(targetClass, it, this)) }
@@ -67,7 +74,6 @@ class AclInitializer {
 
         aclService.createOrUpdateRoleAllocation(AclRoleAllocation(admin, adminRole, applicationIdentity))
         aclService.createOrUpdateRoleAllocation(AclRoleAllocation(admin, userRole, applicationIdentity))
-
         aclService.createOrUpdateRoleAllocation(AclRoleAllocation(anonymous, guestRole, applicationIdentity))
 
     }
