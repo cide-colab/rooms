@@ -8,11 +8,13 @@ package de.thkoeln.colab.roomsserver.repositories
 
 import de.thkoeln.colab.roomsserver.models.Department
 import de.thkoeln.colab.roomsserver.models.User
+import org.springframework.data.jpa.repository.Lock
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.rest.core.annotation.RestResource
 import org.springframework.security.access.prepost.PostAuthorize
 import java.util.*
+import javax.persistence.LockModeType
 import javax.transaction.Transactional
 
 interface UserRepo : SecuredRepository<User, Long>  {
@@ -38,7 +40,7 @@ interface UserRepo : SecuredRepository<User, Long>  {
 //    @Query(value = "insert into user(principal, given_name, family_name, email, image_url) VALUES (:principal, :givenName, :familyName, :email, :imageUrl)", nativeQuery = true)
 //    fun unsecuredSave(principal: String, givenName: String, familyName: String, email: String?, imageUrl: String?): Int
     // TODO add creation date ...
-    @Modifying
+    @Modifying(flushAutomatically = true, clearAutomatically = true)
     @Transactional
     @RestResource(exported = false)
     @Query(value = """

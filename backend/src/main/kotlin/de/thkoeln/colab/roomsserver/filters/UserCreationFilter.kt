@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
+import org.springframework.transaction.annotation.Transactional
 import javax.servlet.Filter
 import javax.servlet.FilterChain
 import javax.servlet.ServletRequest
@@ -28,6 +29,8 @@ class UserCreationFilter: Filter {
 
     private val logger = LoggerFactory.getLogger(UserCreationFilter::class.java)
 
+    @Transactional
+    @Synchronized()
     override fun doFilter(request: ServletRequest?, response: ServletResponse?, chain: FilterChain?) {
         val principal = SecurityContextHolder.getContext().authentication.principal.toString()
 
@@ -39,6 +42,7 @@ class UserCreationFilter: Filter {
                 ?.takeIf { !userRepo.existsByPrincipal(principal) }
                 ?.let { User(it.preferredUsername, it.givenName ?: "", it.familyName ?: "", it.email ?: "") }
                 ?.let { userRepo.unsecuredSave(it) }
+
         chain?.doFilter(request, response)
     }
 
