@@ -84,6 +84,10 @@ import { RoomEditorComponent } from './components/fragments/room-editor/room-edi
 import { FormActionsComponent } from './components/fragments/form-actions/form-actions.component';
 import {UrlService} from './services/url/url.service';
 import {RoomPreviewSmallComponent} from './components/room/room-preview-small/room-preview-small.component';
+import { AbosAllComponent } from './components/pages/abos-all/abos-all.component';
+import { AboCreateComponent } from './components/pages/abo-create/abo-create.component';
+import { AboComponent } from './components/pages/abo/abo.component';
+import { AbosMyComponent } from './components/pages/abos-my/abos-my.component';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -145,7 +149,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     DepartmentEditorComponent,
     RoomEditorComponent,
     FormActionsComponent,
-    RoomPreviewSmallComponent
+    RoomPreviewSmallComponent,
+    AbosAllComponent,
+    AboCreateComponent,
+    AboComponent,
+    AbosMyComponent
   ],
   imports: [
     BrowserModule,

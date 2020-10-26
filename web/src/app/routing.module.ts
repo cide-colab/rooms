@@ -11,6 +11,10 @@ import {RoomCreateComponent} from './components/pages/room-create/room-create.co
 import {RoomUpdateComponent} from './components/pages/room-update/room-update.component';
 import {AclAction, AclClassAlias, RoutingPermission} from './models/acl-entry.model';
 import {PermissionGuard} from './guards/permission.guard';
+import {AbosAllComponent} from './components/pages/abos-all/abos-all.component';
+import {AboCreateComponent} from './components/pages/abo-create/abo-create.component';
+import {AbosMyComponent} from './components/pages/abos-my/abos-my.component';
+import {AboComponent} from './components/pages/abo/abo.component';
 
 export interface AppRoute extends Route {
   data?: {
@@ -128,6 +132,54 @@ const routes: AppRoutes = [
         action: AclAction.UPDATE,
         context: {
           objectClass: AclClassAlias.room,
+          objectIdAttr: 'id'
+        }
+      }
+    }
+  },
+  {
+    path: 'abos',
+    component: AbosAllComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      permission: {
+        target: AclClassAlias.abo,
+        action: AclAction.ADMINISTRATE
+      }
+    }
+  },
+  {
+    path: 'abos/create',
+    component: AboCreateComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      permission: {
+        target: AclClassAlias.abo,
+        action: AclAction.CREATE
+      }
+    }
+  },
+  {
+    path: 'my/abos',
+    component: AbosMyComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      permission: {
+        target: AclClassAlias.abo,
+        action: AclAction.READ
+      }
+    }
+  },
+  {
+    path: 'abos/:id',
+    component: AboComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      permission: {
+        target: AclClassAlias.abo,
+        action: AclAction.READ,
+        context: {
+          objectClass: AclClassAlias.abo,
           objectIdAttr: 'id'
         }
       }

@@ -1,12 +1,8 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {SidenavService} from '../../../services/sidenav/sidenav.service';
 import {MatDrawer} from '@angular/material/sidenav';
-import {SessionService} from '../../../services/session/session.service';
-import {Session} from '../../../models/session.model';
 import {Router} from '@angular/router';
-import {TranslateService} from '@ngx-translate/core';
-import {TRANSLATION_KEYS} from '../../../../app.translation-tree';
-import {map, take} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {PermissionService} from '../../../services/permission/permission.service';
 import {AclAction, AclClassAlias} from '../../../models/acl-entry.model';
 import {forkJoin, from, Observable, Subject} from 'rxjs';
@@ -46,7 +42,6 @@ export class SidenavComponent implements OnInit, AfterViewInit {
     private readonly sidenavService: SidenavService,
     private readonly permissionService: PermissionService,
     private readonly userService: UserService,
-    // private readonly sessionService: SessionService,
     private readonly keycloakService: KeycloakService,
     private readonly router: Router
   ) {
@@ -59,13 +54,6 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   user: Observable<User>;
 
   async ngOnInit() {
-    // this.session = await this.sessionService.getSession(true).pipe(take(1)).toPromise();
-    // this.nav = [
-    //   await this.getGeneralNavGroup(this.session),
-    //   await this.getAdministrationNavGroup(this.session),
-    //   await this.getUserNavGroup(this.session),
-    //   await this.getOthersNavGroup(this.session)
-    // ].filter(group => group && group.items.length > 0);
     this.user = this.userService.getMe();
     this.updateNavItems();
   }
@@ -73,7 +61,8 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   private updateNavItems() {
     forkJoin([
       this.getGeneralGroup(),
-      this.getLoginGroup()
+      this.getAdminGroup(),
+      this.getSessionGroup()
     ]).subscribe(groups => this.groups.next(groups));
   }
 
@@ -97,10 +86,10 @@ export class SidenavComponent implements OnInit, AfterViewInit {
           href: '/departments',
           event: NavEvent.LINK
         })))
-    ]).pipe(map(items => build({title: 'General', items, enabled: items.filter(i => i.enabled).length > 0})));
+    ]).pipe(map(items => build({title: 'Allgemein', items, enabled: items.filter(i => i.enabled).length > 0})));
   }
 
-  private getLoginGroup(): Observable<NavGroup> {
+  private getSessionGroup(): Observable<NavGroup> {
     return from(this.keycloakService.isLoggedIn()).pipe(
       map(loggedIn => build([
         {
@@ -118,11 +107,25 @@ export class SidenavComponent implements OnInit, AfterViewInit {
           event: NavEvent.LOGOUT
         }
       ])),
-      map(items => build({title: 'General', items, enabled: items.filter(i => i.enabled).length > 0}))
+      map(items => build({title: 'Session', items, enabled: items.filter(i => i.enabled).length > 0}))
     );
   }
 
-  //
+  private getAdminGroup(): Observable<NavGroup> {
+    return forkJoin([
+      this.permissionService
+        .hasPermission({target: AclClassAlias.abo, action: AclAction.ADMINISTRATE})
+        .pipe(map(enabled => build({
+          title: 'Abos',
+          iconClass: 'icon-timer',
+          enabled,
+          href: '/abos',
+          event: NavEvent.LINK
+        })))
+    ]).pipe(map(items => build({title: 'Administration', items, enabled: items.filter(i => i.enabled).length > 0})));
+  }
+
+
   // private async getAdministrationNavGroup(session: Session): Promise<NavGroup> {
   //   const itemList = [];
   //   if (session.acl.find(entry =>
