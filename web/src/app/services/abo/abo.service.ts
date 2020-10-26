@@ -59,8 +59,12 @@ export class AboService {
     return this.backendService.deleteSingle(`abos/${id}`);
   }
 
-  update(abo: DetailedAbo): Observable<BaseAbo> {
-    return this.backendService.patch(`abos/${abo.id}`, AboService.createProtocol(abo), TokenRequirement.REQUIRED);
+  update(abo: AboForm): Observable<Abo> {
+    return this.backendService.patchSingle(`abos/${abo.id}`, {
+      ...abo,
+      user: `/users/${abo.user.id}`,
+      rooms: abo.rooms.map(r => `/rooms/${r.id}`)
+    });
   }
 
   getSimpleByUser(id: string): Observable<SimpleAbo[]> {

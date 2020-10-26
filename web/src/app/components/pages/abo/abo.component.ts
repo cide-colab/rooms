@@ -49,6 +49,7 @@ export class AboComponent implements OnInit, OnDestroy {
       switchMap( id => this.aboService.get(id)),
       tap( abo => this.rooms = this.roomService.getByAbo(abo.id)),
       tap( abo => this.user = this.userService.getByAbo(abo.id)),
+      tap(abo => this.createUpdateButton(abo)),
       tap(abo => this.createDeleteButton(abo))
     );
   }
@@ -67,6 +68,25 @@ export class AboComponent implements OnInit, OnDestroy {
           iconClass: 'icon-delete',
           title: 'Löschen',
           click: () => this.openDeleteDialog(abo)
+        });
+      }
+    });
+  }
+
+  private createUpdateButton(abo: RichAbo) {
+    this.permissionService.hasPermission({
+      target: AclClassAlias.abo,
+      action: AclAction.UPDATE,
+      context: {
+        objectId: abo.id,
+        objectClass: AclClassAlias.abo
+      }
+    }).subscribe(canUpdate => {
+      if (canUpdate) {
+        this.toolbarService.addPageButton('update', {
+          iconClass: 'icon-createmode_editedit',
+          title: 'Bearbeiten',
+          click: () => this.router.navigate(['/', 'abos', abo.id, 'update'])
         });
       }
     });

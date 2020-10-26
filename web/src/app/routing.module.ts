@@ -17,6 +17,7 @@ import {AbosMyComponent} from './components/pages/abos-my/abos-my.component';
 import {AboComponent} from './components/pages/abo/abo.component';
 import {UserComponent} from './components/pages/user/user.component';
 import {UsersComponent} from './components/pages/users/users.component';
+import {AboUpdateComponent} from './components/pages/abo-update/abo-update.component';
 
 export interface AppRoute extends Route {
   data?: {
@@ -180,6 +181,21 @@ const routes: AppRoutes = [
       permission: {
         target: AclClassAlias.abo,
         action: AclAction.READ,
+        context: {
+          objectClass: AclClassAlias.abo,
+          objectIdAttr: 'id'
+        }
+      }
+    }
+  },
+  {
+    path: 'abos/:id/update',
+    component: AboUpdateComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      permission: {
+        target: AclClassAlias.abo,
+        action: AclAction.UPDATE,
         context: {
           objectClass: AclClassAlias.abo,
           objectIdAttr: 'id'

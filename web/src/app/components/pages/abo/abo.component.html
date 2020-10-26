@@ -8,8 +8,19 @@
        class="page-section-placeholder">Keine Beschreibung vorhanden</p>
   </div>
   <div class="page-section">
-    <div class="page-section-header">Nutzer:</div>
-    <component-user-list-item *ngIf="user | async as user" [user]="user" (click)="userClicked(user)"></component-user-list-item>
+    <div class="page-section-header">Buchungskontingent:</div>
+    <p class="page-section-content">{{abo.contingent}} Minuten pro Woche</p>
+  </div>
+  <div class="page-section">
+    <div class="page-section-header">Gültigkeit:</div>
+    <p>
+      {{abo.start | date: 'dd.MM.yyyy'}}
+      -  {{abo.unlimited_end ? '&#8734;' : (abo.end | date: 'dd.MM.yyyy')}}
+    </p>
+  </div>
+  <div class="page-section">
+    <div class="page-section-header">Begünstigter:</div>
+    <component-user-list-item [user]="abo.user"></component-user-list-item>
   </div>
   <div class="page-section">
     <div class="page-section-header">Räume:</div>

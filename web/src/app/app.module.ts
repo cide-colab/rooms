@@ -88,6 +88,7 @@ import { UsersComponent } from './components/pages/users/users.component';
 import { UserListComponent } from './components/fragments/user-list/user-list.component';
 import {AboEditorComponent} from './components/fragments/abo-editor/abo-editor.component';
 import {MatChipsModule} from '@angular/material/chips';
+import {AboUpdateComponent} from './components/pages/abo-update/abo-update.component';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -152,7 +153,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserComponent,
     UsersComponent,
     UserListComponent,
-    AboEditorComponent
+    AboEditorComponent,
+    AboUpdateComponent
   ],
   imports: [
     BrowserModule,
