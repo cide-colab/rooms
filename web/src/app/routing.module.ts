@@ -15,6 +15,8 @@ import {AbosAllComponent} from './components/pages/abos-all/abos-all.component';
 import {AboCreateComponent} from './components/pages/abo-create/abo-create.component';
 import {AbosMyComponent} from './components/pages/abos-my/abos-my.component';
 import {AboComponent} from './components/pages/abo/abo.component';
+import {UserComponent} from './components/pages/user/user.component';
+import {UsersComponent} from './components/pages/users/users.component';
 
 export interface AppRoute extends Route {
   data?: {
@@ -180,6 +182,32 @@ const routes: AppRoutes = [
         action: AclAction.READ,
         context: {
           objectClass: AclClassAlias.abo,
+          objectIdAttr: 'id'
+        }
+      }
+    }
+  },
+  {
+    path: 'users',
+    component: UsersComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      permission: {
+        target: AclClassAlias.user,
+        action: AclAction.ADMINISTRATE
+      }
+    }
+  },
+  {
+    path: 'users/:id',
+    component: UserComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      permission: {
+        target: AclClassAlias.user,
+        action: AclAction.READ,
+        context: {
+          objectClass: AclClassAlias.user,
           objectIdAttr: 'id'
         }
       }

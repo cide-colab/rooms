@@ -89,6 +89,10 @@ import { AboComponent } from './components/pages/abo/abo.component';
 import { AbosMyComponent } from './components/pages/abos-my/abos-my.component';
 import {AboListComponent} from './components/fragments/abo-list/abo-list.component';
 import { AboListItemComponent } from './components/fragments/abo-list-item/abo-list-item.component';
+import { UserListItemComponent } from './components/fragments/user-list-item/user-list-item.component';
+import { UserComponent } from './components/pages/user/user.component';
+import { UsersComponent } from './components/pages/users/users.component';
+import { UserListComponent } from './components/fragments/user-list/user-list.component';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -155,7 +159,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     AboCreateComponent,
     AboComponent,
     AbosMyComponent,
-    AboListItemComponent
+    AboListItemComponent,
+    UserListItemComponent,
+    UserComponent,
+    UsersComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,8 @@
+<mat-card *ngIf="user" class="horizontal-card">
+  <div class="card-avatar-container">
+    <img class="card-avatar" [src]="user.imageUrl ? user.imageUrl : '/assets/img/avatar.png'"/>
+  </div>
+  <div class="card-content">
+    <div class="card-title">{{user.givenName}} {{user.familyName}} ({{user.principal}})</div>
+  </div>
+</mat-card>

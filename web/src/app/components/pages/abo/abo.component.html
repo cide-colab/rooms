@@ -1,1 +1,19 @@
-<p>abo works!</p>
+<div *ngIf="abo | async as abo" class="detail-page">
+  <div class="page-title">{{abo.title}}</div>
+  <div class="page-avatar-container"><img class="page-avatar" src="/assets/img/clock.svg"></div>
+  <div class="page-section">
+    <div class="page-section-header">Beschreibung:</div>
+    <p class="page-section-content">{{abo.description}}</p>
+    <p *ngIf="!abo.description"
+       class="page-section-placeholder">Keine Beschreibung vorhanden</p>
+  </div>
+  <div class="page-section">
+    <div class="page-section-header">Nutzer:</div>
+    <component-user-list-item *ngIf="user | async as user" [user]="user" (click)="userClicked(user)"></component-user-list-item>
+  </div>
+  <div class="page-section">
+    <div class="page-section-header">Räume:</div>
+    <component-room-list *ngIf="rooms | async as rooms" [items]="rooms" (itemClick)="roomClicked($event)"></component-room-list>
+  </div>
+</div>
+

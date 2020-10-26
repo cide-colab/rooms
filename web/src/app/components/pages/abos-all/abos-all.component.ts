@@ -35,7 +35,7 @@ export class AbosAllComponent implements OnInit, OnDestroy {
       ))
     ).subscribe(result => {
       this.filteredItems.next(result.items.filter(item =>
-        `${item.title} ${item.description} ${item.user.givenName} ${item.user.familyName} ${item.rooms.map(r => `${r.name} ${r.number}`).join(' ')}`
+        `${item.title} ${item.description} ${item.user.givenName} ${item.user.familyName} ${item.user.principal} ${item.rooms.map(r => `${r.name} ${r.number}`).join(' ')}`
           .toLowerCase()
           .includes(result.q.toLowerCase())
       ));

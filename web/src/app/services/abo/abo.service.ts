@@ -38,12 +38,14 @@ export class AboService {
     });
   }
 
-  get(id: string): Observable<DetailedAbo> {
-    return this.backendService.get(`abos/${id}?projection=detailed`, TokenRequirement.REQUIRED);
+  get(id: string): Observable<RichAbo> {
+    return this.backendService.getSingle(`abos/${id}`, {
+      projection: Projection.RICH
+    });
   }
 
-  delete(abo: DetailedAbo): Observable<any> {
-    return this.backendService.delete(`abos/${abo.id}`, TokenRequirement.REQUIRED);
+  delete(id: number): Observable<any> {
+    return this.backendService.deleteSingle(`abos/${id}`);
   }
 
   update(abo: DetailedAbo): Observable<BaseAbo> {
@@ -65,9 +67,5 @@ export class AboService {
       `abos/${id}/contingent?date=${encodeURIComponent(moment(date).format())}`,
       TokenRequirement.REQUIRED
     );
-  }
-
-  getRooms(id: number): Observable<Room[]> {
-    return this.backendService.getCollection<Room>(`abos/${id}/rooms`, 'rooms');
   }
 }

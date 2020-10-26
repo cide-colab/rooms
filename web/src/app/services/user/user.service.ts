@@ -3,7 +3,9 @@ import {BaseUser, SessionUser, UserListEntity} from '../../models/user.model';
 import {BackendService, TokenRequirement} from '../backend/backend.service';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {User} from '../../core/models/user.model';
+import {RichUser, User} from '../../core/models/user.model';
+import {RichRoom} from '../../core/models/room.model';
+import {Projection} from '../../core/projections.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +27,11 @@ export class UserService {
     return this.backendService.get<UserListEntity<BaseUser>>('users', TokenRequirement.REQUIRED).pipe(
       map(value => value._embedded.users)
     );
+  }
+
+  getByAbo(id: number): Observable<RichUser> {
+    return this.backendService.getSingle<RichUser>(`abos/${id}/user`, {
+      projection: Projection.RICH
+    });
   }
 }

@@ -27,11 +27,15 @@ export class RoomService {
   }
 
   get(id: number): Observable<RichRoom> {
-    return this.backendService.getSingle(`rooms/${id}?projection=${Projection.RICH}`);
+    return this.backendService.getSingle(`rooms/${id}`, {
+      projection: Projection.RICH
+    });
   }
 
   getAll(): Observable<RichRoom[]> {
-    return this.backendService.getCollection(`rooms?projection=${Projection.RICH}`, 'rooms');
+    return this.backendService.getCollection(`rooms`, 'rooms', {
+      projection: Projection.RICH
+    });
   }
 
   save(room: RoomForm): Observable<BaseRoom> {
@@ -78,6 +82,14 @@ export class RoomService {
   }
 
   getByDepartmentId(id: number): Observable<RichRoom[]> {
-    return this.backendService.getCollection(`departments/${id}/rooms?projection=${Projection.RICH}`, 'rooms');
+    return this.backendService.getCollection(`departments/${id}/rooms`, 'rooms', {
+      projection: Projection.RICH
+    });
+  }
+
+  getByAbo(id: number): Observable<RichRoom[]> {
+    return this.backendService.getCollection<RichRoom>(`abos/${id}/rooms`, 'rooms', {
+      projection: Projection.RICH
+    });
   }
 }

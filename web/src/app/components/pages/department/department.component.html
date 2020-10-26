@@ -9,14 +9,7 @@
   </div>
   <div class="page-section">
     <div class="page-section-header">Räume:</div>
-
-<!--    <ng-template #loadRoomsProgressBar>-->
-<!--      <mat-progress-spinner class="spinner" color="primary" diameter="40"-->
-<!--                            mode="indeterminate"></mat-progress-spinner>-->
-
-<!--    </ng-template>-->
-<!--      <component-room-list *ngIf="rooms | async as rooms; else loadRoomsProgressBar" [items]="rooms" (itemClick)="roomClicked($event)"></component-room-list>-->
+    <component-room-list *ngIf="rooms | async as rooms" [items]="rooms" (itemClick)="roomClicked($event)"></component-room-list>
   </div>
 </div>
 
-<component-room-list *ngIf="rooms | async as rooms" [items]="rooms" (itemClick)="roomClicked($event)"></component-room-list>
