@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
-import {SessionService} from './services/session/session.service';
-import {SnackbarService} from './services/snackbar/snackbar.service';
-import {TRANSLATION_KEYS} from '../app.translation-tree';
-import {PermissionService} from './services/permission/permission.service';
-import {AclClassAlias, PermissionCheckForm, RoutingPermission} from './models/acl-entry.model';
+import {SessionService} from '../services/session/session.service';
+import {SnackbarService} from '../services/snackbar/snackbar.service';
+import {TRANSLATION_KEYS} from '../../app.translation-tree';
+import {PermissionService} from '../services/permission/permission.service';
+import {AclClassAlias, PermissionCheckForm, RoutingPermission} from '../models/acl-entry.model';
 
 @Injectable({
   providedIn: 'root'

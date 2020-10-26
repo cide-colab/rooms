@@ -10,7 +10,7 @@ import {DepartmentCreateComponent} from './components/pages/department-create/de
 import {RoomCreateComponent} from './components/pages/room-create/room-create.component';
 import {RoomUpdateComponent} from './components/pages/room-update/room-update.component';
 import {AclAction, AclClassAlias, RoutingPermission} from './models/acl-entry.model';
-import {PermissionGuard} from './permission.guard';
+import {PermissionGuard} from './guards/permission.guard';
 
 export interface AppRoute extends Route {
   data?: {
