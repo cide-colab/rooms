@@ -56,7 +56,6 @@ import {TimeZoneDatePipe, TimezoneService} from './services/timezone/timezone.se
 import {MatSliderModule} from '@angular/material/slider';
 import {MyReservationListPageComponent} from './pages/user/my-reservations/my-reservation-list-page.component';
 import {MyAboListPageComponent} from './pages/user/my-abos/my-abo-list-page.component';
-import {AboListComponent} from './components/abo/abo-list/abo-list.component';
 import {ReservationListComponent} from './components/reservation/reservation-list/reservation-list.component';
 import {ReservationPreviewCardComponent} from './components/reservation/reservation-preview-card/reservation-preview-card.component';
 import {MainComponent} from './components/pages/main/main.component';
@@ -88,6 +87,8 @@ import { AbosAllComponent } from './components/pages/abos-all/abos-all.component
 import { AboCreateComponent } from './components/pages/abo-create/abo-create.component';
 import { AboComponent } from './components/pages/abo/abo.component';
 import { AbosMyComponent } from './components/pages/abos-my/abos-my.component';
+import {AboListComponent} from './components/fragments/abo-list/abo-list.component';
+import { AboListItemComponent } from './components/fragments/abo-list-item/abo-list-item.component';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -153,7 +154,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AbosAllComponent,
     AboCreateComponent,
     AboComponent,
-    AbosMyComponent
+    AbosMyComponent,
+    AboListItemComponent
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,7 @@ export class UrlService {
     if (params.length <= 0) {
       return '';
     }
-    return keys.map(k => `${k}=${params[k]}`).join('&');
+    return '?' + keys.map(k => `${k}=${params[k]}`).join('&');
   }
 
   private createUrl(relativeUrl: string) {

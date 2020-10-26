@@ -6,6 +6,9 @@ import {map} from 'rxjs/operators';
 import {BaseContingent, ContingentListEntity} from '../../models/contingent.model';
 import * as moment from 'moment';
 import {RestEntity} from '../../models/rest-entity.model';
+import {Room} from '../../core/models/room.model';
+import {RichAbo} from '../../core/models/abo.model';
+import {Projection} from '../../core/projections.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +32,10 @@ export class AboService {
     return this.backendService.post('abos', AboService.createProtocol(abo), TokenRequirement.REQUIRED);
   }
 
-  getAll(): Observable<SimpleAbo[]> {
-    return this.backendService.get<AboListEntity<SimpleAbo>>('abos?projection=simple', TokenRequirement.REQUIRED)
-      .pipe(map(value => value._embedded.abos));
+  getAll(): Observable<RichAbo[]> {
+    return this.backendService.getCollection<RichAbo>('abos', 'abos', {
+      projection: Projection.RICH
+    });
   }
 
   get(id: string): Observable<DetailedAbo> {
@@ -61,5 +65,9 @@ export class AboService {
       `abos/${id}/contingent?date=${encodeURIComponent(moment(date).format())}`,
       TokenRequirement.REQUIRED
     );
+  }
+
+  getRooms(id: number): Observable<Room[]> {
+    return this.backendService.getCollection<Room>(`abos/${id}/rooms`, 'rooms');
   }
 }

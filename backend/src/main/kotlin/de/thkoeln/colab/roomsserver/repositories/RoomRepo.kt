@@ -6,12 +6,16 @@
 
 package de.thkoeln.colab.roomsserver.repositories
 
+import de.thkoeln.colab.roomsserver.models.Abo
 import de.thkoeln.colab.roomsserver.models.Department
 import de.thkoeln.colab.roomsserver.models.Room
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.rest.core.annotation.RestResource
 
 interface RoomRepo : SecuredRepository<Room, Long> {
+
+    @RestResource(exported = false)
+    fun countByAbosContains(abo: Abo)
 
     @Query("select r from Room r")
     @RestResource(exported = false)

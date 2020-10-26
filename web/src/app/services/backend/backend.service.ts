@@ -44,9 +44,9 @@ export class BackendService {
   public getCollection<T>(relativeUrl: string, rel: string, params: any = {}): Observable<T[]> {
     return this.httpClient
       .get<{ _embedded: { [rel: string]: T[] }, _links: Map<string, string> }>(this.urlService.getUrl(relativeUrl, params)).pipe(
-      tap(it => console.log(it)),
+      // tap(it => console.log(it)),
       map(v => v._embedded[rel]),
-      tap(it => console.log(it))
+      // tap(it => console.log(it))
     );
   }
   public postSingle<T, R>(relativeUrl: string, body: T, params: any = {}): Observable<R> {

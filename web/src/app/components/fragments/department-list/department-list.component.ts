@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {SelectableListComponent} from '../../abstracts/selectable-list.component';
-import {RichRoom} from '../../../core/models/room.model';
 import {RichDepartment} from '../../../core/models/department.model';
 
 @Component({
@@ -8,7 +7,7 @@ import {RichDepartment} from '../../../core/models/department.model';
   templateUrl: './department-list.component.html',
   styleUrls: ['./department-list.component.scss']
 })
-export class DepartmentListComponent extends SelectableListComponent<RichRoom> implements OnInit {
+export class DepartmentListComponent extends SelectableListComponent<RichDepartment> implements OnInit {
 
   @Input()
   items: RichDepartment[];

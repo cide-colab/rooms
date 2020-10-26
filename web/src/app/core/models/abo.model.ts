@@ -1,4 +1,6 @@
 import {Identity} from './identity';
+import {User} from './user.model';
+import {Room} from './room.model';
 
 export interface AboModel {
   title: string;
@@ -10,5 +12,11 @@ export interface AboModel {
   description: string;
 }
 
-export interface Abo extends AboModel, Identity {}
-export interface RichAbo extends AboModel, Identity {}
+export interface Abo extends AboModel, Identity {
+}
+export interface RichAbo extends AboModel, Identity {
+  rooms: Room[];
+  user: User;
+  roomCount: number;
+  reservationCount: number;
+}

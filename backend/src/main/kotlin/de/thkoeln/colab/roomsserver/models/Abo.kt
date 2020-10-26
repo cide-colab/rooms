@@ -8,6 +8,10 @@ package de.thkoeln.colab.roomsserver.models
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import de.thkoeln.colab.roomsserver.core.models.AboModel
+import de.thkoeln.colab.roomsserver.core.models.Identity
+import de.thkoeln.colab.roomsserver.core.models.RoomModel
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.data.rest.core.config.Projection
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.OffsetDateTime
 import javax.persistence.*
@@ -52,3 +56,17 @@ class Abo(
         @OneToMany(mappedBy = "abo", cascade = [CascadeType.ALL])
         val reservations: List<Reservation> = listOf()
 ) : AbstractEntity(), AboModel
+
+@Projection(name = Projections.RICH, types = [Abo::class])
+interface RichAbo : AboModel, Identity {
+
+        fun getRooms(): List<Room>
+
+        fun getUser(): User
+
+        @Value("#{target.rooms.size()}")
+        fun getRoomCount(): Int
+
+        @Value("#{target.reservations.size()}")
+        fun getReservationCount(): Int
+}
