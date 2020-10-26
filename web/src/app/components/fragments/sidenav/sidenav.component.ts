@@ -93,6 +93,13 @@ export class SidenavComponent implements OnInit, AfterViewInit {
     return from(this.keycloakService.isLoggedIn()).pipe(
       map(loggedIn => build([
         {
+          title: 'Meine Abos',
+          iconClass: 'icon-timer',
+          enabled: loggedIn,
+          href: '/my/abos',
+          event: NavEvent.LINK
+        },
+        {
           title: 'Anmelden',
           iconClass: 'icon-exit_to_app',
           enabled: !loggedIn,
@@ -107,7 +114,7 @@ export class SidenavComponent implements OnInit, AfterViewInit {
           event: NavEvent.LOGOUT
         }
       ])),
-      map(items => build({title: 'Session', items, enabled: items.filter(i => i.enabled).length > 0}))
+      map(items => build({title: 'Nutzer', items, enabled: items.filter(i => i.enabled).length > 0}))
     );
   }
 

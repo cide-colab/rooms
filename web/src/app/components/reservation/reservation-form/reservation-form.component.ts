@@ -74,9 +74,9 @@ export class ReservationFormComponent extends FormComponent<SimpleReservation> i
   ngOnInit() {
     super.ngOnInit();
 
-    this.userService.getAll().pipe(
-      map(users => users.filter(async user => await this.sessionService.hasPermissionPromise('create:reservation', user.id)))
-    ).subscribe(users => this.onUsersFetched(users));
+    // this.userService.getAll().pipe(
+    //   map(users => users.filter(async user => await this.sessionService.hasPermissionPromise('create:reservation', user.id)))
+    // ).subscribe(users => this.onUsersFetched(users));
 
     this.formControls.user.valueChanges.pipe(
       startWith(''),

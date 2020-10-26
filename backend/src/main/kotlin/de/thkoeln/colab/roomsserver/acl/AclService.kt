@@ -40,9 +40,9 @@ class AclService(
                 val targetClass = classRepo.findByClassName(targetObject::class.java.name)
                         ?: throw AclClassNotFoundException(targetObject::class.java.name)
 
-                val parent = getParent(targetObject)
+                val parents = getParents(targetObject)
                 val entity = objectIdRepo.findByObjectIdAndObjectClass(targetId, targetClass)
-                        ?: AclObjectIdentity(targetId, targetClass, parent)
+                        ?: AclObjectIdentity(targetId, targetClass, parents)
 
                 objectIdRepo.saveAndFlush(entity)
                         .also { oid ->
@@ -73,9 +73,8 @@ class AclService(
     fun createPermissions(permissions: List<AclPermission>) = permissions.map { createPermission(it) }
     fun createPermission(permission: AclPermission) = permissionRepo.saveAndFlush(permission)
 
-    private fun getParent(targetObject: Any) =
-            lookup.getParent(targetObject)
-                    ?.let { parent -> getObjectIdentity(parent) }
+    private fun getParents(targetObject: Any) =
+            lookup.getParents(targetObject).mapNotNull { parent -> getObjectIdentity(parent) }
 
     private fun getOwner(targetObject: Any) =
             lookup.getOwnerPrincipal(targetObject)
@@ -120,11 +119,23 @@ class AclService(
         val targetClass = classRepo.findByClassName(targetObject::class.java.name)
                 ?: throw AclClassNotFoundException(targetObject::class.java.name)
 
-        val context = getObjectIdentity(targetObject)
-                ?: getParent(targetObject)
-                ?: return false
+        val searchContexts = getObjectIdentity(targetObject)?.let { listOf(it) } ?: getParents(targetObject)
 
-        return hasPermissionForContext(sid, permission, targetClass, context)
+        return hasPermissionForContext(sid, permission, targetClass, searchContexts)
+    }
+
+    private fun hasPermissionForContext(sid: AclSid, action: AclAction, targetClass: AclClass, contexts: List<AclObjectIdentity>): Boolean {
+        return contexts
+                .takeIf { contexts.isNotEmpty() }
+                ?.all { context ->
+                    val r = roleAllocationRepo.findAllBySidAndContext(sid, context).any { allocation ->
+                        permissionRepo.findByRole(allocation.role).any { permission ->
+                            permission.action == action && permission.targetClass == targetClass
+                        }
+                    }
+                    println("Context: ${context.objectClass.alias} ${context.objectId}: $r")
+                    r || hasPermissionForContext(sid, action, targetClass, context.parents)
+                }?: false
     }
 
     fun hasPermission(form: PermissionCheckForm, principal: String): Boolean {
@@ -138,7 +149,7 @@ class AclService(
         return form.context
                 ?.let {
                     objectIdRepo.findByObjectIdAndObjectClassAlias(form.context.objectId, form.context.objectClass)
-                            ?.let { context -> hasPermissionForContext(sid, form.action, targetClass, context) }
+                            ?.let { hasPermissionForContext(sid, form.action, targetClass, listOf(it)) }
                             ?: return false
                 }
                 ?: hasAnyPermission(sid, form.action, targetClass)
@@ -150,16 +161,6 @@ class AclService(
                 permission.action == action && permission.targetClass == targetClass
             }
         }
-    }
-
-    private fun hasPermissionForContext(sid: AclSid, action: AclAction, targetClass: AclClass, context: AclObjectIdentity): Boolean {
-        return roleAllocationRepo.findAllBySidAndContext(sid, context).any { allocation ->
-            permissionRepo.findByRole(allocation.role).any { permission ->
-                permission.action == action && permission.targetClass == targetClass
-            }
-        } || context.parent
-                ?.let { parent -> hasPermissionForContext(sid, action, targetClass, parent) }
-                ?: false
     }
 
     fun createAcl(contextForm: ContextForm, principal: String): List<PermissionEntry> {
@@ -187,9 +188,8 @@ class AclService(
             }
         }
 
-        val parentEntries = context.parent
-                ?.let { getContextPermissions(sid, it) }
-                ?: listOf()
+        val parentEntries = context.parents
+                .flatMap { getContextPermissions(sid, it) }
 
         return (contextEntries + parentEntries).distinct()
     }
@@ -209,7 +209,7 @@ class AclService(
 
     private fun createACL(context: AclObjectIdentity, permission: AclPermission): List<AclEntry> {
         return listOf(AclEntry(context.objectId, context.objectClass.alias, null, permission.targetClass.alias, permission.action)) +
-                objectIdRepo.findAllByParentIdAndObjectClassId(context.id, permission.targetClass.id).flatMap { child ->
+                objectIdRepo.findAllByParentsContainsAndObjectClassId(context, permission.targetClass.id).flatMap { child ->
                     listOf(AclEntry(context.objectId, context.objectClass.alias, child.id, child.objectClass.alias, permission.action)) +
                             createACL(child, permission)
                 }

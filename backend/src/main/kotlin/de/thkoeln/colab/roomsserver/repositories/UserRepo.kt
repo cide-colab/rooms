@@ -6,11 +6,14 @@
 
 package de.thkoeln.colab.roomsserver.repositories
 
+import de.thkoeln.colab.roomsserver.acl.AclAction
 import de.thkoeln.colab.roomsserver.models.User
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
+import org.springframework.data.repository.query.Param
 import org.springframework.data.rest.core.annotation.RestResource
 import org.springframework.security.access.prepost.PostAuthorize
+import org.springframework.security.access.prepost.PostFilter
 import org.springframework.transaction.annotation.Transactional
 
 interface UserRepo : SecuredRepository<User, Long>  {
@@ -44,4 +47,9 @@ interface UserRepo : SecuredRepository<User, Long>  {
         VALUES (:#{#user.principal}, :#{#user.givenName}, :#{#user.familyName}, :#{#user.email}, :#{#user.imageUrl}, :#{#user.version})
     """, nativeQuery = true)
     fun unsecuredSave(user: User): Int
+
+    @RestResource(path = "byPermission")
+    @Query("select u from User u")
+    @PostFilter("hasPermission(filterObject, #action)")
+    fun <T>findAllByPermission(@Param("action") action: AclAction): List<T>
 }

@@ -1,5 +1,5 @@
 <form class="form-container" [formGroup]="formGroup" (ngSubmit)="submit()">
-  <div class="form-fields">
+<!--  <div class="form-fields">-->
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Name</mat-label>
       <input matInput formControlName="name">
@@ -46,8 +46,8 @@
       </button>
       <mat-hint align="end">{{description.value.length}} / 512</mat-hint>
     </mat-form-field>
-  </div>
-  <div class="form-actions">
+<!--  </div>-->
+  <component-form-actions>
     <button mat-fab color="primary" [disabled]="!hasChanges()"><i class="icon-check"></i></button>
-  </div>
+  </component-form-actions>
 </form>

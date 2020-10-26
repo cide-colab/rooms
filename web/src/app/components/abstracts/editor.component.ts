@@ -1,9 +1,9 @@
 import {EventEmitter, Input, Output} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 
-export abstract class EditorComponent<T, D> {
+export abstract class EditorComponent<T> {
 
-  abstract default: D;
+  abstract default: T;
 
   @Output()
   save: EventEmitter<T> = new EventEmitter<T>();
@@ -11,7 +11,7 @@ export abstract class EditorComponent<T, D> {
   abstract formGroup: FormGroup;
 
   toForm(formGroup: FormGroup): T {
-    return this.formGroup.getRawValue();
+    return formGroup.getRawValue();
   }
 
   reset(key?: string) {
@@ -47,6 +47,9 @@ export abstract class EditorComponent<T, D> {
   }
 
   submit() {
+    console.log(this.formGroup.errors);
+    console.log(this.toForm(this.formGroup));
+    console.log(this.formGroup.valid);
     if (this.valid()) {
       this.save.emit(this.toForm(this.formGroup));
     }

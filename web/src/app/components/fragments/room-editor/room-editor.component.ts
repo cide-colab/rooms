@@ -7,17 +7,16 @@ import {DepartmentService} from '../../../services/department/department.service
 import {Observable} from 'rxjs';
 import {AclAction} from '../../../models/acl-entry.model';
 import {debounceTime, map, switchMap, tap} from 'rxjs/operators';
-import {UrlService} from '../../../services/url/url.service';
 
 @Component({
   selector: 'component-room-editor',
   templateUrl: './room-editor.component.html',
   styleUrls: ['./room-editor.component.scss']
 })
-export class RoomEditorComponent extends EditorComponent<RoomForm, RichRoom> implements OnInit {
+export class RoomEditorComponent extends EditorComponent<RoomForm> implements OnInit {
 
   @Input()
-  default: RichRoom = {
+  default: RoomForm = {
     id: undefined,
     name: '',
     number: '',
@@ -32,15 +31,12 @@ export class RoomEditorComponent extends EditorComponent<RoomForm, RichRoom> imp
 
   constructor(
     private readonly builder: FormBuilder,
-    private readonly departmentService: DepartmentService,
-    private readonly urlService: UrlService
+    private readonly departmentService: DepartmentService
   ) {
     super();
   }
 
   ngOnInit() {
-    console.log(this.default);
-
     this.formGroup = this.builder.group({
       id: [{value: this.default.id, disabled: true}],
       name: [this.default.name, Validators.required],
@@ -67,13 +63,5 @@ export class RoomEditorComponent extends EditorComponent<RoomForm, RichRoom> imp
 
   private filter(department: Department, query: string): boolean {
     return this.displayDepartment(department).toLowerCase().includes(query.toLowerCase());
-  }
-
-  toForm(formGroup: FormGroup): RoomForm {
-    const value = formGroup.getRawValue();
-    return {
-      ...value,
-      department: this.urlService.getUrl(`departments/${value.department.id}`)
-    };
   }
 }

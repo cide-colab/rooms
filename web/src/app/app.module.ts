@@ -32,16 +32,10 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {QRCodeModule} from 'angularx-qrcode';
 import {QrCodeDialog} from './components/dialogs/qr-code/qr-code.dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {AboListPageComponent} from './pages/admin/abo-list/abo-list-page.component';
-import {CreateAboPage} from './pages/detail/create-abo/create-abo.page';
-import {EditAboPage} from './pages/detail/edit-abo/edit-abo.page';
-import {AboDetailPage} from './pages/detail/abo-detail/abo-detail.page';
-import {AboFormComponent} from './components/abo/abo-form/abo-form.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {AboPreviewCardComponent} from './components/abo/abo-preview-card/abo-preview-card.component';
 import {ReservationListPage} from './pages/admin/reservation-list/reservation-list.page';
 import {ReservationDetailPage} from './pages/detail/reservation-detail/reservation-detail.page';
 import {CreateReservationPage} from './pages/detail/create-reservation/create-reservation.page';
@@ -55,7 +49,6 @@ import {MatRadioModule} from '@angular/material/radio';
 import {TimeZoneDatePipe, TimezoneService} from './services/timezone/timezone.service';
 import {MatSliderModule} from '@angular/material/slider';
 import {MyReservationListPageComponent} from './pages/user/my-reservations/my-reservation-list-page.component';
-import {MyAboListPageComponent} from './pages/user/my-abos/my-abo-list-page.component';
 import {ReservationListComponent} from './components/reservation/reservation-list/reservation-list.component';
 import {ReservationPreviewCardComponent} from './components/reservation/reservation-preview-card/reservation-preview-card.component';
 import {MainComponent} from './components/pages/main/main.component';
@@ -93,6 +86,8 @@ import { UserListItemComponent } from './components/fragments/user-list-item/use
 import { UserComponent } from './components/pages/user/user.component';
 import { UsersComponent } from './components/pages/users/users.component';
 import { UserListComponent } from './components/fragments/user-list/user-list.component';
+import {AboEditorComponent} from './components/fragments/abo-editor/abo-editor.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -118,12 +113,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToolbarComponent,
     SimpleConfirmDialog,
     QrCodeDialog,
-    AboListPageComponent,
-    CreateAboPage,
-    EditAboPage,
-    AboDetailPage,
-    AboFormComponent,
-    AboPreviewCardComponent,
     ReservationListPage,
     ReservationDetailPage,
     CreateReservationPage,
@@ -131,7 +120,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReservationFormComponent,
     TimeZoneDatePipe,
     MyReservationListPageComponent,
-    MyAboListPageComponent,
     AboListComponent,
     ReservationListComponent,
     ReservationPreviewCardComponent,
@@ -163,7 +151,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserListItemComponent,
     UserComponent,
     UsersComponent,
-    UserListComponent
+    UserListComponent,
+    AboEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -201,6 +190,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSliderModule,
     MatGridListModule,
     MatIconModule,
+    MatChipsModule,
     NgxMaterialTimepickerModule.setLocale('de-DE')
   ],
   providers: [

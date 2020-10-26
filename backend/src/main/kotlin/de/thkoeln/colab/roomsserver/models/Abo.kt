@@ -63,10 +63,4 @@ interface RichAbo : AboModel, Identity {
         fun getRooms(): List<Room>
 
         fun getUser(): User
-
-        @Value("#{target.rooms.size()}")
-        fun getRoomCount(): Int
-
-        @Value("#{target.reservations.size()}")
-        fun getReservationCount(): Int
 }

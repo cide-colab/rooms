@@ -1,10 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {RoomForm} from '../../../core/models/room.model';
-import {RoomService} from '../../../services/room/room.service';
 import {MatDialog} from '@angular/material/dialog';
-import {Route, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {DepartmentForm} from '../../../core/models/department.model';
+import {DepartmentForm, RichDepartment} from '../../../core/models/department.model';
 import {DepartmentService} from '../../../services/department/department.service';
 import {Location} from '@angular/common';
 import {ToolbarService} from '../../../services/toolbar/toolbar.service';
@@ -29,16 +26,16 @@ export class DepartmentCreateComponent implements OnInit, OnDestroy {
     this.toolbarService.setPageTitle('Neue Abteilung');
   }
 
-  save(form: DepartmentForm) {
-    this.departmentService.save(form).subscribe(
+  save(department: DepartmentForm) {
+    this.departmentService.save(department).subscribe(
       next => {
         this.snackBar.open(`Abteilung ${next.name} wurde erfolgreich erstellt`, null, {duration: 3000});
         this.location.back();
       },
       error => {
         console.log(error);
-        this.snackBar.open(`Abteilung ${form.name} konnte nicht erstellt werden`, 'Wiederholen', {duration: 3000})
-          .onAction().subscribe(next => this.save(form));
+        this.snackBar.open(`Abteilung ${department.name} konnte nicht erstellt werden`, 'Wiederholen', {duration: 3000})
+          .onAction().subscribe(next => this.save(department));
       }
     );
   }

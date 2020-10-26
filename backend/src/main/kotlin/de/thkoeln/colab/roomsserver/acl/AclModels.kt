@@ -55,8 +55,8 @@ data class AclObjectIdentity(
         @ManyToOne
         val objectClass: AclClass,
 
-        @ManyToOne
-        val parent: AclObjectIdentity?,
+        @ManyToMany
+        val parents: List<AclObjectIdentity> = listOf(),
 
         @Id
         @Column(name = "id", nullable = false)
@@ -66,7 +66,7 @@ data class AclObjectIdentity(
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "context")
         val allocations: List<AclRoleAllocation> = listOf(),
 
-        @OneToMany(cascade = [CascadeType.ALL], mappedBy = "parent")
+        @ManyToMany(cascade = [CascadeType.ALL], mappedBy = "parents")
         val children: List<AclObjectIdentity> = listOf()
 ) : AbstractEntity()
 

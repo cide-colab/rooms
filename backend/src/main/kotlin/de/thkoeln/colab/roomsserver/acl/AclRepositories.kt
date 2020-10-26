@@ -21,7 +21,7 @@ interface AclObjectIdentityRepo : InternalRepository<AclObjectIdentity, Long> {
     fun findByObjectIdAndObjectClassClassName(objectId: Long, objectClass: String): AclObjectIdentity?
     fun deleteByObjectIdAndObjectClass(id: Long, objectClass: AclClass)
     fun deleteByObjectIdAndObjectClassClassName(id: Long, objectClass: String)
-    fun findAllByParentIdAndObjectClassId(id: Long, objectClass: Long): List<AclObjectIdentity>
+    fun findAllByParentsContainsAndObjectClassId(id: AclObjectIdentity, objectClass: Long): List<AclObjectIdentity>
 }
 
 interface AclSidRepo : InternalRepository<AclSid, Long> {

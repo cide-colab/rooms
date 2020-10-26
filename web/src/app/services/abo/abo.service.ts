@@ -7,8 +7,9 @@ import {BaseContingent, ContingentListEntity} from '../../models/contingent.mode
 import * as moment from 'moment';
 import {RestEntity} from '../../models/rest-entity.model';
 import {Room} from '../../core/models/room.model';
-import {RichAbo} from '../../core/models/abo.model';
+import {Abo, AboForm, RichAbo} from '../../core/models/abo.model';
 import {Projection} from '../../core/projections.model';
+import {Department} from '../../core/models/department.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +29,12 @@ export class AboService {
     };
   }
 
-  save(abo: SimpleAbo): Observable<SimpleAbo> {
-    return this.backendService.post('abos', AboService.createProtocol(abo), TokenRequirement.REQUIRED);
+  save(abo: AboForm): Observable<Abo> {
+    return this.backendService.postSingle('abos', {
+      ...abo,
+      user: `/users/${abo.user.id}`,
+      rooms: abo.rooms.map(r => `/rooms/${r.id}`)
+    });
   }
 
   getAll(): Observable<RichAbo[]> {
@@ -40,6 +45,12 @@ export class AboService {
 
   get(id: string): Observable<RichAbo> {
     return this.backendService.getSingle(`abos/${id}`, {
+      projection: Projection.RICH
+    });
+  }
+
+  getAllForMe(): Observable<RichAbo[]> {
+    return this.backendService.getCollection<RichAbo>(`me/abos`, 'abos', {
       projection: Projection.RICH
     });
   }

@@ -16,7 +16,7 @@ import {Observable} from 'rxjs';
 })
 export class RoomUpdateComponent implements OnInit, OnDestroy {
 
-  room: Observable<RichRoom>;
+  room: Observable<RoomForm>;
 
   constructor(
     private readonly route: ActivatedRoute,

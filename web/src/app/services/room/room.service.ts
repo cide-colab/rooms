@@ -10,6 +10,8 @@ import * as moment from 'moment';
 import {RichRoom, Room, RoomForm} from '../../core/models/room.model';
 import {Projection} from '../../core/projections.model';
 import {RichDepartment} from '../../core/models/department.model';
+import {AclAction} from '../../models/acl-entry.model';
+import {User} from '../../core/models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +28,13 @@ export class RoomService {
     };
   }
 
+  getAllByPermission(action: AclAction): Observable<RichRoom[]> {
+    return this.backendService.getCollection(`rooms/search/byPermission`, 'rooms', {
+      action,
+      projection: Projection.RICH
+    });
+  }
+
   get(id: number): Observable<RichRoom> {
     return this.backendService.getSingle(`rooms/${id}`, {
       projection: Projection.RICH
@@ -38,8 +47,11 @@ export class RoomService {
     });
   }
 
-  save(room: RoomForm): Observable<BaseRoom> {
-    return this.backendService.postSingle('rooms', room);
+  save(room: RoomForm): Observable<Room> {
+    return this.backendService.postSingle('rooms', {
+      ...room,
+      department: `/departments/${room.department.id}`
+    });
   }
 
   getAllSimple(): Observable<SimpleRoom[]> {
@@ -62,7 +74,10 @@ export class RoomService {
   }
 
   update(room: RoomForm): Observable<BaseRoom> {
-    return this.backendService.patchSingle(`rooms/${room.id}`, room);
+    return this.backendService.patchSingle(`rooms/${room.id}`, {
+      ...room,
+      department: `/departments/${room.department.id}`
+    });
   }
 
   getSlots(roomId: string, date: Date): Observable<BaseSlot[]> {

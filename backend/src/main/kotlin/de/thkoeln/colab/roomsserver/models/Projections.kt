@@ -6,8 +6,6 @@
 
 package de.thkoeln.colab.roomsserver.models
 
-import java.util.*
-
 object Projections {
     const val RICH = "rich"
 }

@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
-import {BackendService, TokenRequirement} from '../backend/backend.service';
-import {BaseDepartment, DepartmentListEntity} from '../../models/department.model';
-import {map} from 'rxjs/operators';
+import {BackendService} from '../backend/backend.service';
+import {BaseDepartment} from '../../models/department.model';
 import {Observable} from 'rxjs';
 import {Department, DepartmentForm, RichDepartment} from '../../core/models/department.model';
 import {AclAction} from '../../models/acl-entry.model';
@@ -15,12 +14,16 @@ export class DepartmentService {
   constructor(private readonly backendService: BackendService) {
   }
 
-  save(department: DepartmentForm): Observable<BaseDepartment> {
-    return this.backendService.postSingle('departments', department);
+  save(department: DepartmentForm): Observable<Department> {
+    return this.backendService.postSingle('departments', {
+      ...department
+    });
   }
 
   getAll(): Observable<RichDepartment[]> {
-    return this.backendService.getCollection('departments?projection=rich', 'departments');
+    return this.backendService.getCollection('departments', 'departments', {
+      projection: Projection.RICH
+    });
   }
 
   get(id: string): Observable<RichDepartment> {
@@ -31,11 +34,15 @@ export class DepartmentService {
     return this.backendService.deleteSingle(`departments/${id}`);
   }
 
-  update(department: DepartmentForm): Observable<BaseDepartment> {
-    return this.backendService.patchSingle(`departments/${department.id}`, department);
+  update(department: DepartmentForm): Observable<Department> {
+    return this.backendService.patchSingle(`departments/${department.id}`, {
+      ...department
+    });
   }
 
   getAllByPermission(action: AclAction): Observable<Department[]> {
-    return this.backendService.getCollection(`departments/search/byPermission?action=${action}`, 'departments');
+    return this.backendService.getCollection(`departments/search/byPermission`, 'departments', {
+      action
+    });
   }
 }
