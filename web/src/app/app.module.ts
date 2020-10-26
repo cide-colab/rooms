@@ -52,7 +52,7 @@ import {ReservationService} from './services/reservation/reservation.service';
 import {ReservationFormComponent} from './components/reservation/reservation-form/reservation-form.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {MatRadioModule} from '@angular/material/radio';
-import {TimeZoneDatePipe, TimezoneService} from './services/timezone.service';
+import {TimeZoneDatePipe, TimezoneService} from './services/timezone/timezone.service';
 import {MatSliderModule} from '@angular/material/slider';
 import {MyReservationListPageComponent} from './pages/user/my-reservations/my-reservation-list-page.component';
 import {MyAboListPageComponent} from './pages/user/my-abos/my-abo-list-page.component';
