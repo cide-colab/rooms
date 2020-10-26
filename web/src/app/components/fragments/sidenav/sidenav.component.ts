@@ -121,6 +121,16 @@ export class SidenavComponent implements OnInit, AfterViewInit {
           enabled,
           href: '/abos',
           event: NavEvent.LINK
+        }))),
+
+      this.permissionService
+        .hasPermission({target: AclClassAlias.user, action: AclAction.ADMINISTRATE})
+        .pipe(map(enabled => build({
+          title: 'Users',
+          iconClass: 'icon-person',
+          enabled,
+          href: '/users',
+          event: NavEvent.LINK
         })))
     ]).pipe(map(items => build({title: 'Administration', items, enabled: items.filter(i => i.enabled).length > 0})));
   }

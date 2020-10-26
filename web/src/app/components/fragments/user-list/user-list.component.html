@@ -1,1 +1,5 @@
-<p>user-list works!</p>
+<div *ngIf="items" class="card-list">
+  <div (click)="itemClick.emit(item)" *ngFor="let item of items" class="card-list-item" mat-ripple>
+    <component-user-list-item [user]="item"></component-user-list-item>
+  </div>
+</div>

@@ -23,10 +23,10 @@ export class UserService {
     return this.backendService.get<SessionUser>(`users/${userId}`, TokenRequirement.REQUIRED);
   }
 
-  getAll(): Observable<BaseUser[]> {
-    return this.backendService.get<UserListEntity<BaseUser>>('users', TokenRequirement.REQUIRED).pipe(
-      map(value => value._embedded.users)
-    );
+  getAll(): Observable<RichUser[]> {
+    return this.backendService.getCollection<RichUser>('users', 'users', {
+      projection: Projection.RICH
+    });
   }
 
   getByAbo(id: number): Observable<RichUser> {
