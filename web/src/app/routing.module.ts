@@ -22,7 +22,7 @@ import {ReservationUpdatePageComponent} from './components/pages/reservation-upd
 import {ReservationPageComponent} from './components/pages/reservation-page/reservation-page.component';
 import {ReservationListMePageComponent} from './components/pages/reservation-list-me-page/reservation-list-me-page.component';
 import {ReservationCreatePageComponent} from './components/pages/reservation-create-page/reservation-create-page.component';
-import {ReservationListComponent} from './components/reservation/reservation-list/reservation-list.component';
+import {ReservationListPageComponent} from './components/pages/reservation-list-page/reservation-list-page.component';
 
 export interface AppRoute extends Route {
   data?: {
@@ -229,7 +229,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'reservations',
-    component: ReservationListComponent,
+    component: ReservationListPageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
