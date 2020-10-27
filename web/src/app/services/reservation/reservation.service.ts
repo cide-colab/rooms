@@ -23,10 +23,14 @@ export class ReservationService {
     });
   }
 
-  getById(id: number): Observable<RichReservation> {
+  get(id: number): Observable<RichReservation> {
     return this.backendService.getSingle<RichReservation>(`reservations/${id}`, {
       projection: Projection.RICH
     });
+  }
+
+  delete(id: number): Observable<any> {
+    return this.backendService.deleteSingle<RichReservation>(`reservations/${id}`);
   }
 
   getSimpleByUser(userId: string): Observable<SimpleReservation[]> {
@@ -44,7 +48,7 @@ export class ReservationService {
   }
 
   update(reservation: ReservationForm): Observable<Reservation> {
-    return this.backendService.patchSingle('reservations', {
+    return this.backendService.patchSingle(`reservations/${reservation.id}`, {
       ...reservation,
       abo: `/abos/${reservation.abo.id}`,
       user: `/users/${reservation.user.id}`,

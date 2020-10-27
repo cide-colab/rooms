@@ -44,7 +44,7 @@ export class AboService {
     });
   }
 
-  get(id: string): Observable<RichAbo> {
+  get(id: number): Observable<RichAbo> {
     return this.backendService.getSingle(`abos/${id}`, {
       projection: Projection.RICH
     });

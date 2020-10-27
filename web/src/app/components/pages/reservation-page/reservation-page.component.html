@@ -1,1 +1,29 @@
-<p>reservation-page works!</p>
+<div *ngIf="reservation | async as reservation" class="detail-page">
+  <div class="page-title">{{reservation.title}}</div>
+  <div class="page-avatar-container">
+    <div class="page-avatar-container"><img class="page-avatar" src="/assets/img/kalender.svg"></div>
+  </div>
+  <div class="page-section">
+    <div class="page-section-header">Beschreibung:</div>
+    <p class="page-section-content">{{reservation.description}}</p>
+    <p *ngIf="!reservation.description" class="page-section-placeholder">Keine Beschreibung vorhanden</p>
+  </div>
+  <div class="page-section">
+    <div class="page-section-header">Datum:</div>
+    <p>{{reservation.start | date: 'dd.MM.yyyy'}} {{reservation.start | date: 'HH:mm'}} - {{reservation.end | date: 'HH:mm'}} Uhr</p>
+  </div>
+  <div class="page-section">
+    <div class="page-section-header">Nutzer:</div>
+    <p class="page-section-content" *ngIf="!(user | async)">{{reservation.user.givenName}} {{reservation.user.familyName}} {{(reservation.user.principal)}}</p>
+    <component-user-list-item *ngIf="user | async as user" [user]="user" (click)="userClicked(user)"></component-user-list-item>
+  </div>
+  <div class="page-section" *ngIf="room | async as room">
+    <div class="page-section-header">Raum:</div>
+    <component-room-list-item [room]="room" (click)="roomClicked(room)"></component-room-list-item>
+  </div>
+  <div class="page-section" *ngIf="abo | async as abo">
+    <div class="page-section-header">Abo:</div>
+    <component-abo-list-item [abo]="abo" (click)="aboClicked(abo)"></component-abo-list-item>
+  </div>
+</div>
+

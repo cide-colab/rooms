@@ -30,7 +30,7 @@ export class ReservationUpdatePageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.reservation = this.route.params.pipe(
       map( params => params.id ),
-      switchMap( id => this.reservationService.getById(id)),
+      switchMap( id => this.reservationService.get(id)),
       tap(reservation => this.toolbarService.setPageTitle(`Buchung ${reservation.title} bearbeiten`))
     );
   }
