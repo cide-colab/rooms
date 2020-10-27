@@ -18,6 +18,11 @@ import {AboPageComponent} from './components/pages/abo-page/abo-page.component';
 import {AboUpdatePageComponent} from './components/pages/abo-update-page/abo-update-page.component';
 import {UserListPageComponent} from './components/pages/user-list-page/user-list-page.component';
 import {UserPageComponent} from './components/pages/user-page/user-page.component';
+import {ReservationUpdatePageComponent} from './components/pages/reservation-update-page/reservation-update-page.component';
+import {ReservationPageComponent} from './components/pages/reservation-page/reservation-page.component';
+import {ReservationListMePageComponent} from './components/pages/reservation-list-me-page/reservation-list-me-page.component';
+import {ReservationCreatePageComponent} from './components/pages/reservation-create-page/reservation-create-page.component';
+import {ReservationListComponent} from './components/reservation/reservation-list/reservation-list.component';
 
 export interface AppRoute extends Route {
   data?: {
@@ -164,14 +169,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'my/abos',
-    component: AboListMePageComponent,
-    canActivate: [PermissionGuard],
-    data: {
-      permission: {
-        target: AclClassAlias.abo,
-        action: AclAction.READ
-      }
-    }
+    component: AboListMePageComponent
   },
   {
     path: 'abos/:id',
@@ -224,6 +222,62 @@ const routes: AppRoutes = [
         action: AclAction.READ,
         context: {
           objectClass: AclClassAlias.user,
+          objectIdAttr: 'id'
+        }
+      }
+    }
+  },
+  {
+    path: 'reservations',
+    component: ReservationListComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      permission: {
+        target: AclClassAlias.reservation,
+        action: AclAction.ADMINISTRATE
+      }
+    }
+  },
+  {
+    path: 'reservations/create',
+    component: ReservationCreatePageComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      permission: {
+        target: AclClassAlias.reservation,
+        action: AclAction.CREATE
+      }
+    }
+  },
+  {
+    path: 'my/reservations',
+    component: ReservationListMePageComponent,
+  },
+  {
+    path: 'reservations/:id',
+    component: ReservationPageComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      permission: {
+        target: AclClassAlias.reservation,
+        action: AclAction.READ,
+        context: {
+          objectClass: AclClassAlias.reservation,
+          objectIdAttr: 'id'
+        }
+      }
+    }
+  },
+  {
+    path: 'reservations/:id/update',
+    component: ReservationUpdatePageComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      permission: {
+        target: AclClassAlias.reservation,
+        action: AclAction.UPDATE,
+        context: {
+          objectClass: AclClassAlias.reservation,
           objectIdAttr: 'id'
         }
       }
