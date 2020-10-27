@@ -88,6 +88,11 @@ import {RoomListPageComponent} from './components/pages/room-list-page/room-list
 import {AboListPageComponent} from './components/pages/abo-list-page/abo-list-page.component';
 import {AboListMePageComponent} from './components/pages/abo-list-me-page/abo-list-me-page.component';
 import {UserListPageComponent} from './components/pages/user-list-page/user-list-page.component';
+import { ReservationListPageComponent } from './components/pages/reservation-list-page/reservation-list-page.component';
+import { ReservationPageComponent } from './components/pages/reservation-page/reservation-page.component';
+import { ReservationListMePageComponent } from './components/pages/reservation-list-me-page/reservation-list-me-page.component';
+import { ReservationCreatePageComponent } from './components/pages/reservation-create-page/reservation-create-page.component';
+import { ReservationUpdatePageComponent } from './components/pages/reservation-update-page/reservation-update-page.component';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -152,7 +157,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserListPageComponent,
     UserListComponent,
     AboEditorComponent,
-    AboUpdatePageComponent
+    AboUpdatePageComponent,
+    ReservationListPageComponent,
+    ReservationPageComponent,
+    ReservationListMePageComponent,
+    ReservationCreatePageComponent,
+    ReservationUpdatePageComponent
   ],
   imports: [
     BrowserModule,
