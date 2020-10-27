@@ -1,23 +1,23 @@
 import {NgModule} from '@angular/core';
 import {Route, RouterModule} from '@angular/router';
-import {MainComponent} from './components/pages/main/main.component';
-import {DepartmentsComponent} from './components/pages/departments/departments.component';
-import {RoomsComponent} from './components/pages/rooms/rooms.component';
-import {RoomComponent} from './components/pages/room/room.component';
-import {DepartmentComponent} from './components/pages/department/department.component';
-import {DepartmentUpdateComponent} from './components/pages/department-update/department-update.component';
-import {DepartmentCreateComponent} from './components/pages/department-create/department-create.component';
-import {RoomCreateComponent} from './components/pages/room-create/room-create.component';
-import {RoomUpdateComponent} from './components/pages/room-update/room-update.component';
+import {MainPageComponent} from './components/pages/main/main-page.component';
+import {DepartmentsPageComponent} from './components/pages/departments/departments-page.component';
+import {RoomsPageComponent} from './components/pages/rooms/rooms-page.component';
+import {RoomPageComponent} from './components/pages/room/room-page.component';
+import {DepartmentPageComponent} from './components/pages/department/department-page.component';
+import {DepartmentUpdatePageComponent} from './components/pages/department-update/department-update-page.component';
+import {DepartmentCreatePageComponent} from './components/pages/department-create/department-create-page.component';
+import {RoomCreatePageComponent} from './components/pages/room-create/room-create-page.component';
+import {RoomUpdatePageComponent} from './components/pages/room-update/room-update-page.component';
 import {AclAction, AclClassAlias, RoutingPermission} from './models/acl-entry.model';
 import {PermissionGuard} from './guards/permission.guard';
-import {AbosAllComponent} from './components/pages/abos-all/abos-all.component';
-import {AboCreateComponent} from './components/pages/abo-create/abo-create.component';
-import {AbosMyComponent} from './components/pages/abos-my/abos-my.component';
-import {AboComponent} from './components/pages/abo/abo.component';
-import {UserComponent} from './components/pages/user/user.component';
-import {UsersComponent} from './components/pages/users/users.component';
-import {AboUpdateComponent} from './components/pages/abo-update/abo-update.component';
+import {AbosPageComponent} from './components/pages/abos-all/abos-page.component';
+import {AboCreatePageComponent} from './components/pages/abo-create/abo-create-page.component';
+import {AbosMePageComponent} from './components/pages/abos-my/abos-me-page.component';
+import {AboPageComponent} from './components/pages/abo/abo-page.component';
+import {UserPageComponent} from './components/pages/user/user-page.component';
+import {UsersPageComponent} from './components/pages/users/users-page.component';
+import {AboUpdatePageComponent} from './components/pages/abo-update/abo-update-page.component';
 
 export interface AppRoute extends Route {
   data?: {
@@ -30,11 +30,11 @@ export declare type AppRoutes = AppRoute[];
 const routes: AppRoutes = [
   {
     path: '',
-    component: MainComponent
+    component: MainPageComponent
   },
   {
     path: 'departments',
-    component: DepartmentsComponent,
+    component: DepartmentsPageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
@@ -45,7 +45,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'departments/create',
-    component: DepartmentCreateComponent,
+    component: DepartmentCreatePageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
@@ -60,7 +60,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'departments/:id',
-    component: DepartmentComponent,
+    component: DepartmentPageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
@@ -75,7 +75,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'departments/:id/update',
-    component: DepartmentUpdateComponent,
+    component: DepartmentUpdatePageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
@@ -90,7 +90,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'rooms',
-    component: RoomsComponent,
+    component: RoomsPageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
@@ -101,7 +101,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'rooms/create',
-    component: RoomCreateComponent,
+    component: RoomCreatePageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
@@ -112,7 +112,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'rooms/:id',
-    component: RoomComponent,
+    component: RoomPageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
@@ -127,7 +127,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'rooms/:id/update',
-    component: RoomUpdateComponent,
+    component: RoomUpdatePageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
@@ -142,7 +142,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'abos',
-    component: AbosAllComponent,
+    component: AbosPageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
@@ -153,7 +153,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'abos/create',
-    component: AboCreateComponent,
+    component: AboCreatePageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
@@ -164,7 +164,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'my/abos',
-    component: AbosMyComponent,
+    component: AbosMePageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
@@ -175,7 +175,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'abos/:id',
-    component: AboComponent,
+    component: AboPageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
@@ -190,7 +190,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'abos/:id/update',
-    component: AboUpdateComponent,
+    component: AboUpdatePageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
@@ -205,7 +205,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'users',
-    component: UsersComponent,
+    component: UsersPageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
@@ -216,7 +216,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'users/:id',
-    component: UserComponent,
+    component: UserPageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {

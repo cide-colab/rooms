@@ -23,14 +23,12 @@ import {DepartmentService} from './services/department/department.service';
 import {DateAdapter, MatRippleModule} from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
-import {SimpleConfirmDialog} from './components/dialogs/simple-confirm/simple-confirm.dialog';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {SnackbarService} from './services/snackbar/snackbar.service';
 import {RoomService} from './services/room/room.service';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {QRCodeModule} from 'angularx-qrcode';
-import {QrCodeDialog} from './components/dialogs/qr-code/qr-code.dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -51,10 +49,8 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MyReservationListPageComponent} from './pages/user/my-reservations/my-reservation-list-page.component';
 import {ReservationListComponent} from './components/reservation/reservation-list/reservation-list.component';
 import {ReservationPreviewCardComponent} from './components/reservation/reservation-preview-card/reservation-preview-card.component';
-import {MainComponent} from './components/pages/main/main.component';
 import { MatGridListModule} from '@angular/material/grid-list';
 import {MainMenuComponent} from './components/fragments/main-menu/main-menu.component';
-import { RoomsComponent } from './components/pages/rooms/rooms.component';
 import {ToolbarComponent} from './components/fragments/toolbar/toolbar.component';
 import {MatIconModule} from '@angular/material/icon';
 import {TokenInterceptor} from './interceptors/token/token.interceptor';
@@ -62,33 +58,36 @@ import {RoomListComponent} from './components/fragments/room-list/room-list.comp
 import { RoomListItemComponent } from './components/fragments/room-list-item/room-list-item.component';
 import { PreviewPipe } from './pipes/preview/preview.pipe';
 import { ActionsComponent } from './components/fragments/actions/actions.component';
-import {DepartmentsComponent} from './components/pages/departments/departments.component';
 import {DepartmentListComponent} from './components/fragments/department-list/department-list.component';
 import { DepartmentListItemComponent } from './components/fragments/department-list-item/department-list-item.component';
-import { RoomComponent } from './components/pages/room/room.component';
-import { DepartmentComponent } from './components/pages/department/department.component';
-import { DepartmentCreateComponent } from './components/pages/department-create/department-create.component';
-import { DepartmentUpdateComponent } from './components/pages/department-update/department-update.component';
-import { RoomCreateComponent } from './components/pages/room-create/room-create.component';
-import { RoomUpdateComponent } from './components/pages/room-update/room-update.component';
 import { DepartmentEditorComponent } from './components/fragments/department-editor/department-editor.component';
 import { RoomEditorComponent } from './components/fragments/room-editor/room-editor.component';
 import { FormActionsComponent } from './components/fragments/form-actions/form-actions.component';
 import {UrlService} from './services/url/url.service';
-import {RoomPreviewSmallComponent} from './components/room/room-preview-small/room-preview-small.component';
-import { AbosAllComponent } from './components/pages/abos-all/abos-all.component';
-import { AboCreateComponent } from './components/pages/abo-create/abo-create.component';
-import { AboComponent } from './components/pages/abo/abo.component';
-import { AbosMyComponent } from './components/pages/abos-my/abos-my.component';
 import {AboListComponent} from './components/fragments/abo-list/abo-list.component';
 import { AboListItemComponent } from './components/fragments/abo-list-item/abo-list-item.component';
 import { UserListItemComponent } from './components/fragments/user-list-item/user-list-item.component';
-import { UserComponent } from './components/pages/user/user.component';
-import { UsersComponent } from './components/pages/users/users.component';
 import { UserListComponent } from './components/fragments/user-list/user-list.component';
 import {AboEditorComponent} from './components/fragments/abo-editor/abo-editor.component';
 import {MatChipsModule} from '@angular/material/chips';
-import {AboUpdateComponent} from './components/pages/abo-update/abo-update.component';
+import {ConfirmDialog} from './components/dialogs/confirm-dialog/confirm-dialog.component';
+import {MainPageComponent} from './components/pages/main-page/main-page.component';
+import {QrDialog} from './components/dialogs/qr-dialog/qr-dialog.component';
+import {DepartmentsPageComponent} from './components/pages/departments-page/departments-page.component';
+import {RoomsPageComponent} from './components/pages/rooms-page/rooms-page.component';
+import {RoomPageComponent} from './components/pages/room-page/room-page.component';
+import {DepartmentPageComponent} from './components/pages/department-page/department-page.component';
+import {RoomCreatePageComponent} from './components/pages/room-create-page/room-create-page.component';
+import {DepartmentUpdatePageComponent} from './components/pages/department-update-page/department-update-page.component';
+import {RoomUpdatePageComponent} from './components/pages/room-update-page/room-update-page.component';
+import {DepartmentCreatePageComponent} from './components/pages/department-create-page/department-create-page.component';
+import {AbosPageComponent} from './components/pages/abos-page/abos-page.component';
+import {AboCreatePageComponent} from './components/pages/abo-create-page/abo-create-page.component';
+import {AboPageComponent} from './components/pages/abo-page/abo-page.component';
+import {AbosMePageComponent} from './components/pages/abos-me-page/abos-me-page.component';
+import {UserPageComponent} from './components/pages/user-page/user-page.component';
+import {AboUpdatePageComponent} from './components/pages/abo-update-page/abo-update-page.component';
+import {UsersPageComponent} from './components/pages/users-page/users-page.component';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -112,8 +111,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     SidenavComponent,
     ToolbarComponent,
-    SimpleConfirmDialog,
-    QrCodeDialog,
+    ConfirmDialog,
+    QrDialog,
     ReservationListPage,
     ReservationDetailPage,
     CreateReservationPage,
@@ -126,35 +125,34 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReservationPreviewCardComponent,
     DepartmentListComponent,
     RoomListComponent,
-    MainComponent,
+    MainPageComponent,
     MainMenuComponent,
-    DepartmentsComponent,
-    RoomsComponent,
+    DepartmentsPageComponent,
+    RoomsPageComponent,
     RoomListItemComponent,
     PreviewPipe,
     ActionsComponent,
     DepartmentListItemComponent,
-    RoomComponent,
-    DepartmentComponent,
-    DepartmentCreateComponent,
-    DepartmentUpdateComponent,
-    RoomCreateComponent,
-    RoomUpdateComponent,
+    RoomPageComponent,
+    DepartmentPageComponent,
+    DepartmentCreatePageComponent,
+    DepartmentUpdatePageComponent,
+    RoomCreatePageComponent,
+    RoomUpdatePageComponent,
     DepartmentEditorComponent,
     RoomEditorComponent,
     FormActionsComponent,
-    RoomPreviewSmallComponent,
-    AbosAllComponent,
-    AboCreateComponent,
-    AboComponent,
-    AbosMyComponent,
+    AbosPageComponent,
+    AboCreatePageComponent,
+    AboPageComponent,
+    AbosMePageComponent,
     AboListItemComponent,
     UserListItemComponent,
-    UserComponent,
-    UsersComponent,
+    UserPageComponent,
+    UsersPageComponent,
     UserListComponent,
     AboEditorComponent,
-    AboUpdateComponent
+    AboUpdatePageComponent
   ],
   imports: [
     BrowserModule,
