@@ -34,10 +34,6 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {ReservationListPage} from './pages/admin/reservation-list/reservation-list.page';
-import {ReservationDetailPage} from './pages/detail/reservation-detail/reservation-detail.page';
-import {CreateReservationPage} from './pages/detail/create-reservation/create-reservation.page';
-import {EditReservationPage} from './pages/detail/edit-reservation/edit-reservation.page';
 import {AboService} from './services/abo/abo.service';
 import {UserService} from './services/user/user.service';
 import {ReservationService} from './services/reservation/reservation.service';
@@ -45,7 +41,6 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {MatRadioModule} from '@angular/material/radio';
 import {TimeZoneDatePipe, TimezoneService} from './services/timezone/timezone.service';
 import {MatSliderModule} from '@angular/material/slider';
-import {MyReservationListPageComponent} from './pages/user/my-reservations/my-reservation-list-page.component';
 import { MatGridListModule} from '@angular/material/grid-list';
 import {MainMenuComponent} from './components/fragments/main-menu/main-menu.component';
 import {ToolbarComponent} from './components/fragments/toolbar/toolbar.component';
@@ -118,12 +113,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToolbarComponent,
     ConfirmDialog,
     QrDialog,
-    ReservationListPage,
-    ReservationDetailPage,
-    CreateReservationPage,
-    EditReservationPage,
     TimeZoneDatePipe,
-    MyReservationListPageComponent,
     AboListComponent,
     ReservationListComponent,
     DepartmentListComponent,

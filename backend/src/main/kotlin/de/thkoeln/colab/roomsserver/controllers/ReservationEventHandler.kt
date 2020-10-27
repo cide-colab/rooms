@@ -24,7 +24,7 @@ class ReservationEventHandler {
     @HandleBeforeSave
     @Transactional
     fun handleReservationBeforeCreate(reservation: Reservation) {
-
+        //TODO Implement!!!!!
 //        reservation.contingent_allocations = reservation.contingent_allocations.map { allocation ->
 //            allocation.reservation
 //                    ?.let { allocation }

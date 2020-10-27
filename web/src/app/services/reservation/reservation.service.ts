@@ -23,6 +23,12 @@ export class ReservationService {
     });
   }
 
+  getAllForMe(): Observable<RichReservation[]> {
+    return this.backendService.getCollection<RichReservation>('me/reservations', 'reservations', {
+      projection: Projection.RICH
+    });
+  }
+
   get(id: number): Observable<RichReservation> {
     return this.backendService.getSingle<RichReservation>(`reservations/${id}`, {
       projection: Projection.RICH
