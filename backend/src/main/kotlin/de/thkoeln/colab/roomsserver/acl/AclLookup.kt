@@ -16,6 +16,7 @@ class AclLookupStrategy {
     fun getParents(targetObject: Any): List<Any> = when (targetObject) {
         is Abo -> targetObject.rooms
         is Room -> listOf(targetObject.department)
+        is Reservation -> listOf(targetObject.room)
         is Application -> listOf() // Termination condition
         else -> listOf(Application) // Application is the parent of everything except Application
     }

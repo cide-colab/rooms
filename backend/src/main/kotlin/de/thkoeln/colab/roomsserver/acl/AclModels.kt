@@ -149,7 +149,6 @@ data class PermissionCheckForm(
         val action: AclAction
 )
 
-
 data class PermissionEntry(
         val target: String,
         val contextId: Long?,

@@ -39,7 +39,7 @@ class RoomController @Autowired constructor(
 
     private val logger = LoggerFactory.getLogger(RoomController::class.java)
 
-//    @PreAuthorize("hasPermission(#id, 'read')")
+    // TODO secure
     @GetMapping("/{id}/slots")
     fun getSlots(@PathVariable id: Long, @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) date: OffsetDateTime): ResponseEntity<CollectionModel<out Any>> {
         val dayStart = date.withHour(0).withMinute(0).withSecond(0)
@@ -73,11 +73,12 @@ class RoomController @Autowired constructor(
             }
         }
 
-        return result.let {
-            CollectionModel(it).apply {
-                add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RoomController::class.java).getSlots(id, date)).withSelfRel())
-            }.fixEmbedded(Slot::class.java)
-        }.let { ResponseEntity(it, HttpStatus.OK) }
+        return CollectionModel.of(result)
+                .apply {
+                    add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RoomController::class.java).getSlots(id, date)).withSelfRel())
+                }
+                .fixEmbedded(Slot::class.java)
+                .let { ResponseEntity(it, HttpStatus.OK) }
 
     }
 }

@@ -20,6 +20,10 @@ interface AboRepo : SecuredRepository<Abo, Long> {
     @RestResource(exported = false)
     fun uncheckedFindAll(): List<Abo>
 
+    @Query("select a from Abo a where a.id = :id")
+    @RestResource(exported = false)
+    fun unsecuredFindById(id: Long): Abo?
+
     @PostFilter("hasPermission(filterObject, 'READ')")
     fun findByUserId(@Param("id") id: Long): List<Abo>
 }

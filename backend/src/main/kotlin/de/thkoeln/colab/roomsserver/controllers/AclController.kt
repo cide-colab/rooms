@@ -4,13 +4,12 @@
  * All rights reserved
  */
 
-package de.thkoeln.colab.roomsserver.endpoints
+package de.thkoeln.colab.roomsserver.controllers
 
 import de.thkoeln.colab.roomsserver.acl.ANONYMOUS_PRINCIPAL
 import de.thkoeln.colab.roomsserver.acl.AclService
 import de.thkoeln.colab.roomsserver.acl.ContextForm
 import de.thkoeln.colab.roomsserver.acl.PermissionCheckForm
-import de.thkoeln.colab.roomsserver.controllers.Slot
 import de.thkoeln.colab.roomsserver.extensions.fixEmbedded
 import de.thkoeln.colab.roomsserver.models.AclEntry
 import org.springframework.beans.factory.annotation.Autowired

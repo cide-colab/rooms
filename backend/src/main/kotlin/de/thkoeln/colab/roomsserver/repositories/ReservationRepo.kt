@@ -26,6 +26,5 @@ interface ReservationRepo : SecuredRepository<Reservation, Long> {
     @RestResource(exported = false)
     fun uncheckedFindAll(): List<Reservation>
 
-    @PreAuthorize("hasPermission(#reservation.room, 'create:reservation') && hasPermission(#reservation.user, 'create:reservation')")
-    fun save(reservation: Reservation): Reservation?
+    // TODO check if enough contingent for reservation
 }

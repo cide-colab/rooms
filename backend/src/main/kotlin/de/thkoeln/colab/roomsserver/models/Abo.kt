@@ -9,8 +9,6 @@ package de.thkoeln.colab.roomsserver.models
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import de.thkoeln.colab.roomsserver.core.models.AboModel
 import de.thkoeln.colab.roomsserver.core.models.Identity
-import de.thkoeln.colab.roomsserver.core.models.RoomModel
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.data.rest.core.config.Projection
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.OffsetDateTime
@@ -19,7 +17,7 @@ import javax.persistence.*
 
 
 @Entity
-@JsonIgnoreProperties(value = ["contingent_allocations"], allowGetters = false, allowSetters = true)
+//@JsonIgnoreProperties(value = ["contingent_allocations"], allowGetters = false, allowSetters = true)
 class Abo(
 
         @DateTimeFormat(pattern = "EEE MMM dd yyyy HH:mm:ss z XX")
@@ -39,7 +37,7 @@ class Abo(
         override val title: String,
 
         @Lob
-        @Column(name = "description", length = 500)
+        @Column(name = "description", length = 512)
         override val description: String,
 
         @ManyToMany
@@ -56,6 +54,7 @@ class Abo(
         @OneToMany(mappedBy = "abo", cascade = [CascadeType.ALL])
         val reservations: List<Reservation> = listOf()
 ) : AbstractEntity(), AboModel
+
 
 @Projection(name = Projections.RICH, types = [Abo::class])
 interface RichAbo : AboModel, Identity {

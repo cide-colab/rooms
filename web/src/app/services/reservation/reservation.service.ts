@@ -23,6 +23,12 @@ export class ReservationService {
     });
   }
 
+  getById(id: number): Observable<RichReservation> {
+    return this.backendService.getSingle<RichReservation>(`reservations/${id}`, {
+      projection: Projection.RICH
+    });
+  }
+
   getSimpleByUser(userId: string): Observable<SimpleReservation[]> {
     return this.backendService.get<ReservationListEntity<SimpleReservation>>(`users/${userId}/reservations?projection=simple`, TokenRequirement.REQUIRED)
       .pipe(map(it => it._embedded.reservations));
@@ -30,6 +36,15 @@ export class ReservationService {
 
   save(reservation: ReservationForm): Observable<Reservation> {
     return this.backendService.postSingle('reservations', {
+      ...reservation,
+      abo: `/abos/${reservation.abo.id}`,
+      user: `/users/${reservation.user.id}`,
+      room: `/rooms/${reservation.room.id}`,
+    });
+  }
+
+  update(reservation: ReservationForm): Observable<Reservation> {
+    return this.backendService.patchSingle('reservations', {
       ...reservation,
       abo: `/abos/${reservation.abo.id}`,
       user: `/users/${reservation.user.id}`,

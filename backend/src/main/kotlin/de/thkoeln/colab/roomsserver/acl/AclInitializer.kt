@@ -63,7 +63,7 @@ class AclInitializer {
 
         userRole.addPermissions(departmentClass, READ)
         userRole.addPermissions(roomClass, READ)
-        userRole.addPermissions(reservationClass, READ)
+        userRole.addPermissions(reservationClass, READ, CREATE)
 
         ownerRole.addPermissions(userClass, READ)
         ownerRole.addPermissions(aboClass, READ)

@@ -6,6 +6,8 @@
 
 package de.thkoeln.colab.roomsserver.controllers
 
+import de.thkoeln.colab.roomsserver.acl.*
+import de.thkoeln.colab.roomsserver.extensions.fixEmbedded
 import de.thkoeln.colab.roomsserver.models.User
 import de.thkoeln.colab.roomsserver.repositories.UserRepo
 //import com.thkoeln.cide.roomsserver.services.ACLEntry
@@ -14,8 +16,10 @@ import org.keycloak.KeycloakPrincipal
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ApplicationEventPublisher
+import org.springframework.data.repository.query.Param
 import org.springframework.data.rest.core.event.AfterCreateEvent
 import org.springframework.data.rest.core.event.BeforeCreateEvent
+import org.springframework.data.rest.webmvc.PersistentEntityResourceAssembler
 import org.springframework.data.rest.webmvc.RepositoryRestController
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -36,10 +40,27 @@ data class Session(
 class UserController @Autowired constructor(
         private val userRepository: UserRepo,
 //        private val aclService: ACLService,
-        private val eventPublisher: ApplicationEventPublisher
+        private val eventPublisher: ApplicationEventPublisher,
+        private val aclService: AclService
 ) {
 
     private val logger = LoggerFactory.getLogger(UserController::class.java)
+
+    @GetMapping("search/byTargetPermission")
+    fun getByPermission(
+            @Param("target") target: String,
+            @Param("action") action: AclAction,
+            authentication: Authentication?,
+            assembler: PersistentEntityResourceAssembler
+    ) = userRepository.findAll()
+            .filter {
+                aclService.hasPermission(
+                        PermissionCheckForm(target, ContextForm("user", it.id), action),
+                        authentication?.principal?.toString() ?: ANONYMOUS_PRINCIPAL
+                )
+            }
+            .let { assembler.toCollectionModel(it) }
+            .let { ResponseEntity.ok(it) }
 
 
     @GetMapping("/session")
