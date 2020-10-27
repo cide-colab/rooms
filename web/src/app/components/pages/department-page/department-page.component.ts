@@ -10,11 +10,11 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {Location} from '@angular/common';
 import {DepartmentService} from '../../../services/department/department.service';
 import {map, switchMap, tap} from 'rxjs/operators';
-import {QrDialog} from '../../dialogs/qr-code/qr-dialog.component';
 import {environment} from '../../../../environments/environment';
 import {RichRoom} from '../../../core/models/room.model';
 import {AclAction, AclClassAlias} from '../../../models/acl-entry.model';
-import {SimpleConfirmDialog} from '../../dialogs/simple-confirm/simple-confirm.dialog';
+import {QrDialog} from '../../dialogs/qr-dialog/qr-dialog.component';
+import {ConfirmDialog} from '../../dialogs/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'component-department',
@@ -107,7 +107,7 @@ export class DepartmentPageComponent implements OnInit, OnDestroy {
   }
 
   private openDeleteDialog(department: RichDepartment) {
-    SimpleConfirmDialog.createDialog(this.dialog, {
+    ConfirmDialog.createDialog(this.dialog, {
       title: `Abteilung ${department.name} löschen`,
       text: `Soll Abteilung ${department.name} wirklich gelöscht werden?`,
       confirmText: `Ja`,

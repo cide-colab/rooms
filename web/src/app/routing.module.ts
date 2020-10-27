@@ -1,23 +1,23 @@
 import {NgModule} from '@angular/core';
 import {Route, RouterModule} from '@angular/router';
-import {MainPageComponent} from './components/pages/main/main-page.component';
-import {DepartmentsPageComponent} from './components/pages/departments/departments-page.component';
-import {RoomsPageComponent} from './components/pages/rooms/rooms-page.component';
-import {RoomPageComponent} from './components/pages/room/room-page.component';
-import {DepartmentPageComponent} from './components/pages/department/department-page.component';
-import {DepartmentUpdatePageComponent} from './components/pages/department-update/department-update-page.component';
-import {DepartmentCreatePageComponent} from './components/pages/department-create/department-create-page.component';
-import {RoomCreatePageComponent} from './components/pages/room-create/room-create-page.component';
-import {RoomUpdatePageComponent} from './components/pages/room-update/room-update-page.component';
 import {AclAction, AclClassAlias, RoutingPermission} from './models/acl-entry.model';
 import {PermissionGuard} from './guards/permission.guard';
-import {AbosPageComponent} from './components/pages/abos-all/abos-page.component';
-import {AboCreatePageComponent} from './components/pages/abo-create/abo-create-page.component';
-import {AbosMePageComponent} from './components/pages/abos-my/abos-me-page.component';
-import {AboPageComponent} from './components/pages/abo/abo-page.component';
-import {UserPageComponent} from './components/pages/user/user-page.component';
-import {UsersPageComponent} from './components/pages/users/users-page.component';
-import {AboUpdatePageComponent} from './components/pages/abo-update/abo-update-page.component';
+import {MainPageComponent} from './components/pages/main-page/main-page.component';
+import {DepartmentCreatePageComponent} from './components/pages/department-create-page/department-create-page.component';
+import {DepartmentListPageComponent} from './components/pages/department-list-page/department-list-page.component';
+import {DepartmentPageComponent} from './components/pages/department-page/department-page.component';
+import {DepartmentUpdatePageComponent} from './components/pages/department-update-page/department-update-page.component';
+import {RoomListPageComponent} from './components/pages/room-list-page/room-list-page.component';
+import {RoomCreatePageComponent} from './components/pages/room-create-page/room-create-page.component';
+import {RoomPageComponent} from './components/pages/room-page/room-page.component';
+import {RoomUpdatePageComponent} from './components/pages/room-update-page/room-update-page.component';
+import {AboListPageComponent} from './components/pages/abo-list-page/abo-list-page.component';
+import {AboCreatePageComponent} from './components/pages/abo-create-page/abo-create-page.component';
+import {AboListMePageComponent} from './components/pages/abo-list-me-page/abo-list-me-page.component';
+import {AboPageComponent} from './components/pages/abo-page/abo-page.component';
+import {AboUpdatePageComponent} from './components/pages/abo-update-page/abo-update-page.component';
+import {UserListPageComponent} from './components/pages/user-list-page/user-list-page.component';
+import {UserPageComponent} from './components/pages/user-page/user-page.component';
 
 export interface AppRoute extends Route {
   data?: {
@@ -34,7 +34,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'departments',
-    component: DepartmentsPageComponent,
+    component: DepartmentListPageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
@@ -90,7 +90,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'rooms',
-    component: RoomsPageComponent,
+    component: RoomListPageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
@@ -142,7 +142,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'abos',
-    component: AbosPageComponent,
+    component: AboListPageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
@@ -164,7 +164,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'my/abos',
-    component: AbosMePageComponent,
+    component: AboListMePageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
@@ -205,7 +205,7 @@ const routes: AppRoutes = [
   },
   {
     path: 'users',
-    component: UsersPageComponent,
+    component: UserListPageComponent,
     canActivate: [PermissionGuard],
     data: {
       permission: {
