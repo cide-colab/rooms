@@ -1,31 +1,21 @@
-server.port=8080
-## Hibernate Properties
-
-# The SQL dialect makes Hibernate generate better SQL for the chosen database
-spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
-spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.dialect=
+spring.jpa.hibernate.ddl-auto=
 spring.datasource.url=
 spring.datasource.username=
 spring.datasource.password=
-#spring.datasource.url=
-#spring.datasource.username=
-#spring.datasource.password=
 
-spring.mail.host=
-spring.mail.port=
-spring.mail.username=
-spring.mail.password=
-spring.mail.properties.mail.smtp.auth=true
-spring.mail.properties.mail.smtp.starttls.enable=true
-
-#keycloak
 keycloak.realm=
 keycloak.resource=
 keycloak.auth-server-url=
-keycloak.use-resource-role-mappings=true
-keycloak.cors=true
-keycloak.bearer-only=true
-keycloak.enable-basic-auth=true
-
+keycloak.ssl-required=
 keycloak.principal-attribute=
+keycloak.bearer-only=
 keycloak.credentials.secret=
+
+management.endpoints.web.base-path=/actuator
+
+rooms.admin.principal=admin
+rooms.roles.user=User
+rooms.roles.admin=Admin
+rooms.roles.guest=Guest
+rooms.roles.owner=Owner
