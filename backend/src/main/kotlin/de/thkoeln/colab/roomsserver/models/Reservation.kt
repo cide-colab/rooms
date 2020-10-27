@@ -7,7 +7,11 @@
 package de.thkoeln.colab.roomsserver.models
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import de.thkoeln.colab.roomsserver.core.models.Identity
 import de.thkoeln.colab.roomsserver.core.models.ReservationModel
+import de.thkoeln.colab.roomsserver.core.models.RoomModel
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.data.rest.core.config.Projection
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.OffsetDateTime
 import javax.persistence.*
@@ -44,3 +48,11 @@ class Reservation(
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         override var id: Long = 0
 ) : AbstractEntity(), ReservationModel
+
+
+@Projection(name = Projections.RICH, types = [Reservation::class])
+interface RichReservation : ReservationModel, Identity {
+        fun getRoom(): Room
+        fun getUser(): User
+        fun getAbo(): Abo
+}

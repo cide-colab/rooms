@@ -4,6 +4,8 @@ import {ReservationListEntity, SimpleReservation} from '../../models/reservation
 import {BackendService, TokenRequirement} from '../backend/backend.service';
 import {map} from 'rxjs/operators';
 import {SessionService} from '../session/session.service';
+import {RichReservation} from '../../core/models/reservation.model';
+import {Projection} from '../../core/projections.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +27,12 @@ export class ReservationService {
     private readonly backendService: BackendService,
     private readonly sessionService: SessionService
   ) {
+  }
+
+  getAll(): Observable<RichReservation[]> {
+    return this.backendService.getCollection<RichReservation>('reservations', 'reservations', {
+      projection: Projection.RICH
+    });
   }
 
   getSimpleByUser(userId: string): Observable<SimpleReservation[]> {

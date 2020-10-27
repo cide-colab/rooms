@@ -1,1 +1,6 @@
-<p>reservation-list-page works!</p>
+<component-reservation-list [items]="filteredItems | async" (itemClick)="click($event)"></component-reservation-list>
+<component-actions>
+  <button (click)="create()" *ngIf="(canCreate | async) == true" color="primary" mat-fab>
+    <i class="icon-add"></i>
+  </button>
+</component-actions>

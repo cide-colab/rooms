@@ -1,4 +1,5 @@
 <div *ngIf="items" class="card-list">
+  <div *ngIf="items.length <= 0">Keine Nutzer gefunden</div>
   <div (click)="itemClick.emit(item)" *ngFor="let item of items" class="card-list-item" mat-ripple>
     <component-user-list-item [user]="item"></component-user-list-item>
   </div>

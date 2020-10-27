@@ -47,8 +47,6 @@ import {MatRadioModule} from '@angular/material/radio';
 import {TimeZoneDatePipe, TimezoneService} from './services/timezone/timezone.service';
 import {MatSliderModule} from '@angular/material/slider';
 import {MyReservationListPageComponent} from './pages/user/my-reservations/my-reservation-list-page.component';
-import {ReservationListComponent} from './components/reservation/reservation-list/reservation-list.component';
-import {ReservationPreviewCardComponent} from './components/reservation/reservation-preview-card/reservation-preview-card.component';
 import { MatGridListModule} from '@angular/material/grid-list';
 import {MainMenuComponent} from './components/fragments/main-menu/main-menu.component';
 import {ToolbarComponent} from './components/fragments/toolbar/toolbar.component';
@@ -93,6 +91,9 @@ import { ReservationPageComponent } from './components/pages/reservation-page/re
 import { ReservationListMePageComponent } from './components/pages/reservation-list-me-page/reservation-list-me-page.component';
 import { ReservationCreatePageComponent } from './components/pages/reservation-create-page/reservation-create-page.component';
 import { ReservationUpdatePageComponent } from './components/pages/reservation-update-page/reservation-update-page.component';
+import { ReservationListItemComponent } from './components/fragments/reservation-list-item/reservation-list-item.component';
+import { ReservationEditorComponent } from './components/fragments/reservation-editor/reservation-editor.component';
+import {ReservationListComponent} from './components/fragments/reservation-list/reservation-list.component';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -127,7 +128,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     MyReservationListPageComponent,
     AboListComponent,
     ReservationListComponent,
-    ReservationPreviewCardComponent,
     DepartmentListComponent,
     RoomListComponent,
     MainPageComponent,
@@ -162,7 +162,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReservationPageComponent,
     ReservationListMePageComponent,
     ReservationCreatePageComponent,
-    ReservationUpdatePageComponent
+    ReservationUpdatePageComponent,
+    ReservationListItemComponent,
+    ReservationEditorComponent
   ],
   imports: [
     BrowserModule,

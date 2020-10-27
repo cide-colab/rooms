@@ -1,0 +1,6 @@
+<div *ngIf="items" class="card-list">
+  <div *ngIf="items.length <= 0">Keine Buchungen gefunden</div>
+  <div (click)="itemClick.emit(item)" *ngFor="let item of items" class="card-list-item" mat-ripple>
+    <component-reservation-list-item [reservation]="item"></component-reservation-list-item>
+  </div>
+</div>
