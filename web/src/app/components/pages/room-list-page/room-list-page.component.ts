@@ -12,10 +12,10 @@ import {AclAction, AclClassAlias} from '../../../models/acl-entry.model';
 
 @Component({
   selector: 'component-rooms',
-  templateUrl: './rooms-page.component.html',
-  styleUrls: ['./rooms-page.component.scss']
+  templateUrl: './room-list-page.component.html',
+  styleUrls: ['./room-list-page.component.scss']
 })
-export class RoomsPageComponent implements OnInit, OnDestroy {
+export class RoomListPageComponent implements OnInit, OnDestroy {
 
   filteredItems = new EagerSubject<RichRoom[]>([]);
   canCreate: Observable<boolean>;

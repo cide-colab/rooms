@@ -10,10 +10,10 @@ import {ToolbarService} from '../../../services/toolbar/toolbar.service';
 
 @Component({
   selector: 'component-users',
-  templateUrl: './users-page.component.html',
-  styleUrls: ['./users-page.component.scss']
+  templateUrl: './user-list-page.component.html',
+  styleUrls: ['./user-list-page.component.scss']
 })
-export class UsersPageComponent implements OnInit, OnDestroy {
+export class UserListPageComponent implements OnInit, OnDestroy {
 
   filteredItems = new EagerSubject<RichUser[]>([]);
   canCreate: Observable<boolean>;

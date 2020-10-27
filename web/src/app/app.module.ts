@@ -73,21 +73,21 @@ import {MatChipsModule} from '@angular/material/chips';
 import {ConfirmDialog} from './components/dialogs/confirm-dialog/confirm-dialog.component';
 import {MainPageComponent} from './components/pages/main-page/main-page.component';
 import {QrDialog} from './components/dialogs/qr-dialog/qr-dialog.component';
-import {DepartmentsPageComponent} from './components/pages/departments-page/departments-page.component';
-import {RoomsPageComponent} from './components/pages/rooms-page/rooms-page.component';
 import {RoomPageComponent} from './components/pages/room-page/room-page.component';
 import {DepartmentPageComponent} from './components/pages/department-page/department-page.component';
 import {RoomCreatePageComponent} from './components/pages/room-create-page/room-create-page.component';
 import {DepartmentUpdatePageComponent} from './components/pages/department-update-page/department-update-page.component';
 import {RoomUpdatePageComponent} from './components/pages/room-update-page/room-update-page.component';
 import {DepartmentCreatePageComponent} from './components/pages/department-create-page/department-create-page.component';
-import {AbosPageComponent} from './components/pages/abos-page/abos-page.component';
 import {AboCreatePageComponent} from './components/pages/abo-create-page/abo-create-page.component';
 import {AboPageComponent} from './components/pages/abo-page/abo-page.component';
-import {AbosMePageComponent} from './components/pages/abos-me-page/abos-me-page.component';
 import {UserPageComponent} from './components/pages/user-page/user-page.component';
 import {AboUpdatePageComponent} from './components/pages/abo-update-page/abo-update-page.component';
-import {UsersPageComponent} from './components/pages/users-page/users-page.component';
+import {DepartmentListPageComponent} from './components/pages/department-list-page/department-list-page.component';
+import {RoomListPageComponent} from './components/pages/room-list-page/room-list-page.component';
+import {AboListPageComponent} from './components/pages/abo-list-page/abo-list-page.component';
+import {AboListMePageComponent} from './components/pages/abo-list-me-page/abo-list-me-page.component';
+import {UserListPageComponent} from './components/pages/user-list-page/user-list-page.component';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -127,8 +127,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     RoomListComponent,
     MainPageComponent,
     MainMenuComponent,
-    DepartmentsPageComponent,
-    RoomsPageComponent,
+    DepartmentListPageComponent,
+    RoomListPageComponent,
     RoomListItemComponent,
     PreviewPipe,
     ActionsComponent,
@@ -142,14 +142,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     DepartmentEditorComponent,
     RoomEditorComponent,
     FormActionsComponent,
-    AbosPageComponent,
+    AboListPageComponent,
     AboCreatePageComponent,
     AboPageComponent,
-    AbosMePageComponent,
+    AboListMePageComponent,
     AboListItemComponent,
     UserListItemComponent,
     UserPageComponent,
-    UsersPageComponent,
+    UserListPageComponent,
     UserListComponent,
     AboEditorComponent,
     AboUpdatePageComponent

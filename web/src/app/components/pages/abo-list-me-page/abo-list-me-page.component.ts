@@ -1,62 +1,48 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {EagerSubject} from '../../../utils/EagerSubject';
+import {RichAbo} from '../../../core/models/abo.model';
 import {Observable} from 'rxjs';
-import {DepartmentService} from '../../../services/department/department.service';
+import {AboService} from '../../../services/abo/abo.service';
 import {PermissionService} from '../../../services/permission/permission.service';
 import {ToolbarService} from '../../../services/toolbar/toolbar.service';
 import {Router} from '@angular/router';
-import {AclAction, AclClassAlias} from '../../../models/acl-entry.model';
 import {map, switchMap} from 'rxjs/operators';
 import {build} from '../../../utils/global.extensions';
-import {RichDepartment} from '../../../core/models/department.model';
+import {AclAction, AclClassAlias} from '../../../models/acl-entry.model';
 
 @Component({
-  selector: 'component-departments',
-  templateUrl: './departments-page.component.html',
-  styleUrls: ['./departments-page.component.scss']
+  selector: 'component-abos-my',
+  templateUrl: './abo-list-me-page.component.html',
+  styleUrls: ['./abo-list-me-page.component.scss']
 })
-export class DepartmentsPageComponent implements OnInit, OnDestroy {
+export class AboListMePageComponent implements OnInit, OnDestroy {
 
-  filteredItems = new EagerSubject<RichDepartment[]>([]);
+
+  filteredItems = new EagerSubject<RichAbo[]>([]);
   canCreate: Observable<boolean>;
 
   constructor(
-    private readonly departmentService: DepartmentService,
-    private readonly permissionService: PermissionService,
+    private readonly aboService: AboService,
     private readonly toolbarService: ToolbarService,
     private readonly router: Router
   ) {
   }
 
   ngOnInit(): void {
-
-    this.departmentService.getAll().pipe(
+    this.aboService.getAllForMe().pipe(
       switchMap(items => this.toolbarService.getFilterQuery().pipe(
         map(q => build({items, q}))
       ))
     ).subscribe(result => {
       this.filteredItems.next(result.items.filter(item =>
-        `${item.name} ${item.description}`
+        `${item.title} ${item.description} ${item.user.givenName} ${item.user.familyName} ${item.user.principal} ${item.rooms.map(r => `${r.name} ${r.number}`).join(' ')}`
           .toLowerCase()
           .includes(result.q.toLowerCase())
       ));
     });
 
     this.toolbarService.enableSearch(true);
-    this.toolbarService.setPageTitle('Abteilungen');
-
-    this.canCreate = this.permissionService.hasPermission({
-      target: AclClassAlias.department,
-      action: AclAction.CREATE
-    });
-  }
-
-  click(item: RichDepartment) {
-    this.router.navigate(['departments', item.id]).then();
-  }
-
-  create() {
-    this.router.navigate(['departments', 'create']).then();
+    this.toolbarService.setPageTitle('Meine Abos');
   }
 
   ngOnDestroy(): void {
@@ -64,5 +50,8 @@ export class DepartmentsPageComponent implements OnInit, OnDestroy {
     this.toolbarService.clearPageTitle();
   }
 
+  click(item: RichAbo) {
+    this.router.navigate(['abos', item.id]).then();
+  }
 
 }

@@ -1,35 +1,35 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {EagerSubject} from '../../../utils/EagerSubject';
-import {RichAbo} from '../../../core/models/abo.model';
-import {Observable} from 'rxjs';
 import {AboService} from '../../../services/abo/abo.service';
 import {PermissionService} from '../../../services/permission/permission.service';
 import {ToolbarService} from '../../../services/toolbar/toolbar.service';
 import {Router} from '@angular/router';
+import {EagerSubject} from '../../../utils/EagerSubject';
+import {RichAbo} from '../../../core/models/abo.model';
+import {Observable} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
 import {build} from '../../../utils/global.extensions';
 import {AclAction, AclClassAlias} from '../../../models/acl-entry.model';
 
 @Component({
-  selector: 'component-abos-my',
-  templateUrl: './abos-me-page.component.html',
-  styleUrls: ['./abos-me-page.component.scss']
+  selector: 'component-abos-all',
+  templateUrl: './abo-list-page.component.html',
+  styleUrls: ['./abo-list-page.component.scss']
 })
-export class AbosMePageComponent implements OnInit, OnDestroy {
-
+export class AboListPageComponent implements OnInit, OnDestroy {
 
   filteredItems = new EagerSubject<RichAbo[]>([]);
   canCreate: Observable<boolean>;
 
   constructor(
     private readonly aboService: AboService,
+    private readonly permissionService: PermissionService,
     private readonly toolbarService: ToolbarService,
     private readonly router: Router
   ) {
   }
 
   ngOnInit(): void {
-    this.aboService.getAllForMe().pipe(
+    this.aboService.getAll().pipe(
       switchMap(items => this.toolbarService.getFilterQuery().pipe(
         map(q => build({items, q}))
       ))
@@ -42,7 +42,12 @@ export class AbosMePageComponent implements OnInit, OnDestroy {
     });
 
     this.toolbarService.enableSearch(true);
-    this.toolbarService.setPageTitle('Meine Abos');
+    this.toolbarService.setPageTitle('Abos');
+
+    this.canCreate = this.permissionService.hasPermission({
+      target: AclClassAlias.abo,
+      action: AclAction.CREATE
+    });
   }
 
   ngOnDestroy(): void {
@@ -54,4 +59,7 @@ export class AbosMePageComponent implements OnInit, OnDestroy {
     this.router.navigate(['abos', item.id]).then();
   }
 
+  create() {
+    this.router.navigate(['abos', 'create']).then();
+  }
 }
