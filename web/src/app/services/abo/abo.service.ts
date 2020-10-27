@@ -6,6 +6,11 @@ import {map} from 'rxjs/operators';
 import {BaseContingent, ContingentListEntity} from '../../models/contingent.model';
 import * as moment from 'moment';
 import {RestEntity} from '../../models/rest-entity.model';
+import {Room} from '../../core/models/room.model';
+import {Abo, AboForm, RichAbo} from '../../core/models/abo.model';
+import {Projection} from '../../core/projections.model';
+import {Department} from '../../core/models/department.model';
+import {Contingent} from '../../core/models/contingent.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,25 +30,48 @@ export class AboService {
     };
   }
 
-  save(abo: SimpleAbo): Observable<SimpleAbo> {
-    return this.backendService.post('abos', AboService.createProtocol(abo), TokenRequirement.REQUIRED);
+  save(abo: AboForm): Observable<Abo> {
+    return this.backendService.postSingle('abos', {
+      ...abo,
+      user: `/users/${abo.user.id}`,
+      rooms: abo.rooms.map(r => `/rooms/${r.id}`)
+    });
   }
 
-  getAll(): Observable<SimpleAbo[]> {
-    return this.backendService.get<AboListEntity<SimpleAbo>>('abos?projection=simple', TokenRequirement.REQUIRED)
-      .pipe(map(value => value._embedded.abos));
+  getAll(): Observable<RichAbo[]> {
+    return this.backendService.getCollection<RichAbo>('abos', 'abos', {
+      projection: Projection.RICH
+    });
   }
 
-  get(id: string): Observable<DetailedAbo> {
-    return this.backendService.get(`abos/${id}?projection=detailed`, TokenRequirement.REQUIRED);
+  get(id: number): Observable<RichAbo> {
+    return this.backendService.getSingle(`abos/${id}`, {
+      projection: Projection.RICH
+    });
   }
 
-  delete(abo: DetailedAbo): Observable<any> {
-    return this.backendService.delete(`abos/${abo.id}`, TokenRequirement.REQUIRED);
+  getAllForMe(): Observable<RichAbo[]> {
+    return this.backendService.getCollection<RichAbo>(`me/abos`, 'abos', {
+      projection: Projection.RICH
+    });
   }
 
-  update(abo: DetailedAbo): Observable<BaseAbo> {
-    return this.backendService.patch(`abos/${abo.id}`, AboService.createProtocol(abo), TokenRequirement.REQUIRED);
+  getAllByUser(id: number): Observable<RichAbo[]> {
+    return this.backendService.getCollection<RichAbo>(`users/${id}/abos`, 'abos', {
+      projection: Projection.RICH
+    });
+  }
+
+  delete(id: number): Observable<any> {
+    return this.backendService.deleteSingle(`abos/${id}`);
+  }
+
+  update(abo: AboForm): Observable<Abo> {
+    return this.backendService.patchSingle(`abos/${abo.id}`, {
+      ...abo,
+      user: `/users/${abo.user.id}`,
+      rooms: abo.rooms.map(r => `/rooms/${r.id}`)
+    });
   }
 
   getSimpleByUser(id: string): Observable<SimpleAbo[]> {
@@ -51,15 +79,11 @@ export class AboService {
       .pipe(map(value => value._embedded.abos));
   }
 
-  getBaseByUser(id: string): Observable<SimpleAbo[]> {
-    return this.backendService.get<AboListEntity<SimpleAbo>>(`users/${id}/abos`, TokenRequirement.REQUIRED)
-      .pipe(map(value => value._embedded.abos));
-  }
-
-  getContingentOnDate(id: string, date: Date): Observable<BaseContingent> {
-    return this.backendService.get<BaseContingent>(
-      `abos/${id}/contingent?date=${encodeURIComponent(moment(date).format())}`,
-      TokenRequirement.REQUIRED
+  getContingentOnDate(id: number, date: Date): Observable<Contingent> {
+    return this.backendService.getSingle<Contingent>(
+      `abos/${id}/contingent`, {
+        date: encodeURIComponent(moment(date).format())
+      }
     );
   }
 }

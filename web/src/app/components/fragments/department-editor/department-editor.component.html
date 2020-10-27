@@ -1,0 +1,25 @@
+<form *ngIf="formGroup" (ngSubmit)="submit()" [formGroup]="formGroup">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>ID (Generated)</mat-label>
+    <input matInput formControlName="id">
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+    <button mat-button *ngIf="hasChanges('name')" matSuffix mat-icon-button aria-label="reset" (click)="reset('name')">
+      <i class="icon-reset"></i>
+    </button>
+    <mat-error *ngIf="hasError('required', 'name')">Bitte gebe einen Namen ein</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Beschreibung</mat-label>
+    <textarea #description matInput formControlName="description"></textarea>
+    <button mat-button *ngIf="hasChanges('description')" matSuffix mat-icon-button aria-label="reset" (click)="reset('description')">
+      <i class="icon-reset"></i>
+    </button>
+    <mat-hint align="end">{{description.value.length}} / 512</mat-hint>
+  </mat-form-field>
+  <component-form-actions>
+    <button mat-fab color="primary" [disabled]="!hasChanges()"><i class="icon-check"></i></button>
+  </component-form-actions>
+</form>

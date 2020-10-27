@@ -1,6 +1,6 @@
-import {AclEntry} from './acl-entry.model';
+import {AclEntryModel} from './acl-entry.model';
 
 export interface Session {
   userId?: string;
-  acl: AclEntry[];
+  acl: AclEntryModel[];
 }

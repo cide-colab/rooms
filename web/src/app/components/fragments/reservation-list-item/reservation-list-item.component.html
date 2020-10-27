@@ -1,0 +1,14 @@
+<mat-card *ngIf="reservation" class="horizontal-card">
+  <div class="card-avatar-container">
+    <img class="card-avatar not_rounded" src="/assets/img/kalender.svg"/>
+  </div>
+  <div class="card-content">
+    <div class="card-subtitle">{{reservation.user.principal}}</div>
+    <div class="card-title">{{reservation.title}}</div>
+    <div class="card-description">
+      <div>{{reservation.start | date: 'dd.MM.yyyy'}} {{reservation.start | date: 'HH:mm'}} - {{reservation.end | date: 'HH:mm'}} Uhr</div>
+      <div>{{reservation.room.name}} ({{reservation.room.number}})</div>
+      <div>{{reservation.description | preview: 60}}</div>
+    </div>
+  </div>
+</mat-card>

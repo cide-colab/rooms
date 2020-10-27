@@ -1,0 +1,24 @@
+<mat-card *ngIf="abo" class="horizontal-card">
+  <div class="card-avatar-container">
+    <img class="card-avatar" src="/assets/img/clock.svg"/>
+    <div class="card-avatar-overlay">
+      {{abo.unlimited_contingent ? '&#8734;' : abo.contingent}}
+      <small>min</small>
+    </div>
+  </div>
+  <div class="card-content">
+    <div class="card-subtitle">{{abo.title}}</div>
+    <div class="card-title">{{abo.user.givenName}} ({{abo.user.principal}})</div>
+    <div class="card-description">
+      <div>
+        <span>Gültigkeit</span>
+        : {{abo.start | date: 'dd.MM.yy'}}
+        -  {{abo.unlimited_end ? '&#8734;' : (abo.end | date: 'dd.MM.yy')}}
+      </div>
+      <div *ngIf="abo.rooms">
+        {{abo.rooms.length > 1 ? 'Räume' : 'Raum'}}:
+        <span *ngFor="let room of abo.rooms; let i = index"> {{room.number}} {{i < abo.rooms.length - 1 ? '-' : ''}}</span>
+      </div>
+    </div>
+  </div>
+</mat-card>

@@ -1,0 +1,21 @@
+<mat-toolbar>
+  <button mat-icon-button (click)="openNav()">
+    <i class="icon-menu"></i>
+  </button>
+  <span *ngIf="getTitle() | async as title">{{title}}</span>
+  <span class="fill-space"></span>
+
+  <button mat-icon-button *ngFor="let btn of getButtons() | async" class="{{btn.title}}-btn" (click)="btn.click()">
+    <i [class]="btn.iconClass"></i>
+  </button>
+
+  <div *ngIf="(getFilterEnabled() | async) == true">
+    <mat-form-field *ngIf="(getFilterCollapsed() | async) == true" [floatLabel]="'never'" class="filter-input">
+      <input type="text" matInput placeholder="Suchen" (input)="filter(search.value)" #search>
+    </mat-form-field>
+    <button mat-icon-button (click)="toggleFilter()" class="filter-button">
+      <i [class]="(getFilterCollapsed() | async) == true ? 'icon-clearclose' : 'icon-search'"></i>
+    </button>
+  </div>
+
+</mat-toolbar>

@@ -1,0 +1,103 @@
+<form [formGroup]="formGroup" class="form-container" (ngSubmit)="submit()">
+  <mat-form-field appearance="fill" class="full-width">
+    <input [matAutocomplete]="userAutoComplete" formControlName="user" matInput required>
+    <mat-label>Nutzer</mat-label>
+    <mat-autocomplete #userAutoComplete="matAutocomplete" [displayWith]="displayUser">
+      <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+        <span>{{user.givenName}} ({{user.principal}})</span>
+      </mat-option>
+    </mat-autocomplete>
+    <button mat-button *ngIf="hasChanges('user')" matSuffix mat-icon-button aria-label="reset" (click)="reset('user')">
+      <i class="icon-reset"></i>
+    </button>
+    <mat-error *ngIf="hasError('required','user')">
+      Bitte wähle einen Nutzer aus
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-chip-list #chipList aria-label="Room selection">
+      <mat-chip
+        *ngFor="let room of formGroup.get('rooms').value"
+        [selectable]="true"
+        [removable]="true"
+        (removed)="removeRoom(room)">
+        {{room.name}} ({{room.number}})
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+      <input
+        #roomInput
+        placeholder="Raum hinzufügen"
+        [formControl]="roomQuery"
+        [matAutocomplete]="roomAutoComplete"
+        [matChipInputFor]="chipList">
+    </mat-chip-list>
+    <mat-autocomplete #roomAutoComplete="matAutocomplete" [displayWith]="displayRoom" (optionSelected)="selectRoom($event)">
+      <mat-option *ngFor="let room of filteredRooms | async" [value]="room">
+        <span>{{room.name}} ({{room.number}})</span>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <br>
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Titel</mat-label>
+    <input #title formControlName="title" matInput/>
+    <mat-hint align="end">{{title.value.length}} / 25</mat-hint>
+    <button mat-button *ngIf="hasChanges('title')" matSuffix mat-icon-button aria-label="reset" (click)="reset('title')">
+      <i class="icon-reset"></i>
+    </button>
+    <mat-error *ngIf="hasError('required','title')">
+      Bitte gebe einen Titel ein
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Beschreibung</mat-label>
+    <textarea #description formControlName="description" matInput></textarea>
+    <button mat-button *ngIf="hasChanges('description')" matSuffix mat-icon-button aria-label="reset" (click)="reset('description')">
+      <i class="icon-reset"></i>
+    </button>
+    <mat-hint align="end">{{description.value.length}} / 512</mat-hint>
+  </mat-form-field>
+
+  <br>
+  <br>
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Abo gültig ab</mat-label>
+    <input [matDatepicker]="start_date_picker" formControlName="start" matInput required>
+    <mat-datepicker-toggle [for]="start_date_picker" matSuffix></mat-datepicker-toggle>
+    <mat-datepicker #start_date_picker touchUi="true"></mat-datepicker>
+    <mat-error *ngIf="hasError('required','start')">
+      Bitte gebe an, ab wann das Abo gültig ist
+    </mat-error>
+  </mat-form-field>
+
+  <mat-checkbox formControlName="unlimited_end" matPrefix>Keinen Endzeitpunkt festlegen</mat-checkbox>
+  <mat-form-field *ngIf="!formGroup.get('unlimited_end').value" appearance="fill" class="full-width">
+    <mat-label>Abo gültig bis</mat-label>
+    <input [matDatepicker]="end_date_picker" [min]="formGroup.get('start').value" formControlName="end" matInput
+           required>
+    <mat-datepicker-toggle [for]="end_date_picker" matSuffix></mat-datepicker-toggle>
+    <mat-datepicker #end_date_picker touchUi="true"></mat-datepicker>
+    <mat-error *ngIf="hasError('required','end')">
+      Bitte gebe an, bis wann das Abo gültig ist
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+  <br>
+  <mat-checkbox formControlName="unlimited_contingent" matPrefix>Nutzer darf unlimitiert buchen</mat-checkbox>
+  <mat-form-field *ngIf="!formGroup.get('unlimited_contingent').value" appearance="fill" class="full-width">
+    <mat-label>Buchungskontingent pro Woche</mat-label>
+    <input [min]="0" formControlName="contingent" matInput required type="number">
+    <span matSuffix>Minuten</span>
+    <mat-error *ngIf="hasError('required','contingent')">
+      Bitte gebe ein Buchungskontingent an
+    </mat-error>
+  </mat-form-field>
+
+  <component-form-actions>
+    <button mat-fab color="primary" [disabled]="!hasChanges()"><i class="icon-check"></i></button>
+  </component-form-actions>
+</form>

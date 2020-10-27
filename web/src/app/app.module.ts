@@ -1,82 +1,93 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {APP_INITIALIZER, NgModule} from '@angular/core';
 
-import {AppRoutingModule} from './app-routing.module';
-import {RootPage} from './pages/root/root.page';
-import {SidenavComponent} from './components/sidenav/sidenav.component';
+import {RoutingModule} from './routing.module';
+import {AppComponent} from './app.component';
+import {SidenavComponent} from './components/fragments/sidenav/sidenav.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {SidenavService} from './services/sidenav/sidenav.service';
-import {MainPage} from './pages/main/main.page';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {SessionService} from './services/session/session.service';
 import {BackendService} from './services/backend/backend.service';
-import {UserPreviewComponent} from './components/user/user-preview/user-preview.component';
 import {MatListModule} from '@angular/material/list';
 import {keycloakInitializer} from './app.init';
-import {DepartmentListPage} from './pages/general/department-list/department-list.page';
-import {CreateDepartmentPage} from './pages/detail/create-department/create-department.page';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {DepartmentFormComponent} from './components/department/department-form/department-form.component';
-import {ToolbarComponent} from './components/toolbar/toolbar.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {DepartmentService} from './services/department/department.service';
-import {DepartmentPreviewCardComponent} from './components/department/department-list-item/department-preview-card.component';
 import {DateAdapter, MatRippleModule} from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
-import {DepartmentDetailPage} from './pages/detail/department-detail/department-detail.page';
 import {MatDialogModule} from '@angular/material/dialog';
-import {SimpleConfirmDialog} from './dialog/simple-confirm/simple-confirm.dialog';
-import {EditDepartmentPage} from './pages/detail/edit-department/edit-department.page';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {SnackbarService} from './services/snackbar/snackbar.service';
-import {RoomListPage} from './pages/general/room-list/room-list.page';
-import {EditRoomPage} from './pages/detail/edit-room/edit-room.page';
-import {CreateRoomPage} from './pages/detail/create-room/create-room.page';
-import {RoomDetailPage} from './pages/detail/room-detail/room-detail.page';
-import {RoomFormComponent} from './components/room/room-form/room-form.component';
 import {RoomService} from './services/room/room.service';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {RoomPreviewCardComponent} from './components/room/room-preview-card/room-preview-card.component';
 import {QRCodeModule} from 'angularx-qrcode';
-import {QrCodeDialog} from './dialog/qr-code/qr-code.dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {AboListPageComponent} from './pages/admin/abo-list/abo-list-page.component';
-import {CreateAboPage} from './pages/detail/create-abo/create-abo.page';
-import {EditAboPage} from './pages/detail/edit-abo/edit-abo.page';
-import {AboDetailPage} from './pages/detail/abo-detail/abo-detail.page';
-import {AboFormComponent} from './components/abo/abo-form/abo-form.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {RoomPreviewSmallComponent} from './components/room/room-preview-small/room-preview-small.component';
-import {AboPreviewCardComponent} from './components/abo/abo-preview-card/abo-preview-card.component';
-import {ReservationListPage} from './pages/admin/reservation-list/reservation-list.page';
-import {ReservationDetailPage} from './pages/detail/reservation-detail/reservation-detail.page';
-import {CreateReservationPage} from './pages/detail/create-reservation/create-reservation.page';
-import {EditReservationPage} from './pages/detail/edit-reservation/edit-reservation.page';
 import {AboService} from './services/abo/abo.service';
 import {UserService} from './services/user/user.service';
 import {ReservationService} from './services/reservation/reservation.service';
-import {ReservationFormComponent} from './components/reservation/reservation-form/reservation-form.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {MatRadioModule} from '@angular/material/radio';
-import {TimeZoneDatePipe, TimezoneService} from './services/timezone.service';
+import {TimeZoneDatePipe, TimezoneService} from './services/timezone/timezone.service';
 import {MatSliderModule} from '@angular/material/slider';
-import {MyReservationListPageComponent} from './pages/user/my-reservations/my-reservation-list-page.component';
-import {MyAboListPageComponent} from './pages/user/my-abos/my-abo-list-page.component';
-import {AboListComponent} from './components/abo/abo-list/abo-list.component';
-import {ReservationListComponent} from './components/reservation/reservation-list/reservation-list.component';
-import {ReservationPreviewCardComponent} from './components/reservation/reservation-preview-card/reservation-preview-card.component';
-import {DepartmentListComponent} from './components/department/department-list/department-list.component';
-import {RoomListComponent} from './components/room/room-list/room-list.component';
+import { MatGridListModule} from '@angular/material/grid-list';
+import {MainMenuComponent} from './components/fragments/main-menu/main-menu.component';
+import {ToolbarComponent} from './components/fragments/toolbar/toolbar.component';
+import {MatIconModule} from '@angular/material/icon';
+import {TokenInterceptor} from './interceptors/token/token.interceptor';
+import {RoomListComponent} from './components/fragments/room-list/room-list.component';
+import { RoomListItemComponent } from './components/fragments/room-list-item/room-list-item.component';
+import { PreviewPipe } from './pipes/preview/preview.pipe';
+import { ActionsComponent } from './components/fragments/actions/actions.component';
+import {DepartmentListComponent} from './components/fragments/department-list/department-list.component';
+import { DepartmentListItemComponent } from './components/fragments/department-list-item/department-list-item.component';
+import { DepartmentEditorComponent } from './components/fragments/department-editor/department-editor.component';
+import { RoomEditorComponent } from './components/fragments/room-editor/room-editor.component';
+import { FormActionsComponent } from './components/fragments/form-actions/form-actions.component';
+import {UrlService} from './services/url/url.service';
+import {AboListComponent} from './components/fragments/abo-list/abo-list.component';
+import { AboListItemComponent } from './components/fragments/abo-list-item/abo-list-item.component';
+import { UserListItemComponent } from './components/fragments/user-list-item/user-list-item.component';
+import { UserListComponent } from './components/fragments/user-list/user-list.component';
+import {AboEditorComponent} from './components/fragments/abo-editor/abo-editor.component';
+import {MatChipsModule} from '@angular/material/chips';
+import {ConfirmDialog} from './components/dialogs/confirm-dialog/confirm-dialog.component';
+import {MainPageComponent} from './components/pages/main-page/main-page.component';
+import {QrDialog} from './components/dialogs/qr-dialog/qr-dialog.component';
+import {RoomPageComponent} from './components/pages/room-page/room-page.component';
+import {DepartmentPageComponent} from './components/pages/department-page/department-page.component';
+import {RoomCreatePageComponent} from './components/pages/room-create-page/room-create-page.component';
+import {DepartmentUpdatePageComponent} from './components/pages/department-update-page/department-update-page.component';
+import {RoomUpdatePageComponent} from './components/pages/room-update-page/room-update-page.component';
+import {DepartmentCreatePageComponent} from './components/pages/department-create-page/department-create-page.component';
+import {AboCreatePageComponent} from './components/pages/abo-create-page/abo-create-page.component';
+import {AboPageComponent} from './components/pages/abo-page/abo-page.component';
+import {UserPageComponent} from './components/pages/user-page/user-page.component';
+import {AboUpdatePageComponent} from './components/pages/abo-update-page/abo-update-page.component';
+import {DepartmentListPageComponent} from './components/pages/department-list-page/department-list-page.component';
+import {RoomListPageComponent} from './components/pages/room-list-page/room-list-page.component';
+import {AboListPageComponent} from './components/pages/abo-list-page/abo-list-page.component';
+import {AboListMePageComponent} from './components/pages/abo-list-me-page/abo-list-me-page.component';
+import {UserListPageComponent} from './components/pages/user-list-page/user-list-page.component';
+import { ReservationListPageComponent } from './components/pages/reservation-list-page/reservation-list-page.component';
+import { ReservationPageComponent } from './components/pages/reservation-page/reservation-page.component';
+import { ReservationListMePageComponent } from './components/pages/reservation-list-me-page/reservation-list-me-page.component';
+import { ReservationCreatePageComponent } from './components/pages/reservation-create-page/reservation-create-page.component';
+import { ReservationUpdatePageComponent } from './components/pages/reservation-update-page/reservation-update-page.component';
+import { ReservationListItemComponent } from './components/fragments/reservation-list-item/reservation-list-item.component';
+import { ReservationEditorComponent } from './components/fragments/reservation-editor/reservation-editor.component';
+import {ReservationListComponent} from './components/fragments/reservation-list/reservation-list.component';
 
 // import localeDe from '@angular/common/locales/de';
 // import localeDeExtra from '@angular/common/locales/extra/de';
@@ -97,49 +108,55 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    RootPage,
+    AppComponent,
     SidenavComponent,
-    MainPage,
-    UserPreviewComponent,
-    DepartmentListPage,
-    CreateDepartmentPage,
-    DepartmentFormComponent,
     ToolbarComponent,
-    DepartmentPreviewCardComponent,
-    DepartmentDetailPage,
-    SimpleConfirmDialog,
-    EditDepartmentPage,
-    RoomListPage,
-    EditRoomPage,
-    CreateRoomPage,
-    RoomDetailPage,
-    RoomFormComponent,
-    RoomPreviewCardComponent,
-    QrCodeDialog,
-    AboListPageComponent,
-    CreateAboPage,
-    EditAboPage,
-    AboDetailPage,
-    AboFormComponent,
-    RoomPreviewSmallComponent,
-    AboPreviewCardComponent,
-    ReservationListPage,
-    ReservationDetailPage,
-    CreateReservationPage,
-    EditReservationPage,
-    ReservationFormComponent,
+    ConfirmDialog,
+    QrDialog,
     TimeZoneDatePipe,
-    MyReservationListPageComponent,
-    MyAboListPageComponent,
     AboListComponent,
     ReservationListComponent,
-    ReservationPreviewCardComponent,
     DepartmentListComponent,
-    RoomListComponent
+    RoomListComponent,
+    MainPageComponent,
+    MainMenuComponent,
+    DepartmentListPageComponent,
+    RoomListPageComponent,
+    RoomListItemComponent,
+    PreviewPipe,
+    ActionsComponent,
+    DepartmentListItemComponent,
+    RoomPageComponent,
+    DepartmentPageComponent,
+    DepartmentCreatePageComponent,
+    DepartmentUpdatePageComponent,
+    RoomCreatePageComponent,
+    RoomUpdatePageComponent,
+    DepartmentEditorComponent,
+    RoomEditorComponent,
+    FormActionsComponent,
+    AboListPageComponent,
+    AboCreatePageComponent,
+    AboPageComponent,
+    AboListMePageComponent,
+    AboListItemComponent,
+    UserListItemComponent,
+    UserPageComponent,
+    UserListPageComponent,
+    UserListComponent,
+    AboEditorComponent,
+    AboUpdatePageComponent,
+    ReservationListPageComponent,
+    ReservationPageComponent,
+    ReservationListMePageComponent,
+    ReservationCreatePageComponent,
+    ReservationUpdatePageComponent,
+    ReservationListItemComponent,
+    ReservationEditorComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    RoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     KeycloakAngularModule,
@@ -171,6 +188,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatCheckboxModule,
     MatRadioModule,
     MatSliderModule,
+    MatGridListModule,
+    MatIconModule,
+    MatChipsModule,
     NgxMaterialTimepickerModule.setLocale('de-DE')
   ],
   providers: [
@@ -194,7 +214,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     // I18n,
     // {provide: TRANSLATIONS, useValue: translations},
     // {provide: TRANSLATIONS_FORMAT, useValue: 'xlf'},
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     SidenavService,
+    UrlService,
     BackendService,
     SessionService,
     DepartmentService,
@@ -206,7 +228,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TimeZoneDatePipe,
     TimezoneService
   ],
-  bootstrap: [RootPage]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

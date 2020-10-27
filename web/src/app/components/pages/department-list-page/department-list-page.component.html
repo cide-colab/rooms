@@ -1,0 +1,6 @@
+<component-department-list [items]="filteredItems | async" (itemClick)="click($event)"></component-department-list>
+<component-actions>
+  <button (click)="create()" *ngIf="(canCreate | async) == true" color="primary" mat-fab>
+    <i class="icon-add"></i>
+  </button>
+</component-actions>

@@ -1,30 +1,42 @@
 import {Injectable} from '@angular/core';
-import {forkJoin, Observable} from 'rxjs';
+import {forkJoin, Observable, of} from 'rxjs';
 import {ReservationListEntity, SimpleReservation} from '../../models/reservation.model';
 import {BackendService, TokenRequirement} from '../backend/backend.service';
 import {map} from 'rxjs/operators';
 import {SessionService} from '../session/session.service';
+import {Reservation, ReservationForm, RichReservation} from '../../core/models/reservation.model';
+import {Projection} from '../../core/projections.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReservationService {
 
-  private static createProtocol(reservation: SimpleReservation) {
-    return {
-      ...reservation,
-      ...{
-        room: reservation.room._links.self.href,
-        user: reservation.user._links.self.href,
-        abo: reservation.abo._links.self.href,
-      }
-    };
+  constructor(
+    private readonly backendService: BackendService
+  ) {
   }
 
-  constructor(
-    private readonly backendService: BackendService,
-    private readonly sessionService: SessionService
-  ) {
+  getAll(): Observable<RichReservation[]> {
+    return this.backendService.getCollection<RichReservation>('reservations', 'reservations', {
+      projection: Projection.RICH
+    });
+  }
+
+  getAllForMe(): Observable<RichReservation[]> {
+    return this.backendService.getCollection<RichReservation>('me/reservations', 'reservations', {
+      projection: Projection.RICH
+    });
+  }
+
+  get(id: number): Observable<RichReservation> {
+    return this.backendService.getSingle<RichReservation>(`reservations/${id}`, {
+      projection: Projection.RICH
+    });
+  }
+
+  delete(id: number): Observable<any> {
+    return this.backendService.deleteSingle<RichReservation>(`reservations/${id}`);
   }
 
   getSimpleByUser(userId: string): Observable<SimpleReservation[]> {
@@ -32,26 +44,21 @@ export class ReservationService {
       .pipe(map(it => it._embedded.reservations));
   }
 
-  save(reservation: SimpleReservation): Observable<SimpleReservation> {
-    return this.backendService.post('reservations', ReservationService.createProtocol(reservation), TokenRequirement.REQUIRED);
+  save(reservation: ReservationForm): Observable<Reservation> {
+    return this.backendService.postSingle('reservations', {
+      ...reservation,
+      abo: `/abos/${reservation.abo.id}`,
+      user: `/users/${reservation.user.id}`,
+      room: `/rooms/${reservation.room.id}`,
+    });
   }
 
-  getSimpleWhereAdmin(): Observable<SimpleReservation[]> {
-    return forkJoin(
-      [
-        this.sessionService.getSession(),
-        this.backendService.get<ReservationListEntity<SimpleReservation>>('reservations?projection=simple', TokenRequirement.REQUIRED)
-          .pipe(map(it => it._embedded.reservations))
-      ]
-    ).pipe(
-      map(([session, result]) => {
-        return result
-          .filter(item => session.acl.find(aclEntry =>
-            aclEntry.id === item.id
-            && (aclEntry.permission === 'create' || aclEntry.permission === 'update')
-            ) !== null
-          );
-      })
-    );
+  update(reservation: ReservationForm): Observable<Reservation> {
+    return this.backendService.patchSingle(`reservations/${reservation.id}`, {
+      ...reservation,
+      abo: `/abos/${reservation.abo.id}`,
+      user: `/users/${reservation.user.id}`,
+      room: `/rooms/${reservation.room.id}`,
+    });
   }
 }
