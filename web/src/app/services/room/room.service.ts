@@ -4,7 +4,6 @@ import {BaseDepartment} from '../../models/department.model';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {BaseRoom, RoomListEntity, SimpleRoom} from '../../models/room.model';
-import {removeTemplate} from '../../app.utils';
 import {BaseSlot, SlotListEntity} from '../../models/slot.model';
 import * as moment from 'moment';
 import {RichRoom, Room, RoomForm} from '../../core/models/room.model';
@@ -12,6 +11,7 @@ import {Projection} from '../../core/projections.model';
 import {RichDepartment} from '../../core/models/department.model';
 import {AclAction} from '../../models/acl-entry.model';
 import {User} from '../../core/models/user.model';
+import {Slot} from '../../core/models/slot.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,14 +21,7 @@ export class RoomService {
   constructor(private readonly backendService: BackendService) {
   }
 
-  private static getProtocol(room: SimpleRoom): any {
-    return {
-      ...room,
-      department: removeTemplate(room.department._links.self)
-    };
-  }
-
-  getAllByPermission(action: AclAction): Observable<RichRoom[]> {
+  getAllByAclAction(action: AclAction): Observable<RichRoom[]> {
     return this.backendService.getCollection(`rooms/search/byPermission`, 'rooms', {
       action,
       projection: Projection.RICH
@@ -80,13 +73,12 @@ export class RoomService {
     });
   }
 
-  getSlots(roomId: string, date: Date): Observable<BaseSlot[]> {
-    return this.backendService.get<SlotListEntity<BaseSlot>>(
-      // `rooms/${roomId}/slots?date=${encodeURIComponent(this.datePipe.transform(date, 'yyyy-MM-ddTHH:mm:ss\'Z\''))}`,
-      `rooms/${roomId}/slots?date=${encodeURIComponent(moment(date).format())}`,
-      // `rooms/${roomId}/slots?date=${date.toISOString()}`,
-      TokenRequirement.IF_LOGGED_IN
-    ).pipe(map(value => value._embedded.slots));
+  getSlots(roomId: number, date: Date): Observable<Slot[]> {
+    return this.backendService.getCollection<Slot>(
+      `rooms/${roomId}/slots`, 'slots', {
+        date: encodeURIComponent(moment(date).format())
+      }
+    );
   }
 
   getForDepartment(department: BaseDepartment): Observable<SimpleRoom[]> {

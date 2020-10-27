@@ -6,7 +6,7 @@ import {map} from 'rxjs/operators';
 import {RichUser, User} from '../../core/models/user.model';
 import {RichRoom} from '../../core/models/room.model';
 import {Projection} from '../../core/projections.model';
-import {AclAction} from '../../models/acl-entry.model';
+import {AclAction, AclClassAlias} from '../../models/acl-entry.model';
 import {Department} from '../../core/models/department.model';
 
 @Injectable({
@@ -43,9 +43,17 @@ export class UserService {
     });
   }
 
-  getAllByPermission(action: AclAction): Observable<RichUser[]> {
+  getAllByAclAction(action: AclAction): Observable<RichUser[]> {
     return this.backendService.getCollection(`users/search/byPermission`, 'users', {
       action,
+      projection: Projection.RICH
+    });
+  }
+
+  getAllByAclPermission(target: AclClassAlias, action: AclAction): Observable<RichUser[]> {
+    return this.backendService.getCollection(`users/search/byTargetPermission`, 'users', {
+      action,
+      target,
       projection: Projection.RICH
     });
   }

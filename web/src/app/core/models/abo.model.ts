@@ -1,7 +1,6 @@
 import {Identity} from './identity';
 import {User} from './user.model';
 import {Room} from './room.model';
-import {DepartmentModel} from './department.model';
 
 export interface AboModel {
   title: string;

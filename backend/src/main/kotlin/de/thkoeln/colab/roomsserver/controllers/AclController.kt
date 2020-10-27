@@ -10,6 +10,8 @@ import de.thkoeln.colab.roomsserver.acl.ANONYMOUS_PRINCIPAL
 import de.thkoeln.colab.roomsserver.acl.AclService
 import de.thkoeln.colab.roomsserver.acl.ContextForm
 import de.thkoeln.colab.roomsserver.acl.PermissionCheckForm
+import de.thkoeln.colab.roomsserver.controllers.Slot
+import de.thkoeln.colab.roomsserver.extensions.fixEmbedded
 import de.thkoeln.colab.roomsserver.models.AclEntry
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.rest.webmvc.RepositoryRestController
@@ -35,12 +37,13 @@ class AclController @Autowired constructor(private val aclService: AclService) {
                     .let { ResponseEntity.ok(it) }
 
     @GetMapping("/acl")
-    fun acl(authentication: Authentication?): ResponseEntity<CollectionModel<AclEntry>> =
+    fun acl(authentication: Authentication?): ResponseEntity<CollectionModel<out Any>> =
             aclService.createACL(authentication?.principal?.toString() ?: ANONYMOUS_PRINCIPAL)
                     .let { CollectionModel.of(it) }
                     .apply {
                         add(linkTo<AclController> { acl(authentication) }.withSelfRel())
                     }
+                    .fixEmbedded(AclEntry::class.java)
                     .let { ResponseEntity.ok(it) }
 
 }

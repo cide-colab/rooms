@@ -41,7 +41,6 @@ import {EditReservationPage} from './pages/detail/edit-reservation/edit-reservat
 import {AboService} from './services/abo/abo.service';
 import {UserService} from './services/user/user.service';
 import {ReservationService} from './services/reservation/reservation.service';
-import {ReservationFormComponent} from './components/reservation/reservation-form/reservation-form.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {MatRadioModule} from '@angular/material/radio';
 import {TimeZoneDatePipe, TimezoneService} from './services/timezone/timezone.service';
@@ -123,7 +122,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReservationDetailPage,
     CreateReservationPage,
     EditReservationPage,
-    ReservationFormComponent,
     TimeZoneDatePipe,
     MyReservationListPageComponent,
     AboListComponent,

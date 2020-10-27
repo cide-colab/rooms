@@ -17,3 +17,9 @@ export interface RichReservation extends ReservationModel, Identity {
   user: User;
   abo: Abo;
 }
+
+export interface ReservationForm extends ReservationModel, Identity {
+  room: Room;
+  user: User;
+  abo: Abo;
+}

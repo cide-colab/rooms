@@ -1,1 +1,100 @@
-<p>reservation-editor works!</p>
+<form (ngSubmit)="submit()" [formGroup]="formGroup" class="form-container">
+    <mat-form-field appearance="fill" class="full-width">
+      <input [matAutocomplete]="userAutoCompete" formControlName="user" matInput required>
+      <mat-label>Nutzer</mat-label>
+      <mat-autocomplete #userAutoCompete="matAutocomplete" [displayWith]="displayUser">
+        <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+          <span>{{user.givenName}} ({{user.principal}})</span>
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error *ngIf="hasError('requireSelect', 'user')">
+        Bitte wähle einen Nutzer aus
+      </mat-error>
+    </mat-form-field>
+
+    <br>
+    <mat-form-field appearance="fill" class="full-width">
+      <input [matAutocomplete]="aboAutoCompete" formControlName="abo" matInput required>
+      <mat-label>Abo</mat-label>
+      <mat-autocomplete #aboAutoCompete="matAutocomplete" [displayWith]="displayAbo">
+        <mat-option *ngFor="let abo of filteredAbos | async" [value]="abo">
+          <span>{{abo.title}}</span>
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error *ngIf="hasError('requireSelect', 'abo')">
+        Bitte wähle ein Abo aus
+      </mat-error>
+    </mat-form-field>
+
+    <br>
+    <mat-form-field appearance="fill" class="full-width">
+      <input [matAutocomplete]="roomAutoCompete" formControlName="room" matInput required>
+      <mat-label>Raum</mat-label>
+      <mat-autocomplete #roomAutoCompete="matAutocomplete" [displayWith]="displayRoom">
+        <mat-option *ngFor="let room of filteredRooms | async" [value]="room">
+          <span>{{room.number}} {{room.name}}</span>
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error *ngIf="hasError('requireSelect', 'room')">
+        Bitte wähle einen Raum aus
+      </mat-error>
+    </mat-form-field>
+
+    <br>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Datum</mat-label>
+      <input [matDatepicker]="date_date_picker" [min]="minDate" [max]="maxDate" formControlName="date" matInput required>
+      <mat-datepicker-toggle [for]="date_date_picker" matSuffix></mat-datepicker-toggle>
+      <mat-datepicker #date_date_picker touchUi="true"></mat-datepicker>
+      <mat-error *ngIf="hasError('required', 'start')">
+        Bitte wähle ein Datum aus
+      </mat-error>
+    </mat-form-field>
+    <section *ngIf="slots | async as slots">
+      <label *ngIf="slots.length > 0">Slots</label>
+      <br>
+      <mat-radio-group class="flex-wrap-container" formControlName="slot" style="justify-content: space-between">
+        <mat-radio-button *ngFor="let slot of slots" [value]="slot" class="radio-chip">{{slot.start | date: 'HH:mm'}}
+          - {{slot.end | date: 'HH:mm'}} Uhr
+        </mat-radio-button>
+      </mat-radio-group>
+    </section>
+    <br>
+    <div *ngIf="formGroup.get('slot').value" class="flex-wrap-container">
+      <mat-form-field appearance="fill">
+        <input [format]="24" [max]="maxStart" [min]="minStart" [ngxTimepicker]="start_picker"
+               formControlName="start"
+               matInput type="time">
+        <span matSuffix>Uhr</span>
+        <mat-label>Start</mat-label>
+        <ngx-material-timepicker #start_picker></ngx-material-timepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <input [format]="24" [max]="maxEnd" [min]="minEnd" [ngxTimepicker]="end_picker"
+               formControlName="end"
+               matInput type="time">
+        <span matSuffix>Uhr</span>
+        <mat-label>Ende</mat-label>
+        <ngx-material-timepicker #end_picker></ngx-material-timepicker>
+      </mat-form-field>
+    </div>
+    <mat-error *ngIf="contingentError | async as contingentError">{{contingentError}}</mat-error>
+    <br>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Titel</mat-label>
+      <input formControlName="title" matInput required>
+      <mat-error *ngIf="hasError('required', 'title')">
+        Bitte gebe einen Titel ein
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Beschreibung</mat-label>
+      <textarea #description [maxLength]="100" formControlName="description" matInput></textarea>
+      <mat-hint align="end">{{description.value.length}} / 512</mat-hint>
+    </mat-form-field>
+    <mat-error *ngIf="hasError('missing_contingent', 'end')">Nicht genügend Kontingent</mat-error>
+  <component-form-actions>
+    <button mat-fab color="primary" [disabled]="!hasChanges()"><i class="icon-check"></i></button>
+  </component-form-actions>
+</form>

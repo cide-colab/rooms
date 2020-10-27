@@ -10,6 +10,7 @@ import {Room} from '../../core/models/room.model';
 import {Abo, AboForm, RichAbo} from '../../core/models/abo.model';
 import {Projection} from '../../core/projections.model';
 import {Department} from '../../core/models/department.model';
+import {Contingent} from '../../core/models/contingent.model';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,12 @@ export class AboService {
     });
   }
 
+  getAllByUser(id: number): Observable<RichAbo[]> {
+    return this.backendService.getCollection<RichAbo>(`users/${id}/abos`, 'abos', {
+      projection: Projection.RICH
+    });
+  }
+
   delete(id: number): Observable<any> {
     return this.backendService.deleteSingle(`abos/${id}`);
   }
@@ -72,15 +79,11 @@ export class AboService {
       .pipe(map(value => value._embedded.abos));
   }
 
-  getBaseByUser(id: string): Observable<SimpleAbo[]> {
-    return this.backendService.get<AboListEntity<SimpleAbo>>(`users/${id}/abos`, TokenRequirement.REQUIRED)
-      .pipe(map(value => value._embedded.abos));
-  }
-
-  getContingentOnDate(id: string, date: Date): Observable<BaseContingent> {
-    return this.backendService.get<BaseContingent>(
-      `abos/${id}/contingent?date=${encodeURIComponent(moment(date).format())}`,
-      TokenRequirement.REQUIRED
+  getContingentOnDate(id: number, date: Date): Observable<Contingent> {
+    return this.backendService.getSingle<Contingent>(
+      `abos/${id}/contingent`, {
+        date: encodeURIComponent(moment(date).format())
+      }
     );
   }
 }

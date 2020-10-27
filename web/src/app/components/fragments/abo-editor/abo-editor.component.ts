@@ -2,7 +2,6 @@ import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {EditorComponent} from '../../abstracts/editor.component';
 import {RichRoom} from '../../../core/models/room.model';
 import {AboForm} from '../../../core/models/abo.model';
-import {Semester} from '../../../app.utils';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {RichUser} from '../../../core/models/user.model';
@@ -11,6 +10,7 @@ import {RoomService} from '../../../services/room/room.service';
 import {AclAction} from '../../../models/acl-entry.model';
 import {debounceTime, map, switchMap} from 'rxjs/operators';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {Semester} from '../../../models/semester.model';
 
 @Component({
   selector: 'component-abo-editor',
@@ -67,7 +67,7 @@ export class AboEditorComponent extends EditorComponent<AboForm> implements OnIn
       contingent: [this.default.contingent, Validators.min(0)]
     });
 
-    this.filteredUsers = this.userService.getAllByPermission(AclAction.ADMINISTRATE).pipe(
+    this.filteredUsers = this.userService.getAllByAclAction(AclAction.ADMINISTRATE).pipe(
       switchMap(users => this.formGroup.controls.user.valueChanges.pipe(
         debounceTime(200),
         map(value => typeof value === 'string' ? value : this.displayUser(value)),
@@ -75,7 +75,7 @@ export class AboEditorComponent extends EditorComponent<AboForm> implements OnIn
       ))
     );
 
-    this.filteredRooms = this.roomService.getAllByPermission(AclAction.UPDATE).pipe(
+    this.filteredRooms = this.roomService.getAllByAclAction(AclAction.UPDATE).pipe(
       switchMap(rooms => this.roomQuery.valueChanges.pipe(
         debounceTime(200),
         map(value => typeof value === 'string' ? value : this.displayRoom(value)),
