@@ -100,6 +100,13 @@ export class SidenavComponent implements OnInit, AfterViewInit {
           event: NavEvent.LINK
         },
         {
+          title: 'Meine Buchungen',
+          iconClass: 'icon-calendar_today',
+          enabled: loggedIn,
+          href: '/my/reservations',
+          event: NavEvent.LINK
+        },
+        {
           title: 'Anmelden',
           iconClass: 'icon-exit_to_app',
           enabled: !loggedIn,
@@ -137,6 +144,16 @@ export class SidenavComponent implements OnInit, AfterViewInit {
           iconClass: 'icon-person',
           enabled,
           href: '/users',
+          event: NavEvent.LINK
+        }))),
+
+      this.permissionService
+        .hasPermission({target: AclClassAlias.reservation, action: AclAction.ADMINISTRATE})
+        .pipe(map(enabled => build({
+          title: 'Buchungen',
+          iconClass: 'icon-calendar_today',
+          enabled,
+          href: '/reservations',
           event: NavEvent.LINK
         })))
     ]).pipe(map(items => build({title: 'Administration', items, enabled: items.filter(i => i.enabled).length > 0})));
